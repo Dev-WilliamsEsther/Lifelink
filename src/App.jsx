@@ -11,7 +11,6 @@ import Donorslogin from './Esther/auth/Donorslogin'
 import Donorssignup from './Esther/auth/Donorssignup'
 import Resetpassword from './Esther/auth/resetpassword'
 import KYC from './Esther/auth/KYC'
-import Appointment from './Davidson/Appointment'
 
 const App = () => {
 
@@ -58,10 +57,7 @@ const App = () => {
       path:"/kyc",
       element:<KYC/>
     },
-    {
-      path:"/appointment",
-      element:<Appointment/>
-    },
+    
   ])
   return (
     <RouterProvider router={router}/>
