@@ -1,8 +1,11 @@
 import React from 'react'
+import '../Esther/styles/landing.css'
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <div className='landingmainwrapper'>
+      <div className='landingwrapper'></div>
+    </div>
   )
 }
 
