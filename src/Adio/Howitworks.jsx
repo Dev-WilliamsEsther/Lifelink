@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/howitworks.css";
+import "./howitworks.css";
 
 const Howitworks = () => {
   return (
