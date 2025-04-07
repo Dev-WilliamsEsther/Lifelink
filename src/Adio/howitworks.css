@@ -222,17 +222,17 @@
   }
   
   .card-1 {
-    background-image: url('/public/howitworksImg.png');
+    background-image:url("../../public/images/image(7).png") ;
     background-repeat: no-repeat;
   }
   
   .card-2 {
-    background-image: url('/public/howitworksImg2.png');
+    background-image:url("../../public/images/image (8).png") ;
     background-repeat: no-repeat;
   }
   
   .card-3 {
-    background-image: url('/public/howitworksImg23.png');
+    background-image:url("../../public/images/image(6).png");
     background-repeat: no-repeat;
   }
   
