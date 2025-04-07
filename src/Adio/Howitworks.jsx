@@ -21,11 +21,11 @@ const Howitworks = () => {
           </div>
           <div className="lifelink-images">
             <img
-              src="/public/howitworksHeroImage.png"
+              src="public/images/image (4).png"
               alt="Patient in hospital bed"
               className="img-back"
             />
-            <img src="/public/howitworksHeroImage2.png" alt="Blood donation" className="img-front" />
+            <img src="public/images/image (5).png" alt="Blood donation" className="img-front" />
           </div>
         </section>
 

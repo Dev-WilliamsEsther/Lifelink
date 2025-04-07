@@ -5,7 +5,17 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  transition: 280ms;
 }
+
+.headerwrapperfixed{
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  position: fixed;
+  z-index: 999;
+  transition: 280ms;
+}
+
+
 .MobileHeader {
   display: none;
 }
@@ -110,7 +120,10 @@
     justify-content: flex-end;
     align-items: center;
     padding: 10px;
+    position: fixed;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   }
+  
 }
 
 @media only screen and (max-width: 379px) {

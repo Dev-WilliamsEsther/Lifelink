@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../components/header/header.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useLocation } from "react-router-dom";
@@ -12,9 +12,29 @@ const Header = () => {
 
   const location = useLocation();
 
+
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = 250;
+      if (window.scrollY > scrollThreshold) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
-      <div className="headerwrapper">
+      <div className={`headerwrapper ${
+        isFixed ? 'headerwrapperfixed' : ''
+      }`}>
         <div className="headerwrapperinner1">
           <img src="public/images/logo.png" alt="" />
         </div>
@@ -38,6 +58,8 @@ const Header = () => {
           <button className="headerbtn1">Log In</button>
         </div>
       </div>
+
+
       <div className="MobileHeader">
         <RxHamburgerMenu size={30} />
       </div>
