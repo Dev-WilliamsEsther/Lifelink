@@ -1,5 +1,5 @@
 import React from "react";
-import "./aboutus.css";
+import "./AboutUs.css";
 
 const AboutUs = () => {
   return (
@@ -164,8 +164,117 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-            <div className="">
-              <div></div>
+            <div className="what-makes-us-cnt">
+              <span
+                style={{
+                  fontFamily: "poppins",
+                  fontSize: "36px",
+                  fontWeight: "700",
+                  lineHeight: "100%",
+                }}
+              >
+                WHAT MAKES US THE BEST
+              </span>
+
+              <div className="step-box-cnt">
+                <div className="step-box">
+                  <div className="icon">
+                    <img src="/public/cryptocurrency-color_gold.png" />
+                  </div>
+                  <h3>
+                    Verified & Trusted <br />
+                    Network
+                  </h3>
+                  <p>
+                    We partner only with accredited <br />
+                    hospital and blood banks ensuring <br />
+                    safe and reliable donation.
+                  </p>
+                </div>
+                <div className="step-box">
+                  <div className="icon">
+                    <img src="/public/cryptocurrency-color_gold.png" />
+                  </div>
+                  <h3>
+                    Real Time Donor <br />
+                    Availability
+                  </h3>
+                  <p>
+                    Hospitals can instantly see where donors are available,
+                    reducing delays <br />
+                    in emergencies.
+                  </p>
+                </div>
+                <div className="step-box">
+                  <div className="icon">
+                    <img src="/public/cryptocurrency-color_gold.png" />
+                  </div>
+                  <h3>
+                    SeamLess Donor <br />
+                    Experience
+                  </h3>
+                  <p>
+                    From easy registration to tracking donation history, our
+                    platform makes <br />
+                    blood donation hassle-free.
+                  </p>
+                </div>
+                <div className="step-box">
+                  <div className="icon">
+                    <img src="/public/cryptocurrency-color_gold.png" />
+                  </div>
+                  <h3>Incentives for Donors</h3>
+                  <p>
+                    We believe generosity should be <br />
+                    appreciated, so we offer health <br />
+                    checkups & wellness perks for donors.
+                  </p>
+                </div>
+                <div className="step-box">
+                  <div className="icon">
+                    <img src="/public/cryptocurrency-color_gold.png" />
+                  </div>
+                  <h3>Impact-Driven Mission</h3>
+                  <p>
+                    Every donation through LifeLink directly <br />
+                    saves lives, making a tangable <br />
+                    differenc in communities.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="btn">
+              <button
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#C0392B",
+                  fontSize: "20px",
+                  fontWeight: "600",
+                  color: "#FFFFFF",
+                  borderRadius: "20px",
+                  border: "none",
+                }}
+              >
+                Get Listed
+              </button>
+            </div>
+            <div className="the-team-cnt">
+              <div>
+                <span
+                  style={{
+                    fontFamily: "poppins",
+                    fontSize: "36px",
+                    fontWeight: "700",
+                    lineHeight: "100%",
+                  }}
+                >
+                  THE TEAM
+                </span>
+                <p>
+                  A group of young, passionate, and driven individuals <br />
+                  dedicated to creating impactful solution
+                </p>
+              </div>
             </div>
           </div>
         </div>

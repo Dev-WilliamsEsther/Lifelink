@@ -159,12 +159,13 @@ body {
 }
 
 .ach-img-cnt {
-  height: 372px;
+  height: max-content;
   padding: 70px 20px;
   margin-top: 70px;
   display: flex;
   justify-content: center;
   gap: 70px;
+  /* background-color: #212121; */
   flex-wrap: wrap;
 }
 
@@ -228,4 +229,86 @@ body {
     color: #212121;
     gap: 10px;
   }
+}
+
+.what-makes-us-cnt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 20px;
+  background-color: #f4a300;
+}
+
+.step-box {
+  background: #fff;
+  border: 1.5px solid grey;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  width: 340px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 288px;
+}
+
+.step-box-cnt {
+  height: max-content;
+  padding: 70px 20px;
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  flex-wrap: wrap;
+}
+
+.icon {
+  font-size: 1.6rem;
+  color: #f4a300;
+  margin-bottom: 1rem;
+}
+
+.step-box h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #222;
+  line-height: 100%;
+  gap: 50px;
+}
+
+.step-box p {
+  font-size: 16px;
+  color: #444;
+  line-height: 100%;
+  font-weight: 500;
+  gap: 50px;
+}
+
+.btn {
+  width: max-content;
+  height: 50px;
+}
+
+.the-team-cnt {
+  /* width: 100%; */
+  height: 196px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: #444;
+}
+
+.the-team-body {
+  width: 100%;
+}
+
+.the-team-cnt p {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #444;
 }
