@@ -9,8 +9,12 @@ import Hospitalsignup from './Esther/auth/Hospitalsignup'
 import Hospitallogin from './Esther/auth/Hospitallogin'
 import Donorslogin from './Esther/auth/Donorslogin'
 import Donorssignup from './Esther/auth/Donorssignup'
-import Resetpassword from './Esther/auth/resetpassword'
 import KYC from './Esther/auth/KYC'
+import Resetpassword from './Esther/auth/Resetpassword'
+import ProfilePage from './Adio/pages/ProfilePage'
+import FindHospitalPage from './Adio/pages/FindHospitalPage'
+import SettingsPage from './Adio/pages/SettingsPage'
+import DashboardLayout from './Adio/DashboardLayout'
 
 const App = () => {
 
@@ -20,17 +24,39 @@ const App = () => {
       element:<HomeRoutes/>,
       children:[
         {
-          path:"",
+          path:"/",
           element:<LandingPage/>
         },
         {
-          path:"",
+          path:"/aboutus",
           element:<AboutUs/>
         },
         {
-          path:"",
+          path:"/howitworks",
           element:<Howitworks/>
         }
+      ]
+    },
+    {
+      path: "/dashboard",
+      element: <DashboardLayout/>,
+      children:[
+        {
+          path: "",
+          element: <ProfilePage/>
+        },
+        {
+          path: "findhospital",
+          element: <FindHospitalPage/>
+        },
+        {
+          path: "history",
+          element: <History/>
+        },
+        {
+          path: "settings",
+          element: <SettingsPage/>
+        },
       ]
     },
     {
