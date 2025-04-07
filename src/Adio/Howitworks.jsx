@@ -35,25 +35,25 @@ const Howitworks = () => {
 
           <div className="steps-container">
             <div className="step-box step-1">
-              <div className="icon"><img src="public/images/Group.png"/></div>
+              <div className="icon"><img src="images/Group.png"/></div>
               <h3>Find a Donation <br /> Center</h3>
               <p>Locate a nearby verified hospital or blood bank using LifeLink</p>
             </div>
 
             <div className="step-box step-2">
-              <div className="icon"><img src="public/images/Group.png"/></div>
+              <div className="icon"><img src="images/Group.png"/></div>
               <h3>Donate Blood</h3>
               <p>Visit the center provide your unique code, & give blood safely.</p>
             </div>
 
             <div className="step-box step-3">
-              <div className="icon"><img src="public/images/Group.png"/></div>
+              <div className="icon"><img src="images/Group.png"/></div>
               <h3>Track Your Impact</h3>
               <p>Get updates on your donation history & see how many lives you’ve helped saved.</p>
             </div>
 
             <div className="step-box step-4">
-              <div className="icon"><img src="public/images/Group.png"/></div>
+              <div className="icon"><img src="images/Group.png"/></div>
               <h3>Enjoy Donor Benefits</h3>
               <p>Receive incentives like free health checkups & wellness perks as a token of appriciation.</p>
             </div>
