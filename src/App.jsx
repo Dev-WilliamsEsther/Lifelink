@@ -20,15 +20,15 @@ const App = () => {
       element:<HomeRoutes/>,
       children:[
         {
-          path:"",
+          path:"/",
           element:<LandingPage/>
         },
         {
-          path:"",
+          path:"/aboutus",
           element:<AboutUs/>
         },
         {
-          path:"",
+          path:"/howitworks",
           element:<Howitworks/>
         }
       ]
