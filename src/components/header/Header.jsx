@@ -36,7 +36,7 @@ const Header = () => {
         isFixed ? 'headerwrapperfixed' : ''
       }`}>
         <div className="headerwrapperinner1">
-          <img src="public/images/logo.png" alt="" />
+          <img src="images/logo.png" alt="" />
         </div>
         <div className="headerwrapperinner2">
           <ul className="headerul">
