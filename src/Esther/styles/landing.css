@@ -37,7 +37,7 @@
 .landingbutton{
     width: 250px;
     height: 70px;
-    border-radius: 20px;
+    border-radius: 10px;
     font-family: Poppins;
     font-size: 40px;
     font-weight: 600;
@@ -73,12 +73,23 @@
     align-items: center;
 }
 .landingbenefitsinner1{
-    width: 40%;
+    width: 30%;
     height: 500px;
     background-color: #00000080;
 }
 .landingbenefitsinner2{
-    width: 40%;
+    width: 50%;
     height: 500px;
     background-color: darkcyan;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.landingincentives{
+    width: 290px;
+    height: 180px;
+    background-color: #D6EAF8;
+    border-radius: 10px;
+    border: 1px solid black;
 }

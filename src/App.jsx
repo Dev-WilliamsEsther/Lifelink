@@ -24,11 +24,11 @@ const App = () => {
           element:<LandingPage/>
         },
         {
-          path:"",
+          path:"/about",
           element:<AboutUs/>
         },
         {
-          path:"",
+          path:"/works",
           element:<Howitworks/>
         }
       ]

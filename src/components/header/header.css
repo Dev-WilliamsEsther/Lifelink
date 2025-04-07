@@ -1,135 +1,117 @@
-.headerwrapper{
-    width: 100%;
-    height: 12vh;
-    background-color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.headerwrapper {
+  width: 100%;
+  height: 10vh;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-.MobileHeader{
-    display: none;
+.MobileHeader {
+  display: none;
 }
-.headerwrapperinner1{
-    width: 15%;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.headerwrapperinner1 {
+  width: 15%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.headerwrapperinner1 img{
-    width: 40%;
+.headerwrapperinner1 img {
+  width: 50px;
 }
-.headerwrapperinner2{
-    width: 40%;
-    height: 80px;
-    display: flex;
-    align-items: center;
+.headerwrapperinner2 {
+  width: 40%;
+  height: 80px;
+  display: flex;
+  align-items: center;
 }
-.headerul{
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-family: Poppins;
-    font-size: 18px;
-    font-weight: 600;
+.headerul {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
 }
-.headerli{
-    width: 30%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-
-.headerliactive{
-    border: 1px solid #C0392B;
-}
-.headerwrapperinner3{
-    width: 30%;
-    height: 80px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.headerbtn{
-    width: 42%;
-    height: 50px;
-    background-color: #C0392B;
-    color: white;
-    border-radius: 20px;
-    font-family: Poppins;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-}
-.headerbtn:hover{
-    background-color: #D6EAF8;
-    color: black;
-}
-.headerbtn1{
-    width: 42%;
-    height: 50px;
-    background-color: white;
-    border-radius: 20px;
-    color: #C0392B;
-    border: 1px solid #C0392B;
-    border-radius: 20px;
-    font-family: Poppins;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-}
-.headerbtn1:hover{
-    background-color: #D6EAF8;
-    color: black;
-    border: none;
+.headerli {
+  width: 30%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }
 
-@media only screen and (max-width: 1440px){
-   
+.headerliactive {
+  border: 1px solid #c0392b;
 }
-@media only screen and (max-width: 1200px){
-   
+.headerwrapperinner3 {
+  width: 30%;
+  height: 80px;
+  display: flex;
+  /* justify-content: space-; */
+  align-items: center;
+  gap: 10px;
+}
+.headerbtn {
+  width: 120px;
+  height: 40px;
+  background-color: #c0392b;
+  color: white;
+  border-radius: 6px;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.headerbtn:hover {
+  background-color: #d6eaf8;
+  color: black;
+}
+.headerbtn1 {
+  width: 120px;
+  height: 40px;
+  background-color: white;
+  color: #c0392b;
+  border-radius: 6px;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid #c0392b ;
+}
+.headerbtn1:hover {
+  background-color: #d6eaf8;
+  color: black;
+  border: none;
 }
 
-
-
-
-@media only screen and (max-width: 900px){  
-  
-    
+@media only screen and (max-width: 1440px) {
+}
+@media only screen and (max-width: 1200px) {
 }
 
-
-@media only screen and (max-width: 760px){
-
+@media only screen and (max-width: 900px) {
 }
 
-
+@media only screen and (max-width: 760px) {
+}
 
 @media only screen and (max-width: 480px) {
-    .headerwrapper{
-        display: none;
-    }
-    .MobileHeader{
-        width: 100%;
-        height: 80px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 10px;
-    }
-
+  .headerwrapper {
+    display: none;
+  }
+  .MobileHeader {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+  }
 }
-
-
-
-
 
 @media only screen and (max-width: 379px) {
-
 }
-
