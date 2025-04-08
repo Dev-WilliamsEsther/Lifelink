@@ -22,7 +22,7 @@ const Achievement = () => {
 
         <div className="ach-img1">
           <div className="sec-img-con">
-            <img src="" alt="" />
+            <img src="public/images/roundpics5.png" alt="" />
           </div>
           <div className="third-cnt">
             <h2>5,000 + Donors Registered</h2>
