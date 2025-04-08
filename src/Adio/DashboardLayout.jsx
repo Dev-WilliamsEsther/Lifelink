@@ -10,7 +10,9 @@ const DashboardLayout = () => {
       <DashboardSideBar/>
       <div className="DonordashboardLeftSideWrapper">
         <DashBoardHeader/>
-        <Outlet/>
+        <div className="outletWRapper">   
+         <Outlet/>
+        </div>
       </div>
     </div>
   )
