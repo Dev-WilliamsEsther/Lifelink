@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './dashboardSideBar.css'
 import { FaUser } from "react-icons/fa";
 import { TbHomeSearch } from "react-icons/tb";
@@ -10,6 +10,7 @@ import { CiCircleRemove } from "react-icons/ci";
 
 const DashboardSideBar = () => {
   const nav = useNavigate()
+  const [deletePopup, setDeletePopup] = useState(false)
   return (
     <>
     <div className='SideBArWrapper'>
@@ -32,7 +33,7 @@ const DashboardSideBar = () => {
             <IoSettingsOutline className='sideBarIocns' color='black'/>
             Settings
           </li>
-          <li className='logoutBtn'>
+          <li onClick={()=> setDeletePopup(true)} className='logoutBtn'>
             <CiLogout className='sideBarIocns'/>
             Logout
           </li>
@@ -40,18 +41,21 @@ const DashboardSideBar = () => {
       </div>
     </div>
 
-    <div className="popUpWrapper">
+
+    {
+      deletePopup && <div className="popUpWrapper" onClick={()=> setDeletePopup(false)}>
       <div className="logoutPopUp">
-        <div className="logoutPopUpHeader"><CiCircleRemove size={25}/></div>
+        <div className="logoutPopUpHeader"><CiCircleRemove cursor="pointer" size={25} onClick={()=> setDeletePopup(false)}/></div>
 
         <h1>Are you sure you want to <br /> <b>Log Out?</b></h1>
 
         <div className="logoutbButtonHolder">
-          <button>Cancel</button>
+          <button className='cancelBtn' onClick={()=> setDeletePopup(false)}>Cancel</button>
           <button>Logout</button>
         </div>
       </div>
     </div>
+    }
     </>
   )
 }

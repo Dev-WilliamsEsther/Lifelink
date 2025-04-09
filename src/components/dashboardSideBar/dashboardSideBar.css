@@ -138,10 +138,12 @@ ul .logoutBtn{
     font-size: 16px;
     font-weight: 500;
     margin-top: 20px;
+    cursor: pointer;
 }
 
-.logoutbButtonHolder::first-line{
-    border: 1px solid #C0392B;
+.logoutbButtonHolder .cancelBtn{
+    border: 1.5px solid #C0392B;
     background: white;
     color: black;
+    cursor: pointer;
 }
