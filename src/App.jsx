@@ -29,6 +29,7 @@ const App = () => {
           element:<LandingPage/>
         },
         {
+
           path:"/about",
           element:<AboutUs/>
         },
