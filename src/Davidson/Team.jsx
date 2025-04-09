@@ -38,7 +38,7 @@ const Team = () => {
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="public/images/image(41).png" alt="Willams Esther" />
+            <img src="/images/image(41).png" alt="Willams Esther" />
           </div>
           <div className="team-card-title">
             <h2>Willams Esther</h2>
@@ -60,7 +60,7 @@ const Team = () => {
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="public/images/image(51).png" alt="Kingsley Adio" />
+            <img src="/images/image(51).png" alt="Kingsley Adio" />
           </div>
           <div className="team-card-title">
             <h2>Kingsley Adio</h2>
@@ -71,7 +71,7 @@ const Team = () => {
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="" alt="Jeffery Abiuwa" />
+            <img src="/images/Frame 91.png" alt="Jeffery Abiuwa" />
           </div>
           <div className="team-card-title">
             <h2>Jeffery Abiuwa</h2>

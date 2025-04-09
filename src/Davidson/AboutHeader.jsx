@@ -4,12 +4,19 @@ const AboutHeader = () => {
   return (
     <>
       <div className="hilight-text">
-        <span className="highlight">About </span>
-        <span
-          style={{ fontWeight: "700", fontFamily: "poppins", fontSize: "36px" }}
-        >
-          us
-        </span>
+        <div style={{ marginTop: "20px" }}>
+          <span className="highlight">About </span>
+          <span
+            style={{
+              fontWeight: "700",
+              fontFamily: "poppins",
+              fontSize: "36px",
+            }}
+          >
+            us
+          </span>
+        </div>
+
         <div className="text-div">
           <h3>
             Nigeria face a critical blood shortage, endangering countless lives.

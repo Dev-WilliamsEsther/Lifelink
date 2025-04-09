@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -109,12 +111,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  & h3 {
-    font-weight: 600;
-    font-size: 20px;
-    font-family: poppins;
-  }
+.mission-div h3 {
+  font-weight: 600;
+  font-size: 20px;
+  font-family: poppins;
 }
 
 .text-div3-cnt {
@@ -389,26 +391,26 @@ body {
 
   .mission-div p {
     font-size: 16px;
-    padding: 0 10p;
+    padding: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .first-team-card {
+    width: 100%;
   }
 
-  @media only screen and (max-width: 480px) {
-    .first-team-card {
-      width: 100%;
-    }
-
-    .team-card-title h2 {
-      font-size: 18px;
-    }
-
-    .team-card-title p {
-      font-size: 14px;
-    }
+  .team-card-title h2 {
+    font-size: 18px;
   }
 
-  @media only screen and (max-width: 379px) {
-    .team-card-title h2 {
-      font-size: 16px;
-    }
+  .team-card-title p {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 379px) {
+  .team-card-title h2 {
+    font-size: 16px;
   }
 }
