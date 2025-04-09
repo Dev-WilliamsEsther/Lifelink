@@ -15,6 +15,7 @@ import ProfilePage from './Adio/pages/ProfilePage'
 import FindHospitalPage from './Adio/pages/FindHospitalPage'
 import SettingsPage from './Adio/pages/SettingsPage'
 import DashboardLayout from './Adio/DashboardLayout'
+import HistoryPage from './Adio/pages/HistoryPage'
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
           element:<LandingPage/>
         },
         {
+
           path:"/about",
           element:<AboutUs/>
         },
@@ -51,7 +53,7 @@ const App = () => {
         },
         {
           path: "history",
-          element: <History/>
+          element: <HistoryPage/>
         },
         {
           path: "settings",

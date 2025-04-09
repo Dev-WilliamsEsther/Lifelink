@@ -1,8 +1,9 @@
 import React from 'react'
+import './historyPage.css'
 
 const HistoryPage = () => {
   return (
-    <div>
+    <div className='HistoryPageWrapper'>
       HistoryPage
       HistoryPage
     </div>
