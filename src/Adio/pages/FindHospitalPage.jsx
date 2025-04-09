@@ -1,5 +1,5 @@
 import React from 'react'
-import './FindHospitalPage.css'
+import './findHospitalPage.css'
 import HospitalCard from '../../components/hospitalCard/HospitalCard'
 
 const FindHospitalPage = () => {

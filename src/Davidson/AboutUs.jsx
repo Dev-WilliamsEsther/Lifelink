@@ -1,5 +1,5 @@
 import React from "react";
-import "./aboutUs.css";
+import "./aboutus.css";
 import AboutHeader from "./AboutHeader";
 import BridgingGap from "./BridgingGap";
 import MissionVision from "./MissionVision";
