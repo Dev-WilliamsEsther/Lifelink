@@ -18,9 +18,9 @@ const DashBoardHeader = () => {
 
 
       <div className="profilePicAndNotification">
-        <MdCircleNotifications size={30}/>
+        <MdCircleNotifications size={30} cursor='pointer'/>
         <div className="profilePicture">
-          <img src="" alt="profile picture" className='profileAvater'/>
+          <img src="/images/default profile pic.jpg" alt="profile picture" className='profileAvater'/>
         </div>
       </div>
     </div>

@@ -110,6 +110,7 @@
     justify-content: center;
     text-align: center;
   }
+  
   .step-box:hover{
     transform: translateY(-10px);
   }
