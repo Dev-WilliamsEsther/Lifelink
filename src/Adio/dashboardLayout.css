@@ -1,0 +1,25 @@
+.DonordashboardWrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+.DonordashboardLeftSideWrapper{
+    width: 90%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: white;
+}
+
+.outletWRapper{
+    width: 95%;
+    height: 620px;
+    border-radius: 10px;
+    background: whitesmoke;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
