@@ -1,0 +1,128 @@
+.donorsignwrapper{
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+}
+.donorsignimage{
+    width: 35%;
+    filter: drop-shadow(rgba(0, 0, 0, 0.418)0px 8px 10px);
+}
+.donorsigninfowrap{
+    width: 50%;
+    height: 690px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.donorsignlogohold{
+    width: 90%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+.donorsigninfo1{
+    width: 380px;
+    height: 620px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.donorsigninfo1 h1{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: Poppins;
+    text-align: center;
+}
+.donorsigninputwrapper{
+    width: 360px;
+    height: 70px;
+    
+}
+.donorsigninputwrapper p{
+    font-size: 12px;
+    font-weight: 600;
+    color: #21212180;
+}
+.donorssigninput{
+    width: 340px;
+    height: 30px;
+    background-color: #ededed;
+    border-radius: 11px;
+    font-size: 10px;
+    padding: 4px;
+    border: 2px solid #F9F9F9;
+}
+.donorclick{
+    width: 350px;
+    height: 50px;
+}
+.donorclick p{
+    font-size: 10px;
+    font-weight: 600;
+    color: #21212180;
+}
+.donorclickinner{
+    width: 300px;
+    height: 25px;
+    display: flex;
+    gap: 25%;
+}
+.donorclickinner p{
+    width: 30%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.donorbloodclick{
+    width: 340px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.donorbloodclick h2{
+    font-size: 10px;
+    font-weight: 600;
+    color: #21212180;
+}
+.bloodgrouphold{
+    width: 170px;
+    height: 95px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.bloodgrouphold p{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 8px;
+}
+.holdround{
+    color: red;
+    /* border: 1px solid red; */
+}
+.donsignbtn{
+    width: 200px;
+    height: 36px;
+    background-color: #c0392b;
+    border-radius: 6px;
+    color: white;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 13px;
+    color: white;
+    margin-top: 8px;
+}
+.donsignbtn:hover{
+    background-color: #d6eaf8;
+    color: black;
+    border: 1px solid black;
+}
