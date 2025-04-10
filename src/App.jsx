@@ -19,6 +19,11 @@ import HistoryPage from './Adio/pages/HistoryPage'
 import Authentry from './Esther/auth/Authentry'
 import Hospitalterms from './Esther/terms/Hospitalterms'
 import Donorterms from './Esther/terms/Donorterms'
+import Appointment from './Davidson/pages/Appointment'
+import RecordPage from './Davidson/pages/RecordPage'
+import RequstPage from './Davidson/pages/RequstPage'
+import Subscrib from './Davidson/pages/Subscrib'
+
 
 const App = () => {
 
@@ -61,6 +66,22 @@ const App = () => {
         {
           path: "settings",
           element: <SettingsPage/>
+        },
+        {
+          path: 'appointment',
+          element: <Appointment/>
+        },
+        {
+          path: 'records',
+          element: <RecordPage/>
+        },
+        {
+          path: 'request',
+          element: <RequstPage/>
+        },
+        {
+          path: 'subscribe',
+          element: <Subscrib/>
         },
       ]
     },

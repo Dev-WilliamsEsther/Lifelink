@@ -5,7 +5,7 @@ import HospitalCard from '../../components/hospitalCard/HospitalCard'
 const FindHospitalPage = () => {
   return (
     <div className='FindHospitalPageWrapper'>
-      <h1>List of Hospitals to Visit</h1>
+      <h1>List of Hospitals to Visit </h1>
 
       <div className="hospitalCardsWRapper">
         <HospitalCard />
