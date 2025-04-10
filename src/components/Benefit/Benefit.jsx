@@ -19,7 +19,7 @@ const Benefit = () => {
         <div className="landingbenefitsinner2">
           <div className="landingincentives">
             <div className="incentiveheader">
-              <img src="public/images/Group.png" alt="" />
+              <img src="images/Group.png" alt="" />
             </div>
             <h2>
               Exclusive Donor <br /> Incentives
@@ -30,7 +30,7 @@ const Benefit = () => {
           </div>
           <div className="landingincentives">
             <div className="incentiveheader">
-              <img src="public/images/Group.png" alt="" />
+              <img src="images/Group.png" alt="" />
             </div>
             <h2>
               Exclusive Donor <br /> Incentives
@@ -42,7 +42,7 @@ const Benefit = () => {
           </div>
           <div className="landingincentives">
             <div className="incentiveheader">
-              <img src="public/images/Group.png" alt="" />
+              <img src="images/Group.png" alt="" />
             </div>
             <h2>
               Exclusive Donor <br /> Incentives
@@ -51,7 +51,7 @@ const Benefit = () => {
           </div>
           <div className="landingincentives">
             <div className="incentiveheader">
-              <img src="public/images/Group.png" alt="" />
+              <img src="images/Group.png" alt="" />
             </div>
             <h2>
               Exclusive Donor <br /> Incentives
