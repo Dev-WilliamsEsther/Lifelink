@@ -16,6 +16,9 @@ import FindHospitalPage from './Adio/pages/FindHospitalPage'
 import SettingsPage from './Adio/pages/SettingsPage'
 import DashboardLayout from './Adio/DashboardLayout'
 import HistoryPage from './Adio/pages/HistoryPage'
+import Authentry from './Esther/auth/Authentry'
+import Hospitalterms from './Esther/terms/Hospitalterms'
+import Donorterms from './Esther/terms/Donorterms'
 
 const App = () => {
 
@@ -62,6 +65,18 @@ const App = () => {
       ]
     },
     {
+      path:"/authentry",
+      element:<Authentry/>
+    },
+    {
+      path: "/signup",
+      element: <Authentry type="signup" />,
+    },
+    {
+      path: "/login",
+      element: <Authentry type="login" />,
+    },
+    {
       path:"/hospitalsignup",
       element:<Hospitalsignup/>
     },
@@ -84,6 +99,14 @@ const App = () => {
     {
       path:"/kyc",
       element:<KYC/>
+    },
+    {
+      path:"/hospiterms",
+      element:<Hospitalterms/>
+    },
+    {
+      path:"/donorterms",
+      element:<Donorterms/>
     },
     
   ])
