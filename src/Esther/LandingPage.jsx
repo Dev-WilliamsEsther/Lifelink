@@ -2,6 +2,10 @@ import React from "react";
 import "../Esther/styles/landing.css";
 import Benefit from "../components/Benefit/Benefit";
 import Sponsors from "../components/Sponsors/Sponsors";
+import Whyus from "../components/whyus/Whyjoinus";
+import Whyjoinus from "../components/whyus/Whyjoinus";
+import Impacts from "../components/impacts/Impacts";
+import Testify from "../components/testify/Testify";
 
 
 const LandingPage = () => {
@@ -25,6 +29,9 @@ const LandingPage = () => {
       </div>
       <Benefit />
       <Sponsors/>
+      <Whyjoinus/>
+      <Impacts/>
+      <Testify/>
     </div>
   );
 };

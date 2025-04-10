@@ -18,7 +18,7 @@
     width: 90%;
     height: 90px;
     display: flex;
-    justify-content: space-between;
+    justify-content:flex-end;
     align-items: center;
 }
 .resetlogo{
@@ -26,7 +26,7 @@
 }
 .resetinfo1{
     width: 65%;
-    height: 300px;
+    height: 320px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -43,7 +43,7 @@
 }
 .resetinputwrapper p{
     font-family: Poppins;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 13px;
     color: #21212180;
 }
@@ -52,9 +52,10 @@
     height: 40px;
     background-color: #ededed;
     border-radius: 11px;
+    font-size: 11px;
 }
 .resetbtn{
-    width: 200px;
+    width: 350px;
     height: 36px;
     background-color: #c0392b;
     border-radius: 6px;
@@ -63,6 +64,11 @@
     font-weight: 400;
     font-size: 13px;
     color: white;
+}
+.resetbtn:hover{
+    background-color: #d6eaf8;
+    color: black;
+    border: 1px solid black;
 }
 .resetimage{
     width: 35%;

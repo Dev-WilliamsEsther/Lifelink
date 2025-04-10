@@ -5,21 +5,12 @@ const AboutHeader = () => {
     <>
       <div className="hilight-text">
         <div style={{ marginTop: "20px" }}>
-          <span className="highlight">About </span>
-          <span
-            style={{
-              fontWeight: "700",
-              fontFamily: "poppins",
-              fontSize: "36px",
-            }}
-          >
-            us
-          </span>
+          <h2 className="highlight">About us</h2>
         </div>
 
         <div className="text-div">
           <h3>
-            Nigeria face a critical blood shortage, endangering countless lives.
+            Nigeria faces a critical blood shortage, endangering countless lives.
             <br />
             LifeLink connects donors hospitals and blood banks, ensuring a
             <br />
@@ -29,16 +20,16 @@ const AboutHeader = () => {
       </div>
       <div className="image-div">
         <div className="img1">
-          <img src="" alt="" />
+          <img src="images/abthead.png" alt="" />
         </div>
         <div className="img2">
-          <img src="" alt="" />
+          <img src="images/abthead1.png" alt="" />
         </div>
         <div className="img3">
-          <img src="" alt="" />
+          <img src="images/abthead2.png" alt="" />
         </div>
         <div className="img4">
-          <img src="" alt="" />
+          <img src="images/abtheade3.png" alt="" />
         </div>
       </div>
     </>

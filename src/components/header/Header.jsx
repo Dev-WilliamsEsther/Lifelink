@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 const Header = () => {
   const link = [
     { name: "home", path: "/" },
-    { name: "about", path: "/about" },
+    { name: "about us", path: "/about" },
     { name: "How it Works", path: "/works" },
   ];
 
@@ -54,8 +54,12 @@ const Header = () => {
           </ul>
         </div>
         <div className="headerwrapperinner3">
+          <Link to="/signup">
           <button className="headerbtn">Sign Up</button>
+          </Link>
+          <Link to="/login">
           <button className="headerbtn1">Log In</button>
+          </Link>
         </div>
       </div>
 
