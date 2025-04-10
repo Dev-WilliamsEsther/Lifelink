@@ -1,9 +1,10 @@
 import React from 'react'
 import '../../Esther/styles/authentry.css'
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Authentry = ({type}) => {
+    const nav = useNavigate();
     const isLogin = type === "login"
   return (
     <div className='authwrapper'>
@@ -20,8 +21,8 @@ const Authentry = ({type}) => {
                 <p>{isLogin ? "Access your account" : "As a donor or Hospital/Bloodbank"} </p>
             </div>
             <div className='authinfo2'>
-                <img src="images/authhospital.png" alt="" className='authimg' />
-                <img src="images/authdonors.png" alt=""  className='authimg'/>
+                <img onClick={()=>nav(isLogin ? "/hospitallogin" : "/hospitalsignup")} src="images/authhospital.png" alt="" className='authimg' />
+                <img onClick={()=>nav(isLogin ? "/donorslogin" :"/donorssignup")} src="images/authdonors.png" alt=""  className='authimg'/>
             </div>
             <button className='authinfo3'>{isLogin ? "LOGIN" : "SELECT"}</button>
         </div>

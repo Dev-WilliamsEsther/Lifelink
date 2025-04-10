@@ -24,8 +24,11 @@
     display: flex;
     align-items: center;
 }
+.donorsignlogo{
+    width: 65px;
+}
 .donorsigninfo1{
-    width: 380px;
+    width: 400px;
     height: 620px;
     display: flex;
     align-items: center;
@@ -39,7 +42,7 @@
 }
 .donorsigninputwrapper{
     width: 360px;
-    height: 70px;
+    height: 60px;
     
 }
 .donorsigninputwrapper p{
@@ -58,36 +61,46 @@
 }
 .donorclick{
     width: 350px;
-    height: 50px;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
 }
 .donorclick p{
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     color: #21212180;
 }
+
 .donorclickinner{
-    width: 300px;
-    height: 25px;
+    width: 200px;
+    height: 30px;
     display: flex;
-    gap: 25%;
+    justify-content:space-around;
+    align-items: center;
 }
-.donorclickinner p{
-    width: 30%;
-    height: 20px;
+.clickinner{
+    width: 70px;
+    height: 24px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
+.clickinner p{
+    width: 30%;
+    height: 20px;
+}
 .donorbloodclick{
-    width: 340px;
-    height: 160px;
+    width: 350px;
+    height: 120px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 .donorbloodclick h2{
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     color: #21212180;
 }
@@ -103,11 +116,10 @@
     display: flex;
     align-items: center;
     gap: 2px;
-    font-size: 8px;
+    font-size: 10px;
 }
 .holdround{
     color: red;
-    /* border: 1px solid red; */
 }
 .donsignbtn{
     width: 200px;

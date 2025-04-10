@@ -1,6 +1,6 @@
 import React from 'react'
-import '../../components/whyus/whyus.css'
-const Whyus = () => {
+import '../../components/whyus/whyjoinus.css'
+const Whyjoinus = () => {
   return (
     <div className='whyuswrapper'>
         <h1>WHY JOIN LIFELINK</h1>
@@ -22,4 +22,4 @@ const Whyus = () => {
   )
 }
 
-export default Whyus
+export default Whyjoinus

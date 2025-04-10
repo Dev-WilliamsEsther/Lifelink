@@ -4,7 +4,7 @@ const Team = () => {
   return (
     <div className="the-team-cnt">
       <span
-        style={{ fontFamily: "poppins", fontSize: "36px", fontWeight: "700" }}
+        style={{ fontFamily: "Poppins", fontSize: "36px", fontWeight: "700" }}
       >
         THE TEAM
       </span>
@@ -16,7 +16,7 @@ const Team = () => {
       <div className="team-card-one">
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="" alt="Mary Patrick" />
+            <img src="images/mary.png" alt="Mary Patrick" />
           </div>
           <div className="team-card-title">
             <h2>Mary Patrick</h2>
@@ -27,7 +27,7 @@ const Team = () => {
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="" alt="Sarah Emojoro" />
+            <img src="images/sarah.png" alt="Sarah Emojoro" />
           </div>
           <div className="team-card-title">
             <h2>Sarah Emojoro</h2>
@@ -38,55 +38,55 @@ const Team = () => {
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="/images/image(41).png" alt="Willams Esther" />
+            <img src="images/esther.png" alt="Willams Esther" />
           </div>
           <div className="team-card-title">
             <h2>Willams Esther</h2>
-            <p>Frontend</p>
+            <p>Frontend Developer</p>
             <a href="#">Link</a>
           </div>
         </div>
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="" alt="Ekah Davidson" />
+            <img src="images/davidson.png" alt="Ekah Davidson" />
           </div>
           <div className="team-card-title">
             <h2>Ekah Davidson</h2>
-            <p>Frontend</p>
+            <p>Frontend Developer</p>
             <a href="#">Link</a>
           </div>
         </div>
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="/images/image(51).png" alt="Kingsley Adio" />
+            <img src="images/adio.png" alt="Kingsley Adio" />
           </div>
           <div className="team-card-title">
             <h2>Kingsley Adio</h2>
-            <p>Frontend</p>
+            <p>Frontend Developer</p>
             <a href="#">Link</a>
           </div>
         </div>
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="/images/Frame 91.png" alt="Jeffery Abiuwa" />
+            <img src="images/jeffery.png" alt="Jeffery Abiuwa" />
           </div>
           <div className="team-card-title">
             <h2>Jeffery Abiuwa</h2>
-            <p>Backend</p>
+            <p>Backend Developer</p>
             <a href="#">Link</a>
           </div>
         </div>
 
         <div className="first-team-card">
           <div className="team-card-img">
-            <img src="" alt="Obadina Azeez" />
+            <img src="images/azeez.png" alt="Obadina Azeez" />
           </div>
           <div className="team-card-title">
             <h2>Obadina Azeez</h2>
-            <p>Backend</p>
+            <p>Backend Developer</p>
             <a href="#">Link</a>
           </div>
         </div>

@@ -7,15 +7,14 @@ const Sponsors = () => {
     <div className='sponsorwrapper'>
         <h1>SPONSORS</h1>
         <div className="sponsorsLogos">
-            <marquee>
-                <p>Images</p>
-                <p>Images</p>
-                <p>Images</p>
-                <p>Images</p>
-            </marquee>
+          <img src="images/sponsors1.png" alt="" />
+          <img src="images/sponsors.png" alt="" />
+          <img src="images/sponsors2.png" alt="" />
+          <img src="images/sponsors3.png" alt="" />
+          <img src="images/sponsors4.png" alt="" />
+          <img src="images/sponsors5.png" alt="" />
         </div>
     </div>
-    <div className='sponsorwrapper1'>Sponsors</div>
     </>
   )
 }
