@@ -67,3 +67,25 @@
     border-radius: 50%;
     background: red;
 }
+
+
+
+@media only screen and (max-width: 1440px) {
+}
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 900px) {
+}
+
+@media only screen and (max-width: 760px) {
+}
+
+@media only screen and (max-width: 480px) {
+    .dashboardHeaderWrapper{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 379px) {
+}

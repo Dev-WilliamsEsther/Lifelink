@@ -1,4 +1,4 @@
-.FindHospitalPageWrapper{
+.FindHospitalPageWrapper {
     width: 100%;
     height: 100%;
     padding: 15px;
@@ -7,14 +7,15 @@
     overflow-y: scroll;
 }
 
-.FindHospitalPageWrapper > h1, .quickTipsAndFunFactWrapper h1{
+.FindHospitalPageWrapper>h1,
+.quickTipsAndFunFactWrapper h1 {
     width: 100%;
     font-size: 25px;
     font-weight: 500;
     font-family: Poppins;
 }
 
-.hospitalCardsWRapper{
+.hospitalCardsWRapper {
     width: 70%;
     height: 91%;
     margin-top: 25px;
@@ -23,11 +24,11 @@
     gap: 20px;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 0;
 }
 
-.quickTipsAndFunFactWrapper{
+.quickTipsAndFunFactWrapper {
     width: 30%;
     height: max-content;
     margin-top: 25px;
@@ -35,4 +36,68 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 15px;
 }
+
+.quickTipsAndFunFactWrapper .landingincentives {
+    width: 268px;
+    height: 153px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 41px;
+    }
+
+    h2{
+        font-size: 16px;
+        width: 80%;
+        text-align: center; 
+    }
+}
+
+
+
+@media only screen and (max-width: 1440px) {}
+
+@media only screen and (max-width: 1200px) {}
+
+@media only screen and (max-width: 900px) {}
+
+@media only screen and (max-width: 760px) {}
+
+@media only screen and (max-width: 480px) {
+    .FindHospitalPageWrapper {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: max-content;
+    }
+
+    .hospitalCardsWRapper {
+        width: 100%;
+    }
+
+    .quickTipsAndFunFactWrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+.quickTipsAndFunFactWrapper .landingincentives {
+    width: 46%;
+    height: 140px;
+
+    img{
+        width: 30px;
+    }
+
+    h2{
+        font-size: 13px;
+    }
+}
+}
+
+@media only screen and (max-width: 379px) {}
