@@ -94,4 +94,46 @@
     font-weight: 500;
     color: white;
     background: #c0392b;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 1440px) {
+}
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 900px) {
+}
+
+@media only screen and (max-width: 760px) {
+}
+
+@media only screen and (max-width: 480px) {
+.profilePageInfosCards h2{
+    font-size: 15px;
+    color: #c0392b;
+}
+
+.profilePageInfosCards .infosWRapper p{
+    font-size: 15px;
+}
+
+.infosWRapper p b{
+    font-size: 13px;
+}
+
+.profilePageInfosCards .infosWRapper{
+    gap: 15px;
+    flex-wrap: wrap;
+    height: max-content;
+    justify-content: space-between;
+}
+
+.profilePageInfosCards{
+    height: max-content;
+}
+}
+
+@media only screen and (max-width: 379px) {
 }

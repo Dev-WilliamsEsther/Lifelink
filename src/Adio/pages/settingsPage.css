@@ -4,7 +4,6 @@
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
-    background: red;
 }
 
 .SettingsPageWrapper h1{
@@ -15,13 +14,12 @@
 }
 
 .SettingssideWrapper{
-    width: 50%;
-    height: 95%;
+    width: 40%;
+    height: 650px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    background: blue;
 }
 
 .SettingsPasswordsideWrapper{
@@ -29,10 +27,8 @@
     height: 95%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 10px;
-    background: pink;
 }
 
 .profilePageProflePicWrapper{
@@ -41,7 +37,6 @@
     display: flex;
     align-items: flex-end;
     gap: 10px;
-    background: white;
 }
 
 .profilePageProflePicWrapper .profilePicture{
@@ -72,6 +67,37 @@
 
 .settingsInputsWrapper{
     width: 380px;
-    height: 80%;
+    padding: 10px;
+    border-radius: 10px;
     background: white;
+}
+
+.settingInputs{
+    width: 340px;
+    height: 41px;
+    border: 1px solid grey;
+    outline: 0;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1440px) {
+}
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 900px) {
+}
+
+@media only screen and (max-width: 760px) {
+}
+
+@media only screen and (max-width: 480px) {
+.SettingsPageWrapper{
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+}
+
+@media only screen and (max-width: 379px) {
 }

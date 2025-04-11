@@ -1,6 +1,7 @@
 import React from 'react'
-import { createBrowserRouter } from 'react-router'
-import { RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+// Importing pages and components
 import HomeRoutes from './routes/HomeRoutes'
 import LandingPage from './Esther/LandingPage'
 import Howitworks from './Adio/Howitworks'
@@ -11,129 +12,69 @@ import Donorslogin from './Esther/auth/Donorslogin'
 import Donorssignup from './Esther/auth/Donorssignup'
 import KYC from './Esther/auth/KYC'
 import Resetpassword from './Esther/auth/Resetpassword'
+
 import ProfilePage from './Adio/pages/ProfilePage'
 import FindHospitalPage from './Adio/pages/FindHospitalPage'
 import SettingsPage from './Adio/pages/SettingsPage'
 import DashboardLayout from './Adio/DashboardLayout'
 import HistoryPage from './Adio/pages/HistoryPage'
-import Authentry from './Esther/auth/Authentry'
-import Hospitalterms from './Esther/terms/Hospitalterms'
-import Donorterms from './Esther/terms/Donorterms'
 import Appointment from './Davidson/pages/Appointment'
 import RecordPage from './Davidson/pages/RecordPage'
 import RequstPage from './Davidson/pages/RequstPage'
-import Subscrib from './Davidson/pages/Subscrib'
-
+import Subscrib from './Davidson/pages/Subscribe'
 
 const App = () => {
-
   const router = createBrowserRouter([
     {
-      path:"",
-      element:<HomeRoutes/>,
-      children:[
-        {
-          path:"/",
-          element:<LandingPage/>
-        },
-        {
-
-          path:"/about",
-          element:<AboutUs/>
-        },
-        {
-          path:"/works",
-          element:<Howitworks/>
-        }
+      path: "",
+      element: <HomeRoutes />,
+      children: [
+        { path: "/", element: <LandingPage /> },
+        { path: "/about", element: <AboutUs /> },
+        { path: "/howitworks", element: <Howitworks /> }
       ]
     },
     {
       path: "/dashboard",
-      element: <DashboardLayout/>,
-      children:[
-        {
-          path: "",
-          element: <ProfilePage/>
-        },
-        {
-          path: "findhospital",
-          element: <FindHospitalPage/>
-        },
-        {
-          path: "history",
-          element: <HistoryPage/>
-        },
-        {
-          path: "settings",
-          element: <SettingsPage/>
-        },
-        {
-          path: 'appointment',
-          element: <Appointment/>
-        },
-        {
-          path: 'records',
-          element: <RecordPage/>
-        },
-        {
-          path: 'request',
-          element: <RequstPage/>
-        },
-        {
-          path: 'subscribe',
-          element: <Subscrib/>
-        },
+      element: <DashboardLayout />,
+      children: [
+        { path: "", element: <ProfilePage /> },
+        { path: "findhospital", element: <FindHospitalPage /> },
+        { path: "history", element: <HistoryPage /> },
+        { path: "settings", element: <SettingsPage /> },
+        { path: "appointment", element: <Appointment /> },
+        { path: "records", element: <RecordPage /> },
+        { path: "request", element: <RequstPage /> },
+        { path: "subscribe", element: <Subscrib /> }
       ]
     },
     {
-      path:"/authentry",
-      element:<Authentry/>
+      path: "/hospitalsignup",
+      element: <Hospitalsignup />
     },
     {
-      path: "/signup",
-      element: <Authentry type="signup" />,
+      path: "/hospitallogin",
+      element: <Hospitallogin />
     },
     {
-      path: "/login",
-      element: <Authentry type="login" />,
+      path: "/donorslogin",
+      element: <Donorslogin />
     },
     {
-      path:"/hospitalsignup",
-      element:<Hospitalsignup/>
+      path: "/donorssignup",
+      element: <Donorssignup />
     },
     {
-      path:"/hospitallogin",
-      element:<Hospitallogin/>
+      path: "/resetpassword",
+      element: <Resetpassword />
     },
     {
-      path:"/donorslogin",
-      element:<Donorslogin/>
-    },
-    {
-      path:"/donorssignup",
-      element:<Donorssignup/>
-    },
-    {
-      path:"/resetpassword",
-      element:<Resetpassword/>
-    },
-    {
-      path:"/kyc",
-      element:<KYC/>
-    },
-    {
-      path:"/hospiterms",
-      element:<Hospitalterms/>
-    },
-    {
-      path:"/donorterms",
-      element:<Donorterms/>
-    },
-    
+      path: "/kyc",
+      element: <KYC />
+    }
   ])
-  return (
-    <RouterProvider router={router}/>
-  )
+
+  return <RouterProvider router={router} />
 }
 
 export default App

@@ -3,6 +3,7 @@ import "./dashboardLayout.css"
 import DashBoardHeader from '../components/dashboardHeader/DashBoardHeader'
 import DashboardSideBar from '../components/dashboardSideBar/DashboardSideBar'
 import { Outlet } from 'react-router'
+import Header from '../components/header/Header'
 
 const DashboardLayout = () => {
   return (
@@ -10,6 +11,7 @@ const DashboardLayout = () => {
       <DashboardSideBar/>
       <div className="DonordashboardLeftSideWrapper">
         <DashBoardHeader/>
+        <Header/>
         <div className="outletWRapper">   
          <Outlet/>
         </div>
@@ -19,3 +21,4 @@ const DashboardLayout = () => {
 }
 
 export default DashboardLayout
+
