@@ -44,3 +44,32 @@
   .viewDetailButton:hover .arrow-icon {
     transform: translateX(5px); 
   }
+
+
+
+@media only screen and (max-width: 1440px) {
+}
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 900px) {
+}
+
+@media only screen and (max-width: 760px) {
+}
+
+@media only screen and (max-width: 480px) {
+    .hospitalCardWRapper{
+        width: 47%;
+        height: 240px;
+    }
+
+.hospitalTextWRapper{
+    font-size: 15px;
+    width: 90%;
+    font-weight: 400;
+}
+}
+
+@media only screen and (max-width: 379px) {
+}

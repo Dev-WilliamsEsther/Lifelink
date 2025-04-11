@@ -99,7 +99,7 @@ const Header = () => {
             <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
             <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
             <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
-            <li onClick={() => { setOpenSideDrawer(false); nav("/works") }}><CiSettings />How it works</li>
+            <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
             <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
             <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
             <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>

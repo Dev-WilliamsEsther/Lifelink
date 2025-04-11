@@ -86,17 +86,8 @@
         justify-content: center;
     }
 
-.quickTipsAndFunFactWrapper .landingincentives {
-    width: 46%;
-    height: 140px;
-
-    img{
-        width: 30px;
-    }
-
-    h2{
-        font-size: 13px;
-    }
+.quickTipsAndFunFactWrapper  {
+   display: none;
 }
 }
 
