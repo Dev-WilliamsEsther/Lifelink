@@ -22,6 +22,7 @@ import Appointment from './Davidson/pages/Appointment'
 import RecordPage from './Davidson/pages/RecordPage'
 import RequstPage from './Davidson/pages/RequstPage'
 import Subscrib from './Davidson/pages/Subscribe'
+import HospitalDetailsPage from './Adio/pages/HospitalDetailsPage'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -45,6 +46,7 @@ const App = () => {
         { path: "appointment", element: <Appointment /> },
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
+        { path: "hospitaldetails", element: <HospitalDetailsPage /> },
         { path: "subscribe", element: <Subscrib /> }
       ]
     },

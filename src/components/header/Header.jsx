@@ -17,7 +17,7 @@ const Header = () => {
   const link = [
     { name: "home", path: "/" },
     { name: "about", path: "/about" },
-    { name: "How it Works", path: "/works" },
+    { name: "How it Works", path: "/howitworks" },
   ];
 
   const location = useLocation();
