@@ -1,7 +1,6 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-// Importing pages and components
 import HomeRoutes from './routes/HomeRoutes'
 import LandingPage from './Esther/LandingPage'
 import Howitworks from './Adio/Howitworks'
@@ -22,13 +21,19 @@ import Appointment from './Davidson/pages/Appointment'
 import RecordPage from './Davidson/pages/RecordPage'
 import RequstPage from './Davidson/pages/RequstPage'
 import Subscrib from './Davidson/pages/Subscribe'
+import HospitalDetailsPage from './Adio/pages/HospitalDetailsPage'
 import Hospitalterms from './Esther/terms/Hospitalterms'
 import Donorterms from './Esther/terms/Donorterms'
 import Authentry from './Esther/auth/Authentry'
+import Scrolltop from './components/scroll/Scrolltop'
 
 const App = () => {
   const router = createBrowserRouter([
     {
+      path:"",
+      element:<Scrolltop/>,
+      children:[
+        {
       path: "",
       element: <HomeRoutes />,
       children: [
@@ -48,6 +53,7 @@ const App = () => {
         { path: "appointment", element: <Appointment /> },
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
+        { path: "hospitaldetails", element: <HospitalDetailsPage /> },
         { path: "subscribe", element: <Subscrib /> }
       ]
     },
@@ -95,6 +101,9 @@ const App = () => {
       path:"/donorterms",
       element:<Donorterms/>
     }
+      ]
+    },
+    
   ])
 
   return <RouterProvider router={router} />
