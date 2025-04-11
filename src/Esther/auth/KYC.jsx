@@ -1,8 +1,9 @@
 import React from 'react'
 import '../../Esther/styles/kyc.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const KYC = () => {
+  const nav = useNavigate();
   return (
     <div className='kycwrapper'>
       <div className='kycmobilewrap'>
@@ -53,7 +54,7 @@ const KYC = () => {
             </div>
           </div>
         </div>
-        <button className='kycbtn'>SUBMIT</button>
+        <button className='kycbtn' onClick={()=>nav("/dashboard")}>SUBMIT</button>
         </div>
       </div>
       <img src="images/Subtract.png" alt="" className='kycsignimage'/>
