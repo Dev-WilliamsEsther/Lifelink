@@ -64,9 +64,7 @@ const Header = () => {
       </div>
 
 
-      <div className="MobileHeader">
-        <RxHamburgerMenu size={30} />
-      </div>
+      
     </>
   );
 };
