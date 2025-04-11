@@ -23,6 +23,9 @@ import RecordPage from './Davidson/pages/RecordPage'
 import RequstPage from './Davidson/pages/RequstPage'
 import Subscrib from './Davidson/pages/Subscribe'
 import HospitalDetailsPage from './Adio/pages/HospitalDetailsPage'
+import Hospitalterms from './Esther/terms/Hospitalterms'
+import Donorterms from './Esther/terms/Donorterms'
+import Authentry from './Esther/auth/Authentry'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -51,6 +54,18 @@ const App = () => {
       ]
     },
     {
+      path:"/authentry",
+      element:<Authentry/>
+    },
+    {
+      path:"/signup",
+      element:<Authentry type="signup"/>
+    },
+    {
+      path:"/login",
+      element:<Authentry type="login"/>
+    },
+    {
       path: "/hospitalsignup",
       element: <Hospitalsignup />
     },
@@ -73,6 +88,14 @@ const App = () => {
     {
       path: "/kyc",
       element: <KYC />
+    },
+    {
+      path:"/hospiterms",
+      element:<Hospitalterms/>
+    },
+    {
+      path:"/donorterms",
+      element:<Donorterms/>
     }
   ])
 
