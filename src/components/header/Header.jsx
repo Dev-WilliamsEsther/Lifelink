@@ -17,7 +17,7 @@ const Header = () => {
   const link = [
     { name: "home", path: "/" },
     { name: "about", path: "/about" },
-    { name: "How it Works", path: "/works" },
+    { name: "How it Works", path: "/howitworks" },
   ];
 
   const location = useLocation();
@@ -64,8 +64,12 @@ const Header = () => {
           </ul>
         </div>
         <div className="headerwrapperinner3">
+          <Link to={"/signup"}>
           <button className="headerbtn">Sign Up</button>
-          <button className="headerbtn1">Log In</button>
+          </Link>
+          <Link to={"/login"}>
+          <button className="headerbtn1" >Log In</button>
+          </Link>
         </div>
       </div>
 

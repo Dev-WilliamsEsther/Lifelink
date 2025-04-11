@@ -68,6 +68,51 @@
     background: red;
 }
 
+.notificationsWrapper{
+    width: 100%;
+    height: max-content;
+}
+
+.notificationsCardsWrap{
+    width: 100%;
+    height: max-content;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background: #c03a2ba2;
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: 280ms;
+
+    h1{
+        width: 100%;
+        font-size: 20px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    span{
+        width: 100%;
+        height: max-content;
+        padding: 5px;
+        font-size: 17px;
+        transition: 280ms;
+    }
+
+    button{
+        width: max-content;
+        height: max-content;
+        padding: 8px;
+        border-radius: 5px;
+        background: #C0392B;
+        cursor: pointer;
+    }
+}
+
 
 
 @media only screen and (max-width: 1440px) {

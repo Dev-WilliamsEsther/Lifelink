@@ -26,7 +26,7 @@ const Donorslogin = () => {
             <p>ENTER PASSWORD</p>
             <input type="password" placeholder='PASSWORD' className='donorlogininput' />
           </div>
-          <button className='donorloginbtn'>LOG-IN</button>
+          <button className='donorloginbtn' onClick={()=>nav("/dashboard")}>LOG-IN</button>
           <div className='donorloginforgotwrap'>
             <p onClick={()=>nav("/donorssignup")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
             <p>FORGOT PASSWORD</p>

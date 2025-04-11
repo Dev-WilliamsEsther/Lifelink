@@ -51,7 +51,7 @@ const Hospitalsignup = () => {
             <input type="checkbox" />
             <p>I agree to the <a href="" onClick={()=>nav("/hospiterms")} className='tandc'>TERMS AND CONDITIONS</a></p>
           </div>
-          <button className='hospibtn'>REGISTER</button>
+          <button className='hospibtn' onClick={()=>nav("/kyc")}>REGISTER</button>
         </div>
       </div>
       <img src="images/Subtract.png" alt="" className='hospisignimage'/>
