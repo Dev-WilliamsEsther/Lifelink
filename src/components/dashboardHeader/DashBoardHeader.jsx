@@ -4,6 +4,7 @@ import { MdCircleNotifications } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { Drawer } from 'antd';
 import { GoUnread } from "react-icons/go";
+import { useNavigate } from 'react-router';
 
 const DashBoardHeader = () => {
   const [notificationSideBar, setNotificationSideBar] = useState(false);
@@ -17,6 +18,8 @@ const DashBoardHeader = () => {
     { title: 'Kings Hospital', message: 'We need an A+ blood type' },
     { title: 'Hope Clinic', message: 'Urgent O- donors needed' },
   ];
+
+  const nav = useNavigate()
 
   return (
     <div className='dashboardHeaderWrapper'>
@@ -57,7 +60,7 @@ const DashBoardHeader = () => {
               {openedMessageIndex === index && (
                 <>
                   <span>{notification.message}</span>
-                  <button>View Hospital</button>
+                  <button onClick={()=> {nav('/dashboard/hospitaldetails'); setNotificationSideBar(false)}}>View Hospital</button>
                 </>
               )}
             </div>
