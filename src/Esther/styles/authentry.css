@@ -56,10 +56,7 @@
     display: flex;
     justify-content: space-between;
 }
-.authimg{
-    width: 67px;
-    height: 111px;
-}
+
 .authinfo3{
     width: 300px;
     height: 36px;
@@ -71,6 +68,27 @@
     background-color: #d6eaf8;
     color: black;
 }
+
+  
+  .authinfo3:disabled {
+    background-color: #cccccc;
+    color: black;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .authimg {
+    width: 74px;
+    height: 100px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    transition: border 0.3s ease;
+  }
+  
+  .authimg.selected {
+    border-color: #c0392b;
+  }
 
 
 @media only screen and (max-width: 1440px){

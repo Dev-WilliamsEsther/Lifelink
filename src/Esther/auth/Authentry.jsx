@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../Esther/styles/authentry.css'
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi'
 import { Link, useNavigate } from 'react-router-dom'
@@ -6,6 +6,23 @@ import { Link, useNavigate } from 'react-router-dom'
 const Authentry = ({type}) => {
     const nav = useNavigate();
     const isLogin = type === "login"
+
+    const [selectedimage, setSelectedimage] = useState(null);
+
+    const handleSelect = (role) => {
+        setSelectedimage(role);
+      };
+    
+      const handleContinue = () => {
+        if (!selectedimage) return;
+    
+        if (selectedimage === "hospital") {
+          nav(isLogin ? "/hospitallogin" : "/hospitalsignup");
+        } else if (selectedimage === "donor") {
+          nav(isLogin ? "/donorslogin" : "/donorssignup");
+        }
+      };
+
   return (
     <div className='authwrapper'>
         <img src="images/Subtract.png" alt=""className='authimage'/>
@@ -22,13 +39,26 @@ const Authentry = ({type}) => {
                 <p>{isLogin ? "Access your account" : "As a donor or Hospital/Bloodbank"} </p>
             </div>
             <div className='authinfo2'>
-                <img onClick={()=>nav(isLogin ? "/hospitallogin" : "/hospitalsignup")} src="images/authhospital.png" alt="" className='authimg' />
-                <img onClick={()=>nav(isLogin ? "/donorslogin" :"/donorssignup")} src="images/authdonors.png" alt=""  className='authimg'/>
+                <img
+                 onClick={() => handleSelect("hospital")}
+                  src="images/authhospital.png"
+                   alt=""
+                   className={`authimg ${selectedimage === "hospital" ? "selected" : ""}`} />
+                <img
+                 onClick={() => handleSelect("donor")}
+                  src="images/authdonors.png"
+                   alt=""
+                   className={`authimg ${selectedimage === "donor" ? "selected" : ""}`}/>
             </div>
-            <button className='authinfo3'>{isLogin ? "LOGIN" : "SELECT"}</button>
+            <button 
+            className='authinfo3'
+            onClick={handleContinue}
+            disabled={!selectedimage}>
+            {isLogin ? "LOGIN" : "SELECT"}</button>
         </div>
     </div>
   )
 }
 
 export default Authentry
+
