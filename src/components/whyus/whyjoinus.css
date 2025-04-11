@@ -47,7 +47,6 @@
 }
 
 
-/* Media Query Styling for Small Desktop  */
 
 @media only screen and (max-width: 1440px){
    
@@ -56,36 +55,89 @@
    
 }
 
-/* End of Media Query Styling for Tablet Device */
 
 
-/* Media Query Styling for Big Tablet Device */
 
 @media only screen and (max-width: 900px){  
-  
+  .whyuswrapper{
+        height: max-content;
+        padding: 20px;
+    }
+
+    .whyusinner h4{
+        font-size: 15px;
+    }
+
+    .whyinnerwrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .whyusinner{
+        padding: 10px;
+        width: 45%;
+    }
     
 }
 
-/* End of Media Query Styling for Tablet Device */
-/* Media Query Styling for Tablet Device */
 
 @media only screen and (max-width: 760px){
+    .whyuswrapper{
+        height: max-content;
+        padding: 20px;
+    }
 
+    .whyusinner h4{
+        font-size: 15px;
+    }
+
+    .whyinnerwrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .whyusinner{
+        padding: 10px;
+        width: 45%;
+    }
 }
 
-/* End of Media Query Styling for Tablet Device */
 
-/* Media Query Styling for Mobile Device */
 
 @media only screen and (max-width: 480px) {
+    .whyuswrapper{
+        height: max-content;
+        padding: 20px;
+    }
 
+    .whyusinner h4{
+        font-size: 15px;
+    }
+
+    .whyinnerwrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .whyusinner{
+        padding: 10px;
+        width: 45%;
+    }
 }
 
 
-/* End of Media Query Styling for Mobile Device */
-
-
-/* Media Query Styling for Mobile Device */
 
 @media only screen and (max-width: 379px) {
 
