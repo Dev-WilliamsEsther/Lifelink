@@ -1,27 +1,26 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// Importing pages and components
-import HomeRoutes from './routes/HomeRoutes'
-import LandingPage from './Esther/LandingPage'
-import Howitworks from './Adio/Howitworks'
-import AboutUs from './Davidson/AboutUs'
-import Hospitalsignup from './Esther/auth/Hospitalsignup'
-import Hospitallogin from './Esther/auth/Hospitallogin'
-import Donorslogin from './Esther/auth/Donorslogin'
-import Donorssignup from './Esther/auth/Donorssignup'
-import KYC from './Esther/auth/KYC'
-import Resetpassword from './Esther/auth/Resetpassword'
+import HomeRoutes from "./routes/HomeRoutes";
+import LandingPage from "./Esther/LandingPage";
+import Howitworks from "./Adio/Howitworks";
+import AboutUs from "./Davidson/AboutUs";
+import Hospitalsignup from "./Esther/auth/Hospitalsignup";
+import Hospitallogin from "./Esther/auth/Hospitallogin";
+import Donorslogin from "./Esther/auth/Donorslogin";
+import Donorssignup from "./Esther/auth/Donorssignup";
+import KYC from "./Esther/auth/KYC";
+import Resetpassword from "./Esther/auth/Resetpassword";
 
-import ProfilePage from './Adio/pages/ProfilePage'
-import FindHospitalPage from './Adio/pages/FindHospitalPage'
-import SettingsPage from './Adio/pages/SettingsPage'
-import DashboardLayout from './Adio/DashboardLayout'
-import HistoryPage from './Adio/pages/HistoryPage'
-import Appointment from './Davidson/pages/Appointment'
-import RecordPage from './Davidson/pages/RecordPage'
-import RequstPage from './Davidson/pages/RequstPage'
-import Subscrib from './Davidson/pages/Subscribe'
+import ProfilePage from "./Adio/pages/ProfilePage";
+import FindHospitalPage from "./Adio/pages/FindHospitalPage";
+import SettingsPage from "./Adio/pages/SettingsPage";
+import DashboardLayout from "./Adio/DashboardLayout";
+import HistoryPage from "./Adio/pages/HistoryPage";
+import Appointment from "./Davidson/pages/Appointment";
+import RecordPage from "./Davidson/pages/RecordPage";
+import RequstPage from "./Davidson/pages/RequstPage";
+import Subscrib from "./Davidson/pages/Subscribe";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -31,8 +30,8 @@ const App = () => {
       children: [
         { path: "/", element: <LandingPage /> },
         { path: "/about", element: <AboutUs /> },
-        { path: "/howitworks", element: <Howitworks /> }
-      ]
+        { path: "/howitworks", element: <Howitworks /> },
+      ],
     },
     {
       path: "/dashboard",
@@ -45,36 +44,36 @@ const App = () => {
         { path: "appointment", element: <Appointment /> },
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
-        { path: "subscribe", element: <Subscrib /> }
-      ]
+        { path: "subscribe", element: <Subscrib /> },
+      ],
     },
     {
       path: "/hospitalsignup",
-      element: <Hospitalsignup />
+      element: <Hospitalsignup />,
     },
     {
       path: "/hospitallogin",
-      element: <Hospitallogin />
+      element: <Hospitallogin />,
     },
     {
       path: "/donorslogin",
-      element: <Donorslogin />
+      element: <Donorslogin />,
     },
     {
       path: "/donorssignup",
-      element: <Donorssignup />
+      element: <Donorssignup />,
     },
     {
       path: "/resetpassword",
-      element: <Resetpassword />
+      element: <Resetpassword />,
     },
     {
       path: "/kyc",
-      element: <KYC />
-    }
-  ])
+      element: <KYC />,
+    },
+  ]);
 
-  return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;
