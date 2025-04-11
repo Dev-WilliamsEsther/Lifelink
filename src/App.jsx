@@ -1,93 +1,90 @@
-import React from 'react'
-import { createBrowserRouter } from 'react-router'
-import { RouterProvider } from 'react-router-dom'
-import HomeRoutes from './routes/HomeRoutes'
-import LandingPage from './Esther/LandingPage'
-import Howitworks from './Adio/Howitworks'
-import AboutUs from './Davidson/AboutUs'
-import Hospitalsignup from './Esther/auth/Hospitalsignup'
-import Hospitallogin from './Esther/auth/Hospitallogin'
-import Donorslogin from './Esther/auth/Donorslogin'
-import Donorssignup from './Esther/auth/Donorssignup'
-import KYC from './Esther/auth/KYC'
-import Resetpassword from './Esther/auth/Resetpassword'
-import ProfilePage from './Adio/pages/ProfilePage'
-import FindHospitalPage from './Adio/pages/FindHospitalPage'
-import SettingsPage from './Adio/pages/SettingsPage'
-import DashboardLayout from './Adio/DashboardLayout'
-import HistoryPage from './Adio/pages/HistoryPage'
-import Authentry from './Esther/auth/Authentry'
-import Hospitalterms from './Esther/terms/Hospitalterms'
-import Donorterms from './Esther/terms/Donorterms'
-import Appointment from './Davidson/pages/Appointment'
-import RecordPage from './Davidson/pages/RecordPage'
-import RequstPage from './Davidson/pages/RequstPage'
-import Subscrib from './Davidson/pages/Subscrib'
-
+import React from "react";
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router-dom";
+import HomeRoutes from "./routes/HomeRoutes";
+import LandingPage from "./Esther/LandingPage";
+import Howitworks from "./Adio/Howitworks";
+import AboutUs from "./Davidson/AboutUs";
+import Hospitalsignup from "./Esther/auth/Hospitalsignup";
+import Hospitallogin from "./Esther/auth/Hospitallogin";
+import Donorslogin from "./Esther/auth/Donorslogin";
+import Donorssignup from "./Esther/auth/Donorssignup";
+import KYC from "./Esther/auth/KYC";
+import Resetpassword from "./Esther/auth/Resetpassword";
+import ProfilePage from "./Adio/pages/ProfilePage";
+import FindHospitalPage from "./Adio/pages/FindHospitalPage";
+import SettingsPage from "./Adio/pages/SettingsPage";
+import DashboardLayout from "./Adio/DashboardLayout";
+import HistoryPage from "./Adio/pages/HistoryPage";
+import Authentry from "./Esther/auth/Authentry";
+import Hospitalterms from "./Esther/terms/Hospitalterms";
+import Donorterms from "./Esther/terms/Donorterms";
+import Appointment from "./Davidson/pages/Appointment";
+import RecordPage from "./Davidson/pages/RecordPage";
+import RequstPage from "./Davidson/pages/RequstPage";
+import Subscrib from "./Davidson/pages/Subscribe";
 
 const App = () => {
-
   const router = createBrowserRouter([
     {
-      path:"",
-      element:<HomeRoutes/>,
-      children:[
+      path: "",
+      element: <HomeRoutes />,
+      children: [
         {
-          path:"/",
-          element:<LandingPage/>
+          path: "/",
+          element: <LandingPage />,
         },
         {
-
-          path:"/about",
-          element:<AboutUs/>
+          path: "/about",
+          element: <AboutUs />,
         },
         {
-          path:"/works",
-          element:<Howitworks/>
-        }
-      ]
+          path: "/works",
+          element: <Howitworks />,
+        },
+      ],
     },
     {
       path: "/dashboard",
-      element: <DashboardLayout/>,
-      children:[
+      element: <DashboardLayout />,
+      children: [
         {
           path: "",
-          element: <ProfilePage/>
+          element: <ProfilePage />,
         },
         {
           path: "findhospital",
-          element: <FindHospitalPage/>
+          element: <FindHospitalPage />,
         },
         {
           path: "history",
-          element: <HistoryPage/>
+          element: <HistoryPage />,
         },
         {
           path: "settings",
-          element: <SettingsPage/>
+          element: <SettingsPage />,
         },
         {
-          path: 'appointment',
-          element: <Appointment/>
+          path: "appointment",
+          element: <Appointment />,
         },
         {
-          path: 'records',
-          element: <RecordPage/>
+          path: "records",
+          element: <RecordPage />,
         },
         {
-          path: 'request',
-          element: <RequstPage/>
+          path: "request",
+          element: <RequstPage />,
         },
         {
-          path: 'subscribe',
-          element: <Subscrib/>
+          path: "subscribe",
+          element: <Subscrib />,
         },
-      ]
+      ],
     },
     {
-      path:"/authentry",
-      element:<Authentry/>
+      path: "/authentry",
+      element: <Authentry />,
     },
     {
       path: "/signup",
@@ -98,42 +95,39 @@ const App = () => {
       element: <Authentry type="login" />,
     },
     {
-      path:"/hospitalsignup",
-      element:<Hospitalsignup/>
+      path: "/hospitalsignup",
+      element: <Hospitalsignup />,
     },
     {
-      path:"/hospitallogin",
-      element:<Hospitallogin/>
+      path: "/hospitallogin",
+      element: <Hospitallogin />,
     },
     {
-      path:"/donorslogin",
-      element:<Donorslogin/>
+      path: "/donorslogin",
+      element: <Donorslogin />,
     },
     {
-      path:"/donorssignup",
-      element:<Donorssignup/>
+      path: "/donorssignup",
+      element: <Donorssignup />,
     },
     {
-      path:"/resetpassword",
-      element:<Resetpassword/>
+      path: "/resetpassword",
+      element: <Resetpassword />,
     },
     {
-      path:"/kyc",
-      element:<KYC/>
+      path: "/kyc",
+      element: <KYC />,
     },
     {
-      path:"/hospiterms",
-      element:<Hospitalterms/>
+      path: "/hospiterms",
+      element: <Hospitalterms />,
     },
     {
-      path:"/donorterms",
-      element:<Donorterms/>
+      path: "/donorterms",
+      element: <Donorterms />,
     },
-    
-  ])
-  return (
-    <RouterProvider router={router}/>
-  )
-}
+  ]);
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;

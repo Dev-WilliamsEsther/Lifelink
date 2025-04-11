@@ -1,6 +1,5 @@
 import React from "react";
 import "./appointment.css";
-import { SlCalender } from "react-icons/sl";
 import { MdAccessTime } from "react-icons/md";
 
 const Appointment = () => {
