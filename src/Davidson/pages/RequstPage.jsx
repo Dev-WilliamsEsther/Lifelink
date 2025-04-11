@@ -37,6 +37,7 @@ const RequestPage = () => {
             placeholder="A+, A-, B+, B-, AB+, AB-, O+, O-"
             value={formData.bloodGroup}
             onChange={handleChange}
+            className="record-input"
           />
         </div>
 
@@ -49,6 +50,7 @@ const RequestPage = () => {
             placeholder="3 Pints of blood"
             value={formData.pints}
             onChange={handleChange}
+            className="record-input"
           />
         </div>
 
@@ -61,6 +63,7 @@ const RequestPage = () => {
             placeholder="May 18, 2023"
             value={formData.preferredDate}
             onChange={handleChange}
+            className="record-input"
           />
         </div>
 
@@ -73,6 +76,7 @@ const RequestPage = () => {
             placeholder="Low, Medium, High"
             value={formData.urgencyLevel}
             onChange={handleChange}
+            className="record-input"
           />
         </div>
 
@@ -89,6 +93,7 @@ const RequestPage = () => {
               placeholder="₦0000"
               value={formData.amount}
               onChange={handleChange}
+              className="record-input"
             />
           </div>
         </div>
