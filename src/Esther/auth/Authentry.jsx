@@ -9,6 +9,7 @@ const Authentry = ({type}) => {
   return (
     <div className='authwrapper'>
         <img src="images/Subtract.png" alt=""className='authimage'/>
+        <div className='authmobilewrap'></div>
         <div className='authinfowrap'>
             <div className='authlogohold'>
             <Link to="/">

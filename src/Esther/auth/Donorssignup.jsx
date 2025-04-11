@@ -7,6 +7,10 @@ const Donorssignup = () => {
   return (
     <div className='donorsignwrapper'>
       <img src="images/Subtract.png" alt="" className='donorsignimage'/>
+      <div className='donsignmobilewrap'>
+        <h1>CREATE AN ACCOUNT</h1>
+        <p>REGISTER AS A DONOR</p>
+      </div>
       <div className='donorsigninfowrap'>
         <div className='donorsignlogohold'>
           <Link to="/">

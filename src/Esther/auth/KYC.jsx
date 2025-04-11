@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 const KYC = () => {
   return (
     <div className='kycwrapper'>
+      <div className='kycmobilewrap'>
+        <h1>KYC</h1>
+      </div>
       <div className='kycinfowrap'>
         <div className='kyclogohold'>
           <Link to="/">
