@@ -6,6 +6,9 @@
     align-items: center;
     gap: 34px;
 }
+.kycmobilewrap{
+  display: none;
+}
 .kycinfowrap{
     width: 50%;
     height: 690px;
@@ -134,3 +137,80 @@
 }
 
 
+
+@media only screen and (max-width: 1440px){
+   
+}
+@media only screen and (max-width: 1200px){
+  .kycwrapper{
+    height: max-content;
+    padding: 20px;
+  }
+  .kycsignimage{
+    width: 38%;
+  }
+}
+
+@media only screen and (max-width: 900px){  
+  .kycwrapper{
+    height: max-content;
+    padding: 30px;
+  }
+  .kycsignimage{
+    width: 38%;
+  }
+}
+
+
+@media only screen and (max-width: 760px){
+  .kycwrapper{
+    height: max-content;
+    padding: 20px;
+  }
+  .kycsignimage{
+    width: 38%;
+  }
+}
+
+
+
+@media only screen and (max-width: 480px) {
+  .kycmobilewrap{
+       width: 480px;
+        height: 200px;
+        background-color: #2C3E50;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0px 0px 80px 10px;
+  }
+  .kyclogo{
+    display: none;
+  }
+  .kyclogohold{
+    display: none;
+  }
+  .kycinfo1 h1{
+    display: none;
+  }
+  .kycwrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .kycsignimage{
+  display: none;
+  }
+  .kycbtn{
+    background-color: #2C3E50;
+    color: white;
+  }
+  
+}
+
+
+@media only screen and (max-width: 379px) {
+  .kycmobilewrap{
+        width: 380px;
+  }
+}

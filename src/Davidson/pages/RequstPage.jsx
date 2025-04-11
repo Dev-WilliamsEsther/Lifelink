@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RequstPage = () => {
-  return (
-    <div>
-      RequstPage
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default RequstPage
+export default RequstPage;

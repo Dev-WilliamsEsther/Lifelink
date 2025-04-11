@@ -6,6 +6,9 @@
     align-items: center;
     gap: 34px;
 }
+.resetmobilewrap{
+    display: none;
+}
 .resetinfowrap{
     width: 50%;
     height: 660px;
@@ -73,4 +76,85 @@
 .resetimage{
     width: 35%;
     filter: drop-shadow(rgba(0, 0, 0, 0.418)0px 8px 10px);
+}
+
+
+@media only screen and (max-width: 1440px){
+   
+}
+@media only screen and (max-width: 1200px){
+   .resetwrapper{
+        height: max-content;
+        padding: 30px;
+    }
+    .resetimage{
+        width: 38%;
+    }
+}
+
+
+@media only screen and (max-width: 900px){  
+    .resetwrapper{
+        height: max-content;
+        padding: 30px;
+    }
+    .resetimage{
+        width: 38%;
+    }
+    
+}
+
+@media only screen and (max-width: 760px){
+    .resetwrapper{
+        height: max-content;
+        padding: 20px;
+    }
+    .resetimage{
+        width: 38%;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .resetwrapper{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .resetmobilewrap{
+        width: 480px;
+        height: 200px;
+        background-color: #2C3E50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        border-radius: 0px 0px 80px 10px;
+    }
+    .resetmobilewrap h2{
+        font-family: Poppins;
+        font-weight: 700;
+        font-size: 26px;
+        text-align: center;
+    }
+    .resetimage{
+        display: none;
+    }
+    .resetinfo1 h2{
+        display: none;
+    }
+    .resetlogohold{
+        display: none;
+    }
+    .resetbtn{
+        background-color: #2C3E50;
+    }
+}
+
+
+@media only screen and (max-width: 379px) {
+    .resetmobilewrap{
+        width: 380px;
+  }
 }

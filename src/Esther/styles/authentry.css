@@ -10,6 +10,9 @@
     width: 35%;
     filter: drop-shadow(rgba(0, 0, 0, 0.418)0px 8px 10px);
 }
+.authmobilewrap{
+    display: none;
+}
 .authinfowrap{
     width: 50%;
     height: 660px;
@@ -67,4 +70,136 @@
 .authinfo3:hover{
     background-color: #d6eaf8;
     color: black;
+}
+
+
+@media only screen and (max-width: 1440px){
+    .authwrapper{
+        display: flex;
+        gap: 20px;
+    }
+    .authimage{
+        width: 35%;
+    }
+     .authinfowrap{
+        height: 620px;
+     }
+    .authinfo3{
+        background-color:#c0392b ;
+        border-radius: 6px;
+        color: white;
+    }
+}
+@media only screen and (max-width: 1200px){
+    .authwrapper{
+        display: flex;
+        gap: 20px;
+    }
+    .authimage{
+        width: 35%;
+    }
+     .authinfowrap{
+        height: 620px;
+     }
+    .authinfo3{
+        background-color:#c0392b ;
+        border-radius: 6px;
+        color: white;
+    }
+}
+
+
+@media only screen and (max-width: 900px){  
+    .authwrapper{
+        display: flex;
+        gap: 20px;
+    }
+    .authimage{
+        width: 35%;
+    }
+    
+    
+     .authinfowrap{
+        height: 500px;
+     }
+    .authinfo3{
+        background-color:#c0392b ;
+        border-radius: 6px;
+        color: white;
+    }
+}
+
+
+@media only screen and (max-width: 760px){
+    .authwrapper{
+        display: flex;
+        gap: 30px;
+    }
+    .authimage{
+        width: 42%;
+    }
+     .authinfowrap{
+        height: 500px;
+     }
+    .authinfo3{
+        background-color:#c0392b ;
+        border-radius: 6px;
+        color: white;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .authwrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .authimage{
+        display: none;
+    }
+    .authlogohold{
+        display: none;
+    }
+    .authmobilewrap{
+        width: 480px;
+        height:400px;
+        background-color: #2C3E50;
+        display: block;
+        border-radius: 0px 0px 80px 10px;
+    }
+    .authinfo3{
+        background-color:#2C3E50 ;
+        border-radius: 6px;
+        color: white;
+    }
+    
+}
+
+
+@media only screen and (max-width: 379px) {
+    .authwrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .authimage{
+        display: none;
+    }
+    .authlogohold{
+        display: none;
+    }
+    .authmobilewrap{
+        width: 380px;
+        height:250px;
+        background-color: #2C3E50;
+        display: block;
+        border-radius: 0px 0px 80px 10px;
+    }
+    .authinfo3{
+        background-color:#2C3E50 ;
+        border-radius: 6px;
+        color: white;
+    }
 }

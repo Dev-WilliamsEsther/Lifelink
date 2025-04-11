@@ -7,6 +7,10 @@ const Hospitalsignup = () => {
   const nav = useNavigate();
   return (
     <div className='hospitalsignwrapper'>
+      <div className='hossignmobilewrap'>
+        <h1>CREATE AN ACCOUNT</h1>
+        <p>REGISTER AS HOSPITAL/ <br /> BLOODBANK</p>
+      </div>
       <div className='hospisigninfowrap'>
         <div className='hospisignlogohold'>
           <Link to="/">
@@ -28,20 +32,20 @@ const Hospitalsignup = () => {
             <input type="text" placeholder='ADDRESS' className='hossigninput' />
           </div>
           <div className='hossigninputwrapper'>
-            <p>ENTER EMAIL</p>
-            <input type="email" placeholder='FULL NAME' className='hossigninput' />
+            <p>EMAIL</p>
+            <input type="email" placeholder='ENTER EMAIL...' className='hossigninput' />
           </div>
           <div className='hossigninputwrapper'>
             <p>PHONE NUMBER</p>
-            <input type="text" placeholder='FULL NAME' className='hossigninput' />
+            <input type="text" placeholder='' className='hossigninput' />
           </div>
           <div className='hossigninputwrapper'>
             <p>CREATE PASSWORD</p>
-            <input type="password" placeholder='FULL NAME' className='hossigninput' />
+            <input type="password" placeholder='' className='hossigninput' />
           </div>
           <div className='hossigninputwrapper'>
             <p>CONFIRM PASSWORD</p>
-            <input type="password" placeholder='FULL NAME' className='hossigninput' />
+            <input type="password" placeholder='' className='hossigninput' />
           </div>
           <div className='checkboxwrapper'>
             <input type="checkbox" />

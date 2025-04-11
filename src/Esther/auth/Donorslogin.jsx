@@ -6,6 +6,9 @@ const Donorslogin = () => {
   const nav = useNavigate()
   return (
     <div className='donorloginwrapper'>
+      <div className='donorloginmobilewrap'>
+        <h2>LOG IN</h2>
+      </div>
       <img src="images/Subtract.png" alt="" className='donorslogimage'/>
       <div className='donorlogininfowrap'>
       <div className='donorloginlogohold'>

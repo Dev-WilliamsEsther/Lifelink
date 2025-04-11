@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 const Resetpassword = () => {
   return (
     <div className='resetwrapper'>
+      <div className='resetmobilewrap'>
+        <h2>RESET PASSWORD</h2>
+      </div>
       <div className='resetinfowrap'>
         <div className='resetlogohold'>
           <Link to="/">
