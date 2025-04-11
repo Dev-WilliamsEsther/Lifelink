@@ -5,7 +5,7 @@ import { SlCalender } from "react-icons/sl";
 const HistoryPage = () => {
   return (
     <div className='HistoryPageWrapper'>
-      <h1>Pending Donation</h1>
+      <h1>Donation History</h1>
 
       <div className="DonationsHistoryCardsHeading">
         <div className="DonationsHistoryCardsInnerWrapper">

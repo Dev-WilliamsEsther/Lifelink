@@ -7,6 +7,9 @@
     align-items: center;
     gap: 34px;
 }
+.donsignmobilewrap{
+    display: none;
+}
 .donorsignimage{
     width: 35%;
     filter: drop-shadow(rgba(0, 0, 0, 0.418)0px 8px 10px);
@@ -137,4 +140,102 @@
     background-color: #d6eaf8;
     color: black;
     border: 1px solid black;
+}
+
+
+@media only screen and (max-width: 1440px){
+   
+}
+@media only screen and (max-width: 1200px){
+    .donorsignwrapper{
+        height: 100vh;
+        padding: 20px;
+    }
+    
+    .donorsignimage{
+        width: 38%;
+    }
+}
+
+@media only screen and (max-width: 900px){  
+    .donorsignwrapper{
+        height: max-content;
+        padding: 30px;
+    }
+    .donorsignimage{
+        width: 38%;
+    }
+}
+
+
+@media only screen and (max-width: 760px){
+
+    .donorsignwrapper{
+        height: max-content;
+        padding: 20px;
+    }
+    .donorsignimage{
+        width: 38%;
+    }
+
+}
+
+
+@media only screen and (max-width: 480px) {
+    .donorsignimage{
+        display: none;
+    }
+    .donsignmobilewrap{
+        width: 480px;
+        height: 200px;
+        background-color: #2C3E50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        color: white;
+        border-radius: 0px 0px 80px 10px;
+    }
+    .donsignmobilewrap h1{
+        font-family: Poppins;
+        font-weight: 700;
+        font-size: 26px;
+        text-align: center;
+    }
+    .donsignmobilewrap p{
+        font-family: Poppins;
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+    }
+    .donorsigninfo1 h1{
+        display: none;
+    }
+    .donorsignwrapper{
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .donorsignlogohold{
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 379px) {
+    .donsignmobilewrap{
+        width: 380px;
+        height: 200px;
+        background-color: #2C3E50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        color: white;
+        border-radius: 0px 0px 80px 10px;
+    }
 }

@@ -12,7 +12,7 @@ const Achievement = () => {
       <div className="ach-img-cnt">
         <div className="ach-img1">
           <div className="sec-img-con">
-            <img src="public/images/aboutpics.png" alt="" />
+            <img src="images/aboutpics.png" alt="" />
           </div>
           <div className="third-cnt">
             <h2>10,000 + Lives Saved</h2>
@@ -22,7 +22,7 @@ const Achievement = () => {
 
         <div className="ach-img1">
           <div className="sec-img-con">
-            <img src="public/images/roundpics5.png" alt="" />
+            <img src="images/roundpics5.png" alt="" />
           </div>
           <div className="third-cnt">
             <h2>5,000 + Donors Registered</h2>
@@ -32,7 +32,7 @@ const Achievement = () => {
 
         <div className="ach-img1">
           <div className="sec-img-con">
-            <img src="public/images/imagepics1.png" alt="" />
+            <img src="images/imagepics1.png" alt="" />
           </div>
           <div className="third-cnt">
             <h2>200 + Verified Hospitals & Blood Banks</h2>
@@ -42,7 +42,7 @@ const Achievement = () => {
 
         <div className="ach-img1">
           <div className="sec-img-con">
-            <img src="public/images/aboutpics2.png" alt="" />
+            <img src="images/aboutpics2.png" alt="" />
           </div>
           <div className="third-cnt">
             <h2>Real Time Blood Availability</h2>
@@ -52,7 +52,7 @@ const Achievement = () => {
 
         <div className="ach-img1">
           <div className="sec-img-con">
-            <img src="public/images/aboutpics3.png" alt="" />
+            <img src="images/aboutpics3.png" alt="" />
           </div>
           <div className="third-cnt">
             <h2>Donor Incentives Program Launched</h2>

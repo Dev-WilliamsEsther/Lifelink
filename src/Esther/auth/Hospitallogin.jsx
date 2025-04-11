@@ -6,6 +6,9 @@ const Hospitallogin = () => {
   const nav = useNavigate()
   return (
     <div className='hosloginwrapper'>
+      <div className="hoslogmobilewrap">
+        <h2>LOG IN</h2>
+      </div>
       <div className='hoslogininfowrap'>
       <div className='hosloginlogohold'>
           <Link to="/">

@@ -7,6 +7,9 @@
     align-items: center;
     gap: 34px;
 }
+.hossignmobilewrap{
+    display: none;
+}
 .hospisigninfowrap{
     width: 50%;
     height: 690px;
@@ -86,4 +89,137 @@
 .hospisignimage{
     width: 35%;
     filter: drop-shadow(rgba(0, 0, 0, 0.418)0px 8px 10px);
+}
+
+
+@media only screen and (max-width: 1440px){
+    
+}
+@media only screen and (max-width: 1200px){
+    .hospitalsignwrapper{
+        height: 100vh;
+        padding: 20px;
+    }
+    
+    .hospisignimage{
+        width: 38%;
+    }
+}
+
+
+@media only screen and (max-width: 900px){  
+    .hospitalsignwrapper{
+        height: max-content;
+        padding: 30px;
+    }
+    
+    .hospisignimage{
+        width: 38%;
+    }
+}
+
+
+@media only screen and (max-width: 760px){
+    .hospitalsignwrapper{
+        height: max-content;
+        padding: 20px;
+    }
+    
+    .hospisignimage{
+        width: 38%;
+    }
+}
+
+
+
+@media only screen and (max-width: 480px) {
+    .hospitalsignwrapper{
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .hossignmobilewrap{
+        width: 480px;
+        height: 200px;
+        background-color: #2C3E50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        color: white;
+        border-radius: 0px 0px 80px 10px;
+    }
+    .hossignmobilewrap h1{
+        font-family: Poppins;
+        font-weight: 700;
+        font-size: 26px;
+        text-align: center;
+    }
+    .hossignmobilewrap p{
+        font-family: Poppins;
+        font-weight: 700;
+        font-size: 18px;
+        text-align: center;
+    }
+    .hospisignimage{
+        display: none;
+    }
+    .hospisignlogohold{
+        display: none;
+    }
+    
+    .hospisigninfo1 h1{
+        display: none;
+    }
+}
+
+
+
+@media only screen and (max-width: 379px) {
+    .hospitalsignwrapper{
+        height: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .hossignmobilewrap{
+        width: 380px;
+        height: 200px;
+        background-color: #2C3E50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        color: white;
+        border-radius: 0px 0px 80px 10px;
+    }
+    .hossignmobilewrap h1{
+        font-family: Poppins;
+        font-weight: 700;
+        font-size: 26px;
+        text-align: center;
+    }
+    .hossignmobilewrap p{
+        font-family: Poppins;
+        font-weight: 700;
+        font-size: 18px;
+        text-align: center;
+    }
+    .hospisignimage{
+        display: none;
+    }
+    .hospisignlogohold{
+        display: none;
+    }
+    .hospisigninfo1{
+        width: 380px;
+    }
+    .hospisigninfo1 h1{
+        display: none;
+    }
 }
