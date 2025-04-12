@@ -17,7 +17,7 @@ const DashboardSideBar = () => {
 
   const [activeBAr, setActiveBar] = useState(0);
 
-  const donorsSideBar = false;
+  const donorsSideBar = true;
 
   return (
     <>

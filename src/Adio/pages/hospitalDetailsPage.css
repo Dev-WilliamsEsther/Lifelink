@@ -70,3 +70,39 @@
     border-radius: 10px;
     background: #C0392B;
 }
+
+.volunteerDateWrapper{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+
+    label{
+        padding-top: 20px;
+        margin: 0;
+        width: 80%;
+    }
+
+
+    input{
+        width: 80%;
+        height: 50px;
+        border: 1px solid grey;
+        padding: 0px 10px;
+        outline: none;
+    }
+
+    button{
+        width: max-content;
+        height: max-content;
+        padding: 10px 30px;
+        color: white;
+        background: #C0392B;
+        margin-top: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
