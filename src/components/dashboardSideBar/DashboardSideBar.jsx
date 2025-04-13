@@ -5,7 +5,7 @@ import { TbHomeSearch } from "react-icons/tb";
 import { MdHistory } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
@@ -14,8 +14,9 @@ import { PiFilesLight } from "react-icons/pi";
 const DashboardSideBar = () => {
   const nav = useNavigate()
   const [deletePopup, setDeletePopup] = useState(false)
+  const location = useLocation()
 
-  const [activeBAr, setActiveBar] = useState(0)
+  console.log(location.pathname)
 
   const donorsSideBar = true;
 
@@ -28,19 +29,19 @@ const DashboardSideBar = () => {
 
           {
             donorsSideBar ?  <ul>
-            <li onClick={() => {setActiveBar(1); nav(""); }} className={`${activeBAr === 1 ? "activeBar" : ""}`}>
+            <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
             </li>
-            <li  onClick={() => {setActiveBar(2); nav("findhospital"); }} className={`${activeBAr === 2 ? "activeBar" : ""}`}>
+            <li  onClick={() => {nav("findhospital"); }} className={`${location.pathname === '/dashboard/findhospital' ? "activeBar" : ""}`}>
               <TbHomeSearch className='sideBarIocns' color='black' />
               Find Hospital
             </li>
-            <li onClick={() => {setActiveBar(3); nav("history"); }} className={`${activeBAr === 3 ? "activeBar" : ""}`}>
+            <li onClick={() => {nav("history"); }} className={`${location.pathname === '/dashboard/history' ? "activeBar" : ""}`}>
               <MdHistory className='sideBarIocns' color='black' />
               History
             </li>
-            <li onClick={() => {setActiveBar(4); nav("settings"); }} className={`${activeBAr === 4 ? "activeBar" : ""}`}>
+            <li onClick={() => {nav("settings"); }} className={`${location.pathname === '/dashboard/settings' ? "activeBar" : ""}`}>
               <IoSettingsOutline className='sideBarIocns' color='black' />
               Settings
             </li>
@@ -49,27 +50,27 @@ const DashboardSideBar = () => {
               Logout
             </li>
           </ul> :  <ul>
-            <li onClick={() => {setActiveBar(1); nav(""); }} className={`${activeBAr === 1 ? "activeBar" : ""}`}>
+            <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
             </li>
-            <li onClick={() => {setActiveBar(2); nav("request"); }} className={`${activeBAr === 2 ? "activeBar" : ""}`}>
+            <li onClick={() => {nav("request"); }} className={`${location.pathname === '/dashboard/request' ? "activeBar" : ""}`}>
               <SlNote className='sideBarIocns' color='black' />
               Make Request
             </li>
-            <li onClick={() => {setActiveBar(3); nav("history"); }} className={`${activeBAr === 3 ? "activeBar" : ""}`}>
+            <li onClick={() => {nav("history"); }} className={`${location.pathname === '/dashboard/history' ? "activeBar" : ""}`}>
               <MdHistory className='sideBarIocns' color='black' />
               Request History
             </li>
-            <li  onClick={() => {setActiveBar(4); nav("appointment"); }} className={`${activeBAr === 4 ? "activeBar" : ""}`}>
+            <li  onClick={() => {nav("appointment"); }} className={`${location.pathname === '/dashboard/appointment' ? "activeBar" : ""}`}>
               <RiFirstAidKitLine className='sideBarIocns' color='black' />
               Appointments
             </li>
-            <li  onClick={() => {setActiveBar(5); nav("records"); }} className={`${activeBAr === 5 ? "activeBar" : ""}`}>
+            <li  onClick={() => {nav("records"); }} className={`${location.pathname === '/dashboard/records' ? "activeBar" : ""}`}>
               <PiFilesLight className='sideBarIocns' color='black' />
               Records
             </li>
-            <li onClick={() => {setActiveBar(6); nav("settings"); }} className={`${activeBAr === 6 ? "activeBar" : ""}`}>
+            <li onClick={() => {nav("settings"); }} className={`${location.pathname === '/dashboard/settings' ? "activeBar" : ""}`}>
               <IoSettingsOutline className='sideBarIocns' color='black' />
               Settings
             </li>
