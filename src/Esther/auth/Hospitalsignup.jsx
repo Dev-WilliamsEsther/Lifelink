@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../Esther/styles/hospitalsign.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 
 const Hospitalsignup = () => {
   const nav = useNavigate();
+  const [click,setClick] = useState(false);
   return (
     <div className='hospitalsignwrapper'>
       <div className='hossignmobilewrap'>
@@ -48,10 +49,17 @@ const Hospitalsignup = () => {
             <input type="password" placeholder='' className='hossigninput' />
           </div>
           <div className='checkboxwrapper'>
-            <input type="checkbox" />
+            <input type="checkbox" 
+            isClick={click}
+            onClick={()=>setClick(!click)}
+            />
+            
             <p>I agree to the <a href="" onClick={()=>nav("/hospiterms")} className='tandc'>TERMS AND CONDITIONS</a></p>
           </div>
-          <button className='hospibtn' onClick={()=>nav("/kyc")}>REGISTER</button>
+          <button className='hospibtn'
+          onClick={()=>nav("/kyc")}
+          disabled={!click}
+          >REGISTER</button>
         </div>
       </div>
       <img src="images/Subtract.png" alt="" className='hospisignimage'/>

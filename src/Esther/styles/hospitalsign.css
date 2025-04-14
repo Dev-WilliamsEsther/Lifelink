@@ -90,6 +90,11 @@
     width: 35%;
     filter: drop-shadow(rgba(0, 0, 0, 0.418)0px 8px 10px);
 }
+.hospibtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 
 
 @media only screen and (max-width: 1440px){
