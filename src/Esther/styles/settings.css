@@ -1,4 +1,4 @@
-.SettingsPageWrapper {
+.adminsettingswrap {
     width: 100%;
     height: 100%;
     padding: 10px;
@@ -6,14 +6,14 @@
     flex-wrap: wrap;
 }
 
-.SettingsPageWrapper h1 {
+.adminsettingswrap h1 {
     width: 100%;
     font-size: 20px;
     font-weight: 500;
     font-family: Poppins;
 }
 
-.SettingssideWrapper {
+.adminsidewrapper {
     width: 40%;
     height: 650px;
     display: flex;
@@ -22,7 +22,7 @@
     gap: 10px;
 }
 
-.SettingsPasswordsideWrapper {
+.adminsettingspasswrap {
     width: 50%;
     height: 95%;
     display: flex;
@@ -31,7 +31,7 @@
     gap: 10px;
 }
 
-.profilePageProflePicWrapper {
+.adminsettingsprofilewrapper {
     width: 380px;
     height: 78px;
     display: flex;
@@ -39,7 +39,7 @@
     gap: 10px;
 }
 
-.profilePageProflePicWrapper .profilePicture {
+.adminsettingsprofilewrapper .settingprofilepics {
     width: 76px;
     height: 76px;
     border-radius: 50%;
@@ -47,7 +47,7 @@
     margin-left: 25px;
 }
 
-.profilePageProflePicWrapper button {
+.adminsettingsprofilewrapper button {
     padding: 10px 10px;
     font-size: 12px;
     font-weight: 500;
@@ -57,7 +57,7 @@
     cursor: pointer;
 }
 
-.profilePageProflePicWrapper :last-child {
+.adminsettingsprofilewrapper :last-child {
     background: transparent;
     color: #000;
     padding: 9px 15px;
@@ -65,14 +65,14 @@
     cursor: pointer;
 }
 
-.settingsInputsWrapper {
+.adminInputsWrapper {
     width: 380px;
     padding: 10px;
     border-radius: 10px;
     background: white;
 }
 
-.settingInputs {
+.adminsettingInputs {
     width: 340px;
     height: 41px;
     border: 1px solid grey;
@@ -81,6 +81,7 @@
     margin-bottom: 10px;
 }
 
+
 @media only screen and (max-width: 1440px) {}
 
 @media only screen and (max-width: 1200px) {}
@@ -88,37 +89,41 @@
 @media only screen and (max-width: 900px) {}
 
 @media only screen and (max-width: 760px) {
-    .SettingsPageWrapper {
+    .adminsettingswrap {
         flex-wrap: nowrap;
         flex-direction: column;
         align-items: center;
         gap: 30px;
     }
 
-.SettingsPageWrapper h1{
+.adminsettingswrap h1{
     width: 70%;
     font-size: 25px;
 }
 
-    .SettingssideWrapper {
+    .adminsidewrapper {
         height: max-content;
         width: 70%;
     }
 
-    .settingsInputsWrapper {
+    .adminInputsWrapper
+    
+    {
         width: 100%;
     }
 
-    .settingInputs {
+    .adminsettingInputs {
         width: 100%;
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .SettingsPageWrapper {
+    .adminsettingswrap {
         flex-wrap: nowrap;
         flex-direction: column;
     }
 }
 
 @media only screen and (max-width: 379px) {}
+
+

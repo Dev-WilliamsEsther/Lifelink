@@ -57,6 +57,41 @@
     }
 }
 
+.viewDetailsPopUpWrapper{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    h1{
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+    p{
+        font-size: 15px;
+
+        b{
+            font-weight: 550;
+        }
+    }
+
+    img{
+        width: 300px;
+    }
+
+    button{
+        width: max-content;
+        height: max-content;
+        padding: 10px 15px;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        background: #C0392B;
+    }
+}
+
 
 
 @media only screen and (max-width: 1440px) {}
@@ -65,7 +100,30 @@
 
 @media only screen and (max-width: 900px) {}
 
-@media only screen and (max-width: 760px) {}
+@media only screen and (max-width: 760px) {
+    .FindHospitalPageWrapper {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: max-content;
+    }
+
+    .hospitalCardsWRapper {
+        width: 100%;
+    }
+
+    .quickTipsAndFunFactWrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+.quickTipsAndFunFactWrapper  {
+    display: flex;
+    justify-content: space-around;
+}
+}
 
 @media only screen and (max-width: 480px) {
     .FindHospitalPageWrapper {
