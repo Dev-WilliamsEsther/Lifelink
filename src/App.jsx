@@ -27,6 +27,8 @@ import Hospitalterms from "./Esther/terms/Hospitalterms";
 import Donorterms from "./Esther/terms/Donorterms";
 import Authentry from "./Esther/auth/Authentry";
 import Scrolltop from "./components/scroll/Scrolltop";
+import HospitalRequestHistory from "./Davidson/pages/RequestHistory";
+import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -51,9 +53,11 @@ const App = () => {
             { path: "findhospital", element: <FindHospitalPage /> },
             { path: "history", element: <HistoryPage /> },
             { path: "settings", element: <SettingsPage /> },
+            { path: "hospitalsettings", element: <HospitalSettingsPage /> },
             { path: "appointment", element: <Appointment /> },
             { path: "records", element: <RecordPage /> },
             { path: "request", element: <RequstPage /> },
+            { path: "requesthistory", element: <HospitalRequestHistory /> },
             { path: "subscribe", element: <Subscrib /> },
           ],
         },
@@ -69,6 +73,7 @@ const App = () => {
           path: "/login",
           element: <Authentry type="login" />,
         },
+
         {
           path: "/hospitalsignup",
           element: <Hospitalsignup />,
