@@ -26,6 +26,9 @@ import Hospitalterms from './Esther/terms/Hospitalterms'
 import Donorterms from './Esther/terms/Donorterms'
 import Authentry from './Esther/auth/Authentry'
 import Scrolltop from './components/scroll/Scrolltop'
+import Verification from './Esther/pages/Verification'
+import Settings from './Esther/pages/Settings'
+import Blacklist from './Esther/pages/Blacklist'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -54,7 +57,10 @@ const App = () => {
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
         { path: "hospitaldetails", element: <HospitalDetailsPage /> },
-        { path: "subscribe", element: <Subscrib /> }
+        { path: "subscribe", element: <Subscrib /> },
+        {path:"adminverification",element:<Verification/>},
+        {path:"adminsettings",element:<Settings/>},
+        {path:"adminblacklist",element:<Blacklist/>}
       ]
     },
     {
