@@ -14,10 +14,11 @@ import { PiFilesLight } from "react-icons/pi";
 const DashboardSideBar = () => {
   const nav = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false);
+  const location = useLocation();
 
-  const [activeBAr, setActiveBar] = useState(0);
+  console.log(location.pathname);
 
-  const donorsSideBar = false;
+  const donorsSideBar = true;
 
   return (
     <>
@@ -34,40 +35,46 @@ const DashboardSideBar = () => {
             <ul>
               <li
                 onClick={() => {
-                  setActiveBar(1);
                   nav("");
                 }}
-                className={`${activeBAr === 1 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard" ? "activeBar" : ""
+                }`}
               >
                 <FaUser className="sideBarIocns" color="black" />
                 Profile
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(2);
                   nav("findhospital");
                 }}
-                className={`${activeBAr === 2 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/findhospital"
+                    ? "activeBar"
+                    : ""
+                }`}
               >
                 <TbHomeSearch className="sideBarIocns" color="black" />
                 Find Hospital
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(3);
                   nav("history");
                 }}
-                className={`${activeBAr === 3 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/history" ? "activeBar" : ""
+                }`}
               >
                 <MdHistory className="sideBarIocns" color="black" />
                 History
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(4);
                   nav("settings");
                 }}
-                className={`${activeBAr === 4 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/settings" ? "activeBar" : ""
+                }`}
               >
                 <IoSettingsOutline className="sideBarIocns" color="black" />
                 Settings
@@ -81,60 +88,68 @@ const DashboardSideBar = () => {
             <ul>
               <li
                 onClick={() => {
-                  setActiveBar(1);
                   nav("");
                 }}
-                className={`${activeBAr === 1 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard" ? "activeBar" : ""
+                }`}
               >
                 <FaUser className="sideBarIocns" color="black" />
                 Profile
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(2);
                   nav("request");
                 }}
-                className={`${activeBAr === 2 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/request" ? "activeBar" : ""
+                }`}
               >
                 <SlNote className="sideBarIocns" color="black" />
                 Make Request
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(3);
                   nav("history");
                 }}
-                className={`${activeBAr === 3 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/history" ? "activeBar" : ""
+                }`}
               >
                 <MdHistory className="sideBarIocns" color="black" />
                 Request History
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(4);
                   nav("appointment");
                 }}
-                className={`${activeBAr === 4 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/appointment"
+                    ? "activeBar"
+                    : ""
+                }`}
               >
                 <RiFirstAidKitLine className="sideBarIocns" color="black" />
                 Appointments
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(5);
                   nav("records");
                 }}
-                className={`${activeBAr === 5 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/records" ? "activeBar" : ""
+                }`}
               >
                 <PiFilesLight className="sideBarIocns" color="black" />
                 Records
               </li>
               <li
                 onClick={() => {
-                  setActiveBar(6);
-                  nav("hospitalsettings");
+                  nav("settings");
                 }}
-                className={`${activeBAr === 6 ? "activeBar" : ""}`}
+                className={`${
+                  location.pathname === "/dashboard/settings" ? "activeBar" : ""
+                }`}
               >
                 <IoSettingsOutline className="sideBarIocns" color="black" />
                 Settings
