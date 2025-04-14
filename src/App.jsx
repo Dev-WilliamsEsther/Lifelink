@@ -33,6 +33,7 @@ import Blacklist from "./Esther/pages/Blacklist";
 import Adminsignin from "./Esther/pages/Adminsignin";
 import Adminlogin from "./Esther/pages/Adminlogin";
 import Adminreset from "./Esther/pages/Adminreset";
+import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -57,6 +58,7 @@ const App = () => {
             { path: "findhospital", element: <FindHospitalPage /> },
             { path: "history", element: <HistoryPage /> },
             { path: "settings", element: <SettingsPage /> },
+            { path: "hospitalsettings", element: <HospitalSettingsPage /> },
             { path: "appointment", element: <Appointment /> },
             { path: "records", element: <RecordPage /> },
             { path: "request", element: <RequstPage /> },

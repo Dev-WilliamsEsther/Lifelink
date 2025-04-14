@@ -132,7 +132,7 @@ const DashboardSideBar = () => {
               <li
                 onClick={() => {
                   setActiveBar(6);
-                  nav("settings");
+                  nav("hospitalsettings");
                 }}
                 className={`${activeBAr === 6 ? "activeBar" : ""}`}
               >
