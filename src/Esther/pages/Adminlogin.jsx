@@ -1,8 +1,9 @@
 import React from 'react'
 import '../../Esther/styles/adminlogin.css'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 const Adminlogin = () => {
+    const nav = useNavigate();
     return (
         <div className='admindonorloginwrapper'>
           <div className='admindonorloginmobilewrap'>
@@ -25,7 +26,7 @@ const Adminlogin = () => {
                 <p>ENTER PASSWORD</p>
                 <input type="password" placeholder='PASSWORD' className='admindonorlogininput' />
               </div>
-              <button className='admindonorloginbtn' onClick={()=>nav("/dashboard")}>LOG-IN</button>
+              <button className='admindonorloginbtn' onClick={()=>nav("/dashboard/adminverification")}>LOG-IN</button>
               <div className='admindonorloginforgotwrap'>
                 <p onClick={()=>nav("/admindonorssignup")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
                 <p>FORGOT PASSWORD</p>

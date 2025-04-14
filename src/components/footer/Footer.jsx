@@ -10,7 +10,7 @@ const Footer = () => {
         <h1>LifeLink</h1>
       </div>
       <div className='footernewsletter'>
-        <h1>Join our newsletter to keep <br /> up to date with us!</h1>
+        <h1>Join the mission to save lives through <br />blood donation.</h1>
         <div className='footerinput'>
           <div className='footeremail'>
             <PiUserCircleDashedThin  size={22}/>

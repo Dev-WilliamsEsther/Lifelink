@@ -79,11 +79,11 @@ const Donorssignup = () => {
             </div>
           </div>
           <div className='donorsigninputwrapper'>
-            <p>AGE</p>
+            <p>CREATE PASSWORD</p>
             <input type="text" className='donorssigninput'/>
           </div>
           <div className='donorsigninputwrapper'>
-            <p>AGE</p>
+            <p>CONFIRM PASSWORD</p>
             <input type="text" className='donorssigninput'/>
           </div>
           <div className='checkboxwrapper'>
