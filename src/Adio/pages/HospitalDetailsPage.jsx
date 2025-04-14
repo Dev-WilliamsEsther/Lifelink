@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import './hospitalDetailsPage.css'
 import { Modal } from 'antd'
+import NotificationWrap from '../../components/notificatonPopWrap/NotificationWrap'
 
 const HospitalDetailsPage = () => {
   const [volunteerPopUp, setVolunteerPopUp] = useState(false)
 
   return (
+    <>
+    <NotificationWrap>You've sucessfully scheduled</NotificationWrap>
     <div className='HospitalDetailsPageWrapper'>
       <h1>Hospital Details</h1>
 
@@ -30,15 +33,31 @@ const HospitalDetailsPage = () => {
       footer={null}
       >
         <div className="volunteerDateWrapper">
-          <label>Date</label>
-          <input type="date" />
-          <label>Time</label>
-          <input type="time" />
+          <h1>Pick Date/Time</h1>
+
+          <div className="datePickerWrapper">
+            <label>Date</label>
+            <p><input type="radio" name="1"/> Monday</p>
+            <p><input type="radio" name="1"/> Tuesday</p>
+            <p><input type="radio" name="1"/> Wednesday</p>
+            <p><input type="radio" name="1"/> Thursday</p>
+            <p><input type="radio" name="1"/> Friday</p>
+            <p><input type="radio" name="1"/> Saturday</p>
+            <p><input type="radio" name="1"/> Sunday</p>
+          </div>
+          <div className="datePickerWrapper">
+            <label>Time</label>
+            <p><input type="radio" name="2"/> 8:00AM - 10:00AM</p>
+            <p><input type="radio" name="2"/> 10:00AM - 12:00AM</p>
+            <p><input type="radio" name="2"/> 12:00AM - 3:00AM</p>
+            <p><input type="radio" name="2"/> 3:00AM - 5:00AM</p>
+          </div>
           <button>Schedule</button>
         </div>
 
       </Modal>
     </div>
+    </>
   )
 }
 
