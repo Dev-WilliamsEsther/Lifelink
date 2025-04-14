@@ -1,0 +1,207 @@
+.RequestHistoryCardWrapper {
+  width: 100%;
+  padding: 10px;
+}
+
+.RequestHistoryCardWrapper h1 {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Poppins;
+}
+
+.RequestHistoryCardsHeading {
+  width: 100%;
+  height: 69px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  background: #d6eaf8;
+  margin-bottom: 10px;
+}
+.RequestHistoryInnerDiv {
+  width: 100%;
+  height: 69px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  background: #d6eaf8;
+  margin-bottom: 10px;
+}
+
+.RequestHistoryCardsInnerWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.RequestHistoryInnerDivtext1 {
+  width: 40%;
+}
+.RequestHistoryInnerDivtext2 {
+  width: 15%;
+}
+.RequestHistoryInnerDivtext3 {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.RequestHistoryInnerDivtext4 {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.RequestHistoryInnerDivtext5 {
+  width: 15%;
+}
+.RequestHistoryInnerDivtext6 {
+  width: 15%;
+}
+.RequestHistoryInnerDivtext7 {
+  width: 15%;
+}
+
+.RequestHistoryInnerDiv {
+  width: 100%;
+  padding: 0px 30px;
+  display: flex;
+  align-items: center;
+}
+.RequestHistoryInnerDiv2 {
+  width: 100%;
+  padding: 0px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.RequestHistoryInnerWrapper > * {
+  flex: 1;
+  text-align: center;
+  padding: 0 5px;
+  color: black;
+}
+
+.RequestHistoryCardsHeading .RequestHistoryCardsInnerWrapper h1 {
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.RequestHistoryInnerWrapper h3 {
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.RequestHistoryCardsWrapper {
+  width: 100%;
+  overflow-y: auto;
+  background: transparent;
+}
+
+.RequestHistoryCard {
+  width: 100%;
+  height: 69px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  background: white;
+}
+
+.RequestHistoryCard {
+  width: 100%;
+  height: 69px;
+  border-radius: 6px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 0px 30px;
+}
+
+.RequestHistoryDivtext6 {
+  width: 10%;
+}
+.RequestHistoryDivtext7 {
+  width: 10%;
+}
+.RequestHistoryDivtext8 {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.RequestHistoryDivtext9 {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.RequestHistoryDivtext10 {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.RequestHistoryDivtext11 {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.RequestHistoryDivtext6 {
+  width: 15%;
+  font-weight: 400;
+}
+.RequestHistoryDivtext7 {
+  width: 15%;
+  font-weight: 400;
+}
+.RequestHistoryDivtext8 {
+  width: 15%;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.RequestHistoryDivtext9 {
+  width: 15%;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.RequestHistoryDivtext10 {
+  width: 15%;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.RequestHistoryDivtext11 {
+  width: 15%;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.RequestHistoryDivtext12 {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
