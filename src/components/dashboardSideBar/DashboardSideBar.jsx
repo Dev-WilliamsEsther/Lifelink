@@ -5,7 +5,7 @@ import { TbHomeSearch } from "react-icons/tb";
 import { MdHistory } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
@@ -17,7 +17,7 @@ const DashboardSideBar = () => {
 
   const [activeBAr, setActiveBar] = useState(0);
 
-  const donorsSideBar = true;
+  const donorsSideBar = false;
 
   return (
     <>

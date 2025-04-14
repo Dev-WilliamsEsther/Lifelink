@@ -8,11 +8,13 @@ import { TbHomeSearch } from "react-icons/tb";
 import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
+import { IoSearchOutline } from "react-icons/io5";
 
 const Header = () => {
 
   const [openSideDrawer, setOpenSideDrawer] = useState(false)
   const [logoutPopUp, setLogoutPopUp] = useState(false)
+  const [userAuth] = useState(false)
 
   const link = [
     { name: "home", path: "/" },
@@ -76,6 +78,10 @@ const Header = () => {
 
       <div className="MobileHeader">
         <img src="/images/logo.png" alt="LifeLink Logo" onClick={() => nav("/")} />
+        <div className="mobileSearchInputWrapper">
+          <IoSearchOutline/>
+          <input type="text" placeholder="Search..."/>
+        </div>
         <RxHamburgerMenu size={30} onClick={() => setOpenSideDrawer(true)} />
       </div>
       <div className="mobileHeaderWrapperPusher"></div>
@@ -86,7 +92,8 @@ const Header = () => {
       >
         <div className="sideDrawerNavigateHolder">
           <ul>
-            <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
+            {
+              userAuth ? <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
               <div className="MobileSideProfilePic">
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
@@ -98,15 +105,32 @@ const Header = () => {
               <div className="mobileSideBarIcon">
                 <MdEdit />
               </div>
-            </div>
+            </div> :  <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
+              <div className="MobileSideProfilePic">
+                <img src="/images/default profile pic.jpg" alt="" />
+              </div>
+              <div className="MobileSideProfileName">
+                <h1 style={{fontSize: 35}}>No User</h1>
+                {/* <span>A+</span> */}
+              </div>
 
-            <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
-            <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
-            <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
-            <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
-            <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
-            <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
-            <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
+              
+              <div className="mobileSideBarIcon">
+                <MdEdit />
+              </div>
+            </div>
+            }
+
+            {
+              userAuth ? <> <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+              <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
+              <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+              <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+              <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
+              <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
+              <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li> </> :
+              <> <button>Login</button> <button>Signup</button> </>
+            }
           </ul>
         </div>
       </Drawer>
