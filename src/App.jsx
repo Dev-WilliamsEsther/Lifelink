@@ -29,6 +29,9 @@ import Scrolltop from './components/scroll/Scrolltop'
 import Verification from './Esther/pages/Verification'
 import Settings from './Esther/pages/Settings'
 import Blacklist from './Esther/pages/Blacklist'
+import Adminsignin from './Esther/pages/Adminsignin'
+import Adminlogin from './Esther/pages/Adminlogin'
+import Adminreset from './Esther/pages/Adminreset'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -60,7 +63,7 @@ const App = () => {
         { path: "subscribe", element: <Subscrib /> },
         {path:"adminverification",element:<Verification/>},
         {path:"adminsettings",element:<Settings/>},
-        {path:"adminblacklist",element:<Blacklist/>}
+        {path:"adminblacklist",element:<Blacklist/>},
       ]
     },
     {
@@ -106,8 +109,20 @@ const App = () => {
     {
       path:"/donorterms",
       element:<Donorterms/>
+    },
+    {
+      path:"/adminsignin",
+      element:<Adminsignin/>
+    },
+    {
+      path:"/adminlogin",
+      element:<Adminlogin/>
+    },
+    {
+      path:"/adminreset",
+      element:<Adminreset/>
     }
-      ]
+  ]
     },
     
   ])
