@@ -105,13 +105,12 @@ const Header = () => {
               <div className="mobileSideBarIcon">
                 <MdEdit />
               </div>
-            </div> :  <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
+            </div> :  <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/authentry") }}>
               <div className="MobileSideProfilePic">
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
               <div className="MobileSideProfileName">
                 <h1 style={{fontSize: 35}}>No User</h1>
-                {/* <span>A+</span> */}
               </div>
 
               
@@ -129,7 +128,7 @@ const Header = () => {
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
               <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li> </> :
-              <> <button>Login</button> <button>Signup</button> </>
+              <> <button onClick={()=> nav('/login')}>Login</button> <button onClick={()=> nav('/signup')}>Signup</button> </>
             }
           </ul>
         </div>

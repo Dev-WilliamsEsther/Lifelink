@@ -27,8 +27,12 @@ import Hospitalterms from "./Esther/terms/Hospitalterms";
 import Donorterms from "./Esther/terms/Donorterms";
 import Authentry from "./Esther/auth/Authentry";
 import Scrolltop from "./components/scroll/Scrolltop";
-import HospitalRequestHistory from "./Davidson/pages/RequestHistory";
-import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
+import Verification from "./Esther/pages/Verification";
+import Settings from "./Esther/pages/Settings";
+import Blacklist from "./Esther/pages/Blacklist";
+import Adminsignin from "./Esther/pages/Adminsignin";
+import Adminlogin from "./Esther/pages/Adminlogin";
+import Adminreset from "./Esther/pages/Adminreset";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -53,12 +57,14 @@ const App = () => {
             { path: "findhospital", element: <FindHospitalPage /> },
             { path: "history", element: <HistoryPage /> },
             { path: "settings", element: <SettingsPage /> },
-            { path: "hospitalsettings", element: <HospitalSettingsPage /> },
             { path: "appointment", element: <Appointment /> },
             { path: "records", element: <RecordPage /> },
             { path: "request", element: <RequstPage /> },
-            { path: "requesthistory", element: <HospitalRequestHistory /> },
+            { path: "hospitaldetails", element: <HospitalDetailsPage /> },
             { path: "subscribe", element: <Subscrib /> },
+            { path: "adminverification", element: <Verification /> },
+            { path: "adminsettings", element: <Settings /> },
+            { path: "adminblacklist", element: <Blacklist /> },
           ],
         },
         {
@@ -73,7 +79,6 @@ const App = () => {
           path: "/login",
           element: <Authentry type="login" />,
         },
-
         {
           path: "/hospitalsignup",
           element: <Hospitalsignup />,
@@ -105,6 +110,18 @@ const App = () => {
         {
           path: "/donorterms",
           element: <Donorterms />,
+        },
+        {
+          path: "/adminsignin",
+          element: <Adminsignin />,
+        },
+        {
+          path: "/adminlogin",
+          element: <Adminlogin />,
+        },
+        {
+          path: "/adminreset",
+          element: <Adminreset />,
         },
       ],
     },

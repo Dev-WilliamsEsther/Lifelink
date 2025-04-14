@@ -1,4 +1,4 @@
-.hospitalsignwrapper{
+.adminsignwrapper{
     width: 100%;
     height: 100vh;
     background-color: white;
@@ -7,50 +7,53 @@
     align-items: center;
     gap: 34px;
 }
-.hossignmobilewrap{
+.adminmobilewrap{
     display: none;
 }
-.hospisigninfowrap{
+.adminsigninfowrap{
     width: 50%;
     height: 690px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-.hospisignlogohold{
+.adminsignlogohold{
     width: 90%;
     height: 60px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.hospisignlogo{
+.adminsignlogo{
     width: 65px;
 }
-.hospisigninfo1{
+.adminsigninfo1{
     width: 380px;
     height: 620px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-.hospisigninfo1 h1 {
+.adminsigninfo1 h1 {
     font-size: 20px;
     font-weight: 700;
     font-family: Poppins;
     text-align: center;
 }
-.hossigninputwrapper{
+.adminsigninfo1 a{
+    color: red;
+}
+.adminsigninputwrapper{
     width: 360px;
     height: 70px;
     
 }
-.hossigninputwrapper p{
+.adminsigninputwrapper p{
     font-size: 12px;
     font-weight: 600;
     color: #21212180;
 }
-.hossigninput{
+.adminsigninput{
     width: 340px;
     height: 40px;
     background-color: #ededed;
@@ -66,7 +69,7 @@
     gap: 8px;
     font-family: Poppins;
 }
-.hospibtn{
+.adminbtn{
     width: 200px;
     height: 36px;
     background-color: #c0392b;
@@ -78,7 +81,7 @@
     color: white;
     margin-top: 8px;
 }
-.hospibtn:hover{
+.adminbtn:hover{
     background-color: #d6eaf8;
     color: black;
     border: 1px solid black;
@@ -86,11 +89,11 @@
 .tandc{
     color: green;
 }
-.hospisignimage{
+.adminsignimg{
     width: 35%;
     filter: drop-shadow(rgba(0, 0, 0, 0.418)0px 8px 10px);
 }
-.hospibtn:disabled {
+.adminbtn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
     opacity: 0.6;
@@ -101,36 +104,36 @@
     
 }
 @media only screen and (max-width: 1200px){
-    .hospitalsignwrapper{
+    .adminsignwrapper{
         height: 100vh;
         padding: 20px;
     }
     
-    .hospisignimage{
+    .adminsignimg{
         width: 38%;
     }
 }
 
 
 @media only screen and (max-width: 900px){  
-    .hospitalsignwrapper{
+    .adminsignwrapper{
         height: max-content;
         padding: 30px;
     }
     
-    .hospisignimage{
+    .adminsignimg{
         width: 38%;
     }
 }
 
 
 @media only screen and (max-width: 760px){
-    .hospitalsignwrapper{
+    .adminsignwrapper{
         height: max-content;
         padding: 20px;
     }
     
-    .hospisignimage{
+    .adminsignimg{
         width: 38%;
     }
 }
@@ -138,14 +141,14 @@
 
 
 @media only screen and (max-width: 480px) {
-    .hospitalsignwrapper{
+    .adminsignwrapper{
         height: max-content;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
-    .hossignmobilewrap{
+    .adminmobilewrap{
         width: 480px;
         height: 200px;
         background-color: #2C3E50;
@@ -157,26 +160,26 @@
         color: white;
         border-radius: 0px 0px 80px 10px;
     }
-    .hossignmobilewrap h1{
+    .adminmobilewrap h1{
         font-family: Poppins;
         font-weight: 700;
         font-size: 26px;
         text-align: center;
     }
-    .hossignmobilewrap p{
+    .adminmobilewrap p{
         font-family: Poppins;
         font-weight: 700;
         font-size: 18px;
         text-align: center;
     }
-    .hospisignimage{
+    .adminsignimg{
         display: none;
     }
-    .hospisignlogohold{
+    .adminsignlogohold{
         display: none;
     }
     
-    .hospisigninfo1 h1{
+    .adminsigninfo1 h1{
         display: none;
     }
 }
@@ -184,14 +187,14 @@
 
 
 @media only screen and (max-width: 379px) {
-    .hospitalsignwrapper{
+    .adminsignwrapper{
         height: max-content;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
-    .hossignmobilewrap{
+    .adminmobilewrap{
         width: 380px;
         height: 200px;
         background-color: #2C3E50;
@@ -203,28 +206,28 @@
         color: white;
         border-radius: 0px 0px 80px 10px;
     }
-    .hossignmobilewrap h1{
+    .adminmobilewrap h1{
         font-family: Poppins;
         font-weight: 700;
         font-size: 26px;
         text-align: center;
     }
-    .hossignmobilewrap p{
+    .adminmobilewrap p{
         font-family: Poppins;
         font-weight: 700;
         font-size: 18px;
         text-align: center;
     }
-    .hospisignimage{
+    .adminsignimg{
         display: none;
     }
-    .hospisignlogohold{
+    .adminsignlogohold{
         display: none;
     }
-    .hospisigninfo1{
+    .adminsigninfo1{
         width: 380px;
     }
-    .hospisigninfo1 h1{
+    .adminsigninfo1 h1{
         display: none;
     }
 }
