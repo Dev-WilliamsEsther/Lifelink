@@ -1,9 +1,13 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import './profilePage.css'
 import { MdCloudUpload } from "react-icons/md";
+import { useUser } from '../../global/UseUser';
+
 
 const ProfilePage = () => {
+  const { user } = useUser();
+
   return (
     <div className='ProfilePageWRapper'>
       <h1>Profile</h1>
@@ -15,8 +19,8 @@ const ProfilePage = () => {
         </div>
 
         <div className="profileNameWrapper">
-         <h3>Mary Patrick</h3>
-         <p>A+</p>
+         <h3>{user.fullName}</h3>
+         <p>{user.bloodType}</p>
         </div>
       </div>
       

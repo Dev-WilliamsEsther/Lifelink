@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./findHospitalPage.css";
 import HospitalCard from "../../components/hospitalCard/HospitalCard";
+import { getListOfHospitals } from "../../global/Api";
+
+const Base_Url = import.meta.env.VITE_BASEURL;
 
 const tips = [
   "One blood donation can save up to 3 lives",
@@ -14,14 +17,30 @@ const tips = [
 ];
 
 const FindHospitalPage = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [listOfHospitals, setListOfHospitals] = useState([])
+
+  useEffect(() => {
+    const getHospitals = () => {
+      getListOfHospitals(setIsLoading, Base_Url, setListOfHospitals)
+    }
+  }, [])
+
   return (
     <div className="FindHospitalPageWrapper">
       <h1>List of Hospitals to Visit</h1>
 
       <div className="hospitalCardsWRapper">
-        {Array.from({ length: 12 }).map((_, idx) => (
-          <HospitalCard key={idx} />
-        ))}
+        {
+          listOfHospitals && listOfHospitals.length > 0 ? (
+            listOfHospitals.map((hospital, index) => (
+              <HospitalCard key={index} hospital={hospital} index={index} />
+            ))
+          ) : (
+            <>No Hospital</>
+          )
+        }
+
       </div>
 
       <div className="quickTipsAndFunFactWrapper">

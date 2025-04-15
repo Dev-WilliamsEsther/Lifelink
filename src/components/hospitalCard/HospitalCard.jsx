@@ -2,7 +2,8 @@ import React from 'react'
 import './hospitalCard.css'
 import { useNavigate } from 'react-router'
 
-const HospitalCard = () => {
+const HospitalCard = ({index, hospital}) => {
+
   const nav = useNavigate()
   return (
     <>
