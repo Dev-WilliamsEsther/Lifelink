@@ -9,12 +9,15 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
 
   const [openSideDrawer, setOpenSideDrawer] = useState(false)
   const [logoutPopUp, setLogoutPopUp] = useState(false)
-  const [userAuth] = useState(false)
+
+  const isSignedIn = JSON.parse(localStorage.getItem("userData"))
+  console.log(isSignedIn)
 
   const link = [
     { name: "home", path: "/" },
@@ -66,12 +69,15 @@ const Header = () => {
           </ul>
         </div>
         <div className="headerwrapperinner3">
-          <Link to={"/signup"}>
-          <button className="headerbtn">Sign Up</button>
-          </Link>
-          <Link to={"/login"}>
-          <button className="headerbtn1" >Log In</button>
-          </Link>
+          {
+            isSignedIn ? <FaUserCircle size={40}/>  : <> <Link to={"/signup"}>
+            <button className="headerbtn">Sign Up</button>
+            </Link>
+            <Link to={"/login"}>
+            <button className="headerbtn1" >Log In</button>
+            </Link></>
+          }
+         
         </div>
       </div>
 
@@ -93,7 +99,7 @@ const Header = () => {
         <div className="sideDrawerNavigateHolder">
           <ul>
             {
-              userAuth ? <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
+              isSignedIn ? <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
               <div className="MobileSideProfilePic">
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
@@ -121,7 +127,7 @@ const Header = () => {
             }
 
             {
-              userAuth ? <> <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+              isSignedIn ? <> <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>

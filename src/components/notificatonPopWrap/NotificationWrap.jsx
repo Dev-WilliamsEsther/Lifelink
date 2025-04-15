@@ -1,15 +1,40 @@
-import React from 'react'
-import './notificationWrap.css'
+import React, { useEffect, useState } from 'react';
+import './notificationWrap.css';
 import 'animate.css';
 import { MdOutlineCancel } from "react-icons/md";
 
 const NotificationWrap = (props) => {
-  return (
-    <div className='animate__animated animate__headShake NotificationWrapWrapper'>
-      <span>{props.children}</span>
-      <MdOutlineCancel cursor="pointer"/>
-    </div>
-  )
-}
+  const [cancelNotification, setCancelNotification] = useState(true);
+  const [animateOut, setAnimateOut] = useState(false);
 
-export default NotificationWrap
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimateOut(true);
+      setTimeout(() => setCancelNotification(false), 3000); 
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleClose = () => {
+    setAnimateOut(true);
+    setTimeout(() => setCancelNotification(false), 3000);
+  };
+
+  return (
+    <>
+      {cancelNotification && (
+        <div
+          className={`animate__animated ${
+            animateOut ? 'animate__fadeOut' : 'animate__headShake'
+          } NotificationWrapWrapper`}
+        >
+          <span>{props.children}</span>
+          <MdOutlineCancel cursor="pointer" onClick={handleClose} />
+        </div>
+      )}
+    </>
+  );
+};
+
+export default NotificationWrap;
