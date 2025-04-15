@@ -135,11 +135,9 @@
     font-size: 13px;
     color: white;
     margin-top: 8px;
-}
-.donsignbtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

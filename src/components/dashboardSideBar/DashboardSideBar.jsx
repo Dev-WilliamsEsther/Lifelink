@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './dashboardSideBar.css'
 import { FaUser } from "react-icons/fa";
 import { TbHomeSearch } from "react-icons/tb";
@@ -10,15 +10,16 @@ import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { PiFilesLight } from "react-icons/pi";
+import { useUser } from '../../global/UseUser'
 
 const DashboardSideBar = () => {
   const nav = useNavigate()
   const [deletePopup, setDeletePopup] = useState(false)
   const location = useLocation()
 
-  console.log(location.pathname)
 
-  const donorsSideBar = true;
+  const { user } = useUser();
+
 
 
   return (
@@ -28,7 +29,7 @@ const DashboardSideBar = () => {
           <img src="/images/logo.png" alt="LifeLink Logo" className='sideBarLogo' onClick={() => nav("/")} />
 
           {
-            donorsSideBar ?  <ul>
+            user.role === "donor" ?  <ul>
             <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
@@ -49,7 +50,8 @@ const DashboardSideBar = () => {
               <CiLogout className='sideBarIocns' />
               Logout
             </li>
-          </ul> :  <ul>
+          </ul> : null}
+           { user.role === "hospital" ? <ul>
             <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
@@ -78,7 +80,7 @@ const DashboardSideBar = () => {
               <CiLogout className='sideBarIocns' />
               Logout
             </li>
-          </ul>
+          </ul> : null
           }
 
         </div>
