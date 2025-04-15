@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../Esther/styles/donorterms.css'
 import { VscDash } from "react-icons/vsc";
+import { useNavigate } from 'react-router';
 
 
 const donorterms = [
@@ -33,6 +34,7 @@ const donorterms = [
 
 
 const Hospitalterms = () => {
+    const nav = useNavigate();
     return (
         <div className='donortermswrapper'>
             <div className='donortermsname'>
@@ -46,7 +48,7 @@ const Hospitalterms = () => {
                         <p><VscDash />{term.terms} <br /></p>
                     </div>
                 ))}
-                <button className='donortermsbtn'>AGREE</button>
+                <button className='donortermsbtn' onClick={()=>nav("/hospitalsignup")}>AGREE</button>
             </div>
         </div>
       )
