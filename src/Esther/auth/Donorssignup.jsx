@@ -8,7 +8,7 @@ import NotificationWrap from '../../components/notificatonPopWrap/NotificationWr
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Donorssignup = () => {
-
+  const [click,setClick] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [ress, setRess] = useState("")
@@ -163,7 +163,10 @@ const Donorssignup = () => {
           </div>
 
           <div className='checkboxwrapper'>
-            <input type="checkbox" required={true} />
+            <input type="checkbox" 
+            isClick={click}
+            onClick={()=>setClick(!click)}
+            required={true} />
             <p>
               I agree to the{" "}
               <a href="" onClick={() => nav("/donorterms")} className='tandc'>
@@ -172,7 +175,10 @@ const Donorssignup = () => {
             </p>
           </div>
 
-          <button className='donsignbtn' onClick={handleSubmit} disabled={isLoading}>
+          <button className='donsignbtn'
+          disabled={!click || isLoading}
+          onClick={handleSubmit} 
+          >
             {isLoading ? <FadeLoader color="white"/> : "REGISTER"}
           </button>
         </div>
