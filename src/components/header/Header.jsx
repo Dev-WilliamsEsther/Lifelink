@@ -10,6 +10,7 @@ import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
+import { useUser } from "../../global/UseUser";
 
 const Header = () => {
 
@@ -47,6 +48,9 @@ const Header = () => {
 
   const nav = useNavigate()
 
+  const { user } = useUser();
+
+
   return (
     <>
       <div className={`headerwrapper ${isFixed ? 'headerwrapperfixed' : ''
@@ -68,17 +72,18 @@ const Header = () => {
             ))}
           </ul>
         </div>
+        {
+        isSignedIn ? <FaUserCircle size={40}/>  :
         <div className="headerwrapperinner3">
-          {
-            isSignedIn ? <FaUserCircle size={40}/>  : <> <Link to={"/signup"}>
+           <Link to={"/signup"}>
             <button className="headerbtn">Sign Up</button>
             </Link>
             <Link to={"/login"}>
             <button className="headerbtn1" >Log In</button>
-            </Link></>
+            </Link>
+        </div>
           }
          
-        </div>
       </div>
 
 
@@ -104,11 +109,11 @@ const Header = () => {
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
               <div className="MobileSideProfileName">
-                <h1>Mary Patrick</h1>
-                <span>A+</span>
+                <h1>{user?.fullName}</h1>
+                <span>{user?.bloodType}</span>
               </div>
 
-              <div className="mobileSideBarIcon">
+              <div className="mobileSideBarIcon" onClick={()=> nav('/dashboard/settings')}>
                 <MdEdit />
               </div>
             </div> :  <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/authentry") }}>
@@ -116,7 +121,7 @@ const Header = () => {
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
               <div className="MobileSideProfileName">
-                <h1 style={{fontSize: 35}}>No User</h1>
+                <h1 style={{fontSize: 35}}>Visitor</h1>
               </div>
 
               
