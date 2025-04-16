@@ -1,6 +1,6 @@
 .testifywrapper{
     width: 100%;
-    height: 940px;
+    height: max-content;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -87,7 +87,37 @@
 
 
 @media only screen and (max-width: 480px) {
+    .testifyboxhold{
+        height: max-content;
+        padding: 20px 0px;
+        gap: 10px;
+        justify-content: center;
+    }
 
+    .testifyboxinner{
+        width: 48%;
+        height: 200px;
+        margin-top: 35px;
+        padding: 20px 2px 20px; 
+    }
+
+    .testifyboxinner h3{
+        margin-top: 30px;
+    }
+
+    .testifyboxinner .testimonial{
+        width: 100%;
+        font-size: 10px;
+        font-weight: 300;
+        margin: 0;
+        padding: 0;
+    }
+
+    .testifywriteup{
+        width: 100%;
+        height: max-content;
+        text-align: center;
+    }
 }
 
 

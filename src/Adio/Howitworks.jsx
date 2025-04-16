@@ -1,7 +1,12 @@
 import React from "react";
 import "./howitworks.css";
+import { useNavigate } from "react-router";
+import { useUser } from "../global/UseUser";
 
 const Howitworks = () => {
+  const nav = useNavigate()
+
+  const {user} = useUser()
   return (
     <>
       <div>
@@ -59,7 +64,7 @@ const Howitworks = () => {
             </div>
           </div>
 
-          <button className="cta-btn">Donate</button>
+          <button className="cta-btn" onClick={()=> nav(`${user? "/dashboard" : "/donorssignup"}`)}>Donate</button>
         </section>
 
 
@@ -92,7 +97,7 @@ const Howitworks = () => {
             </div>
           </div>
 
-          <button className="cta-btn">Get Listed</button>
+          <button className="cta-btn" onClick={()=> nav(`${user? "/dashboard" : "/hospitalsignup"}`)}>Get Listed</button>
         </section>
 
         <section className="why-it-matters">
