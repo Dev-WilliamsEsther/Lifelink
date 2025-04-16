@@ -34,6 +34,7 @@ import Adminsignin from "./Esther/pages/Adminsignin";
 import Adminlogin from "./Esther/pages/Adminlogin";
 import Adminreset from "./Esther/pages/Adminreset";
 import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
+import RequestHistory from "./Davidson/pages/RequestHistory";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -62,6 +63,7 @@ const App = () => {
             { path: "appointment", element: <Appointment /> },
             { path: "records", element: <RecordPage /> },
             { path: "request", element: <RequstPage /> },
+            { path: "requesthistory", element: <RequestHistory /> },
             { path: "hospitaldetails", element: <HospitalDetailsPage /> },
             { path: "subscribe", element: <Subscrib /> },
             { path: "adminverification", element: <Verification /> },

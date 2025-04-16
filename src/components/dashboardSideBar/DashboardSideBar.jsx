@@ -18,7 +18,7 @@ const DashboardSideBar = () => {
 
   console.log(location.pathname);
 
-  const donorsSideBar = true;
+  const donorsSideBar = false;
 
   return (
     <>
@@ -110,7 +110,7 @@ const DashboardSideBar = () => {
               </li>
               <li
                 onClick={() => {
-                  nav("history");
+                  nav("requesthistory");
                 }}
                 className={`${
                   location.pathname === "/dashboard/history" ? "activeBar" : ""
@@ -145,7 +145,7 @@ const DashboardSideBar = () => {
               </li>
               <li
                 onClick={() => {
-                  nav("settings");
+                  nav("hospitalsettings");
                 }}
                 className={`${
                   location.pathname === "/dashboard/settings" ? "activeBar" : ""
