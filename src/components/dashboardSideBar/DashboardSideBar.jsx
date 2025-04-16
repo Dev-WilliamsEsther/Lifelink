@@ -29,7 +29,7 @@ const DashboardSideBar = () => {
           <img src="/images/logo.png" alt="LifeLink Logo" className='sideBarLogo' onClick={() => nav("/")} />
 
           {
-            user.role === "donor" ?  <ul>
+            user?.role === "donor" ?  <ul>
             <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
@@ -51,7 +51,7 @@ const DashboardSideBar = () => {
               Logout
             </li>
           </ul> : null}
-           { user.role === "hospital" ? <ul>
+           { user?.role === "hospital" ? <ul>
             <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
