@@ -10,26 +10,41 @@ import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { PiFilesLight } from "react-icons/pi";
-import { useUser } from '../../global/UseUser'
+import { useUser, useUserInfo } from '../../global/UseUser'
+import { handleLogout } from '../../global/Api';
+import NotificationWrap from '../notificatonPopWrap/NotificationWrap';
 
 const DashboardSideBar = () => {
   const nav = useNavigate()
   const [deletePopup, setDeletePopup] = useState(false)
   const location = useLocation()
+  const Base_Url = import.meta.env.VITE_BASEURL;
+  const [ress, setRess] = useState("")
+  
+
+
 
 
   const { user } = useUser();
+  const { userInfo } = useUserInfo();
+  const token = userInfo?.data?.token
 
+
+
+  const logOut = () =>{
+    handleLogout(Base_Url, setRess, nav, token)
+  }
 
 
   return (
     <>
+    <NotificationWrap>{ress}</NotificationWrap>
       <div className='SideBArWrapper'>
         <div className="innerSideBArWrapper">
           <img src="/images/logo.png" alt="LifeLink Logo" className='sideBarLogo' onClick={() => nav("/")} />
 
           {
-            user?.role === "donor" ?  <ul>
+            user?.data?.data?.role === "donor" ?  <ul>
             <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
@@ -51,7 +66,7 @@ const DashboardSideBar = () => {
               Logout
             </li>
           </ul> : null}
-           { user?.role === "hospital" ? <ul>
+           { user?.data?.data?.role === "hospital" ? <ul>
             <li onClick={() => {nav(""); }} className={`${location.pathname === '/dashboard' ? "activeBar" : ""}`}>
               <FaUser className='sideBarIocns' color='black' />
               Profile
@@ -96,7 +111,7 @@ const DashboardSideBar = () => {
 
             <div className="logoutbButtonHolder">
               <button className='cancelBtn' onClick={() => setDeletePopup(false)}>Cancel</button>
-              <button>Logout</button>
+              <button onClick={logOut}>Logout</button>
             </div>
           </div>
         </div>

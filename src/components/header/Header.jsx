@@ -9,8 +9,11 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
-import { FaUserCircle } from "react-icons/fa";
-import { useUser } from "../../global/UseUser";
+import { useUser, useUserInfo } from "../../global/UseUser";
+import { handleLogout } from "../../global/Api";
+import NotificationWrap from "../notificatonPopWrap/NotificationWrap";
+
+const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Header = () => {
 
@@ -48,11 +51,22 @@ const Header = () => {
 
   const nav = useNavigate()
 
-  const { user } = useUser();
+  const { userInfo } = useUserInfo();
+
+
+  const token = userInfo?.data?.token
+
+
+  const [ress, setRess] = useState("")
+
+  const handleSubmit = () =>{
+    handleLogout(Base_Url, setRess, nav, token)
+  }
 
 
   return (
     <>
+    <NotificationWrap>{ress}</NotificationWrap>
       <div className={`headerwrapper ${isFixed ? 'headerwrapperfixed' : ''
         }`}>
       <div className="HeaderInnerWrapper">
@@ -112,8 +126,8 @@ const Header = () => {
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
               <div className="MobileSideProfileName">
-                <h1>{user?.fullName}</h1>
-                <span>{user?.bloodType}</span>
+                <h1>{userInfo?.data?.message?.fullName}</h1>
+                <span>{userInfo?.data?.message?.bloodType}</span>
               </div>
 
               <div className="mobileSideBarIcon" onClick={()=> nav('/dashboard/settings')}>
@@ -162,7 +176,7 @@ const Header = () => {
 
           <div className="mobileLogoutWrapper">
             <button className="MobileLogoutBtn" onClick={() => setLogoutPopUp(false)}>Cancel</button>
-            <button>Logout</button>
+            <button onClick={handleSubmit}>Logout</button>
           </div>
         </div>
       </Modal>

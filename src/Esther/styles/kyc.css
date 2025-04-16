@@ -180,6 +180,8 @@
         height: 200px;
         background-color: #2C3E50;
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
         border-radius: 0px 0px 80px 10px;
   }
@@ -204,6 +206,11 @@
   .kycbtn{
     background-color: #2C3E50;
     color: white;
+  }
+  .kycmobilewrap h1{
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
   }
   
 }
