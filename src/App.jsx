@@ -35,29 +35,18 @@ import Adminlogin from './Esther/pages/Adminlogin';
 import Adminreset from './Esther/pages/Adminreset';
 import PrivateRoutes from './routes/PrivateRoutes';
 import FindHospitalPage from "./Adio/pages/FindHospitalPage";
+import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage"
+import RequestHistory from "./Davidson/pages/RequestHistory";
 
 
 const App = () => {
   const router = createBrowserRouter([
+
     {
-      path: "",
-      element: <Scrolltop />,
-      children: [
-        { path: "", element: <ProfilePage /> },
-        { path: "findhospital", element: <FindHospitalPage /> },
-        { path: "history", element: <HistoryPage /> },
-        { path: "settings", element: <SettingsPage /> },
-        { path: "appointment", element: <Appointment /> },
-        { path: "records", element: <RecordPage /> },
-        { path: "request", element: <RequstPage /> },
-        { path: "hospitaldetails", element: <HospitalDetailsPage /> },
-        { path: "subscribe", element: <Subscrib /> },
-        { path: "adminverification", element: <Verification /> },
-        { path: "adminsettings", element: <Settings /> },
-        { path: "adminblacklist", element: <Blacklist /> },
-      ]
-    },
-    {
+      path:"",
+      element:<Scrolltop/>,
+      children:[
+        {
       path: "",
       element: <HomeRoutes />,
       children: [
@@ -73,7 +62,9 @@ const App = () => {
         { path: "", element: <ProfilePage /> },
         { path: "findhospital", element: <FindHospitalPage /> },
         { path: "history", element: <HistoryPage /> },
+        { path: "requesthistory", element: <RequestHistory /> },
         { path: "settings", element: <SettingsPage /> },
+        { path: "hospitalsettings", element: <HospitalSettingsPage /> },
         { path: "appointment", element: <Appointment /> },
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
@@ -99,6 +90,9 @@ const App = () => {
     { path: "/adminsignin", element: <Adminsignin /> },
     { path: "/adminlogin", element: <Adminlogin /> },
     { path: "/adminreset", element: <Adminreset /> }
+      ]
+    },
+    
   ]);
 
   return <RouterProvider router={router} />;
