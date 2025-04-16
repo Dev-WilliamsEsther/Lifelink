@@ -18,7 +18,7 @@ const DashboardSideBar = () => {
 
   console.log(location.pathname);
 
-  const donorsSideBar = false;
+  const donorsSideBar = true;
 
   return (
     <>
