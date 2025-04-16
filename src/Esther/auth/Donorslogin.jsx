@@ -17,7 +17,6 @@ const Donorslogin = () => {
   const [ress, setRess] = useState("")
 
 
-  const [confirmPassword, setConfirmPassword] = useState("");
   const nav = useNavigate();
 
   const handleSubmit = async (e) => {

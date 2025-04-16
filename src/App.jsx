@@ -43,7 +43,7 @@ const App = () => {
   const router = createBrowserRouter([
 
     {
-      path:"",
+      path:"/",
       element:<Scrolltop/>,
       children:[
         {

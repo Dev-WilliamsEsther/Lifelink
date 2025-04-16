@@ -6,7 +6,7 @@ import { MdOutlineCancel } from "react-icons/md";
 const NotificationWrap = (props) => {
   const [cancelNotification, setCancelNotification] = useState(true);
   const [animateOut, setAnimateOut] = useState(false);
-
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimateOut(true);

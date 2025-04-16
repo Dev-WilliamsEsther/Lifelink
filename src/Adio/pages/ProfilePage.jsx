@@ -2,13 +2,15 @@
 import React, { useContext } from 'react'
 import './profilePage.css'
 import { MdCloudUpload } from "react-icons/md";
-import { useUser } from '../../global/UseUser';
+import { useUserInfo } from '../../global/UseUser';
 import { useNavigate } from 'react-router';
 
 
 const ProfilePage = () => {
-  const { user } = useUser();
+  const { userInfo } = useUserInfo();
   const nav = useNavigate()
+
+  console.log(userInfo)
 
   return (
     <div className='ProfilePageWRapper'>
@@ -21,17 +23,17 @@ const ProfilePage = () => {
         </div>
 
         <div className="profileNameWrapper">
-         <h3>{user?.fullName}</h3>
-         <p>{user?.bloodType}</p>
+         <h3>{userInfo?.data?.message?.fullName}</h3>
+         <p>{userInfo?.data?.message?.bloodType}</p>
         </div>
       </div>
       
       <div className="profilePageInfosCards">
         <h2>Personal Information</h2>
         <div className="infosWRapper">
-          <p><b>Full Name</b> <br /> {user?.fullName}</p>
-          <p><b>Age</b> <br /> {user?.age}</p>
-          <p><b>Blood Group</b> <br /> {user?.bloodType}</p>
+          <p><b>Full Name</b> <br /> {userInfo?.data?.message?.fullName}</p>
+          <p><b>Age</b> <br /> {userInfo?.data?.message?.age}</p>
+          <p><b>Blood Group</b> <br /> {userInfo?.data?.message?.bloodType}</p>
           <p><b>Gender</b> <br /> Female</p>
         </div>
       </div>
@@ -39,9 +41,9 @@ const ProfilePage = () => {
       <div className="profilePageInfosCards">
         <h2>Contact Information</h2>
         <div className="infosWRapper">
-          <p><b>Email Address</b> <br /> {user?.email}</p>
+          <p><b>Email Address</b> <br /> {userInfo?.data?.message?.email}</p>
           <p><b>Phone Number</b> <br /> 09013717091</p>
-          <p><b>Home Address</b> <br /> {user?.location}</p>
+          <p><b>Home Address</b> <br /> {userInfo?.data?.message?.location}</p>
         </div>
       </div>
 
