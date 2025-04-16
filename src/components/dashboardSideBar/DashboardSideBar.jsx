@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./dashboardSideBar.css";
 import { FaUser } from "react-icons/fa";
 import { TbHomeSearch } from "react-icons/tb";
@@ -10,15 +10,14 @@ import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { PiFilesLight } from "react-icons/pi";
+import { useUser } from "../../global/UseUser";
 
 const DashboardSideBar = () => {
   const nav = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false);
   const location = useLocation();
 
-  console.log(location.pathname);
-
-  const donorsSideBar = true;
+  const { user } = useUser();
 
   return (
     <>
@@ -31,7 +30,7 @@ const DashboardSideBar = () => {
             onClick={() => nav("/")}
           />
 
-          {donorsSideBar ? (
+          {user?.role === "donor" ? (
             <ul>
               <li
                 onClick={() => {
@@ -84,7 +83,8 @@ const DashboardSideBar = () => {
                 Logout
               </li>
             </ul>
-          ) : (
+          ) : null}
+          {user?.role === "hospital" ? (
             <ul>
               <li
                 onClick={() => {
@@ -110,7 +110,7 @@ const DashboardSideBar = () => {
               </li>
               <li
                 onClick={() => {
-                  nav("requesthistory");
+                  nav("history");
                 }}
                 className={`${
                   location.pathname === "/dashboard/history" ? "activeBar" : ""
@@ -145,7 +145,7 @@ const DashboardSideBar = () => {
               </li>
               <li
                 onClick={() => {
-                  nav("hospitalsettings");
+                  nav("settings");
                 }}
                 className={`${
                   location.pathname === "/dashboard/settings" ? "activeBar" : ""
@@ -159,7 +159,7 @@ const DashboardSideBar = () => {
                 Logout
               </li>
             </ul>
-          )}
+          ) : null}
         </div>
       </div>
 

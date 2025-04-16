@@ -6,9 +6,11 @@ import Whyus from "../components/whyus/Whyjoinus";
 import Whyjoinus from "../components/whyus/Whyjoinus";
 import Impacts from "../components/impacts/Impacts";
 import Testify from "../components/testify/Testify";
+import { useNavigate } from "react-router";
 
 
 const LandingPage = () => {
+  const nav = useNavigate()
   return (
     <div className="landingmainwrapper">
       <div className="landingwrapper">
@@ -24,7 +26,7 @@ const LandingPage = () => {
             and blood <br /> banks, making it easier to save lives while
             ensuring you get rewarded for your generosity.
           </p>
-          <button className="landingbutton">Donate</button>
+          <button className="landingbutton" onClick={()=> nav('/private')}>Donate</button>
         </div>
       </div>
       <Benefit />

@@ -71,11 +71,7 @@
     font-size: 13px;
     color: white;
 }
-.donorloginbtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
-}
+
 .donorloginforgotwrap{
     width: 360px;
     height: 33px;
@@ -85,6 +81,9 @@
     font-size: 10px;
     font-weight: 600;
     color: #21212180;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .donorslogimage{
     width: 35%;

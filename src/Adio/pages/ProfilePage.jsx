@@ -1,9 +1,15 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import './profilePage.css'
 import { MdCloudUpload } from "react-icons/md";
+import { useUser } from '../../global/UseUser';
+import { useNavigate } from 'react-router';
+
 
 const ProfilePage = () => {
+  const { user } = useUser();
+  const nav = useNavigate()
+
   return (
     <div className='ProfilePageWRapper'>
       <h1>Profile</h1>
@@ -15,17 +21,17 @@ const ProfilePage = () => {
         </div>
 
         <div className="profileNameWrapper">
-         <h3>Mary Patrick</h3>
-         <p>A+</p>
+         <h3>{user?.fullName}</h3>
+         <p>{user?.bloodType}</p>
         </div>
       </div>
       
       <div className="profilePageInfosCards">
         <h2>Personal Information</h2>
         <div className="infosWRapper">
-          <p><b>Full Name</b> <br /> Mary Patrick</p>
-          <p><b>Age</b> <br /> 25</p>
-          <p><b>Blood Group</b> <br /> A+</p>
+          <p><b>Full Name</b> <br /> {user?.fullName}</p>
+          <p><b>Age</b> <br /> {user?.age}</p>
+          <p><b>Blood Group</b> <br /> {user?.bloodType}</p>
           <p><b>Gender</b> <br /> Female</p>
         </div>
       </div>
@@ -33,13 +39,13 @@ const ProfilePage = () => {
       <div className="profilePageInfosCards">
         <h2>Contact Information</h2>
         <div className="infosWRapper">
-          <p><b>Email Address</b> <br /> Mayriepatrick@gmail.com</p>
+          <p><b>Email Address</b> <br /> {user?.email}</p>
           <p><b>Phone Number</b> <br /> 09013717091</p>
-          <p><b>Home Address</b> <br /> Oja Orile, Lagos</p>
+          <p><b>Home Address</b> <br /> {user?.location}</p>
         </div>
       </div>
 
-      <button className="editProfileButton">Edit Profile</button>
+      <button className="editProfileButton" onClick={()=> nav('/dashboard/settings')}>Edit Profile</button>
 
     </div>
   )

@@ -9,16 +9,20 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
+import { useUser } from "../../global/UseUser";
 
 const Header = () => {
 
   const [openSideDrawer, setOpenSideDrawer] = useState(false)
   const [logoutPopUp, setLogoutPopUp] = useState(false)
-  const [userAuth] = useState(false)
+
+  const isSignedIn = JSON.parse(localStorage.getItem("userData"))
+  console.log(isSignedIn)
 
   const link = [
     { name: "home", path: "/" },
-    { name: "about", path: "/about" },
+    { name: "about us", path: "/about" },
     { name: "How it Works", path: "/howitworks" },
   ];
 
@@ -44,10 +48,14 @@ const Header = () => {
 
   const nav = useNavigate()
 
+  const { user } = useUser();
+
+
   return (
     <>
       <div className={`headerwrapper ${isFixed ? 'headerwrapperfixed' : ''
         }`}>
+      <div className="HeaderInnerWrapper">
         <div className="headerwrapperinner1">
           <img src="images/logo.png" alt="" />
         </div>
@@ -65,14 +73,20 @@ const Header = () => {
             ))}
           </ul>
         </div>
+        {
+        isSignedIn ? <div className="headerProfilePic" onClick={()=> nav('/dashboard')}>
+          <img src="/images/default profile pic.jpg" alt="" />
+        </div> :
         <div className="headerwrapperinner3">
-          <Link to={"/signup"}>
-          <button className="headerbtn">Sign Up</button>
-          </Link>
-          <Link to={"/login"}>
-          <button className="headerbtn1" >Log In</button>
-          </Link>
+           <Link to={"/signup"}>
+            <button className="headerbtn">Sign Up</button>
+            </Link>
+            <Link to={"/login"}>
+            <button className="headerbtn1" >Log In</button>
+            </Link>
         </div>
+          }
+      </div>
       </div>
 
 
@@ -93,16 +107,16 @@ const Header = () => {
         <div className="sideDrawerNavigateHolder">
           <ul>
             {
-              userAuth ? <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
+              isSignedIn ? <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
               <div className="MobileSideProfilePic">
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
               <div className="MobileSideProfileName">
-                <h1>Mary Patrick</h1>
-                <span>A+</span>
+                <h1>{user?.fullName}</h1>
+                <span>{user?.bloodType}</span>
               </div>
 
-              <div className="mobileSideBarIcon">
+              <div className="mobileSideBarIcon" onClick={()=> nav('/dashboard/settings')}>
                 <MdEdit />
               </div>
             </div> :  <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/authentry") }}>
@@ -110,7 +124,7 @@ const Header = () => {
                 <img src="/images/default profile pic.jpg" alt="" />
               </div>
               <div className="MobileSideProfileName">
-                <h1 style={{fontSize: 35}}>No User</h1>
+                <h1 style={{fontSize: 35}}>Visitor</h1>
               </div>
 
               
@@ -121,14 +135,18 @@ const Header = () => {
             }
 
             {
-              userAuth ? <> <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+              isSignedIn ? <> <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
               <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li> </> :
-              <> <button onClick={()=> nav('/login')}>Login</button> <button onClick={()=> nav('/signup')}>Signup</button> </>
+              <> <button onClick={()=> nav('/login')}>Login</button> <button onClick={()=> nav('/signup')}>Signup</button> 
+                <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+                <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+                <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+              </>
             }
           </ul>
         </div>

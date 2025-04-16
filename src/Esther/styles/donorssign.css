@@ -135,13 +135,15 @@
     font-size: 13px;
     color: white;
     margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.donsignbtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
+.donsignbtn:disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
-
 
 @media only screen and (max-width: 1440px){
    
