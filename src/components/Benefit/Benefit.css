@@ -362,12 +362,13 @@
         display: flex;
         flex-wrap: nowrap;
         gap: 20px;
-        
+        height: max-content;
+        padding: 15px 0px;
     }
     .landingbenefitsinner1 h2{
         font-family: Poppins;
         font-weight: 600;
-        font-size: 40px;
+        font-size: 25px;
         
     }
     .landingbenefitsinner1 p{

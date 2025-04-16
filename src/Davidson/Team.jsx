@@ -1,4 +1,7 @@
 import React from "react";
+import { GrLinkedin } from "react-icons/gr";
+import { FaGithub } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa";
 
 const Team = () => {
   return (
@@ -14,6 +17,7 @@ const Team = () => {
       </p>
 
       <div className="team-card-one">
+
         <div className="first-team-card">
           <div className="team-card-img">
             <img src="images/mary.png" alt="Mary Patrick" />
@@ -21,7 +25,10 @@ const Team = () => {
           <div className="team-card-title">
             <h2>Mary Patrick</h2>
             <p>Product Designer</p>
-            <a href="#">Link</a>
+            <a href="#">
+              <GrLinkedin/>
+              <FaFacebook/>
+            </a>
           </div>
         </div>
 
@@ -32,7 +39,10 @@ const Team = () => {
           <div className="team-card-title">
             <h2>Sarah Emojoro</h2>
             <p>Product Designer</p>
-            <a href="#">Link</a>
+            <a href="#">
+              <GrLinkedin/>
+              <FaFacebook/>
+            </a>
           </div>
         </div>
 
@@ -43,7 +53,11 @@ const Team = () => {
           <div className="team-card-title">
             <h2>Willams Esther</h2>
             <p>Frontend Developer</p>
-            <a href="#">Link</a>
+            <a href="#">
+              <GrLinkedin/>
+              <FaGithub/>
+              <FaFacebook/>
+            </a>
           </div>
         </div>
 
@@ -54,7 +68,11 @@ const Team = () => {
           <div className="team-card-title">
             <h2>Ekah Davidson</h2>
             <p>Frontend Developer</p>
-            <a href="#">Link</a>
+            <a href="#">
+              <GrLinkedin/>
+              <FaGithub/>
+              <FaFacebook/>
+            </a>
           </div>
         </div>
 
@@ -65,7 +83,11 @@ const Team = () => {
           <div className="team-card-title">
             <h2>Kingsley Adio</h2>
             <p>Frontend Developer</p>
-            <a href="#">Link</a>
+            <a href="#">
+              <GrLinkedin/>
+              <FaGithub/>
+              <FaFacebook/>
+            </a>
           </div>
         </div>
 
@@ -76,7 +98,11 @@ const Team = () => {
           <div className="team-card-title">
             <h2>Jeffery Abiuwa</h2>
             <p>Backend Developer</p>
-            <a href="#">Link</a>
+            <a href="#">
+              <GrLinkedin/>
+              <FaGithub/>
+              <FaFacebook/>
+            </a>
           </div>
         </div>
 
@@ -87,7 +113,11 @@ const Team = () => {
           <div className="team-card-title">
             <h2>Obadina Azeez</h2>
             <p>Backend Developer</p>
-            <a href="#">Link</a>
+            <a href="#">
+              <GrLinkedin/>
+              <FaGithub/>
+              <FaFacebook/>
+            </a>
           </div>
         </div>
       </div>

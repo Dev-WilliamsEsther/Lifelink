@@ -32,6 +32,7 @@ import Blacklist from './Esther/pages/Blacklist'
 import Adminsignin from './Esther/pages/Adminsignin'
 import Adminlogin from './Esther/pages/Adminlogin'
 import Adminreset from './Esther/pages/Adminreset'
+import PrivateRoutes from './routes/PrivateRoutes'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -65,6 +66,10 @@ const App = () => {
         {path:"adminsettings",element:<Settings/>},
         {path:"adminblacklist",element:<Blacklist/>},
       ]
+    },
+    {
+      path:"/private",
+      element:<PrivateRoutes/>
     },
     {
       path:"/authentry",

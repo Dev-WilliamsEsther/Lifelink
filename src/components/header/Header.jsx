@@ -55,6 +55,7 @@ const Header = () => {
     <>
       <div className={`headerwrapper ${isFixed ? 'headerwrapperfixed' : ''
         }`}>
+      <div className="HeaderInnerWrapper">
         <div className="headerwrapperinner1">
           <img src="images/logo.png" alt="" />
         </div>
@@ -73,7 +74,9 @@ const Header = () => {
           </ul>
         </div>
         {
-        isSignedIn ? <FaUserCircle size={40}/>  :
+        isSignedIn ? <div className="headerProfilePic" onClick={()=> nav('/dashboard')}>
+          <img src="/images/default profile pic.jpg" alt="" />
+        </div> :
         <div className="headerwrapperinner3">
            <Link to={"/signup"}>
             <button className="headerbtn">Sign Up</button>
@@ -83,7 +86,7 @@ const Header = () => {
             </Link>
         </div>
           }
-         
+      </div>
       </div>
 
 
@@ -139,7 +142,11 @@ const Header = () => {
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
               <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
               <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li> </> :
-              <> <button onClick={()=> nav('/login')}>Login</button> <button onClick={()=> nav('/signup')}>Signup</button> </>
+              <> <button onClick={()=> nav('/login')}>Login</button> <button onClick={()=> nav('/signup')}>Signup</button> 
+                <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+                <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+                <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+              </>
             }
           </ul>
         </div>
