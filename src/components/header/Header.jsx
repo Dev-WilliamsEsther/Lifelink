@@ -59,56 +59,56 @@ const Header = () => {
 
   const [ress, setRess] = useState("")
 
-  const handleSubmit = () =>{
+  const handleSubmit = () => {
     handleLogout(Base_Url, setRess, nav, token)
   }
 
 
   return (
     <>
-    <NotificationWrap>{ress}</NotificationWrap>
+      <NotificationWrap>{ress}</NotificationWrap>
       <div className={`headerwrapper ${isFixed ? 'headerwrapperfixed' : ''
         }`}>
-      <div className="HeaderInnerWrapper">
-        <div className="headerwrapperinner1">
-          <img src="images/logo.png" alt="" />
-        </div>
-        <div className="headerwrapperinner2">
-          <ul className="headerul">
-            {link.map((link, idx) => (
-              <li
-                key={idx}
-                className={`${link.path === location.pathname &&
-                  "text-black border-b-2 border-red-300"
-                  } capitalize text-[14px] font-medium hover:text-red-300 transition-all`}
-              >
-                <Link to={link.path}>{link.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {
-        isSignedIn ? <div className="headerProfilePic" onClick={()=> nav('/dashboard')}>
-          <img src="/images/default profile pic.jpg" alt="" />
-        </div> :
-        <div className="headerwrapperinner3">
-           <Link to={"/signup"}>
-            <button className="headerbtn">Sign Up</button>
-            </Link>
-            <Link to={"/login"}>
-            <button className="headerbtn1" >Log In</button>
-            </Link>
-        </div>
+        <div className="HeaderInnerWrapper">
+          <div className="headerwrapperinner1">
+            <img src="images/logo.png" alt="" />
+          </div>
+          <div className="headerwrapperinner2">
+            <ul className="headerul">
+              {link.map((link, idx) => (
+                <li
+                  key={idx}
+                  className={`${link.path === location.pathname &&
+                    "text-black border-b-2 border-red-300"
+                    } capitalize text-[14px] font-medium hover:text-red-300 transition-all`}
+                >
+                  <Link to={link.path}>{link.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {
+            isSignedIn ? <div className="headerProfilePic" onClick={() => nav('/dashboard')}>
+              <img src="/images/default profile pic.jpg" alt="" />
+            </div> :
+              <div className="headerwrapperinner3">
+                <Link to={"/signup"}>
+                  <button className="headerbtn">Sign Up</button>
+                </Link>
+                <Link to={"/login"}>
+                  <button className="headerbtn1" >Log In</button>
+                </Link>
+              </div>
           }
-      </div>
+        </div>
       </div>
 
 
       <div className="MobileHeader">
         <img src="/images/logo.png" alt="LifeLink Logo" onClick={() => nav("/")} />
         <div className="mobileSearchInputWrapper">
-          <IoSearchOutline/>
-          <input type="text" placeholder="Search..."/>
+          <IoSearchOutline />
+          <input type="text" placeholder="Search..." />
         </div>
         <RxHamburgerMenu size={30} onClick={() => setOpenSideDrawer(true)} />
       </div>
@@ -122,46 +122,68 @@ const Header = () => {
           <ul>
             {
               isSignedIn ? <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
-              <div className="MobileSideProfilePic">
-                <img src="/images/default profile pic.jpg" alt="" />
-              </div>
-              <div className="MobileSideProfileName">
-                <h1>{userInfo?.data?.message?.fullName}</h1>
-                <span>{userInfo?.data?.message?.bloodType}</span>
-              </div>
+                <div className="MobileSideProfilePic">
+                  <img src="/images/default profile pic.jpg" alt="" />
+                </div>
+                <div className="MobileSideProfileName">
+                  <h1>{userInfo?.data?.message?.fullName}</h1>
+                  <span>{userInfo?.data?.message?.bloodType}</span>
+                </div>
 
-              <div className="mobileSideBarIcon" onClick={()=> nav('/dashboard/settings')}>
-                <MdEdit />
-              </div>
-            </div> :  <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/authentry") }}>
-              <div className="MobileSideProfilePic">
-                <img src="/images/default profile pic.jpg" alt="" />
-              </div>
-              <div className="MobileSideProfileName">
-                <h1 style={{fontSize: 35}}>Visitor</h1>
-              </div>
+                <div className="mobileSideBarIcon" onClick={() => nav('/dashboard/settings')}>
+                  <MdEdit />
+                </div>
+              </div> : <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/authentry") }}>
+                <div className="MobileSideProfilePic">
+                  <img src="/images/default profile pic.jpg" alt="" />
+                </div>
+                <div className="MobileSideProfileName">
+                  <h1 style={{ fontSize: 35 }}>Visitor</h1>
+                </div>
 
-              
-              <div className="mobileSideBarIcon">
-                <MdEdit />
+
+                <div className="mobileSideBarIcon">
+                  <MdEdit />
+                </div>
               </div>
-            </div>
             }
 
             {
-              isSignedIn ? <> <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
-              <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
-              <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
-              <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
-              <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
-              <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
-              <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li> </> :
-              <> <button onClick={()=> nav('/login')}>Login</button> <button onClick={()=> nav('/signup')}>Signup</button> 
-                <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
-                <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
-                <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
-              </>
+              isSignedIn ? (
+                userInfo.data.message.role === "donor" ? (
+                  <>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
+                    <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
+                  </>
+                ) : userInfo.data.message.role === "hospital" ? (
+                  <>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/requesthistory") }}><MdHistory />Request History</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/appointment") }}><CiSettings />Appointment</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/records") }}><CiSettings />Records</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/hospitalsettings") }}><CiSettings />Settings</li>
+                    <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
+                  </>
+                ) : null
+              ) : (
+                <>
+                  <button onClick={() => nav('/login')}>Login</button>
+                  <button onClick={() => nav('/signup')}>Signup</button>
+                  <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+                  <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+                  <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+                </>
+              )
             }
+
           </ul>
         </div>
       </Drawer>
