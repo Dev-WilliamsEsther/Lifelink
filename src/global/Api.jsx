@@ -44,12 +44,33 @@ export const handleHospitalSignup = async (hospitalInput, Base_Url, setIsLoading
     setIsLoading(true);
     try {
         const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
-        console.log("Login successful:", res?.data?.message);
+        console.log("signup successful:", res?.data?.message);
         console.log(res)
         setRess(res?.data?.message)
         localStorage.setItem("userData", JSON.stringify(res));
         setTimeout(() => {
             nav("/kyc")
+        }, 3000);
+        return res.data.message;
+    } catch (err) {
+        console.error("Login error:", err?.response?.damessageta || err);
+        setRess(err?.response?.message || "Something went wrong during registration.")
+    } finally {
+        setIsLoading(false);
+    }
+};
+
+
+export const handleHospitaLogin = async (hospitalLoginData, Base_Url, setIsLoading, nav, setRess) => {
+    setIsLoading(true);
+    try {
+        const res = await axios.post(`${Base_Url}/hospital/login`, hospitalLoginData);
+        console.log("Login successful:", res?.data?.message);
+        console.log(res)
+        setRess(res?.data?.message)
+        localStorage.setItem("userData", JSON.stringify(res));
+        setTimeout(() => {
+            nav("/dashboard")
         }, 3000);
         return res.data.message;
     } catch (err) {
