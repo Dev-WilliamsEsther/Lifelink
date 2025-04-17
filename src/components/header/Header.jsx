@@ -52,7 +52,6 @@ const Header = () => {
   const token = user?.data?.token
   const { userInfo } = useUser();
 
-  const token = userInfo?.data?.token;
 
   const [ress, setRess] = useState("");
 
