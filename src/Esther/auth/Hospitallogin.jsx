@@ -68,6 +68,7 @@ const Hospitallogin = () => {
               }
             />
           </div>
+
           <button className="hosloginbtn" onClick={handleSubmit}>
             {isLoading ? <FadeLoader color="white" size={25} /> : "LOG-IN"}
           </button>

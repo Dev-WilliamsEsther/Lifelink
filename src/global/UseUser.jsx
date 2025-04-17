@@ -11,6 +11,7 @@ const UserProvider = ({ children }) => {
   });
 
   const token = user?.data?.token;
+  console.log("Token:", token);
 
   const [userInfo, setUserInfo] = useState(null);
 
