@@ -47,9 +47,7 @@ const Header = () => {
 
   const nav = useNavigate();
 
-  const { user } = useUser();
-  const token = user?.data?.token;
-  const { userInfo } = useUserInfo();
+  const { userInfo } = useUser();
 
 
 
