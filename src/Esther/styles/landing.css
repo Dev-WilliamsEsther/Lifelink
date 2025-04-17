@@ -5,7 +5,7 @@
 .landingwrapper{
     width: 100%;
     height: 100vh;
-    background-image:url("../../../public/images/landing.png") ;
+    background-image:url("../../../public/images/landing.png") ; 
     background-size: cover;
 }
 .landingpagecenter{
@@ -41,11 +41,14 @@
     font-size: 40px;
     font-weight: 600;
     background-color: #C0392B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 .landingbutton:hover{
-    background-color: #D6EAF8;
-    color: black;
+    background-color: #a91a0b;
+    color: whitesmoke;
 }
 
 
@@ -76,8 +79,8 @@
         cursor: pointer;
     }
     .landingbutton:hover{
-        background-color: #D6EAF8;
-        color: black;
+        background-color: #a91a0b;
+        color: whitesmoke;
     }
 }
 
@@ -107,8 +110,8 @@
         cursor: pointer;
     }
     .landingbutton:hover{
-        background-color: #D6EAF8;
-        color: black;
+        background-color: #a91a0b;
+        color: whitesmoke;
     }
     
 }
@@ -153,8 +156,8 @@
         cursor: pointer;
     }
     .landingbutton:hover{
-        background-color: #D6EAF8;
-        color: black;
+        background-color: #a91a0b;
+        color: whitesmoke;
     }
 }
 
@@ -199,8 +202,8 @@
         cursor: pointer;
     }
     .landingbutton:hover{
-        background-color: #D6EAF8;
-        color: black;
+        background-color: #a91a0b;
+        color: whitesmoke;
     }
    
 }
@@ -233,7 +236,7 @@
         cursor: pointer;
     }
     .landingbutton:hover{
-        background-color: #D6EAF8;
-        color: black;
+        background-color: #a91a0b;
+        color: whitesmoke;
     }
 }

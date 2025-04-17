@@ -13,12 +13,14 @@ const Hospitallogin = () => {
   const [ress, setRess] = useState("")
   const [hospitalLoginData, setHospitalLoginData] = useState({
     email: "",
-    Password: ""
+    password: ""
   })
+
+  console.log(hospitalLoginData)
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    if(!hospitalLoginData.email || !hospitalLoginData.Password){
+    if(!hospitalLoginData.email || !hospitalLoginData.password){
       setRess("please fill all field")
       return
     }
@@ -48,8 +50,8 @@ const Hospitallogin = () => {
           <div className='hoslogininputwrapper'>
             <p>ENTER PASSWORD</p>
             <input type="password" placeholder='PASSWORD' className='hoslogininput' 
-            value={hospitalLoginData.Password}
-            onChange={(e)=> setHospitalLoginData(prev => ({...prev, Password: e.target.value}))}
+            value={hospitalLoginData.password}
+            onChange={(e)=> setHospitalLoginData(prev => ({...prev, password: e.target.value}))}
             />
           </div>
           <button className='hosloginbtn' onClick={handleSubmit}>{isLoading? <FadeLoader color="white" size={25}/> : "LOG-IN"}</button>

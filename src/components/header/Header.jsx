@@ -52,7 +52,7 @@ const Header = () => {
 
   const { user } = useUser();
   const token = user?.data?.token
-  console.log("user role", user)
+  // console.log("user role", user)
 
 
   const handleSubmit = () => {

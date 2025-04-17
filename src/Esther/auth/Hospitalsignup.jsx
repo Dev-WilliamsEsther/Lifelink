@@ -11,7 +11,7 @@ const Hospitalsignup = () => {
   const [click,setClick] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [ress, setRess] = useState("")
+  const [hospitalRess, setHospitalRess] = useState("")
   const nav = useNavigate();
   
   
@@ -30,18 +30,18 @@ const Hospitalsignup = () => {
 
   const handleSubmit =()=>{
     if(hospitalInput.password !== confirmPassword) {
-      setRess('Oga put wetin correct jor');
+      setRess('Password do not match');
       return;
     }if( !hospitalInput.fullName || !hospitalInput.email || !hospitalInput.password || !hospitalInput.location || !hospitalInput.city || !hospitalInput.phone) {
       setRess('please input all field!')
       return
     }
-    handleHospitalSignup(hospitalInput, Base_Url, setIsLoading, setRess, nav)
+    handleHospitalSignup(hospitalInput, Base_Url, setIsLoading, setHospitalRess, nav)
   }
 
   return (
     <div className='hospitalsignwrapper'>
-      <NotificationWrap>{ress}</NotificationWrap>
+      <NotificationWrap>{hospitalRess}</NotificationWrap>
       <div className='hossignmobilewrap'>
         <h1>CREATE AN ACCOUNT</h1>
         <p>REGISTER AS HOSPITAL/ <br /> BLOODBANK</p>
