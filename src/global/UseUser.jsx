@@ -5,16 +5,21 @@ const UserContext = createContext();
 const UserInformationContext = createContext()
 
 const UserProvider = ({ children }) => {
+
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("userData");
     return stored ? JSON.parse(stored) : null;
   });
 
+  
 
-  const token = user?.data?.token
+
+  const token = user?.data?.token;
+  console.log("Token:", token);
 
 
   const [userInfo, setUserInfo] = useState(null);
+  
 
   const Base_Url = import.meta.env.VITE_BASEURL
   console.log(`${Base_Url}/dashboard`)
@@ -26,10 +31,10 @@ const UserProvider = ({ children }) => {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(res)
       setUserInfo(res)
+      console.log("TTTTTT",res)
     }catch(err){
-      console.log(err)
+      console.log("dashboard", err)
     }
   }
 

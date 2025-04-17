@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import '../../Esther/styles/hospitalslog.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { handleHospitaLogin } from '../../global/Api'
+import FadeLoader from 'react-spinners/CircleLoader'
+import NotificationWrap from '../../components/notificatonPopWrap/NotificationWrap'
 
 const Base_Url = import.meta.env.VITE_BASEURL
 
@@ -14,11 +16,17 @@ const Hospitallogin = () => {
     Password: ""
   })
 
-  const handleSubmit = () =>{
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    if(!hospitalLoginData.email || !hospitalLoginData.Password){
+      setRess("please fill all field")
+      return
+    }
     handleHospitaLogin(hospitalLoginData, Base_Url, setIsLoading, nav, setRess)
   }
   return (
     <div className='hosloginwrapper'>
+      <NotificationWrap>{ress}</NotificationWrap>
       <div className="hoslogmobilewrap">
         <h2>LOG IN</h2>
       </div>
@@ -44,7 +52,7 @@ const Hospitallogin = () => {
             onChange={(e)=> setHospitalLoginData(prev => ({...prev, Password: e.target.value}))}
             />
           </div>
-          <button className='hosloginbtn' onClick={handleSubmit}>LOG-IN</button>
+          <button className='hosloginbtn' onClick={handleSubmit}>{isLoading? <FadeLoader color="white" size={25}/> : "LOG-IN"}</button>
           <div className='hosloginforgotwrap'>
             <p onClick={()=>nav("/hospitalsignup")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
             <p>FORGOT PASSWORD</p>

@@ -114,8 +114,11 @@ const Hospitalsignup = () => {
           onClick={handleSubmit}
           disabled={!click || isLoading}
           >
-            {isLoading ? <FadeLoader color="white"/> : "REGISTER"}
+            {isLoading ? <FadeLoader color="white" size={25}/> : "REGISTER"}
           </button>
+          <div className='hosloginforgotwrap'>
+            <p onClick={()=>nav("/hospitallogin")}>ALREADY HAVE AN ACCOUNT? LOGIN</p>
+          </div>
         </div>
       </div>
       <img src="images/Subtract.png" alt="" className='hospisignimage'/>

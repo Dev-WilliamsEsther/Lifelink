@@ -9,7 +9,7 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
-import { useUser, useUserInfo } from "../../global/UseUser";
+import { useUser } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
 import NotificationWrap from "../notificatonPopWrap/NotificationWrap";
 
@@ -21,7 +21,6 @@ const Header = () => {
   const [logoutPopUp, setLogoutPopUp] = useState(false)
 
   const isSignedIn = JSON.parse(localStorage.getItem("userData"))
-  console.log(isSignedIn)
 
   const link = [
     { name: "home", path: "/" },
@@ -51,22 +50,18 @@ const Header = () => {
 
   const nav = useNavigate()
 
-  const { userInfo } = useUserInfo();
+  const { user } = useUser();
+  const token = user?.data?.token
+  console.log("user role", user)
 
-
-  const token = userInfo?.data?.token
-
-
-  const [ress, setRess] = useState("")
 
   const handleSubmit = () => {
-    handleLogout(Base_Url, setRess, nav, token)
+    handleLogout(Base_Url, nav, token)
   }
 
 
   return (
     <>
-      <NotificationWrap>{ress}</NotificationWrap>
       <div className={`headerwrapper ${isFixed ? 'headerwrapperfixed' : ''
         }`}>
         <div className="HeaderInnerWrapper">
@@ -126,8 +121,8 @@ const Header = () => {
                   <img src="/images/default profile pic.jpg" alt="" />
                 </div>
                 <div className="MobileSideProfileName">
-                  <h1>{userInfo?.data?.message?.fullName}</h1>
-                  <span>{userInfo?.data?.message?.bloodType}</span>
+                  <h1>{user?.data?.data?.fullName}</h1>
+                  <span>{user?.data?.data?.bloodType}</span>
                 </div>
 
                 <div className="mobileSideBarIcon" onClick={() => nav('/dashboard/settings')}>
@@ -150,7 +145,7 @@ const Header = () => {
 
             {
               isSignedIn ? (
-                userInfo.data.message.role === "donor" ? (
+                user?.data?.data?.role === "donor" ? (
                   <>
                     <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
                     <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
@@ -160,7 +155,7 @@ const Header = () => {
                     <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
                     <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
                   </>
-                ) : userInfo.data.message.role === "hospital" ? (
+                ) : user?.data?.data?.role === "hospital" ? (
                   <>
                     <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
                     <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
