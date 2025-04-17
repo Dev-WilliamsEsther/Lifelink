@@ -49,7 +49,7 @@ const Header = () => {
   const nav = useNavigate();
 
   const { userInfo } = useUser();
-  console.log("user role", user);
+  // console.log("user role", user);
 
   const token = userInfo?.data?.token;
 
