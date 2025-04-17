@@ -14,7 +14,7 @@ export const handleSignup = async (
   setIsLoading(true);
   try {
     const res = await axios.post(`${Base_Url}/register`, userData);
-    toast.success(res.data.data.message);
+    toast.success(res.data.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
       nav("/dashboard");

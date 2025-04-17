@@ -3,7 +3,6 @@ import '../../Esther/styles/donorssign.css';
 import { Link, useNavigate } from 'react-router';
 import { handleSignup } from '../../global/Api';
 import FadeLoader from 'react-spinners/CircleLoader'
-import NotificationWrap from '../../components/notificatonPopWrap/NotificationWrap';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
