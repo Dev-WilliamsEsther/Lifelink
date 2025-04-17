@@ -5,14 +5,23 @@ const UserContext = createContext();
 const UserInformationContext = createContext();
 
 const UserProvider = ({ children }) => {
+
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("userData");
     return JSON.parse(stored);
   });
 
+
+  
+
+
   const token = user?.data?.token;
+  console.log("Token:", token);
+
+
 
   const [userInfo, setUserInfo] = useState(null);
+  
 
   const Base_Url = import.meta.env.VITE_BASEURL;
   console.log(`${Base_Url}/dashboard`);
@@ -21,6 +30,7 @@ const UserProvider = ({ children }) => {
     try {
       const res = await axios(`${Base_Url}/dashboard`, {
         headers: {
+
           Authorization: `Bearer ${token}`,
         },
       });
@@ -28,6 +38,7 @@ const UserProvider = ({ children }) => {
       setUserInfo(res);
     } catch (err) {
       console.log(err);
+
     }
   };
 

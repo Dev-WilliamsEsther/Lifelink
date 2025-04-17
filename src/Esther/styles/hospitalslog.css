@@ -69,12 +69,10 @@
     font-family: Poppins;
     font-weight: 400;
     font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-}
-.hosloginbtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
 }
 .hosloginforgotwrap{
     width: 360px;

@@ -20,10 +20,13 @@ const FindHospitalPage = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [listOfHospitals, setListOfHospitals] = useState([])
 
+  console.log("hospitals",listOfHospitals)
+
   useEffect(() => {
     const getHospitals = () => {
       getListOfHospitals(setIsLoading, Base_Url, setListOfHospitals)
     }
+    getHospitals()
   }, [])
 
   return (

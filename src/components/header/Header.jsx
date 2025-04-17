@@ -9,7 +9,7 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
-import { useUser, useUserInfo } from "../../global/UseUser";
+import { useUser } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
 import NotificationWrap from "../notificatonPopWrap/NotificationWrap";
 
@@ -19,8 +19,11 @@ const Header = () => {
   const [openSideDrawer, setOpenSideDrawer] = useState(false);
   const [logoutPopUp, setLogoutPopUp] = useState(false);
 
-  const isSignedIn = JSON.parse(localStorage.getItem("userData"));
-  console.log(isSignedIn);
+
+  const [openSideDrawer, setOpenSideDrawer] = useState(false)
+  const [logoutPopUp, setLogoutPopUp] = useState(false)
+
+  const isSignedIn = JSON.parse(localStorage.getItem("userData"))
 
   const link = [
     { name: "home", path: "/" },
@@ -49,9 +52,12 @@ const Header = () => {
 
   const nav = useNavigate();
 
-  const { userInfo } = useUserInfo();
+  const { userInfo } = useUser();
+  const token = user?.data?.token
+  console.log("user role", user)
 
   const token = userInfo?.data?.token;
+
 
   const [ress, setRess] = useState("");
 
@@ -63,6 +69,7 @@ const Header = () => {
     <>
       <NotificationWrap>{ress}</NotificationWrap>
       <div className={`headerwrapper ${isFixed ? "headerwrapperfixed" : ""}`}>
+
         <div className="HeaderInnerWrapper">
           <div className="headerwrapperinner1">
             <img src="images/logo.png" alt="" />
@@ -128,7 +135,7 @@ const Header = () => {
                   <img src="/images/default profile pic.jpg" alt="" />
                 </div>
                 <div className="MobileSideProfileName">
-                  <h1>{userInfo?.data?.message?.fullName}</h1>
+                 <h1>{userInfo?.data?.message?.fullName}</h1>
                   <span>{userInfo?.data?.message?.bloodType}</span>
                 </div>
 
@@ -160,8 +167,32 @@ const Header = () => {
               </div>
             )}
 
-            {isSignedIn ? (
-              userInfo?.data?.message?.role === "donor" ? (
+            {
+              isSignedIn ? (
+                userInfo?.data?.message?.role === "donor" ? (
+                  <>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
+                    <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
+                  </>
+                ) : userInfo?.data?.message?.role === "hospital" ? (
+                  <>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/requesthistory") }}><MdHistory />Request History</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/appointment") }}><CiSettings />Appointment</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/records") }}><CiSettings />Records</li>
+                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/hospitalsettings") }}><CiSettings />Settings</li>
+                    <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
+                  </>
+                ) : null
+              ) : (
                 <>
                   <li
                     onClick={() => {
