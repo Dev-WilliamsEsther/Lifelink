@@ -12,37 +12,35 @@ import Donorssignup from "./Esther/auth/Donorssignup";
 import KYC from "./Esther/auth/KYC";
 import Resetpassword from "./Esther/auth/Resetpassword";
 
-import ProfilePage from './Adio/pages/ProfilePage';
-import SettingsPage from './Adio/pages/SettingsPage';
-import DashboardLayout from './Adio/DashboardLayout';
-import HistoryPage from './Adio/pages/HistoryPage';
-import Appointment from './Davidson/pages/Appointment';
-import RecordPage from './Davidson/pages/RecordPage';
-import RequstPage from './Davidson/pages/RequstPage';
-import Subscrib from './Davidson/pages/Subscribe';
-import HospitalDetailsPage from './Adio/pages/HospitalDetailsPage';
+import ProfilePage from "./Adio/pages/ProfilePage";
+import SettingsPage from "./Adio/pages/SettingsPage";
+import DashboardLayout from "./Adio/DashboardLayout";
+import HistoryPage from "./Adio/pages/HistoryPage";
+import Appointment from "./Davidson/pages/Appointment";
+import RecordPage from "./Davidson/pages/RecordPage";
+import RequstPage from "./Davidson/pages/RequstPage";
+import Subscrib from "./Davidson/pages/Subscribe";
+import HospitalDetailsPage from "./Adio/pages/HospitalDetailsPage";
 
-import Hospitalterms from './Esther/terms/Hospitalterms';
-import Donorterms from './Esther/terms/Donorterms';
-import Authentry from './Esther/auth/Authentry';
+import Hospitalterms from "./Esther/terms/Hospitalterms";
+import Donorterms from "./Esther/terms/Donorterms";
+import Authentry from "./Esther/auth/Authentry";
 
-import Scrolltop from './components/scroll/Scrolltop';
-import Verification from './Esther/pages/Verification';
-import Settings from './Esther/pages/Settings';
-import Blacklist from './Esther/pages/Blacklist';
-import Adminsignin from './Esther/pages/Adminsignin';
-import Adminlogin from './Esther/pages/Adminlogin';
-import Adminreset from './Esther/pages/Adminreset';
-import PrivateRoutes from './routes/PrivateRoutes';
+import Scrolltop from "./components/scroll/Scrolltop";
+import Verification from "./Esther/pages/Verification";
+import Settings from "./Esther/pages/Settings";
+import Blacklist from "./Esther/pages/Blacklist";
+import Adminsignin from "./Esther/pages/Adminsignin";
+import Adminlogin from "./Esther/pages/Adminlogin";
+import Adminreset from "./Esther/pages/Adminreset";
+import PrivateRoutes from "./routes/PrivateRoutes";
 import FindHospitalPage from "./Adio/pages/FindHospitalPage";
-import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage"
+import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
 import RequestHistory from "./Davidson/pages/RequestHistory";
-
 
 const App = () => {
 
   const router = createBrowserRouter([
-
     {
       path:"/",
       element:<Scrolltop/>,
@@ -93,7 +91,6 @@ const App = () => {
     { path: "/adminreset", element: <Adminreset /> }
       ]
     },
-    
   ]);
 
   return <RouterProvider router={router} />;

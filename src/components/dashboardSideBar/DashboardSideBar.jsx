@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useContext, useState } from "react";
 import "./dashboardSideBar.css";
 import { FaUser } from "react-icons/fa";
 import { TbHomeSearch } from "react-icons/tb";
@@ -17,6 +17,7 @@ const DashboardSideBar = () => {
   const nav = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false);
   const location = useLocation();
+
   const Base_Url = import.meta.env.VITE_BASEURL;
 
   const { userInfo } = useUserInfo();
@@ -92,6 +93,7 @@ const DashboardSideBar = () => {
               </li>
             </ul>
           ) : null}
+
           {user?.data?.data?.role === "hospital" ? (
             <ul>
               <li
@@ -195,6 +197,7 @@ const DashboardSideBar = () => {
               >
                 Cancel
               </button>
+
               <button onClick={logOut}>Logout</button>
             </div>
           </div>
