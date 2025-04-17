@@ -137,17 +137,21 @@ export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoad
 
 
 
-export const getListOfHospitals = async (
-  setIsLoading,
-  Base_Url,
-  setListOfHospitals
-) => {
+export const getListOfHospitals = async (setIsLoading, Base_Url, setListOfHospitals, token) => {
   setIsLoading(true);
   try {
-    const res = await axios.get(`${Base_Url}/hospitals`);
+    const res = await axios.get(`${Base_Url}/hospitals`, {
+      headers : {
+        Authorization : `Bearer ${token}`
+      }
+    });
     console.log("List of Hospitals", res)
-    setListOfHospitals(res);
-  } catch (err) {}
+    setListOfHospitals(res?.data?.data);
+    setIsLoading(false)
+  } catch (err) {
+    console.log(err)
+    setIsLoading(false)
+  }
 };
 
 

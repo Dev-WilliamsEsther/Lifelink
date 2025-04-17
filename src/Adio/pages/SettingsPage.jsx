@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./settingsPage.css";
 import { donorSettings } from "../../global/Api";
 import { toast } from "sonner";
