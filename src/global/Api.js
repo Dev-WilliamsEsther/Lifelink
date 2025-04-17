@@ -1,6 +1,8 @@
 import axios from "axios";
+import { toast } from "sonner";
 
 
+//Donors endPoints===============================>
 
 export const handleSignup = async (
   userData,
@@ -12,16 +14,14 @@ export const handleSignup = async (
   setIsLoading(true);
   try {
     const res = await axios.post(`${Base_Url}/register`, userData);
-    console.log("Signup successful:", res.data.message);
-    setRess(res.data.data.message);
+    toast.success(res.data.data.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
       nav("/dashboard");
     }, 1000);
     return res.data.message;
   } catch (err) {
-    console.error("Signup error:", err?.response?.data?.message || err);
-    setRess(err?.response?.data?.message);
+    toast.error(err?.response?.data?.message);
   } finally {
     setIsLoading(false);
   }
@@ -39,9 +39,7 @@ export const handleLogin = async (
   setIsLoading(true);
   try {
     const res = await axios.post(`${Base_Url}/login`, userLoginData);
-    console.log("Login successful:", res?.data?.message);
-    console.log(res);
-    setRess(res?.data?.message);
+    toast.success(res?.data?.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
       nav("/dashboard");
@@ -49,7 +47,7 @@ export const handleLogin = async (
     return res.message;
   } catch (err) {
     console.error("Login error:", err?.response?.damessageta || err);
-    setRess(
+    toast.error(
       err?.response?.damessageta || "Something went wrong during registration."
     );
   } finally {
@@ -59,16 +57,17 @@ export const handleLogin = async (
 
 
 
-export const donorSettings = async(Base_Url, token, userData, setLoading, setRess)=>{
+export const donorSettings = async(Base_Url, token, userData, setUserData, setLoading)=>{
     setLoading(true);
     try {
       const res = await axios.put(`${Base_Url}/update-profile`, userData, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setRess(r );
+      toast.success(res?.data?.message)
+      setUserData("")
     } catch (err) {
-      console.error("Error updating profile:", err);
-      setRess(err);
+      toast.error(err?.response?.data?.message);
+      console.log(err)
     } finally {
       setLoading(false);
     }
@@ -76,6 +75,11 @@ export const donorSettings = async(Base_Url, token, userData, setLoading, setRes
 
 
 
+
+
+
+
+//Hospital endPoints===============================>
 
 export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoading, setHospitalRess, nav) => {
   setIsLoading(true);
@@ -164,6 +168,7 @@ export const handleLogout = async (Base_Url, nav, token) => {
     console.log(res);
     localStorage.removeItem("userData");
     nav("/");
+    return
   } catch (err) {
     console.log(err);
   }

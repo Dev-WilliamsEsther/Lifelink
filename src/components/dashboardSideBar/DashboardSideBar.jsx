@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import "./dashboardSideBar.css";
 import { FaUser } from "react-icons/fa";
 import { TbHomeSearch } from "react-icons/tb";
@@ -10,30 +10,25 @@ import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { PiFilesLight } from "react-icons/pi";
-import { useUser, useUserInfo } from "../../global/UseUser";
+import { useUserInfo } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
-import NotificationWrap from "../notificatonPopWrap/NotificationWrap";
 
 const DashboardSideBar = () => {
   const nav = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false);
   const location = useLocation();
   const Base_Url = import.meta.env.VITE_BASEURL;
-  const [ress, setRess] = useState("");
 
-  // const { user } = useUser();
   const { userInfo } = useUserInfo();
   const token = userInfo?.data?.token;
   const user = JSON.parse(localStorage.getItem("userData"));
-  console.log(user);
 
   const logOut = () => {
-    handleLogout(Base_Url, setRess, nav, token);
+    handleLogout(Base_Url, nav, token);
   };
 
   return (
     <>
-      <NotificationWrap>{ress}</NotificationWrap>
       <div className="SideBArWrapper">
         <div className="innerSideBArWrapper">
           <img

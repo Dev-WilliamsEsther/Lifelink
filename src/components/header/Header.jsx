@@ -9,9 +9,8 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
-import { useUser } from "../../global/UseUser";
+import { useUser, useUserInfo } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
-import NotificationWrap from "../notificatonPopWrap/NotificationWrap";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -49,19 +48,18 @@ const Header = () => {
   const nav = useNavigate();
 
   const { user } = useUser();
-  const token = user?.data?.token
-  const { userInfo } = useUser();
+  const token = user?.data?.token;
+  const { userInfo } = useUserInfo();
 
 
   const [ress, setRess] = useState("");
 
   const handleSubmit = () => {
-    handleLogout(Base_Url, setRess, nav, token);
+    handleLogout(Base_Url, nav, token);
   };
 
   return (
     <>
-      <NotificationWrap>{ress}</NotificationWrap>
       <div className={`headerwrapper ${isFixed ? "headerwrapperfixed" : ""}`}>
         <div className="HeaderInnerWrapper">
           <div className="headerwrapperinner1">
@@ -72,10 +70,9 @@ const Header = () => {
               {link.map((link, idx) => (
                 <li
                   key={idx}
-                  className={`${
-                    link.path === location.pathname &&
+                  className={`${link.path === location.pathname &&
                     "text-black border-b-2 border-red-300"
-                  } capitalize text-[14px] font-medium hover:text-red-300 transition-all`}
+                    } capitalize text-[14px] font-medium hover:text-red-300 transition-all`}
                 >
                   <Link to={link.path}>{link.name}</Link>
                 </li>
@@ -161,7 +158,7 @@ const Header = () => {
             )}
 
             {isSignedIn ? (
-              userInfo?.data?.message?.role === "donor" ? (
+              userInfo?.role === "donor" ? (
                 <>
                   <li
                     onClick={() => {
@@ -225,7 +222,7 @@ const Header = () => {
                     Logout
                   </li>
                 </>
-              ) : userInfo?.data?.message?.role === "hospital" ? (
+              ) : userInfo?.role === "hospital" ? (
                 <>
                   <li
                     onClick={() => {

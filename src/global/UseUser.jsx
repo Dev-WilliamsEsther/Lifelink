@@ -1,10 +1,14 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
+
+const Base_Url = import.meta.env.VITE_BASEURL;
+
 
 const UserContext = createContext();
-const UserInformationContext = createContext()
-const HospitalInformationContext = createContext()
-const ProfileLoadStateContext = createContext()
+const UserInformationContext = createContext();
+const HospitalInformationContext = createContext();
+const ProfileLoadStateContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -13,35 +17,26 @@ const UserProvider = ({ children }) => {
   });
 
   const token = user?.data?.token;
-
   const [userInfo, setUserInfo] = useState(null);
   const [hospitalInfo, setHospitalInfo] = useState(null);
   const [profileLoadState, setProfileLoadState] = useState(false);
 
-  const Base_Url = import.meta.env.VITE_BASEURL;
+
 
   const userInformations = async () => {
     setProfileLoadState(true);
     try {
-      const res = await axios(`${Base_Url}/dashboard`, {
+      const res = await axios.get(`${Base_Url}/dashboard`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      setUserInfo(res)
-      console.log("dashboard response",res);
-      setProfileLoadState(false)
-      return
-    }catch(err){
-      console.log("dashboard", err.response.data)
-      setProfileLoadState(false)
+      });
+      setUserInfo(res?.data?.message);
+    } catch (err) {
+    } finally {
+      setProfileLoadState(false);
     }
-  }
-
-  useEffect(()=>{
-    userInformations()
-  }, [])
-
+  };
 
 
   const hospitalInformations = async () => {
@@ -53,7 +48,6 @@ const UserProvider = ({ children }) => {
         },
       });
       setHospitalInfo(res);
-      console.log("hospital response", res);
     } catch (err) {
       console.log("hospital", err);
     } finally {
@@ -61,12 +55,33 @@ const UserProvider = ({ children }) => {
     }
   };
 
+  
   useEffect(() => {
     if (user?.data?.data?.role === "donor") {
       userInformations();
     } else if (user?.data?.data?.role === "hospital") {
       hospitalInformations();
     }
+  }, []);
+
+
+  useEffect(() => {
+    const handleOnline = () => toast.success("You are back online");
+    const handleOffline = () => toast.error("You are offline");
+
+    if (navigator.onLine) {
+      toast.success("You are online");
+    } else {
+      toast.error("You are offline");
+    }
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
   }, []);
 
   return (
@@ -81,6 +96,7 @@ const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
 
 export const useUser = () => useContext(UserContext);
 export const useUserInfo = () => useContext(UserInformationContext);

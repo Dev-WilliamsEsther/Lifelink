@@ -110,6 +110,9 @@
     background: #c0392b;
     cursor: pointer;
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

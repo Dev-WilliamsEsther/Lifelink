@@ -28,7 +28,6 @@ const Hospitallogin = () => {
   };
   return (
     <div className="hosloginwrapper">
-      <NotificationWrap>{ress}</NotificationWrap>
       <div className="hoslogmobilewrap">
         <h2>LOG IN</h2>
       </div>
@@ -60,18 +59,6 @@ const Hospitallogin = () => {
             <input type="password" placeholder='PASSWORD' className='hoslogininput' 
             value={hospitalLoginData.password}
             onChange={(e)=> setHospitalLoginData(prev => ({...prev, password: e.target.value}))}/>
-            <input
-              type="password"
-              placeholder="PASSWORD"
-              className="hoslogininput"
-              value={hospitalLoginData.password}
-              onChange={(e) =>
-                setHospitalLoginData((prev) => ({
-                  ...prev,
-                  password: e.target.value,
-                }))
-              }
-            />
           </div>
 
           <button className="hosloginbtn" onClick={handleSubmit}>
