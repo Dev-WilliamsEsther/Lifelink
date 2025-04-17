@@ -42,7 +42,7 @@ export const handleLogin = async (
     toast.success(res?.data?.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
-      nav("/dashboard");
+      nav("/");
     }, 1000);
     return res.message;
   } catch (err) {
@@ -163,11 +163,11 @@ export const handleLogout = async (Base_Url, nav, token) => {
         },
       }
     );
-    console.log(res);
+    toast.success(res?.data?.message);
     localStorage.removeItem("userData");
     nav("/");
     return
   } catch (err) {
-    console.log(err);
+    toast.error(err?.data?.message);
   }
 };
