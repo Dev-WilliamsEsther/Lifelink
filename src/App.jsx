@@ -39,11 +39,12 @@ import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
 import RequestHistory from "./Davidson/pages/RequestHistory";
 
 const App = () => {
+
   const router = createBrowserRouter([
     {
-      path: "",
-      element: <Scrolltop />,
-      children: [
+      path:"/",
+      element:<Scrolltop/>,
+      children:[
         {
           path: "",
           element: <HomeRoutes />,

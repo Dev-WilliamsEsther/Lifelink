@@ -74,18 +74,16 @@
     height: 36px;
     background-color: #c0392b;
     border-radius: 6px;
-    color: white;
     font-family: Poppins;
     font-weight: 400;
     font-size: 13px;
     color: white;
     margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.adminbtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
-}
+
 .tandc{
     color: green;
 }

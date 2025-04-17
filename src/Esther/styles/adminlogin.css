@@ -69,13 +69,12 @@
     font-family: Poppins;
     font-weight: 400;
     font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
 }
-.admindonorloginbtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
-}
+
 .admindonorloginforgotwrap{
     width: 360px;
     height: 33px;

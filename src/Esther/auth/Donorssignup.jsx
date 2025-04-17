@@ -47,9 +47,6 @@ const Donorssignup = () => {
 
   return (
     <div className='donorsignwrapper'>
-      {
-        ress && <NotificationWrap>{ress}</NotificationWrap>
-      }
       <img src="images/Subtract.png" alt="" className='donorsignimage' />
       <div className='donsignmobilewrap'>
         <h1>CREATE AN ACCOUNT</h1>
@@ -135,7 +132,7 @@ const Donorssignup = () => {
                     onChange={(e) =>
                       setUserData((prev) => ({ ...prev, bloodType: e.target.value }))
                     }
-                  />{" "}
+                  />
                   {type}
                 </p>
               ))}
@@ -179,7 +176,7 @@ const Donorssignup = () => {
           disabled={!click || isLoading}
           onClick={handleSubmit} 
           >
-            {isLoading ? <FadeLoader color="white"/> : "REGISTER"}
+            {isLoading ? <FadeLoader color="white" size={25}/> : "REGISTER"}
           </button>
         </div>
       </div>

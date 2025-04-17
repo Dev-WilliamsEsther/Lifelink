@@ -10,14 +10,23 @@ import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { PiFilesLight } from "react-icons/pi";
-import { useUser } from "../../global/UseUser";
+import { useUserInfo } from "../../global/UseUser";
+import { handleLogout } from "../../global/Api";
 
 const DashboardSideBar = () => {
   const nav = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false);
   const location = useLocation();
 
-  const { user } = useUser();
+  const Base_Url = import.meta.env.VITE_BASEURL;
+
+  const { userInfo } = useUserInfo();
+  const token = userInfo?.data?.token;
+  const user = JSON.parse(localStorage.getItem("userData"));
+
+  const logOut = () => {
+    handleLogout(Base_Url, nav, token);
+  };
 
   return (
     <>
@@ -30,7 +39,7 @@ const DashboardSideBar = () => {
             onClick={() => nav("/")}
           />
 
-          {user?.role === "donor" ? (
+          {user?.data?.data?.role === "donor" ? (
             <ul>
               <li
                 onClick={() => {
@@ -84,7 +93,8 @@ const DashboardSideBar = () => {
               </li>
             </ul>
           ) : null}
-          {user?.role === "hospital" ? (
+
+          {user?.data?.data?.role === "hospital" ? (
             <ul>
               <li
                 onClick={() => {
@@ -110,10 +120,12 @@ const DashboardSideBar = () => {
               </li>
               <li
                 onClick={() => {
-                  nav("history");
+                  nav("/dashboard/requesthistory");
                 }}
                 className={`${
-                  location.pathname === "/dashboard/history" ? "activeBar" : ""
+                  location.pathname === "/dashboard/requesthistory"
+                    ? "activeBar"
+                    : ""
                 }`}
               >
                 <MdHistory className="sideBarIocns" color="black" />
@@ -185,7 +197,8 @@ const DashboardSideBar = () => {
               >
                 Cancel
               </button>
-              <button>Logout</button>
+
+              <button onClick={logOut}>Logout</button>
             </div>
           </div>
         </div>

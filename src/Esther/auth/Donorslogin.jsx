@@ -17,7 +17,6 @@ const Donorslogin = () => {
   const [ress, setRess] = useState("")
 
 
-  const [confirmPassword, setConfirmPassword] = useState("");
   const nav = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -35,9 +34,6 @@ const Donorslogin = () => {
 
   return (
     <div className='donorloginwrapper'>
-       {
-        ress && <NotificationWrap>{ress}</NotificationWrap>
-      }
       <div className='donorloginmobilewrap'>
         <h2>LOG IN</h2>
       </div>
@@ -64,7 +60,7 @@ const Donorslogin = () => {
             onChange={(e)=> setUserLoginData(prev => ({...prev, password: e.target.value}))}
             />
           </div>
-          <button className='donorloginbtn' onClick={handleSubmit}>{isLoading? <FadeLoader color="white" /> : "LOG-IN"}</button>
+          <button className='donorloginbtn' onClick={handleSubmit}>{isLoading? <FadeLoader color="white" size={25}/> : "LOG-IN"}</button>
           <div className='donorloginforgotwrap'>
             <p onClick={()=>nav("/donorssignup")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
             <p>FORGOT PASSWORD</p>

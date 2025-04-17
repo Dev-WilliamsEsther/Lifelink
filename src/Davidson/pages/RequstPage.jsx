@@ -1,28 +1,62 @@
 import { useState } from "react";
 import "./requestpage.css";
+import axios from "axios";
 
 const RequestPage = () => {
   const [formData, setFormData] = useState({
     bloodGroup: "",
-    pints: "",
+    numberOfPints: null,
     preferredDate: "",
     urgencyLevel: "",
-    amount: "",
+    amount: null,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const token = userData?.data?.token;
+
+    const url =
+      "https://lifelink-7pau.onrender.com/api/v1/hospital/request-blood";
+
+    try {
+      const res = await axios.post(url, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("Request submitted:", res);
+      if (res.status === 201) {
+        alert("Blood request successfully posted!");
+
+        setFormData({
+          bloodGroup: "",
+          numberOfPints: null,
+          preferredDate: "",
+          urgencyLevel: "",
+          amount: null,
+        });
+      }
+    } catch (err) {
+      console.error(
+        "Error submitting request:",
+        err.response?.data || err.message
+      );
+      alert("Failed to submit request. Please try again.");
+    }
+  };
+  5;
   return (
     <div className="request-form-container">
       <h2 className="form-title">Request Form</h2>
@@ -44,11 +78,11 @@ const RequestPage = () => {
         <div className="form-field">
           <label htmlFor="pints">Number of Pints</label>
           <input
-            type="text"
+            type="number"
             id="pints"
-            name="pints"
+            name="numberOfPints"
             placeholder="3 Pints of blood"
-            value={formData.pints}
+            value={formData.numberOfPints}
             onChange={handleChange}
             className="record-input"
           />
@@ -57,10 +91,10 @@ const RequestPage = () => {
         <div className="form-field">
           <label htmlFor="preferredDate">Preferred Date</label>
           <input
-            type="text"
+            type="date"
             id="preferredDate"
             name="preferredDate"
-            placeholder="May 18, 2023"
+            placeholder="May 18, 2025"
             value={formData.preferredDate}
             onChange={handleChange}
             className="record-input"

@@ -4,6 +4,20 @@
     padding: 15px;
 }
 
+.kycCompleteMessage{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 5px;
+    color: white;
+    background: red;
+}
+
 .ProfilePageWRapper > h1{
     font-size: 30px;
     font-weight: 500;
@@ -96,6 +110,9 @@
     background: #c0392b;
     cursor: pointer;
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
