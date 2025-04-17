@@ -64,10 +64,6 @@
     border-radius: 6px;
     color: white;
 }
-.authinfo3:hover{
-    background-color: #d6eaf8;
-    color: black;
-}
 
   
   .authinfo3:disabled {

@@ -15,7 +15,7 @@
 
 .SettingssideWrapper {
     width: 40%;
-    height: 650px;
+    height: max-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -136,7 +136,7 @@
 
     .SettingssideWrapper {
         height: max-content;
-        width: 70%;
+        width: 90%;
     }
 
     .settingsInputsWrapper {
@@ -146,6 +146,10 @@
     .settingInputs {
         width: 100%;
     }
+
+.SettingsPasswordsideWrapper {
+    width: 90%;
+}
 }
 
 @media only screen and (max-width: 480px) {

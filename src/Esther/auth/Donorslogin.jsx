@@ -63,7 +63,7 @@ const Donorslogin = () => {
             onChange={(e)=> setUserLoginData(prev => ({...prev, password: e.target.value}))}
             />
           </div>
-          <button className='donorloginbtn' onClick={handleSubmit}>{isLoading? <FadeLoader color="white" /> : "LOG-IN"}</button>
+          <button className='donorloginbtn' onClick={handleSubmit}>{isLoading? <FadeLoader color="white" size={25}/> : "LOG-IN"}</button>
           <div className='donorloginforgotwrap'>
             <p onClick={()=>nav("/donorssignup")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
             <p>FORGOT PASSWORD</p>

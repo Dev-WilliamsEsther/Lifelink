@@ -34,8 +34,7 @@
     /* align-items: center; */
     flex-direction: column;
 }
-.donorsmaphold{
-}
+
 .donorsmaphold h3{
     display: flex;
     gap: 10px;
@@ -55,9 +54,4 @@
     font-weight: 400;
     font-size: 13px;
     color: white;
-}
-.donortermsbtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
 }

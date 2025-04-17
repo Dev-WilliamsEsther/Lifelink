@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './settingsPage.css';
 import { donorSettings } from '../../global/Api';
+import NotificationWrap from '../../components/notificatonPopWrap/NotificationWrap';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -15,7 +16,6 @@ const SettingsPage = () => {
     bloodType: ''
   });
 
-  console.log(userData.phoneNumber)
   const [passwords, setPasswords] = useState({
     currentPassword: '',
     newPassword: '',
@@ -36,6 +36,7 @@ const SettingsPage = () => {
 
   return (
     <div className='SettingsPageWrapper'>
+      {ress && <NotificationWrap>{ress}</NotificationWrap>}
       <h1>Profile Settings</h1>
 
       <div className="SettingssideWrapper">
@@ -101,16 +102,19 @@ const SettingsPage = () => {
         <div className="settingsInputsWrapper">
           <label>Current Password</label>
           <input type="password" className='settingInputs'
+            placeholder='Current Password'
             value={passwords.currentPassword}
             onChange={e => setPasswords({ ...passwords, currentPassword: e.target.value })}
           />
           <label>New Password</label>
           <input type="password" className='settingInputs'
+            placeholder='New Password'
             value={passwords.newPassword}
             onChange={e => setPasswords({ ...passwords, newPassword: e.target.value })}
           />
           <label>Confirm Password</label>
           <input type="password" className='settingInputs'
+            placeholder='Confirm Password'
             value={passwords.confirmPassword}
             onChange={e => setPasswords({ ...passwords, confirmPassword: e.target.value })}
           />

@@ -179,7 +179,7 @@ const Donorssignup = () => {
           disabled={!click || isLoading}
           onClick={handleSubmit} 
           >
-            {isLoading ? <FadeLoader color="white"/> : "REGISTER"}
+            {isLoading ? <FadeLoader color="white" size={25}/> : "REGISTER"}
           </button>
         </div>
       </div>

@@ -16,7 +16,7 @@ export const handleSignup = async (
     setRess(res.data.data.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
-      nav("/login");
+      nav("/dashboard");
     }, 1000);
     return res.data.message;
   } catch (err) {
@@ -65,7 +65,7 @@ export const donorSettings = async(Base_Url, token, userData, setLoading, setRes
       const res = await axios.put(`${Base_Url}/update-profile`, userData, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setRess(res);
+      setRess(r );
     } catch (err) {
       console.error("Error updating profile:", err);
       setRess(err);
@@ -77,22 +77,13 @@ export const donorSettings = async(Base_Url, token, userData, setLoading, setRes
 
 
 
-export const handleHospitalSignup = async (
-  hospitalInput,
-  Base_Url,
-  setIsLoading,
-  setRess,
-  nav
-) => {
+export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoading, setHospitalRess, nav) => {
   setIsLoading(true);
   try {
-    const res = await axios.post(
-      `${Base_Url}/hospital/register`,
-      hospitalInput
-    );
+    const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
     console.log("signup successful:", res?.data?.message);
     console.log(res);
-    setRess(res?.data?.message);
+    setHospitalRess(res?.data?.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
       nav("/kyc");
@@ -101,7 +92,7 @@ export const handleHospitalSignup = async (
   } catch (err) {
     console.error("Login error:", err?.response?.damessageta || err);
     setRess(
-      err?.response?.message || "Something went wrong during registration."
+      err?.response?.data?.message || "Something went wrong during registration."
     );
   } finally {
     setIsLoading(false);
@@ -110,13 +101,7 @@ export const handleHospitalSignup = async (
 
 
 
-export const handleHospitaLogin = async (
-  hospitalLoginData,
-  Base_Url,
-  setIsLoading,
-  nav,
-  setRess
-) => {
+export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoading, nav, setRess) => {
   setIsLoading(true);
   try {
     const res = await axios.post(
@@ -124,8 +109,9 @@ export const handleHospitaLogin = async (
       hospitalLoginData
     );
 
-    const message = res?.data?.message || "Login successful";
+    const message = res?.data?.data?.message || "Login successful";
     console.log("Login successful:", message);
+    console.log("hospital ress", res)
     setRess(message);
 
     localStorage.setItem("userData", JSON.stringify(res));
@@ -139,7 +125,9 @@ export const handleHospitaLogin = async (
     const errorMsg =
       err?.response?.data?.message || "Something went wrong during login.";
     console.error("Login error:", errorMsg);
-    setRess(errorMsg);
+    console.log(err?.response?.data?.message )
+
+    setRess(err?.response?.data?.message);
   } finally {
     setIsLoading(false);
   }
