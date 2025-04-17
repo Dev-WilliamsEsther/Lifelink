@@ -9,7 +9,7 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
-import { useUser, useUserInfo } from "../../global/UseUser";
+import { useUser } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
 import NotificationWrap from "../notificatonPopWrap/NotificationWrap";
 
@@ -20,7 +20,6 @@ const Header = () => {
   const [logoutPopUp, setLogoutPopUp] = useState(false);
 
   const isSignedIn = JSON.parse(localStorage.getItem("userData"));
-  console.log(isSignedIn);
 
   const link = [
     { name: "home", path: "/" },
@@ -49,7 +48,8 @@ const Header = () => {
 
   const nav = useNavigate();
 
-  const { userInfo } = useUserInfo();
+  const { userInfo } = useUser();
+  console.log("user role", user);
 
   const token = userInfo?.data?.token;
 
@@ -128,8 +128,8 @@ const Header = () => {
                   <img src="/images/default profile pic.jpg" alt="" />
                 </div>
                 <div className="MobileSideProfileName">
-                  <h1>{userInfo?.data?.message?.fullName}</h1>
-                  <span>{userInfo?.data?.message?.bloodType}</span>
+                  <h1>{user?.data?.data?.fullName}</h1>
+                  <span>{user?.data?.data?.bloodType}</span>
                 </div>
 
                 <div

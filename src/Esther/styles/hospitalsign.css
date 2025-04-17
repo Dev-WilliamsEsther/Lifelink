@@ -76,13 +76,12 @@
     font-weight: 400;
     font-size: 13px;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 8px;
 }
-.hospibtn:hover{
-    background-color: #d6eaf8;
-    color: black;
-    border: 1px solid black;
-}
+
 .tandc{
     color: green;
 }
@@ -178,6 +177,9 @@
     
     .hospisigninfo1 h1{
         display: none;
+    }
+    .hospibtn{
+        background-color: #2C3E50;
     }
 }
 
