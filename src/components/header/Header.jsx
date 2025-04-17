@@ -47,9 +47,12 @@ const Header = () => {
 
   const nav = useNavigate();
 
-  const { userInfo } = useUser();
+  const { user } = useUser();
+  const token = user?.data?.token;
+  const { userInfo } = useUserInfo();
 
 
+  const [ress, setRess] = useState("");
 
   const handleSubmit = () => {
     handleLogout(Base_Url, nav, token);
