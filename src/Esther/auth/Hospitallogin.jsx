@@ -3,14 +3,12 @@ import "../../Esther/styles/hospitalslog.css";
 import { Link, useNavigate } from "react-router-dom";
 import { handleHospitaLogin } from "../../global/Api";
 import FadeLoader from "react-spinners/CircleLoader";
-import NotificationWrap from "../../components/notificatonPopWrap/NotificationWrap";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Hospitallogin = () => {
   const nav = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [ress, setRess] = useState("");
   const [hospitalLoginData, setHospitalLoginData] = useState({
     email: "",
     password: ""
@@ -24,7 +22,7 @@ const Hospitallogin = () => {
       setRess("please fill all field");
       return;
     }
-    handleHospitaLogin(hospitalLoginData, Base_Url, setIsLoading, nav, setRess);
+    handleHospitaLogin(hospitalLoginData, Base_Url, setIsLoading, nav);
   };
   return (
     <div className="hosloginwrapper">

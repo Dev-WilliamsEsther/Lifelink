@@ -105,7 +105,7 @@ export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoadin
 
 
 
-export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoading, nav, setRess) => {
+export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoading, nav) => {
   setIsLoading(true);
   try {
     const res = await axios.post(
@@ -116,7 +116,6 @@ export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoad
     const message = res?.data?.data?.message || "Login successful";
     console.log("Login successful:", message);
     console.log("hospital ress", res)
-    setRess(message);
 
     localStorage.setItem("userData", JSON.stringify(res));
 
@@ -131,7 +130,6 @@ export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoad
     console.error("Login error:", errorMsg);
     console.log(err?.response?.data?.message )
 
-    setRess(err?.response?.data?.message);
   } finally {
     setIsLoading(false);
   }
