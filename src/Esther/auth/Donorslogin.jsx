@@ -34,9 +34,6 @@ const Donorslogin = () => {
 
   return (
     <div className='donorloginwrapper'>
-       {
-        ress && <NotificationWrap>{ress}</NotificationWrap>
-      }
       <div className='donorloginmobilewrap'>
         <h2>LOG IN</h2>
       </div>

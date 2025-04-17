@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import './hospitalDetailsPage.css'
 import { Modal } from 'antd'
-import NotificationWrap from '../../components/notificatonPopWrap/NotificationWrap'
 
 const HospitalDetailsPage = () => {
   const [volunteerPopUp, setVolunteerPopUp] = useState(false)
 
   return (
     <>
-    <NotificationWrap>You've sucessfully scheduled</NotificationWrap>
     <div className='HospitalDetailsPageWrapper'>
       <h1>Hospital Details</h1>
 

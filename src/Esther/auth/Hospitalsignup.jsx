@@ -41,7 +41,6 @@ const Hospitalsignup = () => {
 
   return (
     <div className='hospitalsignwrapper'>
-      <NotificationWrap>{hospitalRess}</NotificationWrap>
       <div className='hossignmobilewrap'>
         <h1>CREATE AN ACCOUNT</h1>
         <p>REGISTER AS HOSPITAL/ <br /> BLOODBANK</p>

@@ -12,6 +12,7 @@ const ProfilePage = () => {
   const nav = useNavigate();
 
   const user = userInfo;
+  console.log(user,"user profile page")
   const hospital = hospitalInfo?.data?.hospital;
 
 
@@ -66,7 +67,7 @@ const ProfilePage = () => {
         <h2>Contact Information</h2>
         <div className="infosWRapper">
           <p><b>Email Address</b><br /> {isHospital ? hospital?.email : user?.email}</p>
-          <p><b>Phone Number</b><br />{isHospital ? hospital?.phone || "-" : user?.phone || "-"}</p>
+          <p><b>Phone Number</b><br />{isHospital ? hospital?.phone || "-" : user?.phoneNumber || "-"}</p>
           {!isHospital && (
             <p><b>Home Address</b><br /> {user?.location}</p>
           )}
