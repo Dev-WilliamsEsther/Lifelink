@@ -5,19 +5,15 @@ const UserContext = createContext();
 const UserInformationContext = createContext()
 const hospitalInformationContext = createContext()
 const profileLoadStateContext = createContext()
+const UserInformationContext = createContext();
 
 const UserProvider = ({ children }) => {
-
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("userData");
-    return stored ? JSON.parse(stored) : null;
+    return JSON.parse(stored);
   });
 
-  
-
-
   const token = user?.data?.token;
-
 
   const [userInfo, setUserInfo] = useState(null);
   const [hospitalInfo, setHospitalInfo] = useState(null);
@@ -41,12 +37,27 @@ const UserProvider = ({ children }) => {
     }catch(err){
       console.log("dashboard", err.response.data)
       setProfileLoadState(false)
-    }
-  }
 
-  useEffect(()=>{
-    userInformations()
-  }, [])
+  const Base_Url = import.meta.env.VITE_BASEURL;
+  console.log(`${Base_Url}/dashboard`);
+
+  const userInformations = async () => {
+    try {
+      const res = await axios(`${Base_Url}/dashboard`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(res);
+      setUserInfo(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    userInformations();
+  }, []);
 
 
 
@@ -79,6 +90,8 @@ const UserProvider = ({ children }) => {
             {children}
           </profileLoadStateContext.Provider>
         </hospitalInformationContext.Provider>
+      <UserInformationContext.Provider value={{ userInfo, setUserInfo }}>
+        {children}
       </UserInformationContext.Provider>
     </UserContext.Provider>
   );

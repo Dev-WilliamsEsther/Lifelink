@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./requesthistory.css";
+import axios from "axios";
 
 const RequestHistory = () => {
+  const [requestData, setRequestData] = useState([]);
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const Base_Url = import.meta.env.VITE_BASEURL;
+
+  console.log(userData);
+  const headers = {
+    Authorization: `Bearer ${userData?.data?.token}`,
+  };
+  const fetchRequest = async () => {
+    try {
+      const res = await axios.get(`${Base_Url}/hospital/history`, { headers });
+      setRequestData(res.data.requests);
+      console.log(res.data.requests);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchRequest();
+  }, []);
   return (
     <div className="RequestHistoryCardWrapper">
-      <h1>Request History</h1>
+      <h1 onClick={fetchRequest}>Request Historys</h1>
 
       <div className="RequestHistoryCardsHeading">
         <div className="RequestHistoryInnerDiv">
@@ -26,50 +48,23 @@ const RequestHistory = () => {
           <h1 className="RequestHistoryInnerDivtext7">Action</h1>
         </div>
       </div>
-      <div className="RequestHistoryCardWrapper">
-        <div className="RequestHistoryCard">
-          <h3 className="RequestHistoryDivtext6">A-</h3>
-          <h3 className="RequestHistoryDivtext7">3 Pints</h3>
-          <h3 className="RequestHistoryDivtext8">April 4, 2025</h3>
-          <h3 className="RequestHistoryDivtext9">April 7, 2025</h3>
-          <h3 className="RequestHistoryDivtext10">Low</h3>
-          <h3 className="RequestHistoryDivtext11">Pending</h3>
-          <span className="RequestHistoryDivtext12">View Details</span>
-        </div>
-      </div>
-      <div className="RequestHistoryCardWrapper">
-        <div className="RequestHistoryCard">
-          <h3 className="RequestHistoryDivtext6">A-</h3>
-          <h3 className="RequestHistoryDivtext7">3 Pints</h3>
-          <h3 className="RequestHistoryDivtext8">April 4, 2025</h3>
-          <h3 className="RequestHistoryDivtext9">May 7, 2025</h3>
-          <h3 className="RequestHistoryDivtext10">Low</h3>
-          <h3 className="RequestHistoryDivtext11">Confirmed</h3>
-          <span className="RequestHistoryDivtext12">View Details</span>
-        </div>
-      </div>
-      <div className="RequestHistoryCardWrapper">
-        <div className="RequestHistoryCard">
-          <h3 className="RequestHistoryDivtext6">0+</h3>
-          <h3 className="RequestHistoryDivtext7">3 Pints</h3>
-          <h3 className="RequestHistoryDivtext8">May 4, 2025</h3>
-          <h3 className="RequestHistoryDivtext9">April 7, 2025</h3>
-          <h3 className="RequestHistoryDivtext10">Low</h3>
-          <h3 className="RequestHistoryDivtext11">Pending</h3>
-          <span className="RequestHistoryDivtext12">View Details</span>
-        </div>
-      </div>
-      <div className="RequestHistoryCardWrapper">
-        <div className="RequestHistoryCard">
-          <h3 className="RequestHistoryDivtext6">0-</h3>
-          <h3 className="RequestHistoryDivtext7">3 Pints</h3>
-          <h3 className="RequestHistoryDivtext8">May 4, 2025</h3>
-          <h3 className="RequestHistoryDivtext9">April 7, 2025</h3>
-          <h3 className="RequestHistoryDivtext10">Low</h3>
-          <h3 className="RequestHistoryDivtext11">Pending</h3>
-          <span className="RequestHistoryDivtext12">View Details</span>
-        </div>
-      </div>
+      <>
+        {requestData?.map((item, index) => (
+          <div className="RequestHistoryCardWrapper" key={index}>
+            <div className="RequestHistoryCard">
+              <h3 className="RequestHistoryDivtext6">{item?.bloodGroup}</h3>
+              <h3 className="RequestHistoryDivtext7">{item?.numberOfPints}</h3>
+              <h3 className="RequestHistoryDivtext8">{item?.preferredDate}</h3>
+              <h3 className="RequestHistoryDivtext9">{item?.urgencyLevel}</h3>
+              <h3 className="RequestHistoryDivtext10">{item?.amount}</h3>
+              <h3 className="RequestHistoryDivtext11">{item?.status}</h3>
+              <span className="RequestHistoryDivtext12">
+                {item?.bloodGroup}
+              </span>
+            </div>
+          </div>
+        ))}
+      </>
     </div>
   );
 };

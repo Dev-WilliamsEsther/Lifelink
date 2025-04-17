@@ -16,11 +16,10 @@ import NotificationWrap from "../notificatonPopWrap/NotificationWrap";
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Header = () => {
+  const [openSideDrawer, setOpenSideDrawer] = useState(false);
+  const [logoutPopUp, setLogoutPopUp] = useState(false);
 
-  const [openSideDrawer, setOpenSideDrawer] = useState(false)
-  const [logoutPopUp, setLogoutPopUp] = useState(false)
-
-  const isSignedIn = JSON.parse(localStorage.getItem("userData"))
+  const isSignedIn = JSON.parse(localStorage.getItem("userData"));
 
   const link = [
     { name: "home", path: "/" },
@@ -29,7 +28,6 @@ const Header = () => {
   ];
 
   const location = useLocation();
-
 
   const [isFixed, setIsFixed] = useState(false);
 
@@ -43,27 +41,29 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const { user } = useUser();
   const token = user?.data?.token
-  // console.log("user role", user)
+  const { userInfo } = useUser();
 
+  const token = userInfo?.data?.token;
+
+  const [ress, setRess] = useState("");
 
   const handleSubmit = () => {
-    handleLogout(Base_Url, nav, token)
-  }
-
+    handleLogout(Base_Url, setRess, nav, token);
+  };
 
   return (
     <>
-      <div className={`headerwrapper ${isFixed ? 'headerwrapperfixed' : ''
-        }`}>
+      <NotificationWrap>{ress}</NotificationWrap>
+      <div className={`headerwrapper ${isFixed ? "headerwrapperfixed" : ""}`}>
         <div className="HeaderInnerWrapper">
           <div className="headerwrapperinner1">
             <img src="images/logo.png" alt="" />
@@ -73,34 +73,39 @@ const Header = () => {
               {link.map((link, idx) => (
                 <li
                   key={idx}
-                  className={`${link.path === location.pathname &&
+                  className={`${
+                    link.path === location.pathname &&
                     "text-black border-b-2 border-red-300"
-                    } capitalize text-[14px] font-medium hover:text-red-300 transition-all`}
+                  } capitalize text-[14px] font-medium hover:text-red-300 transition-all`}
                 >
                   <Link to={link.path}>{link.name}</Link>
                 </li>
               ))}
             </ul>
           </div>
-          {
-            isSignedIn ? <div className="headerProfilePic" onClick={() => nav('/dashboard')}>
+          {isSignedIn ? (
+            <div className="headerProfilePic" onClick={() => nav("/dashboard")}>
               <img src="/images/default profile pic.jpg" alt="" />
-            </div> :
-              <div className="headerwrapperinner3">
-                <Link to={"/signup"}>
-                  <button className="headerbtn">Sign Up</button>
-                </Link>
-                <Link to={"/login"}>
-                  <button className="headerbtn1" >Log In</button>
-                </Link>
-              </div>
-          }
+            </div>
+          ) : (
+            <div className="headerwrapperinner3">
+              <Link to={"/signup"}>
+                <button className="headerbtn">Sign Up</button>
+              </Link>
+              <Link to={"/login"}>
+                <button className="headerbtn1">Log In</button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
-
       <div className="MobileHeader">
-        <img src="/images/logo.png" alt="LifeLink Logo" onClick={() => nav("/")} />
+        <img
+          src="/images/logo.png"
+          alt="LifeLink Logo"
+          onClick={() => nav("/")}
+        />
         <div className="mobileSearchInputWrapper">
           <IoSearchOutline />
           <input type="text" placeholder="Search..." />
@@ -109,26 +114,40 @@ const Header = () => {
       </div>
       <div className="mobileHeaderWrapperPusher"></div>
 
-      <Drawer
-        open={openSideDrawer}
-        onClose={() => setOpenSideDrawer(false)}
-      >
+      <Drawer open={openSideDrawer} onClose={() => setOpenSideDrawer(false)}>
         <div className="sideDrawerNavigateHolder">
           <ul>
-            {
-              isSignedIn ? <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/dashboard") }}>
+            {isSignedIn ? (
+              <div
+                className="mobileSideBarProfileNav"
+                onClick={() => {
+                  setOpenSideDrawer(false);
+                  nav("/dashboard");
+                }}
+              >
                 <div className="MobileSideProfilePic">
                   <img src="/images/default profile pic.jpg" alt="" />
                 </div>
                 <div className="MobileSideProfileName">
-                  <h1>{user?.data?.data?.fullName}</h1>
-                  <span>{user?.data?.data?.bloodType}</span>
+                  <h1>{userInfo?.data?.message?.fullName}</h1>
+                  <span>{userInfo?.data?.message?.bloodType}</span>
                 </div>
 
-                <div className="mobileSideBarIcon" onClick={() => nav('/dashboard/settings')}>
+                <div
+                  className="mobileSideBarIcon"
+                  onClick={() => nav("/dashboard/settings")}
+                >
                   <MdEdit />
                 </div>
-              </div> : <div className="mobileSideBarProfileNav" onClick={() => { setOpenSideDrawer(false); nav("/authentry") }}>
+              </div>
+            ) : (
+              <div
+                className="mobileSideBarProfileNav"
+                onClick={() => {
+                  setOpenSideDrawer(false);
+                  nav("/authentry");
+                }}
+              >
                 <div className="MobileSideProfilePic">
                   <img src="/images/default profile pic.jpg" alt="" />
                 </div>
@@ -136,49 +155,193 @@ const Header = () => {
                   <h1 style={{ fontSize: 35 }}>Visitor</h1>
                 </div>
 
-
                 <div className="mobileSideBarIcon">
                   <MdEdit />
                 </div>
               </div>
-            }
+            )}
 
-            {
-              isSignedIn ? (
-                user?.data?.data?.role === "donor" ? (
-                  <>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/history") }}><MdHistory />History</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/settings") }}><CiSettings />Settings</li>
-                    <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
-                  </>
-                ) : user?.data?.data?.role === "hospital" ? (
-                  <>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/findhospital") }}><TbHomeSearch />Find Hospital</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/requesthistory") }}><MdHistory />Request History</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/appointment") }}><CiSettings />Appointment</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/records") }}><CiSettings />Records</li>
-                    <li onClick={() => { setOpenSideDrawer(false); nav("/dashboard/hospitalsettings") }}><CiSettings />Settings</li>
-                    <li style={{ color: "red" }} onClick={() => setLogoutPopUp(true)}><CiLogout />Logout</li>
-                  </>
-                ) : null
-              ) : (
+            {isSignedIn ? (
+              userInfo?.data?.message?.role === "donor" ? (
                 <>
-                  <button onClick={() => nav('/login')}>Login</button>
-                  <button onClick={() => nav('/signup')}>Signup</button>
-                  <li onClick={() => { setOpenSideDrawer(false); nav("/") }}><VscHome />Home</li>
-                  <li onClick={() => { setOpenSideDrawer(false); nav("/about") }}><GoPeople />About Us</li>
-                  <li onClick={() => { setOpenSideDrawer(false); nav("/howitworks") }}><CiSettings />How it works</li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/");
+                    }}
+                  >
+                    <VscHome />
+                    Home
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/findhospital");
+                    }}
+                  >
+                    <TbHomeSearch />
+                    Find Hospital
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/about");
+                    }}
+                  >
+                    <GoPeople />
+                    About Us
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/howitworks");
+                    }}
+                  >
+                    <CiSettings />
+                    How it works
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/history");
+                    }}
+                  >
+                    <MdHistory />
+                    History
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/settings");
+                    }}
+                  >
+                    <CiSettings />
+                    Settings
+                  </li>
+                  <li
+                    style={{ color: "red" }}
+                    onClick={() => setLogoutPopUp(true)}
+                  >
+                    <CiLogout />
+                    Logout
+                  </li>
                 </>
-              )
-            }
-
+              ) : userInfo?.data?.message?.role === "hospital" ? (
+                <>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/");
+                    }}
+                  >
+                    <VscHome />
+                    Home
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/findhospital");
+                    }}
+                  >
+                    <TbHomeSearch />
+                    Find Hospital
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/about");
+                    }}
+                  >
+                    <GoPeople />
+                    About Us
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/howitworks");
+                    }}
+                  >
+                    <CiSettings />
+                    How it works
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/requesthistory");
+                    }}
+                  >
+                    <MdHistory />
+                    Request History
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/appointment");
+                    }}
+                  >
+                    <CiSettings />
+                    Appointment
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/records");
+                    }}
+                  >
+                    <CiSettings />
+                    Records
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/hospitalsettings");
+                    }}
+                  >
+                    <CiSettings />
+                    Settings
+                  </li>
+                  <li
+                    style={{ color: "red" }}
+                    onClick={() => setLogoutPopUp(true)}
+                  >
+                    <CiLogout />
+                    Logout
+                  </li>
+                </>
+              ) : null
+            ) : (
+              <>
+                <button onClick={() => nav("/login")}>Login</button>
+                <button onClick={() => nav("/signup")}>Signup</button>
+                <li
+                  onClick={() => {
+                    setOpenSideDrawer(false);
+                    nav("/");
+                  }}
+                >
+                  <VscHome />
+                  Home
+                </li>
+                <li
+                  onClick={() => {
+                    setOpenSideDrawer(false);
+                    nav("/about");
+                  }}
+                >
+                  <GoPeople />
+                  About Us
+                </li>
+                <li
+                  onClick={() => {
+                    setOpenSideDrawer(false);
+                    nav("/howitworks");
+                  }}
+                >
+                  <CiSettings />
+                  How it works
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </Drawer>
@@ -189,10 +352,17 @@ const Header = () => {
         onCancel={() => setLogoutPopUp(false)}
       >
         <div className="mobileLogoutPopUp">
-          <h1>Are you sure you want to <br /> <b>Logout?</b></h1>
+          <h1>
+            Are you sure you want to <br /> <b>Logout?</b>
+          </h1>
 
           <div className="mobileLogoutWrapper">
-            <button className="MobileLogoutBtn" onClick={() => setLogoutPopUp(false)}>Cancel</button>
+            <button
+              className="MobileLogoutBtn"
+              onClick={() => setLogoutPopUp(false)}
+            >
+              Cancel
+            </button>
             <button onClick={handleSubmit}>Logout</button>
           </div>
         </div>
