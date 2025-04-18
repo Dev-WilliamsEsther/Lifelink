@@ -48,7 +48,7 @@ export const handleLogin = async (
   } catch (err) {
     console.error("Login error:", err?.response?.damessageta || err);
     toast.error(
-      err?.response?.damessageta || "Something went wrong during registration."
+      err?.response?.data?.message || "Something went wrong during registration."
     );
   } finally {
     setIsLoading(false);
