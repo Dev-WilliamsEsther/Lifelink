@@ -34,7 +34,9 @@ const ProfilePage = () => {
 
       <div className="profilePageProfileAndNameWrapper">
         <div className="profilePageProfilePic">
-          <img src="/images/default profile pic.jpg" alt="profile Picture" />
+          {
+            user?.profilePics ? <img src={user?.profilePics} alt="profile Picture" /> : <img src="/images/default profile pic.jpg" alt="profile Picture" /> 
+          }
           <MdCloudUpload className="ProfileUploadIcon" />
         </div>
 

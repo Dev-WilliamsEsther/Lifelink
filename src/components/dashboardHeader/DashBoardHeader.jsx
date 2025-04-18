@@ -68,7 +68,9 @@ const DashBoardHeader = () => {
           onClick={() => setNotificationSideBar(true)}
         />
         <div className="profilePicture">
-          <img src="/images/default profile pic.jpg" alt="profile" className='profileAvater' />
+          {
+            userInfo?.profilePics ? <img src={userInfo?.profilePics} alt="profile Picture" className='profileAvatar'/> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar'/> 
+          }
         </div>
       </div>
 

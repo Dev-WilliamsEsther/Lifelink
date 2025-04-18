@@ -59,6 +59,8 @@ const HospitalDetailsPage = () => {
       })
       setIsScheduleLoading(false)
       toast.success(res?.data?.message)
+      setScheduleData("")
+      setVolunteerPopUp(false)
     }catch(err){
       toast.error(err?.response?.data?.message)
       setIsScheduleLoading(false)
