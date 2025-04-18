@@ -2,7 +2,7 @@ import React from 'react'
 import './hospitalCard.css'
 import { useNavigate } from 'react-router'
 
-const HospitalCard = ({index, hospital}) => {
+const HospitalCard = ({hospital, id}) => {
 
   const nav = useNavigate()
   return (
@@ -10,10 +10,10 @@ const HospitalCard = ({index, hospital}) => {
       <div className='hospitalCardWRapper'>
         <img src="/images/hospital image.jpg" alt="Hospital image" />
         <div className="hospitalTextWRapper">
-          <h3>St. Ives Specialist Hispital</h3>
+          <h3>{hospital.fullName}</h3>
         </div>
 
-        <button className="viewDetailButton" onClick={()=> nav('/dashboard/hospitaldetails')}>
+        <button className="viewDetailButton" onClick={()=> nav(`/hospitaldetails${id}`)}>
           View Details <span className="arrow-icon">{">"}</span>
         </button>
       </div>

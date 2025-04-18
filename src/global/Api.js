@@ -14,7 +14,7 @@ export const handleSignup = async (
   setIsLoading(true);
   try {
     const res = await axios.post(`${Base_Url}/register`, userData);
-    toast.success(res.data.data.message);
+    toast.success(res.data.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
       nav("/dashboard");
@@ -42,7 +42,7 @@ export const handleLogin = async (
     toast.success(res?.data?.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
-      nav("/dashboard");
+      nav("/");
     }, 1000);
     return res.message;
   } catch (err) {
@@ -105,7 +105,7 @@ export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoadin
 
 
 
-export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoading, nav, setRess) => {
+export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoading, nav) => {
   setIsLoading(true);
   try {
     const res = await axios.post(
@@ -116,7 +116,6 @@ export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoad
     const message = res?.data?.data?.message || "Login successful";
     console.log("Login successful:", message);
     console.log("hospital ress", res)
-    setRess(message);
 
     localStorage.setItem("userData", JSON.stringify(res));
 
@@ -131,7 +130,6 @@ export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoad
     console.error("Login error:", errorMsg);
     console.log(err?.response?.data?.message )
 
-    setRess(err?.response?.data?.message);
   } finally {
     setIsLoading(false);
   }
@@ -139,17 +137,21 @@ export const handleHospitaLogin = async ( hospitalLoginData, Base_Url, setIsLoad
 
 
 
-export const getListOfHospitals = async (
-  setIsLoading,
-  Base_Url,
-  setListOfHospitals
-) => {
+export const getListOfHospitals = async (setIsLoading, Base_Url, setListOfHospitals, token) => {
   setIsLoading(true);
   try {
-    const res = await axios.get(`${Base_Url}/hospitals`);
+    const res = await axios.get(`${Base_Url}/hospitals`, {
+      headers : {
+        Authorization : `Bearer ${token}`
+      }
+    });
     console.log("List of Hospitals", res)
-    setListOfHospitals(res);
-  } catch (err) {}
+    setListOfHospitals(res?.data?.data);
+    setIsLoading(false)
+  } catch (err) {
+    console.log(err)
+    setIsLoading(false)
+  }
 };
 
 
@@ -165,11 +167,11 @@ export const handleLogout = async (Base_Url, nav, token) => {
         },
       }
     );
-    console.log(res);
+    toast.success(res?.data?.message);
     localStorage.removeItem("userData");
     nav("/");
     return
   } catch (err) {
-    console.log(err);
+    toast.error(err?.data?.message);
   }
 };

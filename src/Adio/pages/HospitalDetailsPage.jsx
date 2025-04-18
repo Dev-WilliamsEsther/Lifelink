@@ -1,9 +1,36 @@
 import React, { useState } from 'react'
 import './hospitalDetailsPage.css'
 import { Modal } from 'antd'
+import { useParams } from 'react-router'
 
 const HospitalDetailsPage = () => {
   const [volunteerPopUp, setVolunteerPopUp] = useState(false)
+
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [anHospital, setAnHospital] = useState([])
+
+  const {id} = useParams()
+
+
+  const getOneHospital = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(`${Base_Url}/hospitals${id}`, {
+        headers : {
+          Authorization : `Bearer ${token}`
+        }
+      });
+      console.log("List of Hospitals", res)
+      setAnHospital(res?.data?.data);
+      setIsLoading(false)
+    } catch (err) {
+      console.log(err)
+      setIsLoading(false)
+    }
+  };
+
+
 
   return (
     <>
@@ -16,10 +43,10 @@ const HospitalDetailsPage = () => {
         </div>
         <div className="detailsTextWrapper">
             <div className="innerTextWRapper">
-                <p>Name : <b>Kings Hospital</b></p>
-                <p>Location : <b>Oja Orile bustop, Lagos</b></p>
+                <p>Name : <b>{anHospital.fullName}</b></p>
+                <p>Location : <b>{anHospital.location}</b></p>
                 <p>Blood group needed : <b>A+</b></p>
-                <p>Contact : <b>09013717091</b></p>
+                <p>Contact : <b>{anHospital.phone}</b></p>
                 <p>OPerating Hours : <b>"Mon-Fri, 8AM - 5PM"</b></p>
             </div>
             <button onClick={()=> setVolunteerPopUp(true)}>Volunteer to Donate</button>

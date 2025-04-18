@@ -125,8 +125,8 @@ const Header = () => {
                   <img src="/images/default profile pic.jpg" alt="" />
                 </div>
                 <div className="MobileSideProfileName">
-                  <h1>{userInfo?.data?.message?.fullName}</h1>
-                  <span>{userInfo?.data?.message?.bloodType}</span>
+                  <h1>{userInfo?.fullName}</h1>
+                  <span>{userInfo?.bloodType}</span>
                 </div>
 
                 <div
