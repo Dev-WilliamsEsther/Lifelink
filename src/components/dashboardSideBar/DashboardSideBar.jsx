@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./dashboardSideBar.css";
 import { FaUser } from "react-icons/fa";
 import { TbHomeSearch } from "react-icons/tb";
@@ -10,24 +10,25 @@ import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { PiFilesLight } from "react-icons/pi";
-import { useUser } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../global/Slice";
 
 const DashboardSideBar = () => {
   const nav = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false);
   const location = useLocation();
+  const dispatch = useDispatch()
 
   const Base_Url = import.meta.env.VITE_BASEURL;
 
-  const userData = JSON.parse(localStorage.getItem("userData"));
+  const userData= useSelector((state)=> state?.loggedInUser?.data)
+  const token= useSelector((state)=> state?.token)
+  
 
-  const { user } = useUser();
-  const token = user?.data?.token;
-
-
-  const logOut = () => {
+  const logOutFunc = () => {
     handleLogout(Base_Url, nav, token);
+    dispatch(logOut())
   };
 
   return (
@@ -41,7 +42,7 @@ const DashboardSideBar = () => {
             onClick={() => nav("/")}
           />
 
-          {userData?.data?.data?.role === "donor" ? (
+          {userData?.role === "donor" ? (
             <ul>
               <li
                 onClick={() => {
@@ -96,7 +97,7 @@ const DashboardSideBar = () => {
             </ul>
           ) : null}
 
-          {userData?.data?.data?.role === "hospital" ? (
+          {userData?.role === "hospital" ? (
             <ul>
               <li
                 onClick={() => {
@@ -200,7 +201,7 @@ const DashboardSideBar = () => {
                 Cancel
               </button>
 
-              <button onClick={logOut}>Logout</button>
+              <button onClick={logOutFunc}>Logout</button>
             </div>
           </div>
         </div>

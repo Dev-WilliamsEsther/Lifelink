@@ -57,7 +57,9 @@ const App = () => {
     },
     {
       path: "/dashboard",
-      element: <DashboardLayout />,
+      element: <PrivateRoutes>
+        <DashboardLayout />
+        </PrivateRoutes>,
       children: [
         { path: "", element: <ProfilePage /> },
         { path: "findhospital", element: <FindHospitalPage /> },
@@ -75,7 +77,7 @@ const App = () => {
         { path: "adminblacklist", element: <Blacklist /> },
       ]
     },
-    { path: "/private", element: <PrivateRoutes /> },
+    // { path: "/private", element: <PrivateRoutes /> },
     { path: "/authentry", element: <Authentry /> },
     { path: "/signup", element: <Authentry type="signup" /> },
     { path: "/login", element: <Authentry type="login" /> },

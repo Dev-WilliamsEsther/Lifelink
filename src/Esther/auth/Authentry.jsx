@@ -32,7 +32,7 @@ const Authentry = ({type}) => {
             <Link to="/">
                 <img src="images/logo.png" alt="" className='authlogo'/>
             </Link>
-            <HiOutlineArrowCircleLeft size={50} />
+            <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
             </div>
             <div className='authinfo1'>
                 <h3>{isLogin ? "LOG-IN" : "SIGN-UP"}</h3>

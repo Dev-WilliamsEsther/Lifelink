@@ -1,12 +1,15 @@
 import React from 'react';
 import { useUser } from '../global/UseUser';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import DashboardLayout from '../Adio/DashboardLayout';
+import { useSelector } from 'react-redux';
 
-const PrivateRoutes = () => {
-  const { user } = useUser();
+const PrivateRoutes = ({children}) => {
+  // const { user } = useUser();
+  const token = useSelector((state)=>state.loggedInUser.token)
+  console.log("Our user", token)
 
-  return user ? <DashboardLayout /> : <Navigate to="/authentry" />;
+  return token ? children : <Navigate to="/authentry" replace/>;
 };
 
 export default PrivateRoutes;

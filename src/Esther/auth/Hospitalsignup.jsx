@@ -3,7 +3,8 @@ import '../../Esther/styles/hospitalsign.css'
 import { Link, useNavigate } from 'react-router-dom'
 import FadeLoader from 'react-spinners/CircleLoader'
 import { handleHospitalSignup } from '../../global/Api';
-import NotificationWrap from '../../components/notificatonPopWrap/NotificationWrap';
+import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
+
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -47,6 +48,7 @@ const Hospitalsignup = () => {
       </div>
       <div className='hospisigninfowrap'>
         <div className='hospisignlogohold'>
+        <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
           <Link to="/">
             <img src="images/logo.png" alt="Logo" className='hospisignlogo'/>
           </Link>

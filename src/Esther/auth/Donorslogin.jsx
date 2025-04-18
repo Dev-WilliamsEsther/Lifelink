@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import '../../Esther/styles/donorslog.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { handleLogin } from '../../global/Api'
+import axios from "axios"
 import FadeLoader from 'react-spinners/CircleLoader'
+import { HiOutlineArrowCircleLeft } from 'react-icons/hi'
+import { useDispatch } from 'react-redux'
+import { toast } from "sonner";
+import { logIn, saveToken } from "../../global/Slice";
 const Base_Url = import.meta.env.VITE_BASEURL;
+
 
 
 const Donorslogin = () => {
@@ -11,12 +16,32 @@ const Donorslogin = () => {
     email: "",
     password: ""
   })
-
+  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false);
-  const [ress, setRess] = useState("")
 
 
   const nav = useNavigate();
+
+  const handleLogin = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.post(`${Base_Url}/login`, userLoginData);
+      toast.success(res?.data?.message);
+      dispatch(logIn(res?.data))
+      dispatch(saveToken(res?.data?.token))
+      setTimeout(() => {
+        nav("/");
+      }, 1000);
+      return res.message;
+    } catch (err) {
+      console.error("Login error:", err?.response?.damessageta || err);
+      toast.error(
+        err?.response?.data?.message || "Something went wrong during registration."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +67,7 @@ const Donorslogin = () => {
           <Link to="/">
             <img src="images/logo.png" alt="Logo" className='donorloginlogo' />
           </Link>
+          <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
         </div>
         <div className='donorlogininfo1'>
           <h2>LOG IN</h2>
