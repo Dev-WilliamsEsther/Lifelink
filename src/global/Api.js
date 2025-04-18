@@ -32,7 +32,6 @@ export const handleLogin = async (
   userLoginData,
   Base_Url,
   setIsLoading,
-  setRess,
   nav
 ) => {
   setIsLoading(true);
@@ -89,7 +88,7 @@ export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoadin
     setHospitalRess(res?.data?.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
-      nav("/kyc");
+      nav("/hospitallogin");
     }, 1000);
     return res.data.message;
   } catch (err) {
