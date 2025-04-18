@@ -42,7 +42,7 @@ const UserProvider = ({ children }) => {
   const hospitalInformations = async () => {
     setProfileLoadState(true);
     try {
-      const res = await axios(`${Base_Url}/hospital/profile`, {
+      const res = await axios.get(`${Base_Url}/hospital/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
