@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./findHospitalPage.css";
 import HospitalCard from "../../components/hospitalCard/HospitalCard";
 import { getListOfHospitals } from "../../global/Api";
-import { useParams } from "react-router";
 import LoadComponents from "../../components/componentsLoadScreen/LoadComponents";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
@@ -36,7 +35,6 @@ const FindHospitalPage = () => {
     getHospitals()
   }, [])
 
-  const {id} = useParams()
 
   if(isLoading){
     return <LoadComponents/>
@@ -50,7 +48,7 @@ const FindHospitalPage = () => {
         {
           listOfHospitals && listOfHospitals.length > 0 ? (
             listOfHospitals.map((hospital, index) => (
-              <HospitalCard key={index} hospital={hospital} index={index} id = {id}/>
+              <HospitalCard key={index} hospital={hospital} index={index}/>
             ))
           ) : (
             <>No Hospital</>

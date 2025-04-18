@@ -90,14 +90,14 @@ const Hospitalsignup = () => {
           </div>
           <div className='hossigninputwrapper'>
             <p>CREATE PASSWORD</p>
-            <input type="password" placeholder='' className='hossigninput'
+            <input type="password" placeholder='Password' className='hossigninput'
             value={hospitalInput.password}
             onChange={(e)=>setHospitalInput((prev)=> ({...prev,password:e.target.value}))}
             />
           </div>
           <div className='hossigninputwrapper'>
             <p>CONFIRM PASSWORD</p>
-            <input type="password" placeholder='' className='hossigninput'
+            <input type="password" placeholder='Confirm passwod' className='hossigninput'
             value={confirmPassword}
             onChange={(e)=>setConfirmPassword(e.target.value)}
             />
@@ -116,7 +116,7 @@ const Hospitalsignup = () => {
             {isLoading ? <FadeLoader color="white" size={25}/> : "REGISTER"}
           </button>
           <div className='hosloginforgotwrap'>
-            <p onClick={()=>nav("/hospitallogin")}>ALREADY HAVE AN ACCOUNT? LOGIN</p>
+            <p onClick={()=>nav("/hospitallogin")}>ALREADY HAVE AN ACCOUNT?  LOGIN</p>
           </div>
         </div>
       </div>

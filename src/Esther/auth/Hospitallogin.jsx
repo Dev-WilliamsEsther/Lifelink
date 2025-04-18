@@ -64,9 +64,9 @@ const Hospitallogin = () => {
           </button>
           <div className="hosloginforgotwrap">
             <p onClick={() => nav("/hospitalsignup")}>
-              DON'T HAVE AN ACCOUNT?SIGNUP
+              DON'T HAVE AN ACCOUNT? SIGNUP
             </p>
-            <p>FORGOT PASSWORD</p>
+            <p onClick={()=> nav('/forgotpassword')}>FORGOT PASSWORD</p>
           </div>
         </div>
       </div>
