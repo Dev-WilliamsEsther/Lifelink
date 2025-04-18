@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../Esther/styles/donorssign.css';
 import { Link, useNavigate } from 'react-router';
 import { handleSignup } from '../../global/Api';
 import FadeLoader from 'react-spinners/CircleLoader'
 import { toast } from 'sonner';
+import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -51,6 +52,7 @@ const Donorssignup = () => {
           <Link to="/">
             <img src="images/logo.png" alt="Logo" className='donorsignlogo' />
           </Link>
+          <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
         </div>
         <div className='donorsigninfo1'>
           <h1>REGISTER AS A DONOR</h1>
