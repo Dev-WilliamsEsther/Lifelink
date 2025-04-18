@@ -18,7 +18,8 @@ const ProfilePage = () => {
 
   const isHospital = hospital?.role === "hospital";
 
-  console.log(isHospital)
+
+  console.log("King holes",hospitalInfo?.profilePics)
   
 
   if (profileLoadState) return <LoadComponents />;

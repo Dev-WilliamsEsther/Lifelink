@@ -5,6 +5,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { Drawer } from 'antd';
 import { GoUnread } from "react-icons/go";
 import { useNavigate } from 'react-router';
+import { useHospitalInfo, useUserInfo } from '../../global/UseUser';
 
 const DashBoardHeader = () => {
   const [notificationSideBar, setNotificationSideBar] = useState(false);
@@ -21,10 +22,22 @@ const DashBoardHeader = () => {
 
   const nav = useNavigate()
 
+  const { hospitalInfo } = useHospitalInfo();
+  const { userInfo } = useUserInfo();
+  
+  const headerNameSplit = userInfo?.fullName?.split(" ");
+  const headerNamePrompt = headerNameSplit?.slice(0);
+  
+  const hospitalHeaderNameSplit = hospitalInfo?.fullName?.split(" ");
+  const hospitalHeaderNamePrompt = hospitalHeaderNameSplit?.slice(0);
+  
+
+  console.log(headerNamePrompt)
+
   return (
     <div className='dashboardHeaderWrapper'>
       <div className="dashboardHeaderName">
-        <h1>Hello Mary <p style={{ fontSize: '15px' }}>&#128522;</p></h1>
+        <h1>Hello {userInfo? headerNamePrompt : hospitalInfo? hospitalHeaderNamePrompt : ""} <p style={{ fontSize: '15px' }}>&#128522;</p></h1>
         <span>“save a life today”</span>
       </div>
 
