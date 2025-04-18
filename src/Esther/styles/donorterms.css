@@ -9,11 +9,12 @@
 }
 .donortermsname{
     width: 60%;
-    height: 150px;
+    height: max-content;
     background-color: #ededed;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px;
     border-bottom: 1px solid black;
 }
 .donortermlogo{
@@ -25,24 +26,40 @@
 }
 .donortermshold{
     width: 60%;
-    /* height: 100%; */
     height: max-content;
     background-color: #ededed;
     display: flex;
     justify-content: space-around;
     gap: 20px;
-    /* align-items: center; */
+    padding: 20px;
     flex-direction: column;
+    border-radius: 5px;
+    overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.donortermshold .termsAndConditionBtnWrapper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.termsAndConditionBtnWrapper :nth-child(2){
+    background: transparent;
+    border: 1px solid #c0392b;
+    color: #c0392b;
+    cursor: pointer;
 }
 
 .donorsmaphold h3{
     display: flex;
     gap: 10px;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
 }
 .donorsmaphold p{
     display: flex;
+    font-size: 13px;
 }
 .donortermsbtn{
     width: 200px;
@@ -54,4 +71,5 @@
     font-weight: 400;
     font-size: 13px;
     color: white;
+    cursor: pointer;
 }

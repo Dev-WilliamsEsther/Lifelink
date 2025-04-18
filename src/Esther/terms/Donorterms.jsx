@@ -51,7 +51,10 @@ const Donorterms = () => {
                     <p><VscDash />{term.terms} <br /></p>
                 </div>
             ))}
-            <button className='donortermsbtn' onClick={()=>nav("/donorssignup")}>AGREE</button>
+            <div className='termsAndConditionBtnWrapper'>    
+             <button className='donortermsbtn' onClick={()=>nav("/donorssignup")}>AGREE</button>
+             <button className='donortermsbtn' onClick={()=>nav(-1)}>CANCEL</button>
+            </div>
         </div>
     </div>
   )

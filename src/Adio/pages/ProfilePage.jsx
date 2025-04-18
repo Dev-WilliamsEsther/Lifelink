@@ -18,7 +18,8 @@ const ProfilePage = () => {
 
   const isHospital = hospital?.role === "hospital";
 
-  console.log(isHospital)
+
+  console.log("King holes",hospitalInfo?.profilePics)
   
 
   if (profileLoadState) return <LoadComponents />;
@@ -33,7 +34,9 @@ const ProfilePage = () => {
 
       <div className="profilePageProfileAndNameWrapper">
         <div className="profilePageProfilePic">
-          <img src="/images/default profile pic.jpg" alt="profile Picture" />
+          {
+            user?.profilePics ? <img src={user?.profilePics} alt="profile Picture" /> : <img src="/images/default profile pic.jpg" alt="profile Picture" /> 
+          }
           <MdCloudUpload className="ProfileUploadIcon" />
         </div>
 

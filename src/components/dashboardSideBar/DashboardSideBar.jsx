@@ -10,7 +10,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { PiFilesLight } from "react-icons/pi";
-import { useUserInfo } from "../../global/UseUser";
+import { useUser } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
 
 const DashboardSideBar = () => {
@@ -20,9 +20,11 @@ const DashboardSideBar = () => {
 
   const Base_Url = import.meta.env.VITE_BASEURL;
 
-  const { userInfo } = useUserInfo();
-  const token = userInfo?.data?.token;
-  const user = JSON.parse(localStorage.getItem("userData"));
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
+  const { user } = useUser();
+  const token = user?.data?.token;
+
 
   const logOut = () => {
     handleLogout(Base_Url, nav, token);
@@ -39,7 +41,7 @@ const DashboardSideBar = () => {
             onClick={() => nav("/")}
           />
 
-          {user?.data?.data?.role === "donor" ? (
+          {userData?.data?.data?.role === "donor" ? (
             <ul>
               <li
                 onClick={() => {
@@ -94,7 +96,7 @@ const DashboardSideBar = () => {
             </ul>
           ) : null}
 
-          {user?.data?.data?.role === "hospital" ? (
+          {userData?.data?.data?.role === "hospital" ? (
             <ul>
               <li
                 onClick={() => {

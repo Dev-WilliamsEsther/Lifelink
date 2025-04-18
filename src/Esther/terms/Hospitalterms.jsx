@@ -36,21 +36,26 @@ const donorterms = [
 const Hospitalterms = () => {
     const nav = useNavigate();
     return (
+        <>
         <div className='donortermswrapper'>
-            <div className='donortermsname'>
-            <img src="images/logo.png" alt="" className='donortermlogo'/>
-            <h1>HOSPITAL/BLOODBANK TERMS&AGREEMENT</h1>
-            </div>
-            <div className='donortermshold'>
-                {donorterms.map((term,index) => (
-                    <div key={term.id} className='donorsmaphold'>
-                        <h3>{index + 1}{term.title}</h3>
-                        <p><VscDash />{term.terms} <br /></p>
-                    </div>
-                ))}
-                <button className='donortermsbtn' onClick={()=>nav("/hospitalsignup")}>AGREE</button>
+        <div className='donortermsname'>
+        <img src="images/logo.png" alt="" className='donortermlogo'/>
+        <h1>HOSPITAL/BLOODBANK TERMS&AGREEMENT</h1>
+        </div>
+        <div className='donortermshold'>
+            {donorterms.map((term,index) => (
+                <div key={term.id} className='donorsmaphold'>
+                    <h3>{index + 1}{term.title}</h3>
+                    <p><VscDash />{term.terms} <br /></p>
+                </div>
+            ))}
+            <div className='termsAndConditionBtnWrapper'>    
+             <button className='donortermsbtn' onClick={()=>nav("/donorssignup")}>AGREE</button>
+             <button className='donortermsbtn' onClick={()=>nav(-1)}>CANCEL</button>
             </div>
         </div>
+    </div>
+        </>
       )
 }
 
