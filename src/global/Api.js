@@ -4,17 +4,11 @@ import { toast } from "sonner";
 
 //Donors endPoints===============================>
 
-export const handleSignup = async (
-  userData,
-  Base_Url,
-  setIsLoading,
-  nav
-) => {
+export const handleSignup = async (userData, Base_Url, setIsLoading, nav) => {
   setIsLoading(true);
   try {
     const res = await axios.post(`${Base_Url}/register`, userData);
     toast.success(res.data.message);
-    localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
       nav("/donorslogin");
     }, 1000);
@@ -28,12 +22,7 @@ export const handleSignup = async (
 
 
 
-export const handleLogin = async (
-  userLoginData,
-  Base_Url,
-  setIsLoading,
-  nav
-) => {
+export const handleLogin = async (userLoginData, Base_Url, setIsLoading, nav) => {
   setIsLoading(true);
   try {
     const res = await axios.post(`${Base_Url}/login`, userLoginData);

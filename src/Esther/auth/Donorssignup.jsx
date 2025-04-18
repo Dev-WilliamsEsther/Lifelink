@@ -3,6 +3,7 @@ import '../../Esther/styles/donorssign.css';
 import { Link, useNavigate } from 'react-router';
 import { handleSignup } from '../../global/Api';
 import FadeLoader from 'react-spinners/CircleLoader'
+import { toast } from 'sonner';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -10,7 +11,6 @@ const Donorssignup = () => {
   const [click,setClick] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [ress, setRess] = useState("")
   const [userData, setUserData] = useState({
     fullName: "",
     email: "",
@@ -29,20 +29,15 @@ const Donorssignup = () => {
     e.preventDefault();
 
     if (userData.password !== confirmPassword) {
-      setRess('Passwords do not match!');
+      toast.error('Passwords do not match!');
       return;
     } if (!userData.fullName || !userData.email || !userData.location || !userData.password || !userData.age || !userData.bloodType) {
-      setRess("Please input all field")
+      toast.error("Please input all field")
       return
     }
 
-    handleSignup(userData, Base_Url, setIsLoading, setRess, nav);
+    handleSignup(userData, Base_Url, setIsLoading, nav);
   };
-
-
-
-
-
 
   return (
     <div className='donorsignwrapper'>
