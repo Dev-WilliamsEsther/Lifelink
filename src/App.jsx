@@ -37,6 +37,7 @@ import PrivateRoutes from "./routes/PrivateRoutes";
 import FindHospitalPage from "./Adio/pages/FindHospitalPage";
 import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
 import RequestHistory from "./Davidson/pages/RequestHistory";
+import ForgotPassword from "./Esther/auth/ForgotPassword";
 
 const App = () => {
 
@@ -83,6 +84,7 @@ const App = () => {
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
     { path: "/resetpassword", element: <Resetpassword /> },
+    { path: "/forgotpassword", element: <ForgotPassword /> },
     { path: "/kyc", element: <KYC /> },
     { path: "/hospiterms", element: <Hospitalterms /> },
     { path: "/donorterms", element: <Donorterms /> },

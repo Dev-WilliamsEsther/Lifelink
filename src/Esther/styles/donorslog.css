@@ -29,7 +29,7 @@
 }
 .donorlogininfo1{
     width: 65%;
-    height: 320px;
+    height: 350px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -55,13 +55,14 @@
     height: 40px;
     background-color: #ededed;
     padding: 10px;
-    border-radius: 11px;
+    border-radius: 5px;
     font-family: Poppins;
     font-size: 11px;
     font-weight: 300;
 }
+
 .donorloginbtn{
-    width: 300px;
+    width: 80%;
     height: 36px;
     background-color: #c0392b;
     border-radius: 6px;
@@ -72,6 +73,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .donorloginforgotwrap{

@@ -9,8 +9,8 @@ const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Donorslogin = () => {
   const [userLoginData, setUserLoginData] = useState({
-    email : "",
-    password : ""
+    email: "",
+    password: ""
   })
 
   const [isLoading, setIsLoading] = useState(false);
@@ -21,15 +21,15 @@ const Donorslogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!userLoginData.email ||!userLoginData.password){
+
+    if (!userLoginData.email || !userLoginData.password) {
       setRess("Please input all field")
       return
     }
-  
+
     handleLogin(userLoginData, Base_Url, setIsLoading, setRess, nav);
   };
-  
+
 
 
   return (
@@ -37,11 +37,11 @@ const Donorslogin = () => {
       <div className='donorloginmobilewrap'>
         <h2>LOG IN</h2>
       </div>
-      <img src="images/Subtract.png" alt="" className='donorslogimage'/>
+      <img src="images/Subtract.png" alt="" className='donorslogimage' />
       <div className='donorlogininfowrap'>
-      <div className='donorloginlogohold'>
+        <div className='donorloginlogohold'>
           <Link to="/">
-            <img src="images/logo.png" alt="Logo" className='donorloginlogo'/>
+            <img src="images/logo.png" alt="Logo" className='donorloginlogo' />
           </Link>
         </div>
         <div className='donorlogininfo1'>
@@ -49,21 +49,21 @@ const Donorslogin = () => {
           <div className='donorlogininputwrapper'>
             <p>EMAIL ADDRESS</p>
             <input type="email" placeholder='ENTER EMAIL' className='donorlogininput'
-            value={userLoginData.email}
-            onChange={(e)=> setUserLoginData(prev => ({...prev, email: e.target.value}))}
+              value={userLoginData.email}
+              onChange={(e) => setUserLoginData(prev => ({ ...prev, email: e.target.value }))}
             />
           </div>
           <div className='donorlogininputwrapper'>
             <p>ENTER PASSWORD</p>
-            <input type="password" placeholder='PASSWORD' className='donorlogininput' 
-            value={userLoginData.password}
-            onChange={(e)=> setUserLoginData(prev => ({...prev, password: e.target.value}))}
+            <input type="password" placeholder='PASSWORD' className='donorlogininput'
+              value={userLoginData.password}
+              onChange={(e) => setUserLoginData(prev => ({ ...prev, password: e.target.value }))}
             />
           </div>
-          <button className='donorloginbtn' onClick={handleSubmit}>{isLoading? <FadeLoader color="white" size={25}/> : "LOG-IN"}</button>
+          <button className='donorloginbtn' onClick={handleSubmit}>{isLoading ? <FadeLoader color="white" size={25} /> : "LOG-IN"}</button>
           <div className='donorloginforgotwrap'>
-            <p onClick={()=>nav("/donorssignup")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
-            <p>FORGOT PASSWORD</p>
+            <p onClick={() => nav("/donorssignup")} className='AuthRedirectionLinkWrap'>DON'T HAVE AN ACCOUNT? SIGNUP</p>
+            <a onClick={() => nav("/forgotpassword")}>FORGOT PASSWORD</a>
           </div>
         </div>
       </div>
