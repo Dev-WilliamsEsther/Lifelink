@@ -83,7 +83,7 @@ const App = () => {
     { path: "/hospitallogin", element: <Hospitallogin /> },
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
-    { path: "/resetpassword", element: <Resetpassword /> },
+    { path: "/resetpassword/:token", element: <Resetpassword /> },
     { path: "/forgotpassword", element: <ForgotPassword /> },
     { path: "/kyc", element: <KYC /> },
     { path: "/hospiterms", element: <Hospitalterms /> },

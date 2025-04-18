@@ -43,11 +43,16 @@
 .donorlogininputwrapper{
     width: 360px;
     height: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .donorlogininputwrapper p{
     font-family: Poppins;
     font-weight: 600;
     font-size: 13px;
+    width: 93%;
     color: #21212180;
 }
 .donorlogininput{

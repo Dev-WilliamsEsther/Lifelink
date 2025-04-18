@@ -43,18 +43,23 @@
 .hossigninputwrapper{
     width: 360px;
     height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
 }
 .hossigninputwrapper p{
     font-size: 12px;
     font-weight: 600;
+    width: 93%;
     color: #21212180;
 }
 .hossigninput{
     width: 340px;
     height: 40px;
     background-color: #ededed;
-    border-radius: 11px;
+    border-radius: 5px;
     font-size: 10px;
     padding: 4px;
     border: 2px solid #F9F9F9;
