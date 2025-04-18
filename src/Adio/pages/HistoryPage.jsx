@@ -1,10 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './historyPage.css'
 import { SlCalender } from "react-icons/sl";
 import { Modal } from 'antd';
+import axios from 'axios';
+
+const Base_Url = import.meta.env.VITE_BASEURL
 
 const HistoryPage = () => {
   const [viewDetailsPopUp, setViewDetailsPopUp] = useState(false)
+  const token = JSON.parse(localStorage.getItem("userData"))?.data?.token;
+
+
+  // const status = 
+  const getPendingHistory = async()=>{
+    try{
+      const res = await axios.get(`${Base_Url}/donations/${pending}`, {
+        headers : {
+          Authorization : `Bearer ${token}`
+        }
+      })
+      console.log(res)
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{
+    getPendingHistory()
+  }, [])
 
   return (
     <>

@@ -52,8 +52,6 @@ const Header = () => {
   const { userInfo } = useUserInfo();
 
 
-  const [ress, setRess] = useState("");
-
   const handleSubmit = () => {
     handleLogout(Base_Url, nav, token);
   };
@@ -81,7 +79,9 @@ const Header = () => {
           </div>
           {isSignedIn ? (
             <div className="headerProfilePic" onClick={() => nav("/dashboard")}>
-              <img src="/images/default profile pic.jpg" alt="" />
+              {
+                userInfo?.profilePics ? <img src={userInfo?.profilePics} alt="profile Picture" className='profileAvatar' /> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar' />
+              }
             </div>
           ) : (
             <div className="headerwrapperinner3">

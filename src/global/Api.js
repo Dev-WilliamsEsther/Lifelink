@@ -8,7 +8,6 @@ export const handleSignup = async (
   userData,
   Base_Url,
   setIsLoading,
-  setRess,
   nav
 ) => {
   setIsLoading(true);
@@ -17,7 +16,7 @@ export const handleSignup = async (
     toast.success(res.data.message);
     localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
-      nav("/dashboard");
+      nav("/donorslogin");
     }, 1000);
     return res.data.message;
   } catch (err) {
