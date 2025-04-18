@@ -108,7 +108,6 @@ const DashBoardHeader = () => {
           ) : (
             <p>No notifications yet 📭</p>
           )}
-
         </div>
       </Drawer>
     </div>

@@ -131,8 +131,15 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: red;
+  background: whitesmoke;
   cursor: pointer;
+}
+
+.headerProfilePic img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 
