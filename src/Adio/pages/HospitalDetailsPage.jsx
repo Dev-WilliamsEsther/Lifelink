@@ -1,89 +1,125 @@
-import React, { useState } from 'react'
-import './hospitalDetailsPage.css'
-import { Modal } from 'antd'
-import { useParams } from 'react-router'
+import React, { useEffect, useState } from 'react';
+import './hospitalDetailsPage.css';
+import { Modal } from 'antd';
+import { useParams } from 'react-router';
+import axios from 'axios';
+import LoadComponents from '../../components/componentsLoadScreen/LoadComponents';
+import { toast } from 'sonner';
+import FadeLoader from 'react-spinners/CircleLoader'
+
+
+const Base_Url = import.meta.env.VITE_BASEURL;
 
 const HospitalDetailsPage = () => {
-  const [volunteerPopUp, setVolunteerPopUp] = useState(false)
+  const [volunteerPopUp, setVolunteerPopUp] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isScheduleLoading, setIsScheduleLoading] = useState(false);
+  const [anHospital, setAnHospital] = useState([]);
 
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [anHospital, setAnHospital] = useState([])
-
-  const {id} = useParams()
+  const { hospitalId } = useParams();
+  const token = JSON.parse(localStorage.getItem("userData"))?.data?.token;
+  const [scheduleData, setScheduleData] = useState({
+    date: "",
+    hospitalId: ""
+  })
 
 
   const getOneHospital = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`${Base_Url}/hospitals${id}`, {
-        headers : {
-          Authorization : `Bearer ${token}`
-        }
+      const res = await axios.get(`${Base_Url}/hospital/${hospitalId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      console.log("List of Hospitals", res)
-      setAnHospital(res?.data?.data);
-      setIsLoading(false)
+      setAnHospital(res?.data?.hospital);
     } catch (err) {
-      console.log(err)
-      setIsLoading(false)
+      console.error("Error fetching hospital details:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  useEffect(() => {
+    getOneHospital();
+  }, [hospitalId]);
 
 
+
+  const handleSchedule = async () => {
+    setIsScheduleLoading(true)
+    setScheduleData(prev => ({ ...prev, hospitalId }));
+    const updated = { ...scheduleData, hospitalId };
+    try {
+      const res = await axios.post(`${Base_Url}/schedule`, updated, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setIsScheduleLoading(false)
+      toast.success(res?.data?.message)
+    }catch(err){
+      toast.error(err?.response?.data?.message)
+      setIsScheduleLoading(false)
+    }
+  }
+
+
+  if (isLoading) return <LoadComponents />
   return (
-    <>
     <div className='HospitalDetailsPageWrapper'>
       <h1>Hospital Details</h1>
 
       <div className="detailsTextAndImageWrapper">
         <div className="detailsImageWrapper">
-            <img src="/images/hospital image.jpg"/>
+          <img src="/images/hospital image.jpg" alt="Hospital" />
         </div>
+
         <div className="detailsTextWrapper">
-            <div className="innerTextWRapper">
-                <p>Name : <b>{anHospital.fullName}</b></p>
-                <p>Location : <b>{anHospital.location}</b></p>
-                <p>Blood group needed : <b>A+</b></p>
-                <p>Contact : <b>{anHospital.phone}</b></p>
-                <p>OPerating Hours : <b>"Mon-Fri, 8AM - 5PM"</b></p>
-            </div>
-            <button onClick={()=> setVolunteerPopUp(true)}>Volunteer to Donate</button>
+          <div className="innerTextWRapper">
+            <p>Name: <b>{anHospital?.fullName}</b></p>
+            <p>Location: <b>{anHospital?.location}</b></p>
+            <p>Blood group needed: <b>{anHospital?.bloodGroupNeeded || 'A+'}</b></p>
+            <p>Contact: <b>{anHospital?.phone}</b></p>
+            <p>Operating Hours: <b>{anHospital?.operatingHours || 'Mon-Fri, 8AM - 5PM'}</b></p>
+          </div>
+          <button onClick={() => setVolunteerPopUp(true)}>Volunteer to Donate</button>
         </div>
       </div>
+
       <Modal
-      open={volunteerPopUp}
-      onCancel={()=> setVolunteerPopUp(false)}
-      footer={null}
+        open={volunteerPopUp}
+        onCancel={() => setVolunteerPopUp(false)}
+        footer={null}
       >
         <div className="volunteerDateWrapper">
           <h1>Pick Date/Time</h1>
 
-          <div className="datePickerWrapper">
+          <input type="date" name="date" className='scheduleDatePicker'
+            value={scheduleData.date}
+            onChange={(e) => setScheduleData(prev => ({ ...prev, date: e.target.value }))}
+          />
+
+          {/* <div className="datePickerWrapper">
             <label>Date</label>
-            <p><input type="radio" name="1"/> Monday</p>
-            <p><input type="radio" name="1"/> Tuesday</p>
-            <p><input type="radio" name="1"/> Wednesday</p>
-            <p><input type="radio" name="1"/> Thursday</p>
-            <p><input type="radio" name="1"/> Friday</p>
-            <p><input type="radio" name="1"/> Saturday</p>
-            <p><input type="radio" name="1"/> Sunday</p>
+            {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day, idx) => (
+              <p key={idx}><input type="radio" name="date" /> {day}</p>
+            ))}
           </div>
+
           <div className="datePickerWrapper">
             <label>Time</label>
-            <p><input type="radio" name="2"/> 8:00AM - 10:00AM</p>
-            <p><input type="radio" name="2"/> 10:00AM - 12:00AM</p>
-            <p><input type="radio" name="2"/> 12:00AM - 3:00AM</p>
-            <p><input type="radio" name="2"/> 3:00AM - 5:00AM</p>
-          </div>
-          <button>Schedule</button>
-        </div>
+            {["8:00AM - 10:00AM", "10:00AM - 12:00PM", "12:00PM - 3:00PM", "3:00PM - 5:00PM"].map((time, idx) => (
+              <p key={idx}><input type="radio" name="time" /> {time}</p>
+            ))}
+          </div> */}
 
+          <button onClick={handleSchedule}>{isScheduleLoading? <FadeLoader color="white" size={25} /> : "Schedule"}</button>
+        </div>
       </Modal>
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default HospitalDetailsPage
+export default HospitalDetailsPage;

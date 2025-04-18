@@ -68,7 +68,7 @@ const App = () => {
         { path: "appointment", element: <Appointment /> },
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
-        { path: "hospitaldetails/:id", element: <HospitalDetailsPage /> },
+        { path: "hospitaldetails/:hospitalId", element: <HospitalDetailsPage /> },
         { path: "subscribe", element: <Subscrib /> },
         { path: "adminverification", element: <Verification /> },
         { path: "adminsettings", element: <Settings /> },
