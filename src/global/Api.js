@@ -75,7 +75,6 @@ export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoadin
     console.log("signup successful:", res?.data?.message);
     console.log(res);
     setHospitalRess(res?.data?.message);
-    localStorage.setItem("userData", JSON.stringify(res));
     setTimeout(() => {
       nav("/hospitallogin");
     }, 1000);
