@@ -68,7 +68,7 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const handleOffline = () => toast.error("You are offline");
 
-     if (navigator.onLine) {
+     if (!navigator.onLine) {
       toast.error("You are offline");
     }
 
