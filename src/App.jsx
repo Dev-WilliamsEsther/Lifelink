@@ -100,8 +100,6 @@ const App = () => {
     { path: "/adminsignin", element: <Adminsignin /> },
     { path: "/adminlogin", element: <Adminlogin /> },
     { path: "/adminreset", element: <Adminreset /> },
-    {path: "/failedPayment", element: <PaymentStatus status="failed" />},
-    {path: "/successfulPayment", element: <PaymentStatus status="success" />}
       ]
     },
   ]);
