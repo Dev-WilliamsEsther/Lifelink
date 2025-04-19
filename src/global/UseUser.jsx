@@ -66,7 +66,6 @@ const UserProvider = ({ children }) => {
 
 
   useEffect(() => {
-    const handleOnline = () => toast.success("You are back online");
     const handleOffline = () => toast.error("You are offline");
 
     if (navigator.onLine) {
@@ -75,11 +74,9 @@ const UserProvider = ({ children }) => {
       toast.error("You are offline");
     }
 
-    window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
 
     return () => {
-      window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
     };
   }, []);

@@ -89,7 +89,7 @@ const App = () => {
     { path: "/hospitallogin", element: <Hospitallogin /> },
     { path: "/verifymail", element: <VerifyMail /> },
     { path: "/checkmail", element: <CheckMail /> },
-    { path: "/paymentstatus", element: <PaymentStatus /> },
+    { path: "/paymentcheck", element: <PaymentStatus /> },
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
     { path: "/resetpassword/:token", element: <Resetpassword /> },
@@ -99,7 +99,9 @@ const App = () => {
     { path: "/donorterms", element: <Donorterms /> },
     { path: "/adminsignin", element: <Adminsignin /> },
     { path: "/adminlogin", element: <Adminlogin /> },
-    { path: "/adminreset", element: <Adminreset /> }
+    { path: "/adminreset", element: <Adminreset /> },
+    {path: "/failedPayment", element: <PaymentStatus status="failed" />},
+    {path: "/successfulPayment", element: <PaymentStatus status="success" />}
       ]
     },
   ]);
