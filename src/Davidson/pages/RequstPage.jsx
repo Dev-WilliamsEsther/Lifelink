@@ -21,14 +21,14 @@ const RequestPage = () => {
   const [dateString, setDateString] = useState("");
   const onChangeDate = (date) => {
     if (date) {
-      setDateString(date.format("YYYY-MM-DD")); // e.g., "2025-04-20"
+      setDateString(date.format("YYYY-MM-DD")); 
     } else {
-      console.log(null); // for when the date is cleared
+      console.log(null); 
     }
   };
 
   const disabledDate = (current) => {
-    // Can not select days before today and today
+    
     return current && current < dayjs().endOf("day");
   };
   const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ const RequestPage = () => {
   console.log(formData);
 
   const handleChange = (e) => {
-    // console.log(e.$isDayjsObject)
+    
     if (e.$isDayjsObject) {
       setFormData((prev) => ({
         ...prev,
@@ -68,8 +68,7 @@ const RequestPage = () => {
     ) {
       return toast.error("Please fill a fields");
     }
-    // const userData = JSON.parse(localStorage.getItem("userData"));
-    // const token = userData?.data?.token;
+ 
 
     const url =
       "https://lifelink-7pau.onrender.com/api/v1/hospital/request-blood";
@@ -85,7 +84,6 @@ const RequestPage = () => {
       console.log(res);
       if (res.status === 201) {
         toast.dismiss()
-        // alert("Blood request successfully posted!");
         toast.success(res?.data?.message)
 
         setFormData({
@@ -99,8 +97,6 @@ const RequestPage = () => {
     } catch (err) {
       console.log(err);
       toast.error(err?.response?.data?.message);
-
-      // toast.error("Failed to submit request. Please try again.");
     }
   };
   5;
@@ -123,15 +119,6 @@ const RequestPage = () => {
               <option value={item.value}>{item?.value}</option>
             ))}
           </select>
-          {/* <input
-            type="text"
-            id="bloodGroup"
-            name="bloodGroup"
-            placeholder="A+, A-, B+, B-, AB+, AB-, O+, O-"
-            value={formData.bloodGroup}
-            onChange={handleChange}
-            className="record-input"
-          /> */}
         </div>
 
         <div className="form-field">
@@ -150,15 +137,6 @@ const RequestPage = () => {
 
         <div className="form-field">
           <label htmlFor="preferredDate">Preferred Date</label>
-          {/* <input
-            type="date"
-            id="preferredDate"
-            name="preferredDate"
-            placeholder="May 18, 2025"
-            value={formData.preferredDate}
-            onChange={handleChange}
-            className="record-input"
-          /> */}
           <DatePicker
             onChange={handleChange}
             disabledDate={disabledDate}
@@ -181,15 +159,6 @@ const RequestPage = () => {
             <option value="medium">Medium</option>
             <option value="low">Low</option>
           </select>
-          {/* <input
-            type="text"
-            id="urgencyLevel"
-            name="urgencyLevel"
-            placeholder="Low, Medium, High"
-            value={formData.urgencyLevel}
-            onChange={handleChange}
-            className="record-input"
-          /> */}
         </div>
 
         <div className="form-field">
