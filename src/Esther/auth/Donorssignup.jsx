@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../Esther/styles/donorssign.css';
 import { Link, useNavigate } from 'react-router';
-import { handleSignup } from '../../global/Api';
 import FadeLoader from 'react-spinners/CircleLoader'
 import { toast } from 'sonner';
+import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
+import axios from 'axios';
+import { LuEyeClosed, LuEye } from "react-icons/lu";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Donorssignup = () => {
   const [click,setClick] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({
     fullName: "",
@@ -17,13 +18,16 @@ const Donorssignup = () => {
     password: "",
     bloodType: "",
     location: "",
-    age: 0,
+    age: 18,
   });
 
   console.log(userData)
 
+  const [showPassword1, setShowPassword1] = useState(true)
+  const [showPassword2, setShowPassword2] = useState(true)
   const [confirmPassword, setConfirmPassword] = useState("");
   const nav = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,8 +39,19 @@ const Donorssignup = () => {
       toast.error("Please input all field")
       return
     }
-
-    handleSignup(userData, Base_Url, setIsLoading, nav);
+      setIsLoading(true);
+      try {
+        const res = await axios.post(`${Base_Url}/register`, userData);
+        toast.success(res.data.message);
+        setTimeout(() => {
+          nav("/checkmail");
+        }, 1000);
+        return res.data.message;
+      } catch (err) {
+        toast.error(err?.response?.data?.message);
+      } finally {
+        setIsLoading(false);
+      }
   };
 
   return (
@@ -51,6 +66,7 @@ const Donorssignup = () => {
           <Link to="/">
             <img src="images/logo.png" alt="Logo" className='donorsignlogo' />
           </Link>
+          <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
         </div>
         <div className='donorsigninfo1'>
           <h1>REGISTER AS A DONOR</h1>
@@ -70,6 +86,7 @@ const Donorssignup = () => {
             <p>AGE</p>
             <input
               type="number"
+              min={18}
               placeholder='AGE'
               className='donorssigninput'
               value={userData.age}
@@ -135,22 +152,30 @@ const Donorssignup = () => {
 
           <div className='donorsigninputwrapper'>
             <p>CREATE PASSWORD</p>
+            <div className="inputAndIcon">
             <input
-              type="password"
-              className='donorssigninput'
+              type={showPassword1? "password" : "text"}
+              className='donorssignpasswordinput'
+              placeholder='Password'
               value={userData.password}
               onChange={(e) => setUserData((prev) => ({ ...prev, password: e.target.value }))}
             />
+            {showPassword1? <LuEyeClosed onClick={()=> setShowPassword1(false)}/> : <LuEye onClick={()=> setShowPassword1(true)}/>}
+            </div>
           </div>
 
           <div className='donorsigninputwrapper'>
             <p>CONFIRM PASSWORD</p>
+            <div className="inputAndIcon">
             <input
-              type="password"
-              className='donorssigninput'
+              type={showPassword2? "password" : "text"}
+              className='donorssignpasswordinput'
+              placeholder='Confirm Password'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            {showPassword2? <LuEyeClosed onClick={()=> setShowPassword2(false)}/> : <LuEye onClick={()=> setShowPassword2(true)}/>}
+            </div>
           </div>
 
           <div className='checkboxwrapper'>

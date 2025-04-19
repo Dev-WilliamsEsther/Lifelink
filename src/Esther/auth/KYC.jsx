@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../Esther/styles/kyc.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
 
 const KYC = () => {
   const nav = useNavigate();
@@ -11,6 +12,7 @@ const KYC = () => {
       </div>
       <div className='kycinfowrap'>
         <div className='kyclogohold'>
+        <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
           <Link to="/">
             <img src="images/logo.png" alt="Logo" className='kyclogo'/>
           </Link>

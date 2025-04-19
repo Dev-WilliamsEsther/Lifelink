@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 import "./settingsPage.css";
-import { donorSettings } from "../../global/Api";
 import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 import axios from "axios";
 import { FaCamera } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "../../global/Slice";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -24,11 +25,12 @@ const SettingsPage = () => {
   console.log(newPassword);
 
   const [passwordLoading, setPasswordLoading] = useState(false);
-
   const [loading, setLoading] = useState(false);
-  const token = JSON.parse(localStorage.getItem("userData"))?.data?.token;
+  const dispatch = useDispatch()
 
-  const handleUpdateProfile = () => {
+  const token = useSelector((state) => state?.token);
+
+  const handleUpdateProfile = async () => {
     if (
       !userData.fullName &&
       !userData.gender &&
@@ -41,7 +43,20 @@ const SettingsPage = () => {
       toast.error("Please input fields");
       return;
     }
-    donorSettings(Base_Url, token, userData, setUserData, setLoading);
+    setLoading(true);
+    try {
+      const res = await axios.put(`${Base_Url}/update-profile`, userData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      toast.success(res?.data?.message);
+      setUserData("");
+      dispatch(logIn(res?.data?.data))
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleResetPassword = async () => {
@@ -68,6 +83,7 @@ const SettingsPage = () => {
       setPasswordLoading(false);
     }
   };
+
   const fileInputRef = useRef(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
@@ -78,7 +94,7 @@ const SettingsPage = () => {
 
     if (file) {
       setProfilePicture(file);
-      setImagePreview(URL.createObjectURL(file)); 
+      setImagePreview(URL.createObjectURL(file));
     } else {
       setProfilePicture(null);
       setImagePreview(null);
@@ -150,15 +166,18 @@ const SettingsPage = () => {
             }
           />
           <label>Gender</label>
-          <input
-            type="text"
+          <select
             className="settingInputs"
-            placeholder="Male/Female"
             value={userData.gender}
             onChange={(e) =>
               setUserData({ ...userData, gender: e.target.value })
             }
-          />
+          >
+            <option value="">--Male/Female--</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+
           <label>Location</label>
           <input
             type="text"
@@ -198,15 +217,23 @@ const SettingsPage = () => {
             onChange={(e) => setUserData({ ...userData, age: e.target.value })}
           />
           <label>Blood Type</label>
-          <input
-            type="text"
+          <select
             className="settingInputs"
-            placeholder="A+"
             value={userData.bloodType}
             onChange={(e) =>
               setUserData({ ...userData, bloodType: e.target.value })
             }
-          />
+          >
+            <option value="">-- Select Blood Type --</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
 
           <button
             className="editProfileButton"

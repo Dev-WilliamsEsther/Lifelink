@@ -53,9 +53,9 @@ label {
   font-weight: bold;
 }
 
-.currency-input input {
+/* .currency-input input {
   padding-left: 25px;
-}
+} */
 
 .submit-button {
   display: inline-block;

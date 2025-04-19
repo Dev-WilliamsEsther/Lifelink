@@ -4,13 +4,22 @@ import './index.css'
 import App from './App.jsx'
 import UserProvider from './global/UseUser.jsx'
 import { Toaster } from 'sonner'
+import {Provider} from "react-redux";
+import {store} from "./global/store"
+import {persistor} from "./global/store";
+import { PersistGate } from 'redux-persist/integration/react'
+import LoadComponents from './components/componentsLoadScreen/LoadComponents.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Provider store={store}>
+    <PersistGate loading={<LoadComponents/>} persistor={persistor}>
     <UserProvider>
     <Toaster richColors position="top-center"/>
      <App />
     </UserProvider>
+    </PersistGate>
+    </Provider>
   </StrictMode>,
 )

@@ -5,12 +5,16 @@ import { IoSearchOutline } from "react-icons/io5";
 import { Drawer } from 'antd';
 import { GoUnread } from "react-icons/go";
 import { useNavigate } from 'react-router';
-import { useHospitalInfo, useUserInfo } from '../../global/UseUser';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const Base_Url = import.meta.env.VITE_BASEURL
 
 const DashBoardHeader = () => {
+
+  const loggedInUser= useSelector((state)=> state?.loggedInUser)
+  console.log(loggedInUser)
+
   const [notificationSideBar, setNotificationSideBar] = useState(false);
   const [openedMessageIndex, setOpenedMessageIndex] = useState(null);
   const [notifications, setNotifications] = useState([])
@@ -21,16 +25,12 @@ const DashBoardHeader = () => {
 
   const nav = useNavigate()
 
-  const { hospitalInfo } = useHospitalInfo();
-  const { userInfo } = useUserInfo();
-
-  const headerNameSplit = userInfo?.fullName?.split(" ");
+  const headerNameSplit = loggedInUser?.fullName?.split(" ");
   const headerNamePrompt = headerNameSplit?.slice(0);
 
-  const hospitalHeaderNameSplit = hospitalInfo?.fullName?.split(" ");
+  const hospitalHeaderNameSplit = loggedInUser?.fullName?.split(" ");
   const hospitalHeaderNamePrompt = hospitalHeaderNameSplit?.slice(0);
-
-  const token = JSON.parse(localStorage.getItem("userData"))?.data?.token;
+  const token = useSelector((state)=> state?.token)
 
   const getDonorNotification = async () => {
     try {
@@ -69,7 +69,7 @@ const DashBoardHeader = () => {
         />
         <div className="profilePicture">
           {
-            userInfo?.profilePics ? <img src={userInfo?.profilePics} alt="profile Picture" className='profileAvatar'/> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar'/> 
+            loggedInUser?.profilePics ? <img src={loggedInUser?.profilePics} alt="profile Picture" className='profileAvatar'/> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar'/> 
           }
         </div>
       </div>

@@ -38,6 +38,10 @@ import FindHospitalPage from "./Adio/pages/FindHospitalPage";
 import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
 import RequestHistory from "./Davidson/pages/RequestHistory";
 import ForgotPassword from "./Esther/auth/ForgotPassword";
+import VerifyMail from "./Esther/auth/VerifyMail";
+import NotFound from "./components/404/404";
+import PaymentStatus from "./Esther/pages/PaymentStatus";
+import CheckMail from "./Esther/auth/CheckMail";
 
 const App = () => {
 
@@ -45,6 +49,7 @@ const App = () => {
     {
       path:"/",
       element:<Scrolltop/>,
+      errorElement: <NotFound/>,
       children:[
         {
       path: "",
@@ -57,7 +62,9 @@ const App = () => {
     },
     {
       path: "/dashboard",
-      element: <DashboardLayout />,
+      element: <PrivateRoutes>
+        <DashboardLayout />
+        </PrivateRoutes>,
       children: [
         { path: "", element: <ProfilePage /> },
         { path: "findhospital", element: <FindHospitalPage /> },
@@ -75,12 +82,14 @@ const App = () => {
         { path: "adminblacklist", element: <Blacklist /> },
       ]
     },
-    { path: "/private", element: <PrivateRoutes /> },
     { path: "/authentry", element: <Authentry /> },
     { path: "/signup", element: <Authentry type="signup" /> },
     { path: "/login", element: <Authentry type="login" /> },
     { path: "/hospitalsignup", element: <Hospitalsignup /> },
     { path: "/hospitallogin", element: <Hospitallogin /> },
+    { path: "/verifymail/:token", element: <VerifyMail /> },
+    { path: "/checkmail", element: <CheckMail /> },
+    { path: "/paymentcheck", element: <PaymentStatus /> },
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
     { path: "/resetpassword/:token", element: <Resetpassword /> },
@@ -90,7 +99,7 @@ const App = () => {
     { path: "/donorterms", element: <Donorterms /> },
     { path: "/adminsignin", element: <Adminsignin /> },
     { path: "/adminlogin", element: <Adminlogin /> },
-    { path: "/adminreset", element: <Adminreset /> }
+    { path: "/adminreset", element: <Adminreset /> },
       ]
     },
   ]);

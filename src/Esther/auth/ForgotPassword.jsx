@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../Esther/styles/donorslog.css';
 import FadeLoader from 'react-spinners/CircleLoader';
 import { toast } from 'sonner';
+import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -38,6 +39,7 @@ const ForgotPassword = () => {
           <Link to="/">
             <img src="images/logo.png" alt="Logo" className="donorloginlogo" />
           </Link>
+          <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
         </div>
 
         <div className="donorlogininfo1">

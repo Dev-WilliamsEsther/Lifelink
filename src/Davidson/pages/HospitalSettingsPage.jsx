@@ -47,7 +47,7 @@ const HospitalSettingsPage = () => {
             placeholder="Example@gmail.com"
             className="hospitalsettingInputs"
           />
-          <label>Blood Type</label>
+          <label>Blood type</label>
           <input
             type="text"
             placeholder="A+"
