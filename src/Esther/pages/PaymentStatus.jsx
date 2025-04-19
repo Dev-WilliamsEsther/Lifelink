@@ -1,6 +1,6 @@
 import '../styles/paymentStatus.css';
 
-export default function PaymentStatus({ status }) {
+export default function PaymentStatus() {
   const isSuccess = status === 'success';
 
   return (
