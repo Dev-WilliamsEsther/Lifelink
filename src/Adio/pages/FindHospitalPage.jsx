@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./findHospitalPage.css";
 import HospitalCard from "../../components/hospitalCard/HospitalCard";
-import { getListOfHospitals } from "../../global/Api";
 import LoadComponents from "../../components/componentsLoadScreen/LoadComponents";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -23,16 +24,28 @@ const FindHospitalPage = () => {
 
   console.log("hospitals",listOfHospitals)
 
-  const token = JSON.parse(localStorage.getItem("userData"))?.data?.token;
+  const token = useSelector((state)=> state.loggedInUser?.token)
 
 
-  const getHospitals = () => {
-    getListOfHospitals(setIsLoading, Base_Url, setListOfHospitals, token)
-  }
+ const getListOfHospitals = async () => {
+      setIsLoading(true);
+      try {
+        const res = await axios.get(`${Base_Url}/hospitals`, {
+          headers : {
+            Authorization : `Bearer ${token}`
+          }
+        });
+        console.log("List of Hospitals", res)
+        setListOfHospitals(res?.data?.data);
+        setIsLoading(false)
+      } catch (err) {
+        console.log(err)
+        setIsLoading(false)
+      }
+    };
 
   useEffect(() => {
-    console.log('red dick')
-    getHospitals()
+    getListOfHospitals()
   }, [])
 
 

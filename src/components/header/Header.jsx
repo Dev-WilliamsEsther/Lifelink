@@ -9,8 +9,8 @@ import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
-import { useUser, useUserInfo } from "../../global/UseUser";
 import { handleLogout } from "../../global/Api";
+import { useSelector } from "react-redux";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -18,7 +18,7 @@ const Header = () => {
   const [openSideDrawer, setOpenSideDrawer] = useState(false);
   const [logoutPopUp, setLogoutPopUp] = useState(false);
 
-  const isSignedIn = JSON.parse(localStorage.getItem("userData"));
+  const isSignedIn = useSelector((state)=> state?.loggedInUser)
 
   const link = [
     { name: "home", path: "/" },
@@ -29,6 +29,10 @@ const Header = () => {
   const location = useLocation();
 
   const [isFixed, setIsFixed] = useState(false);
+  const nav = useNavigate();
+  const token = isSignedIn?.token;
+  const userInfo = isSignedIn?.data
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,12 +48,6 @@ const Header = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const nav = useNavigate();
-
-  const { user } = useUser();
-  const token = user?.data?.token;
-  const { userInfo } = useUserInfo();
 
 
   const handleSubmit = () => {
@@ -77,7 +75,7 @@ const Header = () => {
               ))}
             </ul>
           </div>
-          {isSignedIn ? (
+          {token ? (
             <div className="headerProfilePic" onClick={() => nav("/dashboard")}>
               {
                 userInfo?.profilePics ? <img src={userInfo?.profilePics} alt="profile Picture" className='profileAvatar' /> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar' />

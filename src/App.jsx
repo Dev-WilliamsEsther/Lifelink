@@ -38,6 +38,8 @@ import FindHospitalPage from "./Adio/pages/FindHospitalPage";
 import HospitalSettingsPage from "./Davidson/pages/HospitalSettingsPage";
 import RequestHistory from "./Davidson/pages/RequestHistory";
 import ForgotPassword from "./Esther/auth/ForgotPassword";
+import VerifyMail from "./Esther/auth/VerifyMail";
+import NotFound from "./components/404/404";
 
 const App = () => {
 
@@ -45,6 +47,7 @@ const App = () => {
     {
       path:"/",
       element:<Scrolltop/>,
+      errorElement: <NotFound/>,
       children:[
         {
       path: "",
@@ -83,6 +86,7 @@ const App = () => {
     { path: "/login", element: <Authentry type="login" /> },
     { path: "/hospitalsignup", element: <Hospitalsignup /> },
     { path: "/hospitallogin", element: <Hospitallogin /> },
+    { path: "/verifymail", element: <VerifyMail /> },
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
     { path: "/resetpassword/:token", element: <Resetpassword /> },

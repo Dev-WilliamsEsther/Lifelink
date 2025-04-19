@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import '../../Esther/styles/donorssign.css';
 import { Link, useNavigate } from 'react-router';
-import { handleSignup } from '../../global/Api';
 import FadeLoader from 'react-spinners/CircleLoader'
 import { toast } from 'sonner';
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../global/Slice';
+import axios from 'axios';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Donorssignup = () => {
   const [click,setClick] = useState(false);
-
+  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({
     fullName: "",
@@ -26,6 +28,7 @@ const Donorssignup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const nav = useNavigate();
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,8 +39,20 @@ const Donorssignup = () => {
       toast.error("Please input all field")
       return
     }
-
-    handleSignup(userData, Base_Url, setIsLoading, nav);
+      setIsLoading(true);
+      try {
+        const res = await axios.post(`${Base_Url}/register`, userData);
+        toast.success(res.data.message);
+        dispatch(logIn(res?.data))
+        setTimeout(() => {
+          nav("/donorslogin");
+        }, 1000);
+        return res.data.message;
+      } catch (err) {
+        toast.error(err?.response?.data?.message);
+      } finally {
+        setIsLoading(false);
+      }
   };
 
   return (

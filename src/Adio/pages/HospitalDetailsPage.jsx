@@ -6,6 +6,7 @@ import axios from 'axios';
 import LoadComponents from '../../components/componentsLoadScreen/LoadComponents';
 import { toast } from 'sonner';
 import FadeLoader from 'react-spinners/CircleLoader'
+import { useSelector } from 'react-redux';
 
 
 const Base_Url = import.meta.env.VITE_BASEURL;
@@ -16,9 +17,10 @@ const HospitalDetailsPage = () => {
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState([]);
 
+  console.log(anHospital)
 
+  const token = useSelector((state)=> state?.loggedInUser?.token)
   const { hospitalId } = useParams();
-  const token = JSON.parse(localStorage.getItem("userData"))?.data?.token;
   const [scheduleData, setScheduleData] = useState({
     date: "",
     hospitalId: ""
@@ -83,7 +85,7 @@ const HospitalDetailsPage = () => {
             <p>Name: <b>{anHospital?.fullName}</b></p>
             <p>Location: <b>{anHospital?.location}</b></p>
             <p>Blood group needed: <b>{anHospital?.bloodGroupNeeded || 'A+'}</b></p>
-            <p>Contact: <b>{anHospital?.phone}</b></p>
+            <p>Contact: <b>{anHospital?.phone? anHospital?.phone : "-"}</b></p>
             <p>Operating Hours: <b>{anHospital?.operatingHours || 'Mon-Fri, 8AM - 5PM'}</b></p>
           </div>
           <button onClick={() => setVolunteerPopUp(true)}>Volunteer to Donate</button>
