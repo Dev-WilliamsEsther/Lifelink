@@ -3,8 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const PrivateRoutes = ({ children }) => {
-  const user = useSelector((state) => state?.loggedInUser);
-  const token = user?.token || user?.data?.token;
+  const token = useSelector((state) => state?.token);
+  // const token = user?.token || user?.data?.token;
 
   console.log("Our user token:", token);
 

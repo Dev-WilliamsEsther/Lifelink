@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/verifyMail.css';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 export default function VerifyMail() {
   const [status, setStatus] = useState('loading');
 
+  const {token} = useParams()
+
+  const verifyEmail = async()=>{
+    try{
+    }catch(err){
+    }
+  }
+
   useEffect(() => {
-    // simulate backend verification
     const timer = setTimeout(() => {
       setStatus('success');
     }, 2000);
@@ -33,7 +40,7 @@ export default function VerifyMail() {
             <div className="checkmark">&#10004;</div>
             <h2>Email Verified!</h2>
             <p>Your email has been successfully verified.</p>
-            <button onClick={()=> nav('/authentry')}>Go to Login</button>
+            <button onClick={()=> nav('/login')}>Go to Login</button>
           </>
         )}
       </div>

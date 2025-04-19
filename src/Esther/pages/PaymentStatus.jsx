@@ -1,11 +1,14 @@
 import '../styles/paymentStatus.css';
 
-export default function PaymentStatus({ status }) {
+export default function PaymentStatus() {
   const isSuccess = status === 'success';
 
   return (
     <div className="payment-wrapper">
       <div className={`payment-card ${isSuccess ? 'success' : 'failed'}`}>
+        <div className="PaymentStatuslogoWrap">
+          <img src="/images/logo.png" alt="Logo" className="" />
+        </div>
         <img
           src={isSuccess ? '/images/Transaction Successful.png' : '/images/Transaction Failed.png'}
           alt={isSuccess ? 'Payment Success' : 'Payment Failed'}

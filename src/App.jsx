@@ -82,15 +82,14 @@ const App = () => {
         { path: "adminblacklist", element: <Blacklist /> },
       ]
     },
-    // { path: "/private", element: <PrivateRoutes /> },
     { path: "/authentry", element: <Authentry /> },
     { path: "/signup", element: <Authentry type="signup" /> },
     { path: "/login", element: <Authentry type="login" /> },
     { path: "/hospitalsignup", element: <Hospitalsignup /> },
     { path: "/hospitallogin", element: <Hospitallogin /> },
-    { path: "/verifymail", element: <VerifyMail /> },
+    { path: "/verifymail/:token", element: <VerifyMail /> },
     { path: "/checkmail", element: <CheckMail /> },
-    { path: "/paymentStatus", element: <PaymentStatus /> },
+    { path: "/paymentcheck", element: <PaymentStatus /> },
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
     { path: "/resetpassword/:token", element: <Resetpassword /> },
@@ -100,7 +99,7 @@ const App = () => {
     { path: "/donorterms", element: <Donorterms /> },
     { path: "/adminsignin", element: <Adminsignin /> },
     { path: "/adminlogin", element: <Adminlogin /> },
-    { path: "/adminreset", element: <Adminreset /> }
+    { path: "/adminreset", element: <Adminreset /> },
       ]
     },
   ]);

@@ -3,7 +3,7 @@ import "../../Esther/styles/hospitalslog.css";
 import { Link, useNavigate } from "react-router-dom";
 import FadeLoader from "react-spinners/CircleLoader";
 import {useDispatch} from 'react-redux'
-import { logIn } from "../../global/Slice";
+import { logIn, saveToken } from "../../global/Slice";
 import axios from "axios";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
@@ -36,7 +36,8 @@ const Hospitallogin = () => {
         const message = res?.data?.data?.message || "Login successful";
         console.log("Login successful:", message);
         console.log("hospital ress", res)
-        dispatch(logIn(res?.data))
+        dispatch(logIn(res?.data?.data))
+        dispatch(saveToken(res?.data?.token))
     
         setTimeout(() => {
           nav("/dashboard");

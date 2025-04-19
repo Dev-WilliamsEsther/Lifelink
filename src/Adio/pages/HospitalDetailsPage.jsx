@@ -20,7 +20,7 @@ const HospitalDetailsPage = () => {
   console.log(anHospital);
 
 
-  const token = useSelector((state) => state?.loggedInUser?.token);
+  const token = useSelector((state)=> state?.token)
   const { hospitalId } = useParams();
   const [scheduleData, setScheduleData] = useState({
     date: "",

@@ -28,7 +28,7 @@ const RequestPage = () => {
   };
 
   const disabledDate = (current) => {
-    
+
     return current && current < dayjs().endOf("day");
   };
   const [formData, setFormData] = useState({
@@ -38,12 +38,12 @@ const RequestPage = () => {
     urgencyLevel: "",
     amount: null,
   });
-  const userToken = useSelector((state) => state?.loggedInUser?.token);
+  const userToken = useSelector((state) => state?.token);
 
   console.log(formData);
 
   const handleChange = (e) => {
-    
+
     if (e.$isDayjsObject) {
       setFormData((prev) => ({
         ...prev,
@@ -68,7 +68,7 @@ const RequestPage = () => {
     ) {
       return toast.error("Please fill a fields");
     }
- 
+
 
     const url =
       "https://lifelink-7pau.onrender.com/api/v1/hospital/request-blood";
@@ -97,6 +97,7 @@ const RequestPage = () => {
     } catch (err) {
       console.log(err);
       toast.error(err?.response?.data?.message);
+
     }
   };
   5;
@@ -137,6 +138,7 @@ const RequestPage = () => {
 
         <div className="form-field">
           <label htmlFor="preferredDate">Preferred Date</label>
+
           <DatePicker
             onChange={handleChange}
             disabledDate={disabledDate}
@@ -159,6 +161,7 @@ const RequestPage = () => {
             <option value="medium">Medium</option>
             <option value="low">Low</option>
           </select>
+
         </div>
 
         <div className="form-field">

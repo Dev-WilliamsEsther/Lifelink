@@ -24,7 +24,7 @@ const FindHospitalPage = () => {
 
   console.log("hospitals",listOfHospitals)
 
-  const token = useSelector((state)=> state.loggedInUser?.token)
+  const token = useSelector((state)=> state?.token)
 
 
  const getListOfHospitals = async () => {
