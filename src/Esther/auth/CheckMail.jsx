@@ -1,4 +1,4 @@
-import '../styles/checkMail.css';
+import '../styles/checkmail.css';
 
 export default function CheckMail() {
   return (
