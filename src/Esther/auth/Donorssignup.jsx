@@ -45,7 +45,7 @@ const Donorssignup = () => {
         toast.success(res.data.message);
         dispatch(logIn(res?.data))
         setTimeout(() => {
-          nav("/donorslogin");
+          nav("/checkmail");
         }, 1000);
         return res.data.message;
       } catch (err) {

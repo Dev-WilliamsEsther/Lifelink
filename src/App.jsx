@@ -40,6 +40,8 @@ import RequestHistory from "./Davidson/pages/RequestHistory";
 import ForgotPassword from "./Esther/auth/ForgotPassword";
 import VerifyMail from "./Esther/auth/VerifyMail";
 import NotFound from "./components/404/404";
+import PaymentStatus from "./Esther/pages/PaymentStatus";
+import CheckMail from "./Esther/auth/CheckMail";
 
 const App = () => {
 
@@ -87,6 +89,8 @@ const App = () => {
     { path: "/hospitalsignup", element: <Hospitalsignup /> },
     { path: "/hospitallogin", element: <Hospitallogin /> },
     { path: "/verifymail", element: <VerifyMail /> },
+    { path: "/checkmail", element: <CheckMail /> },
+    { path: "/paymentStatus", element: <PaymentStatus /> },
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
     { path: "/resetpassword/:token", element: <Resetpassword /> },
