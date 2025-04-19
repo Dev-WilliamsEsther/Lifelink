@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./requesthistory.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const RequestHistory = () => {
   const [requestData, setRequestData] = useState([]);
-  const userData = JSON.parse(localStorage.getItem("userData"));
+  // const userData = JSON.parse(localStorage.getItem("userData"));
+  const userToken = useSelector((state) => state?.loggedInUser?.token);
+
   const Base_Url = import.meta.env.VITE_BASEURL;
 
-  console.log(userData);
+  // console.log(userData);
   const headers = {
-    Authorization: `Bearer ${userData?.data?.token}`,
+    Authorization: `Bearer ${userToken}`,
   };
   const fetchRequest = async () => {
     try {

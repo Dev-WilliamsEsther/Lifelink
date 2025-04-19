@@ -1,17 +1,55 @@
 import { useState } from "react";
 import "./requestpage.css";
 import axios from "axios";
+import { DatePicker } from "antd";
+import dayjs from "dayjs";
+import { toast } from "sonner";
+import { useSelector } from "react-redux";
 
 const RequestPage = () => {
+  const bloodGroups = [
+    { label: "A+", value: "A+" },
+    { label: "A-", value: "A-" },
+    { label: "B+", value: "B+" },
+    { label: "B-", value: "B-" },
+    { label: "AB+", value: "AB+" },
+    { label: "AB-", value: "AB-" },
+    { label: "O+", value: "O+" },
+    { label: "O-", value: "O-" },
+  ];
+
+  const [dateString, setDateString] = useState("");
+  const onChangeDate = (date) => {
+    if (date) {
+      setDateString(date.format("YYYY-MM-DD")); // e.g., "2025-04-20"
+    } else {
+      console.log(null); // for when the date is cleared
+    }
+  };
+
+  const disabledDate = (current) => {
+    // Can not select days before today and today
+    return current && current < dayjs().endOf("day");
+  };
   const [formData, setFormData] = useState({
     bloodGroup: "",
     numberOfPints: null,
-    preferredDate: "",
+    preferredDate: dateString,
     urgencyLevel: "",
     amount: null,
   });
+  const userToken = useSelector((state) => state?.loggedInUser?.token);
+
+  console.log(formData);
 
   const handleChange = (e) => {
+    // console.log(e.$isDayjsObject)
+    if (e.$isDayjsObject) {
+      setFormData((prev) => ({
+        ...prev,
+        preferredDate: e.format("YYYY-MM-DD"),
+      }));
+    }
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -21,24 +59,34 @@ const RequestPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const token = userData?.data?.token;
+    if (
+      !formData.amount &&
+      !formData.bloodGroup &&
+      !formData.numberOfPints &&
+      !formData.urgencyLevel &&
+      !formData.preferredDate
+    ) {
+      return toast.error("Please fill a fields");
+    }
+    // const userData = JSON.parse(localStorage.getItem("userData"));
+    // const token = userData?.data?.token;
 
     const url =
       "https://lifelink-7pau.onrender.com/api/v1/hospital/request-blood";
-
+    toast.loading("Requesting...");
     try {
       const res = await axios.post(url, formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${userToken}`,
           "Content-Type": "application/json",
         },
       });
 
-      console.log("Request submitted:", res);
+      console.log(res);
       if (res.status === 201) {
-        alert("Blood request successfully posted!");
+        toast.dismiss()
+        // alert("Blood request successfully posted!");
+        toast.success(res?.data?.message)
 
         setFormData({
           bloodGroup: "",
@@ -49,11 +97,10 @@ const RequestPage = () => {
         });
       }
     } catch (err) {
-      console.error(
-        "Error submitting request:",
-        err.response?.data || err.message
-      );
-      alert("Failed to submit request. Please try again.");
+      console.log(err);
+      toast.error(err?.response?.data?.message);
+
+      // toast.error("Failed to submit request. Please try again.");
     }
   };
   5;
@@ -64,7 +111,19 @@ const RequestPage = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-field">
           <label htmlFor="bloodGroup">Blood Group Needed</label>
-          <input
+
+          <select
+            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2"
+            onChange={handleChange}
+            id="bloodGroup"
+            name="bloodGroup"
+          >
+            <option value="">Select your blood group</option>
+            {bloodGroups.map((item, index) => (
+              <option value={item.value}>{item?.value}</option>
+            ))}
+          </select>
+          {/* <input
             type="text"
             id="bloodGroup"
             name="bloodGroup"
@@ -72,7 +131,7 @@ const RequestPage = () => {
             value={formData.bloodGroup}
             onChange={handleChange}
             className="record-input"
-          />
+          /> */}
         </div>
 
         <div className="form-field">
@@ -80,17 +139,18 @@ const RequestPage = () => {
           <input
             type="number"
             id="pints"
+            min={1}
             name="numberOfPints"
             placeholder="3 Pints of blood"
             value={formData.numberOfPints}
             onChange={handleChange}
-            className="record-input"
+            className="record-input w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
           />
         </div>
 
         <div className="form-field">
           <label htmlFor="preferredDate">Preferred Date</label>
-          <input
+          {/* <input
             type="date"
             id="preferredDate"
             name="preferredDate"
@@ -98,12 +158,30 @@ const RequestPage = () => {
             value={formData.preferredDate}
             onChange={handleChange}
             className="record-input"
+          /> */}
+          <DatePicker
+            onChange={handleChange}
+            disabledDate={disabledDate}
+            id="preferredDate"
+            name="preferredDate"
+            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
           />
         </div>
 
         <div className="form-field">
           <label htmlFor="urgencyLevel">Urgency Level</label>
-          <input
+          <select
+            id="urgencyLevel"
+            name="urgencyLevel"
+            onChange={handleChange}
+            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
+          >
+            <option value="">Select Low, Medium, High</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+          {/* <input
             type="text"
             id="urgencyLevel"
             name="urgencyLevel"
@@ -111,7 +189,7 @@ const RequestPage = () => {
             value={formData.urgencyLevel}
             onChange={handleChange}
             className="record-input"
-          />
+          /> */}
         </div>
 
         <div className="form-field">
@@ -121,13 +199,14 @@ const RequestPage = () => {
           <div className="currency-input">
             <span className="currency-symbol"></span>
             <input
-              type="text"
+              type="number"
               id="amount"
               name="amount"
+              min={0}
               placeholder="₦0000"
               value={formData.amount}
               onChange={handleChange}
-              className="record-input"
+              className="record-input w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
             />
           </div>
         </div>
