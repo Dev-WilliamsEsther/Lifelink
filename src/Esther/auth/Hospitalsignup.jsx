@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import '../../Esther/styles/hospitalsign.css'
 import { Link, useNavigate } from 'react-router-dom'
 import FadeLoader from 'react-spinners/CircleLoader'
-// import { handleHospitalSignup } from '../../global/Api';
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
 import { LuEye, LuEyeClosed } from 'react-icons/lu';
 import { toast } from 'sonner';
@@ -15,7 +14,6 @@ const Hospitalsignup = () => {
   const [click,setClick] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [hospitalRess, setHospitalRess] = useState("")
   const nav = useNavigate();
   
   
@@ -36,26 +34,18 @@ const Hospitalsignup = () => {
   const handleSubmit = async()=>{
     console.log("first")
     if(hospitalInput.password !== confirmPassword) {
-      // setRess('Password do not match');
       return toast.error('please input all fields');
     }if( !hospitalInput.fullName || !hospitalInput.email || !hospitalInput.password || !hospitalInput.location || !hospitalInput.city || !hospitalInput.phone) {
-      // setRess('please input all field!')
       return toast.error('please input all fields')
     }
    
       setIsLoading(true);
       try {
         const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
-        // console.log("signup successful:", res?.data?.message);
-        // console.log(res);
-        // setHospitalRess(res?.data?.message);
-        // setTimeout(() => {
-        //   nav("/hospitallogin");
-        // }, 1000);
+
         if(res?.data?.status ===201) toast.success(res?.data?.message)
         return res.data.message;
       } catch (err) {
-        // console.error("Login error:", err?.response?.damessageta || err);
         console.log(err)
         toast.error(err?.response?.data?.message)
       } finally {
