@@ -33,7 +33,7 @@ export default function VerifyMail() {
             <div className="checkmark">&#10004;</div>
             <h2>Email Verified!</h2>
             <p>Your email has been successfully verified.</p>
-            <button onClick={()=> nav('/authentry')}>Go to Login</button>
+            <button onClick={()=> nav('/login')}>Go to Login</button>
           </>
         )}
       </div>

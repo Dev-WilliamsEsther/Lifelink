@@ -90,7 +90,7 @@ const App = () => {
     { path: "/hospitallogin", element: <Hospitallogin /> },
     { path: "/verifymail", element: <VerifyMail /> },
     { path: "/checkmail", element: <CheckMail /> },
-    { path: "/paymentStatus", element: <PaymentStatus /> },
+    { path: "/paymentstatus", element: <PaymentStatus /> },
     { path: "/donorslogin", element: <Donorslogin /> },
     { path: "/donorssignup", element: <Donorssignup /> },
     { path: "/resetpassword/:token", element: <Resetpassword /> },
