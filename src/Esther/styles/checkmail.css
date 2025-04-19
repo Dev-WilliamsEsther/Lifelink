@@ -28,20 +28,20 @@
     margin-bottom: 25px;
   }
   
-  h1 {
+  .checkmail-wrapper h1 {
     font-size: 28px;
     margin-bottom: 15px;
     color: #c0392b;
   }
   
-  p {
+  .checkmail-wrapper p {
     font-size: 16px;
     color: #ccc;
     margin-bottom: 25px;
     line-height: 1.6;
   }
   
-  button {
+  .checkmail-wrapper button {
     background-color: #c0392b;
     color: #fff;
     padding: 12px 26px;
@@ -53,7 +53,7 @@
     transition: background-color 0.3s ease;
   }
   
-  button:hover {
+  .checkmail-wrapper button:hover {
     background-color: #b32515b4;
   }
   

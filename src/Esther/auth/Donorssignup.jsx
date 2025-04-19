@@ -4,15 +4,13 @@ import { Link, useNavigate } from 'react-router';
 import FadeLoader from 'react-spinners/CircleLoader'
 import { toast } from 'sonner';
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
-import { useDispatch } from 'react-redux';
-import { logIn } from '../../global/Slice';
 import axios from 'axios';
+import { LuEyeClosed, LuEye } from "react-icons/lu";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Donorssignup = () => {
   const [click,setClick] = useState(false);
-  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({
     fullName: "",
@@ -20,11 +18,13 @@ const Donorssignup = () => {
     password: "",
     bloodType: "",
     location: "",
-    age: 0,
+    age: 18,
   });
 
   console.log(userData)
 
+  const [showPassword1, setShowPassword1] = useState(true)
+  const [showPassword2, setShowPassword2] = useState(true)
   const [confirmPassword, setConfirmPassword] = useState("");
   const nav = useNavigate();
 
@@ -43,7 +43,6 @@ const Donorssignup = () => {
       try {
         const res = await axios.post(`${Base_Url}/register`, userData);
         toast.success(res.data.message);
-        dispatch(logIn(res?.data))
         setTimeout(() => {
           nav("/checkmail");
         }, 1000);
@@ -87,6 +86,7 @@ const Donorssignup = () => {
             <p>AGE</p>
             <input
               type="number"
+              min={18}
               placeholder='AGE'
               className='donorssigninput'
               value={userData.age}
@@ -152,22 +152,30 @@ const Donorssignup = () => {
 
           <div className='donorsigninputwrapper'>
             <p>CREATE PASSWORD</p>
+            <div className="inputAndIcon">
             <input
-              type="password"
-              className='donorssigninput'
+              type={showPassword1? "password" : "text"}
+              className='donorssignpasswordinput'
+              placeholder='Password'
               value={userData.password}
               onChange={(e) => setUserData((prev) => ({ ...prev, password: e.target.value }))}
             />
+            {showPassword1? <LuEyeClosed onClick={()=> setShowPassword1(false)}/> : <LuEye onClick={()=> setShowPassword1(true)}/>}
+            </div>
           </div>
 
           <div className='donorsigninputwrapper'>
             <p>CONFIRM PASSWORD</p>
+            <div className="inputAndIcon">
             <input
-              type="password"
-              className='donorssigninput'
+              type={showPassword2? "password" : "text"}
+              className='donorssignpasswordinput'
+              placeholder='Confirm Password'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            {showPassword2? <LuEyeClosed onClick={()=> setShowPassword2(false)}/> : <LuEye onClick={()=> setShowPassword2(true)}/>}
+            </div>
           </div>
 
           <div className='checkboxwrapper'>

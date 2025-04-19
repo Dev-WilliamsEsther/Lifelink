@@ -10,26 +10,7 @@ import { toast } from "sonner";
 
 //Hospital endPoints===============================>
 
-export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoading, setHospitalRess, nav) => {
-  setIsLoading(true);
-  try {
-    const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
-    console.log("signup successful:", res?.data?.message);
-    console.log(res);
-    setHospitalRess(res?.data?.message);
-    setTimeout(() => {
-      nav("/hospitallogin");
-    }, 1000);
-    return res.data.message;
-  } catch (err) {
-    console.error("Login error:", err?.response?.damessageta || err);
-    setRess(
-      err?.response?.data?.message || "Something went wrong during registration."
-    );
-  } finally {
-    setIsLoading(false);
-  }
-};
+
 
 
 
