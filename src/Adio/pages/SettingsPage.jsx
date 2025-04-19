@@ -4,7 +4,8 @@ import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 import axios from "axios";
 import { FaCamera } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "../../global/Slice";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -25,8 +26,9 @@ const SettingsPage = () => {
 
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch()
 
-  const token = useSelector((state) => state?.loggedInUser?.token);
+  const token = useSelector((state) => state?.token);
 
   const handleUpdateProfile = async () => {
     if (
@@ -48,6 +50,7 @@ const SettingsPage = () => {
       });
       toast.success(res?.data?.message);
       setUserData("");
+      dispatch(logIn(res?.data?.data))
     } catch (err) {
       toast.error(err?.response?.data?.message);
       console.log(err);

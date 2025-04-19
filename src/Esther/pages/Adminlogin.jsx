@@ -5,7 +5,7 @@ import FadeLoader from 'react-spinners/CircleLoader'
 import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
 import axios from 'axios'
-import { logIn } from '../../global/Slice'
+import { logIn, saveToken } from '../../global/Slice'
 
 const Base_Url = import.meta.env.VITE_BASEURL
 
@@ -29,7 +29,9 @@ const Adminlogin = () => {
       setLoadState(true)
       try{
         const res = await axios.post(`${Base_Url}/admin/login`, adminData)
-        dispatch(logIn(res))
+        console.log(res)
+        dispatch(logIn(res?.data?.data))
+        dispatch(saveToken(res?.data?.token))
         toast.success(res?.data?.message)
         nav("/dashboard")
         setLoadState(false)

@@ -27,7 +27,7 @@ const Donorslogin = () => {
     try {
       const res = await axios.post(`${Base_Url}/login`, userLoginData);
       toast.success(res?.data?.message);
-      dispatch(logIn(res?.data))
+      dispatch(logIn(res?.data?.data))
       dispatch(saveToken(res?.data?.token))
       setTimeout(() => {
         nav("/");

@@ -25,13 +25,13 @@ const DashBoardHeader = () => {
 
   const nav = useNavigate()
 
-  const headerNameSplit = loggedInUser?.data?.fullName?.split(" ");
+  const headerNameSplit = loggedInUser?.fullName?.split(" ");
   const headerNamePrompt = headerNameSplit?.slice(0);
 
-  const hospitalHeaderNameSplit = loggedInUser?.data?.fullName?.split(" ");
+  const hospitalHeaderNameSplit = loggedInUser?.fullName?.split(" ");
   const hospitalHeaderNamePrompt = hospitalHeaderNameSplit?.slice(0);
+  const token = useSelector((state)=> state?.token)
 
-  const token = loggedInUser?.token || loggedInUser?.data?.token
   const getDonorNotification = async () => {
     try {
       const ress = await axios.get(`${Base_Url}/donor/notifications`, {
@@ -69,7 +69,7 @@ const DashBoardHeader = () => {
         />
         <div className="profilePicture">
           {
-            loggedInUser?.data?.profilePics ? <img src={loggedInUser?.data?.profilePics} alt="profile Picture" className='profileAvatar'/> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar'/> 
+            loggedInUser?.profilePics ? <img src={loggedInUser?.profilePics} alt="profile Picture" className='profileAvatar'/> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar'/> 
           }
         </div>
       </div>

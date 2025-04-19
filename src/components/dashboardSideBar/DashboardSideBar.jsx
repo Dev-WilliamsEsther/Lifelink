@@ -24,7 +24,7 @@ const DashboardSideBar = () => {
 
   const Base_Url = import.meta.env.VITE_BASEURL;
 
-  const userData = useSelector((state) => state?.loggedInUser?.data)
+  const userData = useSelector((state) => state?.loggedInUser)
   const token = useSelector((state) => state?.token)
 
 
@@ -168,7 +168,7 @@ const DashboardSideBar = () => {
             </ul>
           ) : null}
 
-            {userData?.data?.role === "admin" ? (
+            {userData?.role === "admin" ? (
             <ul>
               <li
                 onClick={() => {

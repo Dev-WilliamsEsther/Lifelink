@@ -18,7 +18,8 @@ const Header = () => {
   const [openSideDrawer, setOpenSideDrawer] = useState(false);
   const [logoutPopUp, setLogoutPopUp] = useState(false);
 
-  const isSignedIn = useSelector((state)=> state?.loggedInUser)
+  const isSignedIn = useSelector((state)=> state?.isLoggedIn)
+  const userInfo = useSelector((state)=> state?.loggedInUser)
 
   const link = [
     { name: "home", path: "/" },
@@ -30,8 +31,8 @@ const Header = () => {
 
   const [isFixed, setIsFixed] = useState(false);
   const nav = useNavigate();
-  const token = isSignedIn?.token;
-  const userInfo = isSignedIn?.data
+  // const token = isSignedIn?.token;
+  // const userInfo = isSignedIn?.data
 
 
   useEffect(() => {
@@ -75,7 +76,7 @@ const Header = () => {
               ))}
             </ul>
           </div>
-          {token ? (
+          {isSignedIn ? (
             <div className="headerProfilePic" onClick={() => nav("/dashboard")}>
               {
                 userInfo?.profilePics ? <img src={userInfo?.profilePics} alt="profile Picture" className='profileAvatar' /> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar' />

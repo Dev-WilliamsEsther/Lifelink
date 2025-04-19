@@ -87,7 +87,7 @@ const App = () => {
     { path: "/login", element: <Authentry type="login" /> },
     { path: "/hospitalsignup", element: <Hospitalsignup /> },
     { path: "/hospitallogin", element: <Hospitallogin /> },
-    { path: "/verifymail", element: <VerifyMail /> },
+    { path: "/verifymail/:token", element: <VerifyMail /> },
     { path: "/checkmail", element: <CheckMail /> },
     { path: "/paymentcheck", element: <PaymentStatus /> },
     { path: "/donorslogin", element: <Donorslogin /> },

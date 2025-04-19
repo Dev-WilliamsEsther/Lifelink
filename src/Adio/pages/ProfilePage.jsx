@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 
 const ProfilePage = () => {
-  const loggedInUser = useSelector((state) => state?.loggedInUser?.data)
+  const loggedInUser = useSelector((state) => state?.loggedInUser)
   const nav = useNavigate();
 
   return (
@@ -23,8 +23,8 @@ const ProfilePage = () => {
         </div>
 
         <div className="profileNameWrapper">
-          <h3>{loggedInUser?.data?.fullName}</h3>
-          <p>{loggedInUser?.data?.bloodType}</p>
+          <h3>{loggedInUser?.fullName}</h3>
+          <p>{loggedInUser?.bloodType}</p>
         </div>
       </div>
 
@@ -46,10 +46,10 @@ const ProfilePage = () => {
               <p><b>Gender</b><br /> {loggedInUser?.gender ? loggedInUser?.gender : "-"}</p>
             </>
           ) : (null)}
-          {loggedInUser?.data?.role === "admin" ? (
+          {loggedInUser?.role === "admin" ? (
             <>
-              <p><b>Age</b><br /> {loggedInUser?.data?.age}</p>
-              <p><b>Blood Group</b><br /> {loggedInUser?.data?.bloodType}</p>
+              <p><b>Age</b><br /> {loggedInUser?.age}</p>
+              <p><b>Blood Group</b><br /> {loggedInUser?.bloodType}</p>
               <p><b>Gender</b><br /> {loggedInUser?.gender ? loggedInUser?.gender : "-"}</p>
             </>
           ) : (null)}
