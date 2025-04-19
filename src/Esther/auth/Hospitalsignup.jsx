@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import '../../Esther/styles/hospitalsign.css'
 import { Link, useNavigate } from 'react-router-dom'
 import FadeLoader from 'react-spinners/CircleLoader'
-import { handleHospitalSignup } from '../../global/Api';
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
+import { LuEye, LuEyeClosed } from 'react-icons/lu';
+import { toast } from 'sonner';
+import axios from 'axios';
 
 
 const Base_Url = import.meta.env.VITE_BASEURL;
@@ -12,13 +14,13 @@ const Hospitalsignup = () => {
   const [click,setClick] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [hospitalRess, setHospitalRess] = useState("")
   const nav = useNavigate();
   
   
   
-  
-  const [confirmPassword,setConfirmPassword] = useState()
+  const [showPassword1, setShowPassword1] = useState(true)
+  const [showPassword2, setShowPassword2] = useState(true)
+  const [confirmPassword,setConfirmPassword] = useState("")
   const [hospitalInput, setHospitalInput] = useState({
     fullName: "",
     email: "",
@@ -29,15 +31,27 @@ const Hospitalsignup = () => {
     role: "hospital",
   });
 
-  const handleSubmit =()=>{
+  const handleSubmit = async()=>{
+    console.log("first")
     if(hospitalInput.password !== confirmPassword) {
-      setRess('Password do not match');
-      return;
+      return toast.error('please input all fields');
     }if( !hospitalInput.fullName || !hospitalInput.email || !hospitalInput.password || !hospitalInput.location || !hospitalInput.city || !hospitalInput.phone) {
-      setRess('please input all field!')
-      return
+      return toast.error('please input all fields')
     }
-    handleHospitalSignup(hospitalInput, Base_Url, setIsLoading, setHospitalRess, nav)
+   
+      setIsLoading(true);
+      try {
+        const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
+
+        if(res?.data?.status ===201) toast.success(res?.data?.message)
+        return res.data.message;
+      } catch (err) {
+        console.log(err)
+        toast.error(err?.response?.data?.message)
+      } finally {
+        setIsLoading(false);
+      }
+    
   }
 
   return (
@@ -85,24 +99,36 @@ const Hospitalsignup = () => {
           </div>
           <div className='hossigninputwrapper'>
             <p>PHONE NUMBER</p>
-            <input type="text" placeholder='' className='hossigninput' 
+            <input type="text" placeholder='+234**********' className='hossigninput' 
             value={hospitalInput.phone}
             onChange={(e)=>setHospitalInput((prev)=> ({...prev, phone:e.target.value}))}
             />
           </div>
           <div className='hossigninputwrapper'>
             <p>CREATE PASSWORD</p>
-            <input type="password" placeholder='Password' className='hossigninput'
-            value={hospitalInput.password}
-            onChange={(e)=>setHospitalInput((prev)=> ({...prev,password:e.target.value}))}
+            <div className="inputAndIcon">
+            <input
+              type={showPassword1? "password" : "text"}
+              className='donorssignpasswordinput'
+              placeholder='Confirm Password'
+              value={hospitalInput.password}
+              onChange={(e) => setHospitalInput(prev => ({...prev, password: e.target.value}))}
             />
+            {showPassword1? <LuEyeClosed onClick={()=> setShowPassword1(false)}/> : <LuEye onClick={()=> setShowPassword1(true)}/>}
+            </div>
           </div>
           <div className='hossigninputwrapper'>
             <p>CONFIRM PASSWORD</p>
-            <input type="password" placeholder='Confirm passwod' className='hossigninput'
-            value={confirmPassword}
-            onChange={(e)=>setConfirmPassword(e.target.value)}
+            <div className="inputAndIcon">
+            <input
+              type={showPassword2? "password" : "text"}
+              className='donorssignpasswordinput'
+              placeholder='Confirm Password'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            {showPassword2? <LuEyeClosed onClick={()=> setShowPassword2(false)}/> : <LuEye onClick={()=> setShowPassword2(true)}/>}
+            </div>
           </div>
           <div className='checkboxwrapper'>
             <input type="checkbox" 
