@@ -13,6 +13,8 @@ import { PiFilesLight } from "react-icons/pi";
 import { handleLogout } from "../../global/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../global/Slice";
+import { IoIosListBox } from "react-icons/io";
+import { MdVerified } from "react-icons/md";
 
 const DashboardSideBar = () => {
   const nav = useNavigate();
@@ -22,9 +24,9 @@ const DashboardSideBar = () => {
 
   const Base_Url = import.meta.env.VITE_BASEURL;
 
-  const userData= useSelector((state)=> state?.loggedInUser?.data)
-  const token= useSelector((state)=> state?.token)
-  
+  const userData = useSelector((state) => state?.loggedInUser?.data)
+  const token = useSelector((state) => state?.token)
+
 
   const logOutFunc = () => {
     handleLogout(Base_Url, nav, token);
@@ -48,9 +50,8 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("");
                 }}
-                className={`${
-                  location.pathname === "/dashboard" ? "activeBar" : ""
-                }`}
+                className={`${location.pathname === "/dashboard" ? "activeBar" : ""
+                  }`}
               >
                 <FaUser className="sideBarIocns" color="black" />
                 Profile
@@ -59,11 +60,10 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("findhospital");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/findhospital"
+                className={`${location.pathname === "/dashboard/findhospital"
                     ? "activeBar"
                     : ""
-                }`}
+                  }`}
               >
                 <TbHomeSearch className="sideBarIocns" color="black" />
                 Find Hospital
@@ -72,9 +72,8 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("history");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/history" ? "activeBar" : ""
-                }`}
+                className={`${location.pathname === "/dashboard/history" ? "activeBar" : ""
+                  }`}
               >
                 <MdHistory className="sideBarIocns" color="black" />
                 History
@@ -83,9 +82,8 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("settings");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/settings" ? "activeBar" : ""
-                }`}
+                className={`${location.pathname === "/dashboard/settings" ? "activeBar" : ""
+                  }`}
               >
                 <IoSettingsOutline className="sideBarIocns" color="black" />
                 Settings
@@ -103,9 +101,8 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("");
                 }}
-                className={`${
-                  location.pathname === "/dashboard" ? "activeBar" : ""
-                }`}
+                className={`${location.pathname === "/dashboard" ? "activeBar" : ""
+                  }`}
               >
                 <FaUser className="sideBarIocns" color="black" />
                 Profile
@@ -114,9 +111,8 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("request");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/request" ? "activeBar" : ""
-                }`}
+                className={`${location.pathname === "/dashboard/request" ? "activeBar" : ""
+                  }`}
               >
                 <SlNote className="sideBarIocns" color="black" />
                 Make Request
@@ -125,11 +121,10 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("/dashboard/requesthistory");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/requesthistory"
+                className={`${location.pathname === "/dashboard/requesthistory"
                     ? "activeBar"
                     : ""
-                }`}
+                  }`}
               >
                 <MdHistory className="sideBarIocns" color="black" />
                 Request History
@@ -138,11 +133,10 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("appointment");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/appointment"
+                className={`${location.pathname === "/dashboard/appointment"
                     ? "activeBar"
                     : ""
-                }`}
+                  }`}
               >
                 <RiFirstAidKitLine className="sideBarIocns" color="black" />
                 Appointments
@@ -151,9 +145,8 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("records");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/records" ? "activeBar" : ""
-                }`}
+                className={`${location.pathname === "/dashboard/records" ? "activeBar" : ""
+                  }`}
               >
                 <PiFilesLight className="sideBarIocns" color="black" />
                 Records
@@ -162,9 +155,59 @@ const DashboardSideBar = () => {
                 onClick={() => {
                   nav("settings");
                 }}
-                className={`${
-                  location.pathname === "/dashboard/settings" ? "activeBar" : ""
-                }`}
+                className={`${location.pathname === "/dashboard/settings" ? "activeBar" : ""
+                  }`}
+              >
+                <IoSettingsOutline className="sideBarIocns" color="black" />
+                Settings
+              </li>
+              <li onClick={() => setDeletePopup(true)} className="logoutBtn">
+                <CiLogout className="sideBarIocns" />
+                Logout
+              </li>
+            </ul>
+          ) : null}
+
+            {userData?.data?.role === "admin" ? (
+            <ul>
+              <li
+                onClick={() => {
+                  nav("");
+                }}
+                className={`${location.pathname === "/dashboard" ? "activeBar" : ""
+                  }`}
+              >
+                <FaUser className="sideBarIocns" color="black" />
+                Profile
+              </li>
+              <li
+                onClick={() => {
+                  nav("adminblacklist");
+                }}
+                className={`${location.pathname === "/dashboard/adminblacklist"
+                    ? "activeBar"
+                    : ""
+                  }`}
+              >
+                <IoIosListBox className="sideBarIocns" color="black" />
+                Black List
+              </li>
+              <li
+                onClick={() => {
+                  nav("adminverification");
+                }}
+                className={`${location.pathname === "/dashboard/adminverification" ? "activeBar" : ""
+                  }`}
+              >
+                <MdVerified className="sideBarIocns" color="black" />
+                Verification
+              </li>
+              <li
+                onClick={() => {
+                  nav("adminsettings");
+                }}
+                className={`${location.pathname === "/dashboard/adminsettings" ? "activeBar" : ""
+                  }`}
               >
                 <IoSettingsOutline className="sideBarIocns" color="black" />
                 Settings

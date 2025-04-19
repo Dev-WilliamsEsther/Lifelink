@@ -2,7 +2,6 @@ import React from "react";
 import "../Esther/styles/landing.css";
 import Benefit from "../components/Benefit/Benefit";
 import Sponsors from "../components/Sponsors/Sponsors";
-import Whyus from "../components/whyus/Whyjoinus";
 import Whyjoinus from "../components/whyus/Whyjoinus";
 import Impacts from "../components/impacts/Impacts";
 import Testify from "../components/testify/Testify";
@@ -26,7 +25,7 @@ const LandingPage = () => {
             and blood <br /> banks, making it easier to save lives while
             ensuring you get rewarded for your generosity.
           </p>
-          <button className="landingbutton" onClick={()=> nav('/private')}>Donate</button>
+          <button className="landingbutton" onClick={()=> nav('/dashboard')}>Donate</button>
         </div>
       </div>
       <Benefit />

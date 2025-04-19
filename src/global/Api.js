@@ -5,40 +5,7 @@ import { toast } from "sonner";
 
 //Donors endPoints===============================>
 
-export const handleSignup = async (userData, Base_Url, setIsLoading, nav) => {
-  setIsLoading(true);
-  try {
-    const res = await axios.post(`${Base_Url}/register`, userData);
-    toast.success(res.data.message);
-    setTimeout(() => {
-      nav("/donorslogin");
-    }, 1000);
-    return res.data.message;
-  } catch (err) {
-    toast.error(err?.response?.data?.message);
-  } finally {
-    setIsLoading(false);
-  }
-};
 
-
-
-
-export const donorSettings = async(Base_Url, token, userData, setUserData, setLoading)=>{
-    setLoading(true);
-    try {
-      const res = await axios.put(`${Base_Url}/update-profile`, userData, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      toast.success(res?.data?.message)
-      setUserData("")
-    } catch (err) {
-      toast.error(err?.response?.data?.message);
-      console.log(err)
-    } finally {
-      setLoading(false);
-    }
-}
 
 
 //Hospital endPoints===============================>
@@ -61,25 +28,6 @@ export const handleHospitalSignup = async ( hospitalInput, Base_Url, setIsLoadin
     );
   } finally {
     setIsLoading(false);
-  }
-};
-
-
-
-export const getListOfHospitals = async (setIsLoading, Base_Url, setListOfHospitals, token) => {
-  setIsLoading(true);
-  try {
-    const res = await axios.get(`${Base_Url}/hospitals`, {
-      headers : {
-        Authorization : `Bearer ${token}`
-      }
-    });
-    console.log("List of Hospitals", res)
-    setListOfHospitals(res?.data?.data);
-    setIsLoading(false)
-  } catch (err) {
-    console.log(err)
-    setIsLoading(false)
   }
 };
 
