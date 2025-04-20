@@ -68,7 +68,7 @@ const ProfilePage = () => {
       </div>
 
       {
-        loggedInUser ? <button className="editProfileButton" onClick={() => nav('/dashboard/hospitalsettings')}>
+        loggedInUser?.role === "hospital" ? <button className="editProfileButton" onClick={() => nav('/dashboard/hospitalsettings')}>
           Edit Profile
         </button> : <button className="editProfileButton" onClick={() => nav('/dashboard/settings')}>
           Edit Profile

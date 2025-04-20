@@ -13,7 +13,6 @@ const Base_Url = import.meta.env.VITE_BASEURL
 const DashBoardHeader = () => {
 
   const loggedInUser= useSelector((state)=> state?.loggedInUser)
-  console.log(loggedInUser)
 
   const [notificationSideBar, setNotificationSideBar] = useState(false);
   const [openedMessageIndex, setOpenedMessageIndex] = useState(null);

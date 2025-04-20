@@ -153,7 +153,7 @@ const DashboardSideBar = () => {
               </li>
               <li
                 onClick={() => {
-                  nav("settings");
+                  nav("/dashboard/hospitalsettings");
                 }}
                 className={`${location.pathname === "/dashboard/settings" ? "activeBar" : ""
                   }`}
