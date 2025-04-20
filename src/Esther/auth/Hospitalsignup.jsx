@@ -42,8 +42,8 @@ const Hospitalsignup = () => {
       setIsLoading(true);
       try {
         const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
-
-        if(res?.data?.status ===201) toast.success(res?.data?.message)
+console.log(res)
+        if(res?.status ===201) toast.success(res?.data?.message)
         return res.data.message;
       } catch (err) {
         console.log(err)
@@ -92,7 +92,7 @@ const Hospitalsignup = () => {
           </div>
           <div className='hossigninputwrapper'>
             <p>EMAIL</p>
-            <input type="email" placeholder='ENTER EMAIL...' className='hossigninput'
+            <input type="email" placeholder='you@example.com' className='hossigninput'
             value={hospitalInput.email}
             onChange={(e)=>setHospitalInput((prev)=> ({...prev,email:e.target.value}))}
             />

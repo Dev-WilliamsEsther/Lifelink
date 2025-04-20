@@ -22,7 +22,6 @@ const FindHospitalPage = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [listOfHospitals, setListOfHospitals] = useState([])
 
-  console.log("hospitals",listOfHospitals)
 
   const token = useSelector((state)=> state?.token)
 
@@ -35,7 +34,6 @@ const FindHospitalPage = () => {
             Authorization : `Bearer ${token}`
           }
         });
-        console.log("List of Hospitals", res)
         setListOfHospitals(res?.data?.data);
         setIsLoading(false)
       } catch (err) {

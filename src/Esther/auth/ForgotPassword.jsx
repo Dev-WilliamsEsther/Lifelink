@@ -17,7 +17,6 @@ const ForgotPassword = () => {
     setLoadState(true)
     try {
       const res = await axios.post(`${Base_Url}/forgotPassword`, { email });
-      console.log(res);
       toast.success(res?.data?.message)
       setLoadState(false)
       return

@@ -5,6 +5,8 @@ import FadeLoader from "react-spinners/CircleLoader";
 import {useDispatch} from 'react-redux'
 import { logIn, saveToken } from "../../global/Slice";
 import axios from "axios";
+import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { toast } from "sonner";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -18,11 +20,12 @@ const Hospitallogin = () => {
   })
 
   console.log(hospitalLoginData)
+  const [showPassword1, setShowPassword1] = useState(true)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!hospitalLoginData.email || !hospitalLoginData.password) {
-      setRess("please fill all field");
+      toast.error("please fill all field");
       return;
     }
 
@@ -36,6 +39,7 @@ const Hospitallogin = () => {
         const message = res?.data?.data?.message || "Login successful";
         console.log("Login successful:", message);
         console.log("hospital ress", res)
+        toast.success(message)
         dispatch(logIn(res?.data?.data))
         dispatch(saveToken(res?.data?.token))
     
@@ -47,7 +51,7 @@ const Hospitallogin = () => {
       } catch (err) {
         const errorMsg =
           err?.response?.data?.message || "Something went wrong during login.";
-        console.error("Login error:", errorMsg);
+        toast.error(errorMsg);
         console.log(err?.response?.data?.message )
     
       } finally {
@@ -85,9 +89,16 @@ const Hospitallogin = () => {
           </div>
           <div className="hoslogininputwrapper">
             <p>ENTER PASSWORD</p>
-            <input type="password" placeholder='PASSWORD' className='hoslogininput' 
-            value={hospitalLoginData.password}
-            onChange={(e)=> setHospitalLoginData(prev => ({...prev, password: e.target.value}))}/>
+            <div className="donorlogininputAndIcon">
+            <input
+              type={showPassword1? "password" : "text"}
+              className='donorssignpasswordinput'
+              placeholder='Password'
+              value={hospitalLoginData.password}
+              onChange={(e)=> setHospitalLoginData(prev => ({...prev, password: e.target.value}))}
+            />
+            {showPassword1? <LuEyeClosed onClick={()=> setShowPassword1(false)}/> : <LuEye onClick={()=> setShowPassword1(true)}/>}
+            </div>
           </div>
 
           <button className="hosloginbtn" onClick={handleSubmit}>

@@ -39,7 +39,6 @@ const RequestPage = () => {
   });
   const userToken = useSelector((state) => state?.token);
 
-  console.log(formData);
 
   const handleChange = (e) => {
     if (e.$isDayjsObject) {
@@ -78,7 +77,6 @@ const RequestPage = () => {
         },
       });
 
-      console.log(res);
       if (res.status === 201) {
         toast.dismiss()
         toast.success(res?.data?.message)

@@ -10,7 +10,7 @@ import { VscHome } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
 import { handleLogout } from "../../global/Api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -20,6 +20,9 @@ const Header = () => {
 
   const isSignedIn = useSelector((state)=> state?.isLoggedIn)
   const userInfo = useSelector((state)=> state?.loggedInUser)
+  const token = useSelector((state)=> state?.token )
+
+  const dispatch = useDispatch()
 
   const link = [
     { name: "home", path: "/" },
@@ -31,8 +34,6 @@ const Header = () => {
 
   const [isFixed, setIsFixed] = useState(false);
   const nav = useNavigate();
-  // const token = isSignedIn?.token;
-  // const userInfo = isSignedIn?.data
 
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const Header = () => {
 
 
   const handleSubmit = () => {
-    handleLogout(Base_Url, nav, token);
+    handleLogout(Base_Url, nav, token, dispatch);
   };
 
   return (
