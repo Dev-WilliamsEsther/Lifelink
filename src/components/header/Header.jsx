@@ -122,7 +122,9 @@ const Header = () => {
                 }}
               >
                 <div className="MobileSideProfilePic">
-                  <img src="/images/default profile pic.jpg" alt="" />
+                  {
+                    userInfo.profilePics ? <img src={userInfo.profilePics} alt="" /> : <img src="/images/default profile pic.jpg" alt="" />
+                  }
                 </div>
                 <div className="MobileSideProfileName">
                   <h1>{userInfo?.fullName}</h1>
