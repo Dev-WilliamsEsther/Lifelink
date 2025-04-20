@@ -17,9 +17,6 @@ const HospitalDetailsPage = () => {
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState([]);
 
-  console.log(anHospital);
-
-
   const token = useSelector((state)=> state?.token)
   const { hospitalId } = useParams();
   const [scheduleData, setScheduleData] = useState({

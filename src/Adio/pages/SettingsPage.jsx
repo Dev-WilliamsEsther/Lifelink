@@ -5,7 +5,7 @@ import FadeLoader from "react-spinners/CircleLoader";
 import axios from "axios";
 import { FaCamera } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../../global/Slice";
+import { logIn, profilePic } from "../../global/Slice";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -22,7 +22,6 @@ const SettingsPage = () => {
 
   const [newPassword, setNewPasswords] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  console.log(newPassword);
 
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,6 +30,7 @@ const SettingsPage = () => {
   const token = useSelector((state) => state?.token);
 
   const handleUpdateProfile = async () => {
+
     if (
       !userData.fullName &&
       !userData.gender &&
@@ -42,6 +42,9 @@ const SettingsPage = () => {
     ) {
       toast.error("Please input fields");
       return;
+    } if (!profilePicture) {
+      toast.error("Please select an image first");
+      return;
     }
     setLoading(true);
     try {
@@ -49,7 +52,15 @@ const SettingsPage = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success(res?.data?.message);
-      setUserData("");
+      setUserData({
+        fullName: "",
+        gender: "",
+        location: "",
+        phoneNumber: "",
+        email: "",
+        age: "",
+        bloodType: "",
+      });
       dispatch(logIn(res?.data?.data))
     } catch (err) {
       toast.error(err?.response?.data?.message);
@@ -57,6 +68,12 @@ const SettingsPage = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDeletePhoto = () => {
+    setImagePreview(null);
+    setProfilePicture(null);
+    fileInputRef.current.value = "";
   };
 
   const handleResetPassword = async () => {
@@ -74,8 +91,10 @@ const SettingsPage = () => {
         newPassword,
       });
       toast.success(res?.data?.message);
-      console.log(res);
       setPasswordLoading(false);
+      setNewPasswords("");
+      setConfirmPassword("");
+
       return;
     } catch (err) {
       toast.error(err?.response?.data?.message);
@@ -108,7 +127,7 @@ const SettingsPage = () => {
       const formData = new FormData();
       formData.append("profilePics", profilePicture);
 
-      await axios.put(`${Base_Url}/profile`, formData, {
+      const res = await axios.put(`${Base_Url}/profile`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -116,7 +135,8 @@ const SettingsPage = () => {
       });
       setResetInput((prev) => !prev);
       setLoading(false);
-      toast.success("Successful");
+      toast.success(res?.data?.message)
+      dispatch(profilePic(res?.data?.data))
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         toast.error(err.response.data.message);
@@ -151,7 +171,7 @@ const SettingsPage = () => {
             </div>
           </label>
           <button onClick={handleSubmit}> Add Photo</button>
-          <button>Delete</button>
+          <button onClick={handleDeletePhoto}>Delete</button>
         </div>
 
         <div className="settingsInputsWrapper">
@@ -202,7 +222,7 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder="Email"
+            placeholder="you@example.com"
             value={userData.email}
             onChange={(e) =>
               setUserData({ ...userData, email: e.target.value })

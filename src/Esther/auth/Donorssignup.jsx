@@ -21,7 +21,6 @@ const Donorssignup = () => {
     age: 18,
   });
 
-  console.log(userData)
 
   const [showPassword1, setShowPassword1] = useState(true)
   const [showPassword2, setShowPassword2] = useState(true)

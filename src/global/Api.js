@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "sonner";
+import { logOut } from "./Slice";
 
 
 
@@ -14,7 +15,7 @@ import { toast } from "sonner";
 
 
 
-export const handleLogout = async (Base_Url, nav, token) => {
+export const handleLogout = async (Base_Url, nav, token, dispatch) => {
   try {
     const res = await axios.post(
       `${Base_Url}/logout`,
@@ -25,8 +26,8 @@ export const handleLogout = async (Base_Url, nav, token) => {
         },
       }
     );
+    dispatch(logOut())
     toast.success(res?.data?.message);
-    localStorage.removeItem("userData");
     nav("/");
     return
   } catch (err) {

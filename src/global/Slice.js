@@ -14,6 +14,9 @@ const AppReducer = createSlice({
             state.loggedInUser = payload
             state.role = payload?.data?.role
         },
+        profilePic:(state, {payload})=>{
+            state.loggedInUser.profilePics = payload
+        },
         saveToken:(state,{payload})=>{
             state.token = payload
         },
@@ -23,5 +26,5 @@ const AppReducer = createSlice({
         },
     }
 })
-export const {logIn, logOut,saveToken} = AppReducer.actions;
+export const {logIn, logOut, saveToken, profilePic} = AppReducer.actions;
 export default AppReducer.reducer;
