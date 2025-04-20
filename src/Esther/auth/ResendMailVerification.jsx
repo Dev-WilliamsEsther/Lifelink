@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import '../styles/checkmail.css';
 import axios from 'axios';
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom'; // Optional for back nav or redirect
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import FadeLoader from 'react-spinners/CircleLoader'
+
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
-const ResendVerificationLink = () => {
+const ResendMailVerification = () => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState(null); // 'success' | 'error'
+  const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
   const nav = useNavigate();
 
@@ -49,15 +52,15 @@ const ResendVerificationLink = () => {
             required
           />
           <button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Resend Link"}
+            {loading ? <FadeLoader color="white" size={25} /> : "Resend Link"}
           </button>
         </form>
 
-        {status === 'success' && <p className="success-text">Verification link sent! Check your email 📩</p>}
-        {status === 'error' && <p className="error-text">Failed to send verification. Try again.</p>}
+        {status === 'success' && <p className="success-text">{toast.success("Verification link sent! Check your email 📩")}</p>}
+        {status === 'error' && <p className="error-text">{toast.error("Failed to send verification. Try again.")}</p>}
       </div>
     </div>
   );
 };
 
-export default ResendVerificationLink;
+export default ResendMailVerification;
