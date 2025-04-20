@@ -4,25 +4,38 @@ import { SlCalender } from "react-icons/sl";
 import { Modal } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import LoadComponents from '../../components/componentsLoadScreen/LoadComponents';
+import { toast } from 'react-toastify';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const HistoryPage = () => {
   const token = useSelector((state) => state.token);
+
   const [donations, setDonations] = useState([]);
   const [viewDetailsPopUp, setViewDetailsPopUp] = useState(null);
-  const [status, setStatus] = useState("pending"); // 👈 this drives the filter
+  const [status, setStatus] = useState("pending");
+  const [loadingState, setLoadingState] = useState(false);
 
   const getDonationsByStatus = async (status) => {
+    setLoadingState(true);
     try {
       const res = await axios.get(`${Base_Url}/donations/${status}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setDonations(res?.data?.donations || []);
+
+      const sortedDonations = (res?.data?.donations || []).sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+
+      setDonations(sortedDonations);
     } catch (err) {
       console.error("Error fetching donations:", err);
+      toast.error("Failed to fetch donation history.");
+    } finally {
+      setLoadingState(false);
     }
   };
 
@@ -32,11 +45,34 @@ const HistoryPage = () => {
     }
   }, [status, token]);
 
+  const cancelAppointment = async (appointmentId) => {
+    try {
+      await axios.put(
+        `${Base_Url}/donor/appointments/${appointmentId}/cancel`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success("Appointment cancelled successfully");
+      setViewDetailsPopUp(null);
+      getDonationsByStatus(status); 
+    } catch (error) {
+      console.error("Cancel appointment error:", error);
+      toast.error("Failed to cancel appointment.");
+    }
+  };
+
+  if (loadingState) {
+    return <LoadComponents />;
+  }
+
   return (
     <>
       <div className='HistoryPageWrapper'>
         <h1>Donation History</h1>
-
 
         <div className="filter-buttons" style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
           {["pending", "confirmed", "cancelled"].map((s) => (
@@ -57,17 +93,15 @@ const HistoryPage = () => {
           ))}
         </div>
 
-    
         <div className="DonationsHistoryCardsHeading">
           <div className="DonationsHistoryCardsInnerWrapper">
-            <h1>Facilitity Name</h1>
+            <h1>Facility Name</h1>
             <h1>VIEW DETAILS</h1>
-            <h1><SlCalender />DATE</h1>
+            <h1><SlCalender /> DATE</h1>
             <h1>LOCATION</h1>
             <h1>STATUS</h1>
           </div>
         </div>
-
 
         <div className="DonationsHistoryCardsWrapper">
           {donations.length > 0 ? (
@@ -81,7 +115,7 @@ const HistoryPage = () => {
                   >
                     VIEW DETAILS
                   </h3>
-                  <h3><SlCalender />{new Date(donation.date).toLocaleDateString()}</h3>
+                  <h3><SlCalender /> {new Date(donation.date).toLocaleDateString()}</h3>
                   <h3>{donation.hospital?.location || "N/A"}</h3>
                   <h3>{donation.status}</h3>
                 </div>
@@ -92,7 +126,6 @@ const HistoryPage = () => {
           )}
         </div>
       </div>
-
 
       <Modal
         open={!!viewDetailsPopUp}
@@ -105,9 +138,26 @@ const HistoryPage = () => {
             <p>Name: <b>{viewDetailsPopUp.hospital?.fullName}</b></p>
             <p>Location: <b>{viewDetailsPopUp.hospital?.location}</b></p>
             <p>Date: <b>{new Date(viewDetailsPopUp.date).toLocaleDateString()}</b></p>
+            <p>Time: <b>{viewDetailsPopUp.time || "No time specified"}</b></p>
             <p>Status: <b>{viewDetailsPopUp.status}</b></p>
             <img src="/images/hospital image.jpg" alt="Hospital image" />
-            <button>Cancel Request</button>
+
+            {viewDetailsPopUp.status === "pending" && (
+              <button
+                style={{
+                  backgroundColor: "#c0392b",
+                  color: "white",
+                  padding: "10px 15px",
+                  borderRadius: "5px",
+                  marginTop: "15px",
+                  cursor: "pointer",
+                  border: "none"
+                }}
+                onClick={() => cancelAppointment(viewDetailsPopUp._id)}
+              >
+                Cancel Request
+              </button>
+            )}
           </div>
         )}
       </Modal>
