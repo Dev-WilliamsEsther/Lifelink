@@ -11,12 +11,14 @@ import { GoPeople } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
 import { handleLogout } from "../../global/Api";
 import { useDispatch, useSelector } from "react-redux";
+import LoadComponents from "../componentsLoadScreen/LoadComponents";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const Header = () => {
   const [openSideDrawer, setOpenSideDrawer] = useState(false);
   const [logoutPopUp, setLogoutPopUp] = useState(false);
+  const [loadLogOut, setLoadLogOut] = useState(false);
 
   const isSignedIn = useSelector((state)=> state?.isLoggedIn)
   const userInfo = useSelector((state)=> state?.loggedInUser)
@@ -53,8 +55,12 @@ const Header = () => {
 
 
   const handleSubmit = () => {
-    handleLogout(Base_Url, nav, token, dispatch);
+    handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut);
   };
+
+  if(loadLogOut){
+    return <LoadComponents/>
+  }
 
   return (
     <>
