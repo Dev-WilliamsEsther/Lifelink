@@ -42,7 +42,8 @@ import VerifyMail from "./Esther/auth/VerifyMail";
 import NotFound from "./components/404/404";
 import PaymentStatus from "./Esther/pages/PaymentStatus";
 import CheckMail from "./Esther/auth/CheckMail";
-import ResendVerificationLink from "./Esther/auth/resendVerificationLink";
+import ResendMailVerification from "./Esther/auth/ResendMailVerification.jsx";
+
 
 const App = () => {
 
@@ -89,7 +90,7 @@ const App = () => {
     { path: "/hospitalsignup", element: <Hospitalsignup /> },
     { path: "/hospitallogin", element: <Hospitallogin /> },
     { path: "/verifymail/:token", element: <VerifyMail /> },
-    { path: "/resendVerificationMail", element: <ResendVerificationLink /> },
+    { path: "/resendVerificationMail", element: <ResendMailVerification /> },
     { path: "/checkmail", element: <CheckMail /> },
     { path: "/paymentcheck", element: <PaymentStatus /> },
     { path: "/donorslogin", element: <Donorslogin /> },
