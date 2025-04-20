@@ -20,6 +20,8 @@ const SettingsPage = () => {
     bloodType: "",
   });
 
+  const InitialUserData = useSelector((state)=> state?.loggedInUser)
+
   const [newPassword, setNewPasswords] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -179,7 +181,7 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder="Full Name"
+            placeholder={InitialUserData.fullName}
             value={userData.fullName}
             onChange={(e) =>
               setUserData({ ...userData, fullName: e.target.value })
@@ -193,7 +195,7 @@ const SettingsPage = () => {
               setUserData({ ...userData, gender: e.target.value })
             }
           >
-            <option value="">--Male/Female--</option>
+            <option value="">{InitialUserData.gender? InitialUserData.gender : "--Male/Female--"}</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
@@ -202,7 +204,7 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder="Location"
+            placeholder={InitialUserData.location}
             value={userData.location}
             onChange={(e) =>
               setUserData({ ...userData, location: e.target.value })
@@ -212,7 +214,7 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder="+234***********"
+            placeholder={InitialUserData.phoneNumber? InitialUserData.phoneNumber : "+234***********"}
             value={userData.phoneNumber}
             onChange={(e) =>
               setUserData({ ...userData, phoneNumber: e.target.value })
@@ -222,7 +224,7 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder="you@example.com"
+            placeholder={InitialUserData.email}
             value={userData.email}
             onChange={(e) =>
               setUserData({ ...userData, email: e.target.value })
@@ -232,7 +234,7 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder="Age"
+            placeholder={InitialUserData.age}
             value={userData.age}
             onChange={(e) => setUserData({ ...userData, age: e.target.value })}
           />
@@ -244,7 +246,7 @@ const SettingsPage = () => {
               setUserData({ ...userData, bloodType: e.target.value })
             }
           >
-            <option value="">-- Select Blood Type --</option>
+            <option value="">{InitialUserData.bloodType}</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
             <option value="B+">B+</option>

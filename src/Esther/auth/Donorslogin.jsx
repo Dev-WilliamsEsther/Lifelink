@@ -21,6 +21,7 @@ const Donorslogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword1, setShowPassword1] = useState(true)
   const loggedInUser = useSelector(state => state?.loggedInUser)
+  console.log(loggedInUser)
   const nav = useNavigate();
 
   const handleLogin = async () => {
@@ -28,11 +29,11 @@ const Donorslogin = () => {
     try {
       const res = await axios.post(`${Base_Url}/login`, userLoginData);
       const user = res?.data?.data;
-      if (!loggedInUser?.isVerified) {
+      if (!user?.isVerified) {
         toast.error('Account not verified. Please check your email.');
 
         try {
-          const reverifyRes = await axios.post(`${Base_Url}/re-verify`, {
+            await axios.post(`${Base_Url}/re-verify`, {
             email: user?.email,
           });
         } catch (err) {
