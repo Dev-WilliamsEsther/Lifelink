@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import './hospitalDetailsPage.css';
-import { Modal } from 'antd';
-import { useParams } from 'react-router';
-import axios from 'axios';
-import LoadComponents from '../../components/componentsLoadScreen/LoadComponents';
-import { toast } from 'sonner';
-import FadeLoader from 'react-spinners/CircleLoader'
-import { useSelector } from 'react-redux';
-
+import React, { useEffect, useState } from "react";
+import "./hospitalDetailsPage.css";
+import { DatePicker, Modal } from "antd";
+import { useParams } from "react-router";
+import axios from "axios";
+import LoadComponents from "../../components/componentsLoadScreen/LoadComponents";
+import { toast } from "sonner";
+import FadeLoader from "react-spinners/CircleLoader";
+import { useSelector } from "react-redux";
+import dayjs from "dayjs";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -17,14 +17,35 @@ const HospitalDetailsPage = () => {
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState([]);
 
-
   const token = useSelector((state)=> state?.token)
   const { hospitalId } = useParams();
   const [scheduleData, setScheduleData] = useState({
     date: "",
-    hospitalId: ""
-  })
-
+    time: "",
+    hospitalId,
+  });
+   console.log(scheduleData)
+const disabledDate = (current) => {
+    // Can not select days before today and today
+    return current && current < dayjs().endOf("day");
+  };
+   const handleChange = (e) => {
+    // console.log(e.$isDayjsObject)
+    if (e.$isDayjsObject) {
+      setScheduleData((prev) => ({
+        ...prev,
+        date: e.format("YYYY-MM-DD"),
+      }));
+    }
+  
+  };
+  
+  const time = [
+    { label: "8:00AM - 10:00AM", value: "8:00AM - 10:00AM" },
+    { label: "10:00AM - 12:00PM", value: "10:00AM - 12:00PM" },
+    { label: "12:00PM - 3:00PM", value: "12:00PM - 3:00PM" },
+    { label: "3:00PM - 5:00PM", value: "3:00PM - 5:00PM" },
+  ];
 
   const getOneHospital = async () => {
     setIsLoading(true);
@@ -46,32 +67,27 @@ const HospitalDetailsPage = () => {
     getOneHospital();
   }, [hospitalId]);
 
-
-
   const handleSchedule = async () => {
-    setIsScheduleLoading(true)
-    setScheduleData(prev => ({ ...prev, hospitalId }));
-    const updated = { ...scheduleData, hospitalId };
+    setIsScheduleLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/schedule`, updated, {
+      const res = await axios.post(`${Base_Url}/bookAppointment`, scheduleData, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      setIsScheduleLoading(false)
-      toast.success(res?.data?.message)
-      setScheduleData("")
-      setVolunteerPopUp(false)
-    }catch(err){
-      toast.error(err?.response?.data?.message)
-      setIsScheduleLoading(false)
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setIsScheduleLoading(false);
+      toast.success(res?.data?.message);
+      setScheduleData("");
+      setVolunteerPopUp(false);
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+      setIsScheduleLoading(false);
     }
-  }
+  };
 
-
-  if (isLoading) return <LoadComponents />
+  if (isLoading) return <LoadComponents />;
   return (
-    <div className='HospitalDetailsPageWrapper'>
+    <div className="HospitalDetailsPageWrapper">
       <h1>Hospital Details</h1>
 
       <div className="detailsTextAndImageWrapper">
@@ -81,13 +97,26 @@ const HospitalDetailsPage = () => {
 
         <div className="detailsTextWrapper">
           <div className="innerTextWRapper">
-            <p>Name: <b>{anHospital?.fullName}</b></p>
-            <p>Location: <b>{anHospital?.location}</b></p>
-            <p>Blood group needed: <b>{anHospital?.bloodGroupNeeded || 'A+'}</b></p>
-            <p>Contact: <b>{anHospital?.phone? anHospital?.phone : "-"}</b></p>
-            <p>Operating Hours: <b>{anHospital?.operatingHours || 'Mon-Fri, 8AM - 5PM'}</b></p>
+            <p>
+              Name: <b>{anHospital?.fullName}</b>
+            </p>
+            <p>
+              Location: <b>{anHospital?.location}</b>
+            </p>
+            <p>
+              Blood group needed: <b>{anHospital?.bloodGroupNeeded || "A+"}</b>
+            </p>
+            <p>
+              Contact: <b>{anHospital?.phone ? anHospital?.phone : "-"}</b>
+            </p>
+            <p>
+              Operating Hours:{" "}
+              <b>{anHospital?.operatingHours || "Mon-Fri, 8AM - 5PM"}</b>
+            </p>
           </div>
-          <button onClick={() => setVolunteerPopUp(true)}>Volunteer to Donate</button>
+          <button onClick={() => setVolunteerPopUp(true)}>
+            Volunteer to Donate
+          </button>
         </div>
       </div>
 
@@ -99,26 +128,44 @@ const HospitalDetailsPage = () => {
         <div className="volunteerDateWrapper">
           <h1>Pick Date/Time</h1>
 
-          <input type="date" name="date" className='scheduleDatePicker'
-            value={scheduleData.date}
-            onChange={(e) => setScheduleData(prev => ({ ...prev, date: e.target.value }))}
-          />
-
-          {/* <div className="datePickerWrapper">
+          <div className="datePickerWrapper">
             <label>Date</label>
-            {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day, idx) => (
-              <p key={idx}><input type="radio" name="date" /> {day}</p>
-            ))}
+            <DatePicker
+            onChange={handleChange}
+            disabledDate={disabledDate}
+            id="preferredDate"
+            name="preferredDate"
+            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
+          />
           </div>
 
           <div className="datePickerWrapper">
             <label>Time</label>
-            {["8:00AM - 10:00AM", "10:00AM - 12:00PM", "12:00PM - 3:00PM", "3:00PM - 5:00PM"].map((time, idx) => (
-              <p key={idx}><input type="radio" name="time" /> {time}</p>
+            {time?.map((time, idx) => (
+              <p key={idx}>
+                <input
+                  type="radio"
+                  name="time"
+                  value={time.value}
+                  onChange={(e) =>
+                    setScheduleData((prev) => ({
+                      ...prev,
+                      time: e.target.value,
+                    }))
+                  }
+                />{" "}
+                {time.label}
+              </p>
             ))}
-          </div> */}
+          </div>
 
-          <button onClick={handleSchedule}>{isScheduleLoading? <FadeLoader color="white" size={25} /> : "Schedule"}</button>
+          <button onClick={handleSchedule}>
+            {isScheduleLoading ? (
+              <FadeLoader color="white" size={25} />
+            ) : (
+              "Schedule"
+            )}
+          </button>
         </div>
       </Modal>
     </div>
