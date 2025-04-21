@@ -1,12 +1,12 @@
 import React from "react";
 import "./howitworks.css";
 import { useNavigate } from "react-router";
-import { useUser } from "../global/UseUser";
+import { useSelector } from "react-redux";
 
 const Howitworks = () => {
   const nav = useNavigate()
+  const user = useSelector((state)=> state.token)
 
-  const {user} = useUser()
   return (
     <>
       <div>

@@ -8,9 +8,11 @@ const HospitalCard = ({hospital}) => {
   return (
     <>
       <div className='hospitalCardWRapper'>
-        <img src="/images/hospital image.jpg" alt="Hospital image" />
+  
+         <img src={hospital?.profilePicture ? hospital?.profilePicture : "/images/default profile pic.jpg"} alt="Hospital image" />
+  
         <div className="hospitalTextWRapper">
-          <h3>{hospital.fullName}</h3>
+          <h3>{hospital?.fullName}</h3>
         </div>
 
         <button className="viewDetailButton" onClick={()=> nav(`/dashboard/hospitaldetails/${hospital._id}`)}>

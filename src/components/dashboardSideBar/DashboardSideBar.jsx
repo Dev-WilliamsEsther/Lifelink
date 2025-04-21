@@ -17,6 +17,7 @@ import { IoIosListBox } from "react-icons/io";
 import { MdVerified } from "react-icons/md";
 import LoadComponents from "../componentsLoadScreen/LoadComponents";
 import { HiUsers } from "react-icons/hi";
+import { BiGitPullRequest } from "react-icons/bi";
 
 const DashboardSideBar = () => {
   const nav = useNavigate();
@@ -74,6 +75,18 @@ const DashboardSideBar = () => {
               >
                 <TbHomeSearch className="sideBarIocns" color="black" />
                 Find Hospital
+              </li>
+              <li
+                onClick={() => {
+                  nav("hospitalsrequest");
+                }}
+                className={`${location.pathname === "/dashboard/hospitalsrequest"
+                    ? "activeBar"
+                    : ""
+                  }`}
+              >
+                <BiGitPullRequest className="sideBarIocns" color="black" />
+                 Requests
               </li>
               <li
                 onClick={() => {
