@@ -15,7 +15,7 @@ import { logOut } from "./Slice";
 
 
 
-export const handleLogout = async (Base_Url, nav, token, dispatch, setLoadLogOut) => {
+export const handleLogout = async (Base_Url, nav, token, dispatch, setLoadLogOut, setDeletePopup, setLogoutPopUp) => {
   try {
     setLoadLogOut(true)
     const res = await axios.post(
@@ -30,6 +30,8 @@ export const handleLogout = async (Base_Url, nav, token, dispatch, setLoadLogOut
     dispatch(logOut())
     toast.success(res?.data?.message);
     nav("/");
+    setDeletePopup(false)
+    setLogoutPopUp(false)
     setLoadLogOut(false)
     return
   } catch (err) {

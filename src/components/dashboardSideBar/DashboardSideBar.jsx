@@ -15,10 +15,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../global/Slice";
 import { IoIosListBox } from "react-icons/io";
 import { MdVerified } from "react-icons/md";
+import LoadComponents from "../componentsLoadScreen/LoadComponents";
+import { HiUsers } from "react-icons/hi";
 
 const DashboardSideBar = () => {
   const nav = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false);
+  const [loadLogOut, setLoadLogOut] = useState(false)
   const location = useLocation();
   const dispatch = useDispatch()
 
@@ -29,9 +32,13 @@ const DashboardSideBar = () => {
 
 
   const logOutFunc = () => {
-    handleLogout(Base_Url, nav, token);
+    handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut, setDeletePopup);
     dispatch(logOut())
   };
+
+  if(loadLogOut){
+    return <LoadComponents/>
+  }
 
   return (
     <>
@@ -179,6 +186,19 @@ const DashboardSideBar = () => {
               >
                 <FaUser className="sideBarIocns" color="black" />
                 Profile
+              </li>
+              
+              <li
+                onClick={() => {
+                  nav("allusers");
+                }}
+                className={`${location.pathname === "/dashboard/allusers"
+                    ? "activeBar"
+                    : ""
+                  }`}
+              >
+                <HiUsers className="sideBarIocns" color="black" />
+                Users
               </li>
               <li
                 onClick={() => {
