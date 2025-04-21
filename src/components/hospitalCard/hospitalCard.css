@@ -31,6 +31,11 @@
     font-weight: 500;
 }
 
+.hospitalTextWRapper span{
+    font-size: 13px;
+    font-weight: 300;
+}
+
 .viewDetailButton{
     width: 100%;
     height: max-content;

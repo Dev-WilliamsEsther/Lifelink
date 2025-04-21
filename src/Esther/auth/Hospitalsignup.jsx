@@ -54,6 +54,29 @@ console.log(res)
     
   }
 
+  const lagosLGAs = [
+    { label: "Agege", value: "Agege" },
+    { label: "Ajeromi-Ifelodun", value: "Ajeromi-Ifelodun" },
+    { label: "Alimosho", value: "Alimosho" },
+    { label: "Amuwo-Odofin", value: "Amuwo-Odofin" },
+    { label: "Apapa", value: "Apapa" },
+    { label: "Badagry", value: "Badagry" },
+    { label: "Epe", value: "Epe" },
+    { label: "Eti-Osa", value: "Eti-Osa" },
+    { label: "Ibeju-Lekki", value: "Ibeju-Lekki" },
+    { label: "Ifako-Ijaiye", value: "Ifako-Ijaiye" },
+    { label: "Ikeja", value: "Ikeja" },
+    { label: "Ikorodu", value: "Ikorodu" },
+    { label: "Kosofe", value: "Kosofe" },
+    { label: "Lagos Island", value: "Lagos Island" },
+    { label: "Lagos Mainland", value: "Lagos Mainland" },
+    { label: "Mushin", value: "Mushin" },
+    { label: "Ojo", value: "Ojo" },
+    { label: "Oshodi-Isolo", value: "Oshodi-Isolo" },
+    { label: "Shomolu", value: "Shomolu" },
+    { label: "Surulere", value: "Surulere" },
+  ];
+
   return (
     <div className='hospitalsignwrapper'>
       <div className='hossignmobilewrap'>
@@ -84,11 +107,21 @@ console.log(res)
             />
           </div>
           <div className='hossigninputwrapper'>
-            <p>CITY</p>
-            <input type="text" placeholder='ADDRESS' className='hossigninput' 
+            <p>LGA</p>
+            <select
+            className="hossigninput"
             value={hospitalInput.city}
             onChange={(e)=>setHospitalInput((prev)=> ({...prev, city:e.target.value}))}
-            />
+            id="local Government"
+            name="LGA"
+          >
+            <option value="">Select your LGA</option>
+            {lagosLGAs.map((item, index) => (
+              <option key={index} value={item.value}>{item?.value}</option>
+            ))}
+          </select>
+
+
           </div>
           <div className='hossigninputwrapper'>
             <p>EMAIL</p>

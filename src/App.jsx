@@ -98,7 +98,7 @@ const App = () => {
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
         { path: "hospitalsrequest", element: <HospitalRequestsPage /> },
-        { path: "hospitalsrequestdetails", element: <HospitalRequestDetails /> },
+        { path: "hospitalsrequestdetails/:hospitalId", element: <HospitalRequestDetails /> },
         { path: "hospitaldetails/:hospitalId", element: <HospitalDetailsPage /> },
         { path: "subscribe", element: <Subscrib /> },
         { path: "adminverification", element: <Verification /> },

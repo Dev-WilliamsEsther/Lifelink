@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./dashboardSideBar.css";
 import { FaUser } from "react-icons/fa";
 import { TbHomeSearch } from "react-icons/tb";
-import { MdHistory } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
+import { MdHistory, MdOutlineHistoryToggleOff } from "react-icons/md";
+import { IoList, IoSettingsOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { useLocation, useNavigate } from "react-router";
 import { CiCircleRemove } from "react-icons/ci";
 import { SlNote } from "react-icons/sl";
 import { RiFirstAidKitLine } from "react-icons/ri";
-import { PiFilesLight } from "react-icons/pi";
+import { PiFilesLight, PiGitPullRequest } from "react-icons/pi";
 import { handleLogout } from "../../global/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../global/Slice";
@@ -134,7 +134,7 @@ const DashboardSideBar = () => {
                 className={`${location.pathname === "/dashboard/request" ? "activeBar" : ""
                   }`}
               >
-                <SlNote className="sideBarIocns" color="black" />
+                <PiGitPullRequest className="sideBarIocns" color="black" />
                 Make Request
               </li>
               <li
@@ -158,7 +158,7 @@ const DashboardSideBar = () => {
                     : ""
                   }`}
               >
-                <RiFirstAidKitLine className="sideBarIocns" color="black" />
+                <IoList className="sideBarIocns" color="black" />
                 Appointments
               </li>
               <li
@@ -168,7 +168,7 @@ const DashboardSideBar = () => {
                 className={`${location.pathname === "/dashboard/records" ? "activeBar" : ""
                   }`}
               >
-                <PiFilesLight className="sideBarIocns" color="black" />
+                <MdOutlineHistoryToggleOff className="sideBarIocns" color="black" />
                 Records
               </li>
               <li
