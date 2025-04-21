@@ -3,17 +3,19 @@ import "../../components/header/header.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Modal } from "antd";
-import { MdEdit, MdHistory, MdVerified } from "react-icons/md";
+import { MdEdit, MdHistory, MdOutlineHistoryToggleOff, MdVerified } from "react-icons/md";
 import { TbHomeSearch } from "react-icons/tb";
 import { CiLogout, CiSettings } from "react-icons/ci";
-import { VscHome } from "react-icons/vsc";
+import { VscHome, VscTools } from "react-icons/vsc";
 import { GoPeople } from "react-icons/go";
-import { IoSearchOutline } from "react-icons/io5";
+import { IoList, IoSearchOutline } from "react-icons/io5";
 import { handleLogout } from "../../global/Api";
 import { useDispatch, useSelector } from "react-redux";
 import LoadComponents from "../componentsLoadScreen/LoadComponents";
 import { IoIosListBox } from "react-icons/io";
 import { HiUsers } from "react-icons/hi";
+import { PiGitPullRequest } from "react-icons/pi";
+import { BiGitPullRequest } from "react-icons/bi";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -191,6 +193,15 @@ const Header = () => {
                   <li
                     onClick={() => {
                       setOpenSideDrawer(false);
+                      nav("/dashboard/hospitalsrequest");
+                    }}
+                  >
+                    <BiGitPullRequest className="sideBarIocns" color="black"/>
+                    Requests
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
                       nav("/about");
                     }}
                   >
@@ -291,11 +302,11 @@ const Header = () => {
                   <li
                     onClick={() => {
                       setOpenSideDrawer(false);
-                      nav("/dashboard/findhospital");
+                      nav("/dashboard/request");
                     }}
                   >
-                    <TbHomeSearch className="sideBarIocns" color="black"/>
-                    Find Hospital
+                    <PiGitPullRequest className="sideBarIocns" color="black"/>
+                    Make Request
                   </li>
                   <li
                     onClick={() => {
@@ -312,7 +323,7 @@ const Header = () => {
                       nav("/howitworks");
                     }}
                   >
-                    <CiSettings className="sideBarIocns" color="black"/>
+                    <VscTools className="sideBarIocns" color="black"/>
                     How it works
                   </li>
                   <li
@@ -330,7 +341,7 @@ const Header = () => {
                       nav("/dashboard/appointment");
                     }}
                   >
-                    <CiSettings className="sideBarIocns" color="black"/>
+                    <IoList className="sideBarIocns" color="black"/>
                     Appointment
                   </li>
                   <li
@@ -339,7 +350,7 @@ const Header = () => {
                       nav("/dashboard/records");
                     }}
                   >
-                    <CiSettings className="sideBarIocns" color="black"/>
+                    <MdOutlineHistoryToggleOff className="sideBarIocns" color="black"/>
                     Records
                   </li>
                   <li

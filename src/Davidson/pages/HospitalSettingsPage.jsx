@@ -208,7 +208,7 @@ const HospitalSettingsPage = () => {
             id="bloodGroup"
             name="state"
           >
-            <option value="">Select your LGM</option>
+            <option value="">Select your LGA</option>
             {lagosLGAs.map((item, index) => (
               <option key={index} value={item.value}>{item?.value}</option>
             ))}

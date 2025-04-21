@@ -12,11 +12,11 @@ const RequestHistory = () => {
   const headers = {
     Authorization: `Bearer ${userToken}`,
   };
+
   const fetchRequest = async () => {
     try {
-      const res = await axios.get(`${Base_Url}/hospital/history`, { headers });
+      const res = await axios.get(`${Base_Url}/re-hospital/history`, { headers });
       setRequestData(res.data.requests);
-      console.log(res.data.requests);
     } catch (err) {
       console.log(err);
     }
@@ -25,47 +25,43 @@ const RequestHistory = () => {
   useEffect(() => {
     fetchRequest();
   }, []);
-  return (
-    <div className="RequestHistoryCardWrapper">
-      <h1 onClick={fetchRequest}>Request Historys</h1>
 
-      <div className="RequestHistoryCardsHeading">
-        <div className="RequestHistoryInnerDiv">
-          <h1 className="RequestHistoryInnerDivtext1">BLOOD GROUP</h1>
-          <h1 className="RequestHistoryInnerDivtext2">
-            Pints <br />
-            requested
-          </h1>
-          <h1 className="RequestHistoryInnerDivtext3">
-            Date <br />
-            requested
-          </h1>
-          <h1 className="RequestHistoryInnerDivtext4">
-            Preferred <br />
-            Date
-          </h1>
-          <h1 className="RequestHistoryInnerDivtext5">Urgency</h1>
-          <h1 className="RequestHistoryInnerDivtext6">Status</h1>
-          <h1 className="RequestHistoryInnerDivtext7">Action</h1>
-        </div>
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  return (
+    <div className="RequestHistoryContainer">
+      <h2 className="RequestHistoryTitle">Request History</h2>
+
+      <div className="RequestHistoryHeader">
+        <div>Blood Group</div>
+        <div>Pints Requested</div>
+        <div>Date Requested</div>
+        <div>Preferred Date</div>
+        <div>Urgency</div>
+        <div>Status</div>
       </div>
-      <>
-        {requestData?.map((item, index) => (
-          <div className="RequestHistoryCardWrapper" key={index}>
-            <div className="RequestHistoryCard">
-              <h3 className="RequestHistoryDivtext6">{item?.bloodGroup}</h3>
-              <h3 className="RequestHistoryDivtext7">{item?.numberOfPints}</h3>
-              <h3 className="RequestHistoryDivtext8">{item?.preferredDate}</h3>
-              <h3 className="RequestHistoryDivtext9">{item?.urgencyLevel}</h3>
-              <h3 className="RequestHistoryDivtext10">{item?.amount}</h3>
-              <h3 className="RequestHistoryDivtext11">{item?.status}</h3>
-              <span className="RequestHistoryDivtext12">
-                {item?.bloodGroup}
-              </span>
-            </div>
+
+      {requestData?.length > 0 ? (
+        requestData.map((item, index) => (
+          <div className="RequestHistoryItem" key={index}>
+            <div>{item?.bloodGroup}</div>
+            <div>{item?.numberOfPints}</div>
+            <div>{formatDate(item?.createdAt)}</div>
+            <div>{formatDate(item?.preferredDate)}</div>
+            <div>{item?.urgencyLevel}</div>
+            <div className={`status ${item?.status.toLowerCase()}`}>{item?.status}</div>
           </div>
-        ))}
-      </>
+        ))
+      ) : (
+        <p className="RequestHistoryEmpty">No requests found.</p>
+      )}
     </div>
   );
 };

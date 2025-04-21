@@ -39,6 +39,7 @@ const RequestPage = () => {
     amount: null,
   });
   const userToken = useSelector((state) => state?.token);
+  const user = useSelector((state)=> state.loggedInUser)
 
 
   const handleChange = (e) => {
@@ -65,12 +66,17 @@ const RequestPage = () => {
       !formData.urgencyLevel &&
       !formData.preferredDate
     ) {
-      return toast.error("Please fill a fields");
+      return toast.error("Please fill all fields");
+    } 
+
+    if(!user?.profilePic){
+      return toast.error("Upload Profile picture before Requesting")
+    } else if(!user?.kycCompleted){
+      return toast.error("Please Upload KYC before Requesting")
     }
 
 
-    const url =
-      "https://lifelink-7pau.onrender.com/api/v1/hospital/request-blood";
+    const url = "https://lifelink-7pau.onrender.com/api/v1/hospital/request-blood";
     toast.loading("Requesting...");
     try {
       const res = await axios.post(url, formData, {

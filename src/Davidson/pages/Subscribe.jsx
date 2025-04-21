@@ -1,8 +1,8 @@
 import React from "react";
 import "./subscribe.css";
 import { useSelector } from "react-redux";
-import { message } from "antd";
 import axios from "axios";
+import { toast } from "sonner";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -26,13 +26,13 @@ const Subscribe = () => {
         }
       );
 
-      message.success("Redirecting to payment...");
+      toast.success("Redirecting to payment...");
       if (res.data?.payment_url) {
         window.location.href = res.data.payment_url;
       }
     } catch (err) {
       console.error("Subscription failed:", err);
-      message.error("Failed to initialize subscription.");
+      toast.error(err?.message || "Failed to initialize subscription.");
     }
   };
 
@@ -43,7 +43,7 @@ const Subscribe = () => {
           <h1>Welcome to LifeLink for Hospitals!</h1>
         </div>
         <div className="img-cnt">
-          <img src="/images/subscribe.svg" alt="LifeLink Illustration" />
+          <img src="/images/subscribe.png" alt="LifeLink Illustration" />
         </div>
         <p>
           You need to subscribe to start requesting blood, viewing, & managing
