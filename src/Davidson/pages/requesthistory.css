@@ -1,207 +1,86 @@
-.RequestHistoryCardWrapper {
-  width: 100%;
-  padding: 10px;
+/* requesthistory.css */
+
+.RequestHistoryContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.RequestHistoryCardWrapper h1 {
-  width: 100%;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: Poppins;
-}
-
-.RequestHistoryCardsHeading {
-  width: 100%;
-  height: 69px;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  background: #d6eaf8;
-  margin-bottom: 10px;
-}
-.RequestHistoryInnerDiv {
-  width: 100%;
-  height: 69px;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  background: #d6eaf8;
-  margin-bottom: 10px;
-}
-
-.RequestHistoryCardsInnerWrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.RequestHistoryInnerDivtext1 {
-  width: 40%;
-}
-.RequestHistoryInnerDivtext2 {
-  width: 15%;
-}
-.RequestHistoryInnerDivtext3 {
-  width: 15%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.RequestHistoryInnerDivtext4 {
-  width: 15%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.RequestHistoryInnerDivtext5 {
-  width: 15%;
-}
-.RequestHistoryInnerDivtext6 {
-  width: 15%;
-}
-.RequestHistoryInnerDivtext7 {
-  width: 15%;
-}
-
-.RequestHistoryInnerDiv {
-  width: 100%;
-  padding: 0px 30px;
-  display: flex;
-  align-items: center;
-}
-.RequestHistoryInnerDiv2 {
-  width: 100%;
-  padding: 0px 30px;
-  display: flex;
-  align-items: center;
-}
-
-.RequestHistoryInnerWrapper > * {
-  flex: 1;
+.RequestHistoryTitle {
   text-align: center;
-  padding: 0 5px;
-  color: black;
-}
-
-.RequestHistoryCardsHeading .RequestHistoryCardsInnerWrapper h1 {
-  font-size: 16px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  margin: 0;
-}
-
-.RequestHistoryInnerWrapper h3 {
-  font-size: 16px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  margin: 0;
-}
-
-.RequestHistoryCardsWrapper {
-  width: 100%;
-  overflow-y: auto;
-  background: transparent;
-}
-
-.RequestHistoryCard {
-  width: 100%;
-  height: 69px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  background: white;
-}
-
-.RequestHistoryCard {
-  width: 100%;
-  height: 69px;
-  border-radius: 6px;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  background: white;
-  padding: 0px 30px;
-}
-
-.RequestHistoryDivtext6 {
-  width: 10%;
-}
-.RequestHistoryDivtext7 {
-  width: 10%;
-}
-.RequestHistoryDivtext8 {
-  width: 10%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.RequestHistoryDivtext9 {
-  width: 10%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.RequestHistoryDivtext10 {
-  width: 10%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.RequestHistoryDivtext11 {
-  width: 10%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.RequestHistoryDivtext6 {
-  width: 15%;
-  font-weight: 400;
-}
-.RequestHistoryDivtext7 {
-  width: 15%;
-  font-weight: 400;
-}
-.RequestHistoryDivtext8 {
-  width: 15%;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.RequestHistoryDivtext9 {
-  width: 15%;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.RequestHistoryDivtext10 {
-  width: 15%;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.RequestHistoryDivtext11 {
-  width: 15%;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.RequestHistoryDivtext12 {
-  width: 15%;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 14px;
+  font-size: 28px;
   font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1f2937;
+}
+
+.RequestHistoryHeader,
+.RequestHistoryItem {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.RequestHistoryHeader {
+  background: #d6eaf8;
+  font-weight: 600;
+  color: #374151;
+  border-radius: 6px;
+}
+
+.RequestHistoryItem {
+  font-size: 16px;
+  color: #4b5563;
+  transition: background-color 0.2s;
+}
+
+.RequestHistoryItem:hover {
+  background-color: #f9f9f9;
+}
+
+.RequestHistoryEmpty {
+  text-align: center;
+  padding: 2rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Status Styles */
+.status {
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-align: center;
+  width: fit-content;
+}
+
+.status.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status.approved {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status.rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .RequestHistoryHeader,
+  .RequestHistoryItem {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 0.5rem;
+  }
 }

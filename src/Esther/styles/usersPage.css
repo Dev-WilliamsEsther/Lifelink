@@ -127,10 +127,12 @@
     border-color: #bbb;
   }
   
-  /* For mobile responsiveness */
+
   @media (max-width: 768px) {
     .users-page {
       padding: 10px;
+      flex-direction: column;
+      align-items: center;
     }
   
     .user-card {

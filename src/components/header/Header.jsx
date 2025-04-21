@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadComponents from "../componentsLoadScreen/LoadComponents";
 import { IoIosListBox } from "react-icons/io";
 import { HiUsers } from "react-icons/hi";
+import { PiGitPullRequest } from "react-icons/pi";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -291,11 +292,11 @@ const Header = () => {
                   <li
                     onClick={() => {
                       setOpenSideDrawer(false);
-                      nav("/dashboard/findhospital");
+                      nav("/dashboard/request");
                     }}
                   >
-                    <TbHomeSearch className="sideBarIocns" color="black"/>
-                    Find Hospital
+                    <PiGitPullRequest className="sideBarIocns" color="black"/>
+                    Make Request
                   </li>
                   <li
                     onClick={() => {
