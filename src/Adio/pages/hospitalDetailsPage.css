@@ -10,6 +10,11 @@
     font-family: Poppins;
 }
 
+.HospitalDetailsPageWrapper span{
+    font-size: 15px;
+    text-align: center;
+}
+
 .detailsTextAndImageWrapper{
     width: 100%;
     height: 90%;
@@ -150,6 +155,12 @@
 
 .detailsTextAndImageWrapper .detailsImageWrapper{
     width: 100%;
+}
+
+.HospitalDetailsPageWrapper{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .detailsTextAndImageWrapper .detailsTextWrapper{
