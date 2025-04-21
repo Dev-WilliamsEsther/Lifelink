@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import UserProvider from './global/UseUser.jsx'
 import { Toaster } from 'sonner'
 import {Provider} from "react-redux";
 import {store} from "./global/store"
@@ -15,10 +14,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
     <PersistGate loading={<LoadComponents/>} persistor={persistor}>
-    <UserProvider>
     <Toaster richColors position="top-center"/>
      <App />
-    </UserProvider>
     </PersistGate>
     </Provider>
   </StrictMode>,

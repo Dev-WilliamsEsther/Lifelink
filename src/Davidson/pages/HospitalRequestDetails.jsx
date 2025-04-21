@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./hospitalDetailsPage.css";
+import "../../Adio/pages/hospitalDetailsPage.css";
 import { DatePicker, Modal } from "antd";
 import { useParams } from "react-router";
 import axios from "axios";
@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
-const HospitalDetailsPage = () => {
+const HospitalRequestDetails = () => {
   const [volunteerPopUp, setVolunteerPopUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
@@ -86,7 +86,7 @@ const disabledDate = (current) => {
   if (isLoading) return <LoadComponents />;
   return (
     <div className="HospitalDetailsPageWrapper">
-      <h1>Hospital Details</h1>
+      <h1>Hospital Request Details</h1>
 
       <div className="detailsTextAndImageWrapper">
         <div className="detailsImageWrapper">
@@ -170,4 +170,4 @@ const disabledDate = (current) => {
   );
 };
 
-export default HospitalDetailsPage;
+export default HospitalRequestDetails;

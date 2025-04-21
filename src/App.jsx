@@ -45,9 +45,26 @@ import CheckMail from "./Esther/auth/CheckMail";
 import ResendMailVerification from "./Esther/auth/ResendMailVerification.jsx";
 import UsersPage from "./Esther/pages/UsersPage.jsx";
 import AdminForgotPassword from "./Esther/pages/AdminForgotPassword.jsx";
+import HospitalRequestsPage from "./Davidson/pages/HospitalRequestsPage.jsx";
+import HospitalRequestDetails from "./Davidson/pages/HospitalRequestDetails.jsx";
 
 
 const App = () => {
+
+  useEffect(() => {
+    const handleOffline = () => toast.error("You are offline");
+
+     if (!navigator.onLine) {
+      toast.error("You are offline");
+    }
+
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
+
 
   const router = createBrowserRouter([
     {
@@ -79,6 +96,8 @@ const App = () => {
         { path: "appointment", element: <Appointment /> },
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
+        { path: "hospitalsrequest", element: <HospitalRequestsPage /> },
+        { path: "hospitalsrequestdetails", element: <HospitalRequestDetails /> },
         { path: "hospitaldetails/:hospitalId", element: <HospitalDetailsPage /> },
         { path: "subscribe", element: <Subscrib /> },
         { path: "adminverification", element: <Verification /> },
