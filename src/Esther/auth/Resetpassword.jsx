@@ -27,12 +27,14 @@ const Resetpassword = () => {
     }
     try{
       const ress = await axios.post(`${Base_Url}/resetPassword/${token}`, {
-        password: newPassword
+      newPassword
       });      
       console.log(ress)
       setLoading(false)
+      toast.success(ress?.data?.message)
+      return
     }catch(err){
-      console.log(err)
+      toast.error(err?.response?.data?.message)
       setLoading(false)
     }
   }
@@ -46,7 +48,7 @@ const Resetpassword = () => {
         <div className='resetlogohold'>
         <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
           <Link to="/">
-            <img src="images/logo.png" alt="Logo" className='resetlogo'/>
+            <img src="/images/logo.png" alt="Logo" className='resetlogo'/>
           </Link>
           
         </div>
@@ -71,7 +73,7 @@ const Resetpassword = () => {
           <button className='resetbtn' onClick={handleResetPassword}>{loading ? <FadeLoader color='white' size={25}/> : "RESET"}</button>
         </div>
       </div>
-      <img src="images/Subtract.png" alt="" className='resetimage'/>
+      <img src="/images/Subtract.png" alt="" className='resetimage'/>
     </div>
   )
 }
