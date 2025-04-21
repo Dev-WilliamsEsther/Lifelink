@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
-const RequestedHospitalDetails = () => {
+const HospitalRequestDetails = () => {
   const [volunteerPopUp, setVolunteerPopUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
@@ -170,4 +170,4 @@ const disabledDate = (current) => {
   );
 };
 
-export default RequestedHospitalDetails;
+export default HospitalRequestDetails;

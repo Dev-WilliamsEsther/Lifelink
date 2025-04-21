@@ -46,7 +46,7 @@ import ResendMailVerification from "./Esther/auth/ResendMailVerification.jsx";
 import UsersPage from "./Esther/pages/UsersPage.jsx";
 import AdminForgotPassword from "./Esther/pages/AdminForgotPassword.jsx";
 import HospitalRequestsPage from "./Davidson/pages/HospitalRequestsPage.jsx";
-import RequestedHospitalDetails from "./Davidson/pages/requestedHospitalDetails.jsx";
+import HospitalRequestDetails from "./Davidson/pages/HospitalRequestDetails.jsx";
 
 
 const App = () => {
@@ -64,7 +64,7 @@ const App = () => {
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
-  
+
 
   const router = createBrowserRouter([
     {
@@ -97,7 +97,7 @@ const App = () => {
         { path: "records", element: <RecordPage /> },
         { path: "request", element: <RequstPage /> },
         { path: "hospitalsrequest", element: <HospitalRequestsPage /> },
-        { path: "hospitalsrequestdetails", element: <RequestedHospitalDetails /> },
+        { path: "hospitalsrequestdetails", element: <HospitalRequestDetails /> },
         { path: "hospitaldetails/:hospitalId", element: <HospitalDetailsPage /> },
         { path: "subscribe", element: <Subscrib /> },
         { path: "adminverification", element: <Verification /> },
