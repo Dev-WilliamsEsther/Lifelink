@@ -40,7 +40,7 @@ const Verification = () => {
       });
       console.log(ress);
     } catch (err) {
-      console.log(err);
+      console.log(err || err?.message);
     }
   };
   

@@ -70,7 +70,7 @@ const disabledDate = (current) => {
   const handleSchedule = async () => {
     setIsScheduleLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/bookAppointment`, scheduleData, {
+      const res = await axios.post(`${Base_Url}/schedule/${hospitalId}`, scheduleData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -103,9 +103,9 @@ const disabledDate = (current) => {
             <p>
               Location: <b>{anHospital?.location}</b>
             </p>
-            <p>
+            {/* <p>
               Blood group needed: <b>{anHospital?.bloodGroupNeeded || "A+"}</b>
-            </p>
+            </p> */}
             <p>
               Contact: <b>{anHospital?.phone ? anHospital?.phone : "-"}</b>
             </p>
