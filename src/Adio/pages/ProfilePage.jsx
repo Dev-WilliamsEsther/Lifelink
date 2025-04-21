@@ -48,15 +48,14 @@ const ProfilePage = () => {
           ) : (null)}
           {loggedInUser?.role === "admin" ? (
             <>
-              <p><b>Age</b><br /> {loggedInUser?.age}</p>
-              <p><b>Blood Group</b><br /> {loggedInUser?.bloodType}</p>
-              <p><b>Gender</b><br /> {loggedInUser?.gender ? loggedInUser?.gender : "-"}</p>
+              <p><b>Role</b><br /> {loggedInUser?.role}</p>
+              <p><b>Gender</b><br /> {loggedInUser?.email ? loggedInUser?.email : "-"}</p>
             </>
           ) : (null)}
         </div>
       </div>
 
-      <div className="profilePageInfosCards">
+       {loggedInUser?.role === "admin" ? null :<div className="profilePageInfosCards">
         <h2>Contact Information</h2>
         <div className="infosWRapper">
           <p><b>Email Address</b><br /> {loggedInUser?.role === "hospital" ? loggedInUser?.email : loggedInUser?.email}</p>
@@ -65,10 +64,12 @@ const ProfilePage = () => {
             <p><b>Home Address</b><br /> {loggedInUser?.location}</p>
           )}
         </div>
-      </div>
+      </div>}
 
       {
         loggedInUser?.role === "hospital" ? <button className="editProfileButton" onClick={() => nav('/dashboard/hospitalsettings')}>
+          Edit Profile
+        </button> : loggedInUser?.role === "admin" ? <button className="editProfileButton" onClick={() => nav('/dashboard/adminsettings')}>
           Edit Profile
         </button> : <button className="editProfileButton" onClick={() => nav('/dashboard/settings')}>
           Edit Profile

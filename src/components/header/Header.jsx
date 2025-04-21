@@ -3,7 +3,7 @@ import "../../components/header/header.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Modal } from "antd";
-import { MdEdit, MdHistory } from "react-icons/md";
+import { MdEdit, MdHistory, MdVerified } from "react-icons/md";
 import { TbHomeSearch } from "react-icons/tb";
 import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome } from "react-icons/vsc";
@@ -12,6 +12,8 @@ import { IoSearchOutline } from "react-icons/io5";
 import { handleLogout } from "../../global/Api";
 import { useDispatch, useSelector } from "react-redux";
 import LoadComponents from "../componentsLoadScreen/LoadComponents";
+import { IoIosListBox } from "react-icons/io";
+import { HiUsers } from "react-icons/hi";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -55,7 +57,7 @@ const Header = () => {
 
 
   const handleSubmit = () => {
-    handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut);
+    handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
   };
 
   if(loadLogOut){
@@ -174,7 +176,7 @@ const Header = () => {
                       nav("/");
                     }}
                   >
-                    <VscHome />
+                    <VscHome className="sideBarIocns" color="black"/>
                     Home
                   </li>
                   <li
@@ -183,7 +185,7 @@ const Header = () => {
                       nav("/dashboard/findhospital");
                     }}
                   >
-                    <TbHomeSearch />
+                    <TbHomeSearch className="sideBarIocns" color="black"/>
                     Find Hospital
                   </li>
                   <li
@@ -192,7 +194,7 @@ const Header = () => {
                       nav("/about");
                     }}
                   >
-                    <GoPeople />
+                    <GoPeople className="sideBarIocns" color="black"/>
                     About Us
                   </li>
                   <li
@@ -201,7 +203,7 @@ const Header = () => {
                       nav("/howitworks");
                     }}
                   >
-                    <CiSettings />
+                    <CiSettings className="sideBarIocns" color="black"/>
                     How it works
                   </li>
                   <li
@@ -210,7 +212,7 @@ const Header = () => {
                       nav("/dashboard/history");
                     }}
                   >
-                    <MdHistory />
+                    <MdHistory className="sideBarIocns" color="black"/>
                     History
                   </li>
                   <li
@@ -219,7 +221,7 @@ const Header = () => {
                       nav("/dashboard/settings");
                     }}
                   >
-                    <CiSettings />
+                    <CiSettings className="sideBarIocns" color="black"/>
                     Settings
                   </li>
                   <li
@@ -230,7 +232,52 @@ const Header = () => {
                     Logout
                   </li>
                 </>
-              ) : userInfo?.role === "hospital" ? (
+              ) : userInfo?.role === "admin" ? (
+                <>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/adminblacklist");
+                    }}
+                  >
+                    <IoIosListBox className="sideBarIocns" color="black" />
+                    Black List
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/adminverification");
+                    }}
+                  >
+                    <MdVerified className="sideBarIocns" color="black" />
+                    Verification
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/allusers");
+                    }}
+                  >
+                    <HiUsers className="sideBarIocns" color="black" />
+                    Users
+                  </li>
+                  <li
+                    onClick={() => {
+                      setOpenSideDrawer(false);
+                      nav("/dashboard/settings");
+                    }}
+                  >
+                    <CiSettings className="sideBarIocns" color="black"/>
+                    Settings
+                  </li>
+                  <li
+                    style={{ color: "red" }}
+                    onClick={() => setLogoutPopUp(true)}
+                  >
+                    <CiLogout />
+                    Logout
+                  </li>
+                </>) : userInfo?.role === "hospital" ? (
                 <>
                   <li
                     onClick={() => {
@@ -238,7 +285,7 @@ const Header = () => {
                       nav("/");
                     }}
                   >
-                    <VscHome />
+                    <VscHome className="sideBarIocns" color="black"/>
                     Home
                   </li>
                   <li
@@ -247,7 +294,7 @@ const Header = () => {
                       nav("/dashboard/findhospital");
                     }}
                   >
-                    <TbHomeSearch />
+                    <TbHomeSearch className="sideBarIocns" color="black"/>
                     Find Hospital
                   </li>
                   <li
@@ -256,7 +303,7 @@ const Header = () => {
                       nav("/about");
                     }}
                   >
-                    <GoPeople />
+                    <GoPeople className="sideBarIocns" color="black"/>
                     About Us
                   </li>
                   <li
@@ -265,7 +312,7 @@ const Header = () => {
                       nav("/howitworks");
                     }}
                   >
-                    <CiSettings />
+                    <CiSettings className="sideBarIocns" color="black"/>
                     How it works
                   </li>
                   <li
@@ -274,7 +321,7 @@ const Header = () => {
                       nav("/dashboard/requesthistory");
                     }}
                   >
-                    <MdHistory />
+                    <MdHistory className="sideBarIocns" color="black"/>
                     Request History
                   </li>
                   <li
@@ -283,7 +330,7 @@ const Header = () => {
                       nav("/dashboard/appointment");
                     }}
                   >
-                    <CiSettings />
+                    <CiSettings className="sideBarIocns" color="black"/>
                     Appointment
                   </li>
                   <li
@@ -292,7 +339,7 @@ const Header = () => {
                       nav("/dashboard/records");
                     }}
                   >
-                    <CiSettings />
+                    <CiSettings className="sideBarIocns" color="black"/>
                     Records
                   </li>
                   <li
@@ -301,14 +348,14 @@ const Header = () => {
                       nav("/dashboard/hospitalsettings");
                     }}
                   >
-                    <CiSettings />
+                    <CiSettings className="sideBarIocns" color="black"/>
                     Settings
                   </li>
                   <li
                     style={{ color: "red" }}
                     onClick={() => setLogoutPopUp(true)}
                   >
-                    <CiLogout />
+                    <CiLogout/>
                     Logout
                   </li>
                 </>

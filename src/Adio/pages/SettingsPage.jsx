@@ -22,7 +22,10 @@ const SettingsPage = () => {
 
   const InitialUserData = useSelector((state)=> state?.loggedInUser)
 
-  const [newPassword, setNewPasswords] = useState("");
+  const [changePasswordDatas, setChangePasswordDatas] = useState({
+    currentPassword : "",
+    newPassword : ""
+  });
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [passwordLoading, setPasswordLoading] = useState(false);
@@ -79,18 +82,20 @@ const SettingsPage = () => {
   };
 
   const handleResetPassword = async () => {
-    if (newPassword !== confirmPassword) {
+    if (changePasswordDatas.newPassword !== confirmPassword) {
       toast.error("New Password do not match");
       return;
     }
-    if (!newPassword || !confirmPassword) {
+    if (!changePasswordDatas.newPassword || !changePasswordDatas.currentPassword || !confirmPassword) {
       toast.error("Please input a new Password");
       return;
     }
     setPasswordLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/resetPassword/${token}`, {
-        newPassword,
+      const res = await axios.post(`${Base_Url}/changePassword`, {changePasswordDatas}, {
+        headers : {
+          Authorization : `Bearer ${token}`
+        }
       });
       toast.success(res?.data?.message);
       setPasswordLoading(false);
@@ -196,8 +201,8 @@ const SettingsPage = () => {
             }
           >
             <option value="">{InitialUserData.gender? InitialUserData.gender : "--Male/Female--"}</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="Male">male</option>
+            <option value="Female">female</option>
           </select>
 
           <label>Location</label>
@@ -269,13 +274,21 @@ const SettingsPage = () => {
 
       <div className="SettingsPasswordsideWrapper">
         <div className="settingsInputsWrapper">
+          <label>Current Password</label>
+          <input
+            type="password"
+            className="settingInputs"
+            placeholder="Current Password"
+            value={changePasswordDatas.currentPassword}
+            onChange={(e) => setChangePasswordDatas(prev => ({...prev, currentPassword : e.target.value}))}
+          />
           <label>New Password</label>
           <input
             type="password"
             className="settingInputs"
             placeholder="New Password"
-            value={newPassword}
-            onChange={(e) => setNewPasswords(e.target.value)}
+            value={changePasswordDatas.newPassword}
+            onChange={(e) => setChangePasswordDatas(prev => ({...prev, newPassword : e.target.value}))}
           />
           <label>Confirm Password</label>
           <input

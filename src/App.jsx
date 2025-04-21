@@ -43,6 +43,8 @@ import NotFound from "./components/404/404";
 import PaymentStatus from "./Esther/pages/PaymentStatus";
 import CheckMail from "./Esther/auth/CheckMail";
 import ResendMailVerification from "./Esther/auth/ResendMailVerification.jsx";
+import UsersPage from "./Esther/pages/UsersPage.jsx";
+import AdminForgotPassword from "./Esther/pages/AdminForgotPassword.jsx";
 
 
 const App = () => {
@@ -80,6 +82,7 @@ const App = () => {
         { path: "hospitaldetails/:hospitalId", element: <HospitalDetailsPage /> },
         { path: "subscribe", element: <Subscrib /> },
         { path: "adminverification", element: <Verification /> },
+        { path: "allusers", element: <UsersPage /> },
         { path: "adminsettings", element: <Settings /> },
         { path: "adminblacklist", element: <Blacklist /> },
       ]
@@ -102,7 +105,8 @@ const App = () => {
     { path: "/donorterms", element: <Donorterms /> },
     { path: "/adminsignin", element: <Adminsignin /> },
     { path: "/adminlogin", element: <Adminlogin /> },
-    { path: "/adminreset", element: <Adminreset /> },
+    { path: "/adminreset/:token", element: <Adminreset /> },
+    { path: "/adminforgotpassword", element: <AdminForgotPassword /> },
       ]
     },
   ]);

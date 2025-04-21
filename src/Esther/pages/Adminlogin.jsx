@@ -71,8 +71,8 @@ const Adminlogin = () => {
 
               <button className='admindonorloginbtn' onClick={handleLogin}>{loadState? <FadeLoader color="white" size={25}/> : "LOG-IN"}</button>
               <div className='admindonorloginforgotwrap'>
-                <p onClick={()=>nav("/admindonorssignup")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
-                <p>FORGOT PASSWORD</p>
+                <p onClick={()=>nav("/adminsignin")}>DON'T HAVE AN ACCOUNT?SIGNUP</p>
+                <p onClick={()=> nav("/adminforgotpassword")}>FORGOT PASSWORD</p>
               </div>
             </div>
           </div>
