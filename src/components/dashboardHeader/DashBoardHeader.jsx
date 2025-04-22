@@ -8,28 +8,21 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-const Base_Url = import.meta.env.VITE_BASEURL
+const Base_Url = import.meta.env.VITE_BASEURL;
 
 const DashBoardHeader = () => {
 
-  const loggedInUser= useSelector((state)=> state?.loggedInUser)
+  const loggedInUser = useSelector((state) => state?.loggedInUser);
+  const token = useSelector((state) => state?.token);
 
   const [notificationSideBar, setNotificationSideBar] = useState(false);
   const [openedMessageIndex, setOpenedMessageIndex] = useState(null);
-  const [notifications, setNotifications] = useState([])
+  const [notifications, setNotifications] = useState([]);
 
-  const handleOpenedMessageToggle = (index) => {
-    setOpenedMessageIndex(prev => prev === index ? null : index);
-  };
-
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const headerNameSplit = loggedInUser?.fullName?.split(" ");
-  const headerNamePrompt = headerNameSplit?.slice(0);
-
-  const hospitalHeaderNameSplit = loggedInUser?.fullName?.split(" ");
-  const hospitalHeaderNamePrompt = hospitalHeaderNameSplit?.slice(0);
-  const token = useSelector((state)=> state?.token)
+  const headerNamePrompt = headerNameSplit?.[0];
 
   const getDonorNotification = async () => {
     try {
@@ -37,22 +30,38 @@ const DashBoardHeader = () => {
         headers: {
           Authorization: `Bearer ${token}`
         }
-      })
-      setNotifications(ress?.data?.notifications)
+      });
+      setNotifications(ress?.data?.notifications);
     } catch (err) {
-      console.log("Message", err)
+      console.log("Message", err);
     }
-  }
+  };
+
+  const markNotificationAsRead = async (notificationId) => {
+    try {
+      await axios.put(`${Base_Url}/donor/notifications/${notificationId}/read`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      getDonorNotification(); // Refresh list
+    } catch (err) {
+      console.error("Failed to mark notification as read", err);
+    }
+  };
+
+  const handleOpenedMessageToggle = (index) => {
+    setOpenedMessageIndex(prev => prev === index ? null : index);
+  };
 
   useEffect(() => {
-    getDonorNotification()
-  }, [])
-  
+    getDonorNotification();
+  }, []);
 
   return (
     <div className='dashboardHeaderWrapper'>
       <div className="dashboardHeaderName">
-      <h1>Hello {headerNamePrompt?.[0] || hospitalHeaderNamePrompt?.[0] || 'Visitor'} <p style={{ fontSize: '15px' }}>&#128522;</p></h1>
+        <h1>Hello {headerNamePrompt || 'Visitor'} <p style={{ fontSize: '15px' }}>&#128522;</p></h1>
         <span>“save a life today”</span>
       </div>
 
@@ -62,14 +71,17 @@ const DashBoardHeader = () => {
       </div>
 
       <div className="profilePicAndNotification">
-        <MdCircleNotifications
-          size={30}
-          cursor='pointer'
-          onClick={() => setNotificationSideBar(true)}
-        />
+        <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)}>
+          <MdCircleNotifications size={30} cursor='pointer' />
+          {notifications?.some(n => !n.isRead) && (
+            <span className="notificationDot"></span>
+          )}
+        </div>
         <div className="profilePicture">
           {
-            loggedInUser?.profilePics ? <img src={loggedInUser?.profilePics} alt="profile Picture" className='profileAvatar'/> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar'/> 
+            loggedInUser?.profilePics || loggedInUser?.profilePicture
+              ? <img src={loggedInUser?.profilePics || loggedInUser?.profilePicture} alt="profile" className='profileAvatar' />
+              : <img src="/images/default profile pic.jpg" alt="default" className='profileAvatar' />
           }
         </div>
       </div>
@@ -87,20 +99,20 @@ const DashBoardHeader = () => {
                 className="notificationsCardsWrap"
                 onClick={() => handleOpenedMessageToggle(index)}
               >
-                <h1>{notification.from} <GoUnread /></h1>
+                <h1>{notification.from} {!notification.isRead && <GoUnread />}</h1>
                 {openedMessageIndex === index && (
                   <>
                     <span>{notification.message}</span>
                     <button
                       onClick={() => {
-                        nav('/dashboard/hospitaldetails');
+                        markNotificationAsRead(notification._id);
+                        nav(`hospitalsrequestdetails/${notification?._id}`);
                         setNotificationSideBar(false);
                       }}
                     >
                       View Hospital
                     </button>
-
-                    <p>{notification.date}</p>
+                    <p>{new Date(notification.date).toLocaleString()}</p>
                   </>
                 )}
               </div>

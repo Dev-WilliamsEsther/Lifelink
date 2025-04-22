@@ -42,8 +42,9 @@ const Hospitalsignup = () => {
       setIsLoading(true);
       try {
         const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
-console.log(res)
+        console.log(res)
         if(res?.status ===201) toast.success(res?.data?.message)
+          nav('/checkmail')
         return res.data.message;
       } catch (err) {
         console.log(err)

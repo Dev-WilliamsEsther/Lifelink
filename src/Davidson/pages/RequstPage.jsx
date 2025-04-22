@@ -69,7 +69,7 @@ const RequestPage = () => {
       return toast.error("Please fill all fields");
     } 
 
-    if(!user?.profilePic){
+    if(!user?.profilePicture){
       return toast.error("Upload Profile picture before Requesting")
     } else if(!user?.kycCompleted){
       return toast.error("Please Upload KYC before Requesting")

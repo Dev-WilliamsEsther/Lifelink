@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../Adio/pages/hospitalDetailsPage.css";
 import { DatePicker, Modal } from "antd";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import LoadComponents from "../../components/componentsLoadScreen/LoadComponents";
 import { toast } from "sonner";
@@ -16,16 +16,16 @@ const HospitalRequestDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState([]);
+  console.log(anHospital)
 
   const token = useSelector((state) => state?.token);
-  const { hospitalId } = useParams();
+  const { bloodRequestId } = useParams();
   const [scheduleData, setScheduleData] = useState({
     date: "",
     time: "",
-    hospitalId
+    hospitalId : ""
   });
 
-  console.log(scheduleData)
 
   const disabledDate = (current) => {
     return current && current < dayjs().endOf("day");
@@ -49,7 +49,7 @@ const HospitalRequestDetails = () => {
   const getOneHospital = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`${Base_Url}/blood-request/${hospitalId}`, {
+      const res = await axios.get(`${Base_Url}/-request/${bloodRequestId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,12 +65,16 @@ const HospitalRequestDetails = () => {
 
   useEffect(() => {
     getOneHospital();
-  }, [hospitalId]);
+  }, [bloodRequestId]);
 
   const handleSchedule = async () => {
     setIsScheduleLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/bookAppointment`, {scheduleData}, {
+      const res = await axios.post(`${Base_Url}/bookAppointment`, {
+        date : scheduleData.date,
+        time : scheduleData.time,
+        hospitalId : scheduleData.hospitalId
+      }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -80,7 +84,7 @@ const HospitalRequestDetails = () => {
       setScheduleData({
         date: "",
         time: "",
-        id,
+        bloodRequestId,
       });
       setVolunteerPopUp(false);
     } catch (err) {
@@ -89,6 +93,17 @@ const HospitalRequestDetails = () => {
       setIsScheduleLoading(false);
     }
   };
+
+
+
+  useEffect(() => {
+    if (anHospital?.hospital?._id) {
+      setScheduleData((prev) => ({
+        ...prev,
+        hospitalId: anHospital.hospital._id,
+      }));
+    }
+  }, [anHospital]);
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
@@ -134,7 +149,7 @@ const HospitalRequestDetails = () => {
               LGM: <b>{anHospital?.hospital?.city || "-"}</b>
             </p>
             <p>
-              Contact: <b>{anHospital?.hospital?.email || "-"}</b>
+              email: <b>{anHospital?.hospital?.email || "-"}</b>
             </p>
             <p>
               Contact: <b>{anHospital?.hospital?.phone || "-"}</b>

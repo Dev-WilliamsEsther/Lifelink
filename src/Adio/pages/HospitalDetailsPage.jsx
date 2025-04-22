@@ -68,7 +68,7 @@ const disabledDate = (current) => {
   const handleSchedule = async () => {
     setIsScheduleLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/schedule/${hospitalId}`, scheduleData, {
+      const res = await axios.post(`${Base_Url}/schedule`, scheduleData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -76,6 +76,7 @@ const disabledDate = (current) => {
       setIsScheduleLoading(false);
       toast.success(res?.data?.message);
       setScheduleData("");
+      console.log(res)
       setVolunteerPopUp(false);
     } catch (err) {
       toast.error(err?.response?.data?.message);
@@ -101,9 +102,6 @@ const disabledDate = (current) => {
             <p>
               Location: <b>{anHospital?.location}</b>
             </p>
-            {/* <p>
-              Blood group needed: <b>{anHospital?.bloodGroupNeeded || "A+"}</b>
-            </p> */}
             <p>
               Contact: <b>{anHospital?.phone ? anHospital?.phone : "-"}</b>
             </p>
