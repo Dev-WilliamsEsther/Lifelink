@@ -19,6 +19,22 @@
     background: rgba(255, 0, 0, 0.809);
     transition: 280ms ease-in-out all;
 }
+.paymentStatusMessage{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 5px;
+    color: red;
+    cursor: pointer;
+    background: white;
+    border: 1px solid red;
+    transition: 280ms ease-in-out all;
+}
 
 .kycCompleteMessage:hover{
     background: red;
