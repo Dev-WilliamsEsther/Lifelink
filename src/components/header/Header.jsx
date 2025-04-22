@@ -252,8 +252,8 @@ const Header = () => {
                     }}
                   >
                     <IoIosListBox className="sideBarIocns" color="black" />
-                    Black List */}
-                  </li>
+                    Black List
+                  </li> */}
                   <li
                     onClick={() => {
                       setOpenSideDrawer(false);
