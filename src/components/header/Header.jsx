@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "../../components/header/header.css";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Modal } from "antd";
-import { MdEdit, MdHistory, MdOutlineHistoryToggleOff, MdVerified } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdEdit, MdHistory, MdOutlineHistoryToggleOff, MdVerified, MdCircleNotifications } from "react-icons/md";
 import { TbHomeSearch } from "react-icons/tb";
-import { CiLogout, CiSettings } from "react-icons/ci";
 import { VscHome, VscTools } from "react-icons/vsc";
-import { GoPeople } from "react-icons/go";
+import { GoPeople, GoUnread } from "react-icons/go";
 import { IoList, IoSearchOutline } from "react-icons/io5";
+import { PiGitPullRequest } from "react-icons/pi";
+import { BiGitPullRequest } from "react-icons/bi";
+import { CiLogout, CiSettings } from "react-icons/ci";
+import { HiUsers } from "react-icons/hi2";
 import { handleLogout } from "../../global/Api";
 import { useDispatch, useSelector } from "react-redux";
 import LoadComponents from "../componentsLoadScreen/LoadComponents";
-import { IoIosListBox } from "react-icons/io";
-import { HiUsers } from "react-icons/hi";
-import { PiGitPullRequest } from "react-icons/pi";
-import { BiGitPullRequest } from "react-icons/bi";
+import axios from "axios";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -23,48 +23,81 @@ const Header = () => {
   const [openSideDrawer, setOpenSideDrawer] = useState(false);
   const [logoutPopUp, setLogoutPopUp] = useState(false);
   const [loadLogOut, setLoadLogOut] = useState(false);
+  const [notificationSideBar, setNotificationSideBar] = useState(false);
+  const [openedMessageIndex, setOpenedMessageIndex] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  const [isFixed, setIsFixed] = useState(false);
 
-  const isSignedIn = useSelector((state)=> state?.isLoggedIn)
-  const userInfo = useSelector((state)=> state?.loggedInUser)
-  const token = useSelector((state)=> state?.token )
+  const isSignedIn = useSelector((state) => state?.isLoggedIn);
+  const userInfo = useSelector((state) => state?.loggedInUser);
+  const token = useSelector((state) => state?.token);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const location = useLocation();
 
-  const link = [
+  const navLinks = [
     { name: "home", path: "/" },
     { name: "about us", path: "/about" },
     { name: "How it Works", path: "/howitworks" },
   ];
 
-  const location = useLocation();
-
-  const [isFixed, setIsFixed] = useState(false);
-  const nav = useNavigate();
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollThreshold = 250;
-      if (window.scrollY > scrollThreshold) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-
   const handleSubmit = () => {
     handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
   };
 
-  if(loadLogOut){
-    return <LoadComponents/>
+  const getDonorNotification = async () => {
+    try {
+      const res = await axios.get(`${Base_Url}/donor/notifications`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setNotifications(res?.data?.notifications || []);
+    } catch (err) {
+      console.error("Notification Error:", err);
+    }
+  };
+
+  const markNotificationAsRead = async (id) => {
+    try {
+      await axios.put(`${Base_Url}/donor/notifications/${id}/read`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      getDonorNotification();
+    } catch (err) {
+      console.error("Mark Read Error:", err);
+    }
+  };
+
+  const handleOpenedMessageToggle = (index) => {
+    setOpenedMessageIndex(prev => prev === index ? null : index);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsFixed(window.scrollY > 250);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    getDonorNotification();
+  }, []);
+
+  const headerNamePrompt = userInfo?.fullName?.split(" ")?.[0];
+
+  if (loadLogOut) {
+    return <LoadComponents />;
   }
+
+
+
+
 
   return (
     <>
@@ -75,7 +108,7 @@ const Header = () => {
           </div>
           <div className="headerwrapperinner2">
             <ul className="headerul">
-              {link.map((link, idx) => (
+              {navLinks.map((link, idx) => (
                 <li
                   key={idx}
                   className={`${link.path === location.pathname &&
@@ -178,16 +211,22 @@ const Header = () => {
                       nav("/");
                     }}
                   >
-                    <VscHome className="sideBarIocns" color="black"/>
+                    <VscHome className="sideBarIocns" color="black" />
                     Home
                   </li>
+                  <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)}>
+                    <MdCircleNotifications size={30} cursor='pointer' />
+                    {notifications?.some(n => !n.isRead) && (
+                      <span className="notificationDot"></span>
+                    )}
+                  </div>
                   <li
                     onClick={() => {
                       setOpenSideDrawer(false);
                       nav("/dashboard/findhospital");
                     }}
                   >
-                    <TbHomeSearch className="sideBarIocns" color="black"/>
+                    <TbHomeSearch className="sideBarIocns" color="black" />
                     Find Hospital
                   </li>
                   <li
@@ -196,7 +235,7 @@ const Header = () => {
                       nav("/dashboard/hospitalsrequest");
                     }}
                   >
-                    <BiGitPullRequest className="sideBarIocns" color="black"/>
+                    <BiGitPullRequest className="sideBarIocns" color="black" />
                     Requests
                   </li>
                   <li
@@ -205,7 +244,7 @@ const Header = () => {
                       nav("/about");
                     }}
                   >
-                    <GoPeople className="sideBarIocns" color="black"/>
+                    <GoPeople className="sideBarIocns" color="black" />
                     About Us
                   </li>
                   <li
@@ -214,7 +253,7 @@ const Header = () => {
                       nav("/howitworks");
                     }}
                   >
-                    <CiSettings className="sideBarIocns" color="black"/>
+                    <CiSettings className="sideBarIocns" color="black" />
                     How it works
                   </li>
                   <li
@@ -223,7 +262,7 @@ const Header = () => {
                       nav("/dashboard/history");
                     }}
                   >
-                    <MdHistory className="sideBarIocns" color="black"/>
+                    <MdHistory className="sideBarIocns" color="black" />
                     History
                   </li>
                   <li
@@ -232,7 +271,7 @@ const Header = () => {
                       nav("/dashboard/settings");
                     }}
                   >
-                    <CiSettings className="sideBarIocns" color="black"/>
+                    <CiSettings className="sideBarIocns" color="black" />
                     Settings
                   </li>
                   <li
@@ -278,7 +317,7 @@ const Header = () => {
                       nav("/dashboard/settings");
                     }}
                   >
-                    <CiSettings className="sideBarIocns" color="black"/>
+                    <CiSettings className="sideBarIocns" color="black" />
                     Settings
                   </li>
                   <li
@@ -289,88 +328,88 @@ const Header = () => {
                     Logout
                   </li>
                 </>) : userInfo?.role === "hospital" ? (
-                <>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/");
-                    }}
-                  >
-                    <VscHome className="sideBarIocns" color="black"/>
-                    Home
-                  </li>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/dashboard/request");
-                    }}
-                  >
-                    <PiGitPullRequest className="sideBarIocns" color="black"/>
-                    Make Request
-                  </li>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/about");
-                    }}
-                  >
-                    <GoPeople className="sideBarIocns" color="black"/>
-                    About Us
-                  </li>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/howitworks");
-                    }}
-                  >
-                    <VscTools className="sideBarIocns" color="black"/>
-                    How it works
-                  </li>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/dashboard/requesthistory");
-                    }}
-                  >
-                    <MdHistory className="sideBarIocns" color="black"/>
-                    Request History
-                  </li>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/dashboard/appointment");
-                    }}
-                  >
-                    <IoList className="sideBarIocns" color="black"/>
-                    Appointment
-                  </li>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/dashboard/records");
-                    }}
-                  >
-                    <MdOutlineHistoryToggleOff className="sideBarIocns" color="black"/>
-                    Records
-                  </li>
-                  <li
-                    onClick={() => {
-                      setOpenSideDrawer(false);
-                      nav("/dashboard/hospitalsettings");
-                    }}
-                  >
-                    <CiSettings className="sideBarIocns" color="black"/>
-                    Settings
-                  </li>
-                  <li
-                    style={{ color: "red" }}
-                    onClick={() => setLogoutPopUp(true)}
-                  >
-                    <CiLogout/>
-                    Logout
-                  </li>
-                </>
-              ) : null
+                  <>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/");
+                      }}
+                    >
+                      <VscHome className="sideBarIocns" color="black" />
+                      Home
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/dashboard/request");
+                      }}
+                    >
+                      <PiGitPullRequest className="sideBarIocns" color="black" />
+                      Make Request
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/about");
+                      }}
+                    >
+                      <GoPeople className="sideBarIocns" color="black" />
+                      About Us
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/howitworks");
+                      }}
+                    >
+                      <VscTools className="sideBarIocns" color="black" />
+                      How it works
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/dashboard/requesthistory");
+                      }}
+                    >
+                      <MdHistory className="sideBarIocns" color="black" />
+                      Request History
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/dashboard/appointment");
+                      }}
+                    >
+                      <IoList className="sideBarIocns" color="black" />
+                      Appointment
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/dashboard/records");
+                      }}
+                    >
+                      <MdOutlineHistoryToggleOff className="sideBarIocns" color="black" />
+                      Records
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpenSideDrawer(false);
+                        nav("/dashboard/hospitalsettings");
+                      }}
+                    >
+                      <CiSettings className="sideBarIocns" color="black" />
+                      Settings
+                    </li>
+                    <li
+                      style={{ color: "red" }}
+                      onClick={() => setLogoutPopUp(true)}
+                    >
+                      <CiLogout />
+                      Logout
+                    </li>
+                  </>
+                ) : null
             ) : (
               <>
                 <button onClick={() => nav("/login")}>Login</button>
@@ -429,6 +468,49 @@ const Header = () => {
           </div>
         </div>
       </Modal>
+
+
+
+
+
+
+
+      <Drawer
+        open={notificationSideBar}
+        onClose={() => setNotificationSideBar(false)}
+        title="Notifications"
+      >
+        <div className="notificationsWrapper">
+          {notifications.length > 0 ? (
+            notifications.map((notification, index) => (
+              <div
+                key={index}
+                className="notificationsCardsWrap"
+                onClick={() => handleOpenedMessageToggle(index)}
+              >
+                <h1>{notification.from} {!notification.isRead && <GoUnread />}</h1>
+                {openedMessageIndex === index && (
+                  <>
+                    <span>{notification.message}</span>
+                    <button
+                      onClick={() => {
+                        markNotificationAsRead(notification._id);
+                        nav(`hospitalsrequestdetails/${notification?._id}`);
+                        setNotificationSideBar(false);
+                      }}
+                    >
+                      View Hospital
+                    </button>
+                    <p>{new Date(notification.date).toLocaleString()}</p>
+                  </>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>No notifications yet 📭</p>
+          )}
+        </div>
+      </Drawer>
     </>
   );
 };

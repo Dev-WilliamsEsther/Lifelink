@@ -44,7 +44,7 @@ const DashBoardHeader = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      getDonorNotification(); // Refresh list
+      getDonorNotification();
     } catch (err) {
       console.error("Failed to mark notification as read", err);
     }
