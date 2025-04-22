@@ -10,7 +10,7 @@ const ProfilePage = () => {
   return (
     <div className="ProfilePageWRapper">
       {loggedInUser?.role === "hospital" && !loggedInUser?.kycCompleted && (
-        <div className="kycCompleteMessage">Please complete your KYC</div>
+        <div className="kycCompleteMessage" onClick={()=> nav('/kyc')}>Please Upload your KYC</div>
       )}
 
       <h1>Profile</h1>
@@ -18,7 +18,7 @@ const ProfilePage = () => {
       <div className="profilePageProfileAndNameWrapper">
         <div className="profilePageProfilePic">
           {
-            loggedInUser?.profilePics ? <img src={loggedInUser?.profilePics} alt="profile Picture" /> : <img src="/images/default profile pic.jpg" alt="profile Picture" />
+            loggedInUser?.profilePics || loggedInUser?.profilePicture ? <img src={loggedInUser?.profilePics || loggedInUser?.profilePicture} alt="profile Picture" /> : <img src="/images/default profile pic.jpg" alt="profile Picture" />
           }
         </div>
 
@@ -35,8 +35,8 @@ const ProfilePage = () => {
           {loggedInUser?.role === "hospital" ? (
             <>
               <p><b>Type</b><br /> {loggedInUser?.role}</p>
-              <p><b>City</b><br /> {loggedInUser?.city}</p>
-              <p><b>Town</b><br /> {loggedInUser?.location}</p>
+              <p><b>LGA</b><br /> {loggedInUser?.city}</p>
+              <p><b>Address</b><br /> {loggedInUser?.location}</p>
             </>
           ) : (null)}
           {loggedInUser?.role === "donor" ? (

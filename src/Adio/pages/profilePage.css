@@ -15,7 +15,14 @@
     padding: 5px 5px;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
+    background: rgba(255, 0, 0, 0.809);
+    transition: 280ms ease-in-out all;
+}
+
+.kycCompleteMessage:hover{
     background: red;
+    transition: 280ms ease-in-out all;
 }
 
 .ProfilePageWRapper > h1{

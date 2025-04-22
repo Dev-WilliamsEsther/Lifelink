@@ -90,7 +90,7 @@ const Header = () => {
           {isSignedIn ? (
             <div className="headerProfilePic" onClick={() => nav("/dashboard")}>
               {
-                userInfo?.profilePics ? <img src={userInfo?.profilePics} alt="profile Picture" className='profileAvatar' /> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar' />
+                userInfo?.profilePics || userInfo?.profilePicture ? <img src={userInfo?.profilePics || userInfo?.profilePicture} alt="profile Picture" className='profileAvatar' /> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar' />
               }
             </div>
           ) : (
@@ -133,7 +133,7 @@ const Header = () => {
               >
                 <div className="MobileSideProfilePic">
                   {
-                    userInfo.profilePics ? <img src={userInfo.profilePics} alt="" /> : <img src="/images/default profile pic.jpg" alt="" />
+                    userInfo.profilePics || userInfo?.profilePicture ? <img src={userInfo.profilePics || userInfo?.profilePicture} alt="" /> : <img src="/images/default profile pic.jpg" alt="" />
                   }
                 </div>
                 <div className="MobileSideProfileName">
