@@ -161,7 +161,7 @@ const DashboardSideBar = () => {
                 <IoList className="sideBarIocns" color="black" />
                 Appointments
               </li>
-              <li
+              {/* <li
                 onClick={() => {
                   nav("records");
                 }}
@@ -170,7 +170,7 @@ const DashboardSideBar = () => {
               >
                 <MdOutlineHistoryToggleOff className="sideBarIocns" color="black" />
                 Records
-              </li>
+              </li> */}
               <li
                 onClick={() => {
                   nav("/dashboard/hospitalsettings");
@@ -213,7 +213,7 @@ const DashboardSideBar = () => {
                 <HiUsers className="sideBarIocns" color="black" />
                 Users
               </li>
-              <li
+              {/* <li
                 onClick={() => {
                   nav("adminblacklist");
                 }}
@@ -224,7 +224,7 @@ const DashboardSideBar = () => {
               >
                 <IoIosListBox className="sideBarIocns" color="black" />
                 Black List
-              </li>
+              </li> */}
               <li
                 onClick={() => {
                   nav("adminverification");
