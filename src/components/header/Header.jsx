@@ -3,7 +3,7 @@ import "../../components/header/header.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Modal } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { MdEdit, MdHistory, MdOutlineHistoryToggleOff, MdVerified, MdCircleNotifications } from "react-icons/md";
+import { MdEdit, MdHistory, MdVerified, MdCircleNotifications } from "react-icons/md";
 import { TbHomeSearch } from "react-icons/tb";
 import { VscHome, VscTools } from "react-icons/vsc";
 import { GoPeople, GoUnread } from "react-icons/go";
@@ -45,8 +45,8 @@ const Header = () => {
   const handleSubmit = () => {
     handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
   };
-
-  const getDonorNotification = async () => {
+  
+  const getDonorNotification = async (token, setNotifications) => {
     try {
       const res = await axios.get(`${Base_Url}/donor/notifications`, {
         headers: {
@@ -58,6 +58,17 @@ const Header = () => {
       console.error("Notification Error:", err);
     }
   };
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getDonorNotification(token, setNotifications);
+    }, 10000); 
+  
+    getDonorNotification(token, setNotifications);
+  
+    return () => clearInterval(interval);
+  }, [token]);
+  
 
   const markNotificationAsRead = async (id) => {
     try {
@@ -85,18 +96,13 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    getDonorNotification();
-  }, []);
+
 
   const headerNamePrompt = userInfo?.fullName?.split(" ")?.[0];
 
   if (loadLogOut) {
     return <LoadComponents />;
   }
-
-
-
 
 
   return (
@@ -174,12 +180,12 @@ const Header = () => {
                   <span>{userInfo?.bloodType}</span>
                 </div>
 
-                <div
-                  className="mobileSideBarIcon"
-                  onClick={() => nav("/dashboard/settings")}
-                >
-                  <MdEdit />
-                </div>
+                <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)}>
+                      <MdCircleNotifications size={30} cursor='pointer' />
+                      {notifications?.some(n => !n.isRead) && (
+                        <span className="notificationDot">.</span>
+                      )}
+                    </div>
               </div>
             ) : (
               <div
@@ -214,15 +220,10 @@ const Header = () => {
                     <VscHome className="sideBarIocns" color="black" />
                     Home
                   </li>
-                  <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)}>
-                    <MdCircleNotifications size={30} cursor='pointer' />
-                    {notifications?.some(n => !n.isRead) && (
-                      <span className="notificationDot"></span>
-                    )}
-                  </div>
                   <li
                     onClick={() => {
                       setOpenSideDrawer(false);
+                      setNotificationSideBar(false)
                       nav("/dashboard/findhospital");
                     }}
                   >
@@ -338,6 +339,7 @@ const Header = () => {
                       <VscHome className="sideBarIocns" color="black" />
                       Home
                     </li>
+                    
                     <li
                       onClick={() => {
                         setOpenSideDrawer(false);
@@ -383,7 +385,7 @@ const Header = () => {
                       <IoList className="sideBarIocns" color="black" />
                       Appointment
                     </li>
-                    <li
+                    {/* <li
                       onClick={() => {
                         setOpenSideDrawer(false);
                         nav("/dashboard/records");
@@ -391,7 +393,7 @@ const Header = () => {
                     >
                       <MdOutlineHistoryToggleOff className="sideBarIocns" color="black" />
                       Records
-                    </li>
+                    </li> */}
                     <li
                       onClick={() => {
                         setOpenSideDrawer(false);
@@ -480,7 +482,7 @@ const Header = () => {
         onClose={() => setNotificationSideBar(false)}
         title="Notifications"
       >
-        <div className="notificationsWrapper">
+        {userInfo?.role === "donor" ? <div className="notificationsWrapper">
           {notifications.length > 0 ? (
             notifications.map((notification, index) => (
               <div
@@ -497,6 +499,7 @@ const Header = () => {
                         markNotificationAsRead(notification._id);
                         nav(`hospitalsrequestdetails/${notification?._id}`);
                         setNotificationSideBar(false);
+                        setOpenSideDrawer(false)
                       }}
                     >
                       View Hospital
@@ -509,7 +512,37 @@ const Header = () => {
           ) : (
             <p>No notifications yet 📭</p>
           )}
-        </div>
+        </div> : userInfo?.role === "hospital" ? <div className="notificationsWrapper">
+          {userInfo?.notifications?.length > 0 ? (
+            userInfo?.notifications?.map((notification, index) => (
+              <div
+                key={index}
+                className="notificationsCardsWrap"
+                onClick={() => handleOpenedMessageToggle(index)}
+              >
+                <h1>{notification.from} {!notification.isRead && <GoUnread />}</h1>
+                {openedMessageIndex === index && (
+                  <>
+                    <span>{notification.message}</span>
+                    <button
+                      onClick={() => {
+                        markNotificationAsRead(notification.requestId);
+                        nav(`hospitalsrequestdetails/${notifications?.requestId}`);
+                        setNotificationSideBar(false);
+                        setOpenSideDrawer(false)
+                      }}
+                    >
+                      View Hospital
+                    </button>
+                    <p>{new Date(notification.date).toLocaleString()}</p>
+                  </>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>No notifications yet 📭</p>
+          )}
+        </div> : null}
       </Drawer>
     </>
   );
