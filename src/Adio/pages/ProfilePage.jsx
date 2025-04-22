@@ -12,6 +12,9 @@ const ProfilePage = () => {
       {loggedInUser?.role === "hospital" && !loggedInUser?.kycCompleted && (
         <div className="kycCompleteMessage" onClick={()=> nav('/kyc')}>Please Upload your KYC</div>
       )}
+      {loggedInUser?.role === "hospital" && !loggedInUser?.paymentStatus && (
+        <div className="paymentStatusMessage" onClick={()=> nav('/dashboard/subscribe')}>Subscribe to get listed</div>
+      )}
 
       <h1>Profile</h1>
 
