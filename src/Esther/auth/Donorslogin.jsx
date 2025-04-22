@@ -45,7 +45,7 @@ const Donorslogin = () => {
       dispatch(logIn(res?.data?.data))
       dispatch(saveToken(res?.data?.token))
       setTimeout(() => {
-        nav("/");
+        nav("/dashboard");
       }, 1000);
       return res.message;
     } catch (err) {
