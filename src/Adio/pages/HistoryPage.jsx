@@ -65,6 +65,33 @@ const HistoryPage = () => {
     }
   };
 
+  const [appointmentsHistory, setAppointmentHistory] = useState([])
+
+
+  const getAppointments = async (status) => {
+    setLoadingState(true);
+    try {
+      const res = await axios.get(`${Base_Url}/donor/appointments`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setAppointmentHistory(res?.data?.appointments);
+      console.log(res)
+    } catch (err) {
+      console.error("Error fetching donations:", err);
+      toast.error("Failed to fetch donation history.");
+    } finally {
+      setLoadingState(false);
+    }
+  };
+
+
+  useEffect(()=>{
+    getAppointments()
+  }, [])
+
   if (loadingState) {
     return <LoadComponents />;
   }
@@ -72,7 +99,7 @@ const HistoryPage = () => {
   return (
     <>
       <div className='HistoryPageWrapper'>
-        <h1>Donation History</h1>
+        <h1>Appointment History</h1>
 
         <div className="filter-buttons" style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
           {["pending", "confirmed", "cancelled"].map((s) => (
@@ -127,6 +154,51 @@ const HistoryPage = () => {
         </div>
       </div>
 
+     
+
+
+
+
+
+
+
+      <div className='HistoryPageWrapper'>
+        <h1>Schedule History</h1>
+
+        <div className="DonationsHistoryCardsHeading">
+          <div className="DonationsHistoryCardsInnerWrapper">
+            <h1>Facility Name</h1>
+            <h1>VIEW DETAILS</h1>
+            <h1><SlCalender /> DATE</h1>
+            <h1>LOCATION</h1>
+            <h1>STATUS</h1>
+          </div>
+        </div>
+
+        <div className="DonationsHistoryCardsWrapper">
+          {appointmentsHistory.length > 0 ? (
+            appointmentsHistory.map((donation, index) => (
+              <div className="DonationsHistoryCards" key={index}>
+                <div className="DonationsHistoryCardsInnerWrapper">
+                  <h3>{donation.hospital?.email || "N/A"}</h3>
+                  <h3>
+                    {}
+                  </h3>
+                  <h3><SlCalender /> {new Date(donation.date).toLocaleDateString()}</h3>
+                  <h3>{donation.hospital?.location || "N/A"}</h3>
+                  <h3>{donation.status}</h3>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No {status} donations yet.</p>
+          )}
+        </div>
+      </div>
+
+
+
+
       <Modal
         open={!!viewDetailsPopUp}
         onCancel={() => setViewDetailsPopUp(null)}
@@ -161,6 +233,8 @@ const HistoryPage = () => {
           </div>
         )}
       </Modal>
+
+
     </>
   );
 };

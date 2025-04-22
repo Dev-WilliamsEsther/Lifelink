@@ -40,7 +40,7 @@ const HospitalRequestsPage = () => {
             {
                 hospitalRequests.map((request, index)=>(
                     <div className='hospitalCardWRapper' key={index}>
-                    <img src="/images/hospital image.jpg" alt="Hospital image" />
+                    <img src={request?.hospital?.profilePicture? request?.hospital?.profilePicture : "/images/default profile pic.jpg"} alt="Hospital image" />
                     <div className="hospitalTextWRapper">
                       <h3>{request?.hospital?.fullName}</h3>
                       <span>{request?.hospital?.city}</span>

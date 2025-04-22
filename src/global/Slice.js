@@ -22,7 +22,8 @@ const AppReducer = createSlice({
         },
         logOut:(state)=>{
             state.isLoggedIn = false;
-            state.loggedInUser = {}
+            state.loggedInUser = {};
+            state.token = ""
         },
     }
 })
