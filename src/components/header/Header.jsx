@@ -245,7 +245,7 @@ const Header = () => {
                 </>
               ) : userInfo?.role === "admin" ? (
                 <>
-                  <li
+                  {/* <li
                     onClick={() => {
                       setOpenSideDrawer(false);
                       nav("/dashboard/adminblacklist");
@@ -253,7 +253,7 @@ const Header = () => {
                   >
                     <IoIosListBox className="sideBarIocns" color="black" />
                     Black List
-                  </li>
+                  </li> */}
                   <li
                     onClick={() => {
                       setOpenSideDrawer(false);
