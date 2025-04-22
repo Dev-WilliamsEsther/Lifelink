@@ -35,7 +35,7 @@ export const handleLogout = async (Base_Url, nav, token, dispatch, setLoadLogOut
     setLoadLogOut(false)
     return
   } catch (err) {
-    toast.error(err?.data?.message);
+    // toast.error(err?.data?.message);
     setLoadLogOut(false)
   }
 };
