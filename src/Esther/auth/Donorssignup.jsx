@@ -18,7 +18,7 @@ const Donorssignup = () => {
     password: "",
     bloodType: "",
     location: "",
-    age: 18,
+    age: "",
   });
 
 
@@ -45,6 +45,7 @@ const Donorssignup = () => {
         setTimeout(() => {
           nav("/checkmail");
         }, 1000);
+        console.log(res)
         return res.data.message;
       } catch (err) {
         toast.error(err?.response?.data?.message);
@@ -162,6 +163,9 @@ const Donorssignup = () => {
             {showPassword1? <LuEyeClosed onClick={()=> setShowPassword1(false)}/> : <LuEye onClick={()=> setShowPassword1(true)}/>}
             </div>
           </div>
+          <p className="passwordTips">† Password must be at least 6 characters long <br />
+          † Password must include at least one uppercase letter and a number.
+          </p>
 
           <div className='donorsigninputwrapper'>
             <p>CONFIRM PASSWORD</p>

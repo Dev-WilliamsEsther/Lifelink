@@ -150,3 +150,68 @@
     padding: 1rem;
   }
 }
+
+/* Tablet & below (max-width: 768px) */
+@media (max-width: 768px) {
+  .AppointmentContainer {
+    padding: 1rem;
+  }
+
+  .AppointmentTitle {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .AppointmentHeader,
+  .AppointmentItem {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 1rem 1rem;
+  }
+
+  .AppointmentCardsHeading2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .AppointmentItem {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .confirm-btn,
+  .reject-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    margin: 0.25rem 0;
+  }
+
+  .status {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+/* Small phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .AppointmentHeader,
+  .AppointmentItem,
+  .AppointmentCardsHeading2 {
+    grid-template-columns: 1fr;
+  }
+
+  .AppointmentContainer {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .AppointmentTitle {
+    font-size: 1.2rem;
+  }
+
+  .confirm-btn,
+  .reject-btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+}

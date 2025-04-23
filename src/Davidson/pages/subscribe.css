@@ -48,13 +48,13 @@
 }
 
 .subscribe-button {
-  width: 100px;
+  width: max-content;
   height: max-content;
   padding: 8px 20px;
   background-color: #c0392b;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17px;
   color: #fff;
   margin-top: 20px;
 }
