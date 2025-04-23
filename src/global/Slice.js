@@ -31,5 +31,5 @@ const AppReducer = createSlice({
         },
     }
 })
-export const {logIn, logOut, saveToken, profilePic} = AppReducer.actions;
+export const {logIn, logOut, saveToken, profilePic, payment} = AppReducer.actions;
 export default AppReducer.reducer;
