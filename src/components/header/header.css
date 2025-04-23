@@ -8,14 +8,14 @@
   transition: 280ms;
 }
 
-.headerwrapperfixed{
+.headerwrapperfixed {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   position: fixed;
   z-index: 999;
   transition: 280ms;
 }
 
-.notificationIconWrapper{
+.notificationIconWrapper {
   width: max-content;
   height: max-content;
   display: flex;
@@ -23,7 +23,7 @@
   justify-content: flex-end;
 }
 
-.notificationDot{
+.notificationDot {
   width: 8px;
   height: 8px;
   background: red;
@@ -31,7 +31,7 @@
   color: transparent;
 }
 
-.HeaderInnerWrapper{
+.HeaderInnerWrapper {
   width: 80%;
   height: 100%;
   display: flex;
@@ -39,7 +39,8 @@
   justify-content: space-between;
 }
 
-.MobileHeader, .mobileHeaderWrapperPusher {
+.MobileHeader,
+.mobileHeaderWrapperPusher {
   display: none;
 }
 
@@ -115,7 +116,7 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  border: 1px solid #c0392b ;
+  border: 1px solid #c0392b;
 }
 .headerbtn1:hover {
   background-color: #d6eaf8;
@@ -123,7 +124,7 @@
   border: none;
 }
 
-.mobileSearchInputWrapper{
+.mobileSearchInputWrapper {
   width: 60%;
   height: 60%;
   padding: 10px 15px;
@@ -135,7 +136,7 @@
   gap: 5px;
   background: whitesmoke;
 
-  input{
+  input {
     width: 95%;
     height: 100%;
     outline: none;
@@ -143,7 +144,7 @@
   }
 }
 
-.headerProfilePic{
+.headerProfilePic {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -151,14 +152,12 @@
   cursor: pointer;
 }
 
-.headerProfilePic img{
+.headerProfilePic img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
-
-
 
 @media only screen and (max-width: 1440px) {
 }
@@ -186,22 +185,22 @@
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   }
 
-  .mobileHeaderWrapperPusher{
+  .mobileHeaderWrapperPusher {
     display: block;
     width: 100%;
     height: 80px;
   }
 
-  .MobileHeader img{
+  .MobileHeader img {
     width: 40px;
   }
 
-  .sideDrawerNavigateHolder{
+  .sideDrawerNavigateHolder {
     width: 100%;
     height: max-content;
   }
 
-  .sideDrawerNavigateHolder ul{
+  .sideDrawerNavigateHolder ul {
     width: 100%;
     height: max;
     display: flex;
@@ -209,8 +208,7 @@
     gap: 5px;
   }
 
-
-  .sideDrawerNavigateHolder ul button:nth-child(2){
+  .sideDrawerNavigateHolder ul button:nth-child(2) {
     width: 100%;
     height: max-content;
     padding: 10px 0px;
@@ -219,7 +217,7 @@
     border-radius: 7px;
     background: #c0392b;
   }
-  .sideDrawerNavigateHolder ul button:nth-child(3){
+  .sideDrawerNavigateHolder ul button:nth-child(3) {
     width: 100%;
     height: max-content;
     padding: 10px 0px;
@@ -229,8 +227,7 @@
     border: 1.9px solid #c0392b;
   }
 
-
-  .mobileSideBarProfileNav{
+  .mobileSideBarProfileNav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -240,35 +237,38 @@
     background: whitesmoke;
   }
 
-  .mobileSideBarProfileNav:hover{
+  .mobileSideBarProfileNav:hover {
     background: rgba(128, 128, 128, 0.541);
   }
 
-  .MobileSideProfilePic{
+  .MobileSideProfilePic {
     width: 80px;
     height: 80px;
     padding: 2px;
     border-radius: 50%;
     background: whitesmoke;
 
-    img{
+    img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
     }
   }
 
-  .MobileSideProfileName{
+  .MobileSideProfileName {
     width: 55%;
     height: 100%;
 
-    h1{
+    h1 {
       font-size: 24px;
       font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
-  .mobileSideBarIcon{
+  .mobileSideBarIcon {
     font-size: 20px;
     padding: 5px;
     border-radius: 50%;
@@ -276,7 +276,7 @@
     background: #c0392b;
   }
 
-  .sideDrawerNavigateHolder ul li{
+  .sideDrawerNavigateHolder ul li {
     font-size: 20px;
     padding: 5px 10px;
     border-radius: 4px;
@@ -286,12 +286,12 @@
     background: whitesmoke;
   }
 
-  .sideDrawerNavigateHolder ul li:hover{
+  .sideDrawerNavigateHolder ul li:hover {
     background: #c0392b;
     color: white;
   }
 
-  .mobileLogoutPopUp{
+  .mobileLogoutPopUp {
     width: 100%;
     height: 100%;
     display: flex;
@@ -299,17 +299,17 @@
     align-items: center;
     justify-content: center;
 
-    h1{
+    h1 {
       font-size: 19px;
       text-align: center;
       margin-top: 25px;
 
-      b{
+      b {
         color: red;
       }
     }
 
-    .mobileLogoutWrapper{
+    .mobileLogoutWrapper {
       width: 70%;
       height: max-content;
       display: flex;
@@ -327,14 +327,13 @@
         background: red;
       }
 
-      .MobileLogoutBtn{
+      .MobileLogoutBtn {
         background: white;
         border: 1px solid red;
         color: black;
       }
     }
   }
-
 }
 
 @media only screen and (max-width: 480px) {
@@ -355,22 +354,22 @@
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   }
 
-  .mobileHeaderWrapperPusher{
+  .mobileHeaderWrapperPusher {
     display: block;
     width: 100%;
     height: 80px;
   }
 
-  .MobileHeader img{
+  .MobileHeader img {
     width: 40px;
   }
 
-  .sideDrawerNavigateHolder{
+  .sideDrawerNavigateHolder {
     width: 100%;
     height: max-content;
   }
 
-  .sideDrawerNavigateHolder ul{
+  .sideDrawerNavigateHolder ul {
     width: 100%;
     height: max;
     display: flex;
@@ -378,8 +377,7 @@
     gap: 5px;
   }
 
-
-  .sideDrawerNavigateHolder ul button:nth-child(2){
+  .sideDrawerNavigateHolder ul button:nth-child(2) {
     width: 100%;
     height: max-content;
     padding: 10px 0px;
@@ -388,7 +386,7 @@
     border-radius: 7px;
     background: #c0392b;
   }
-  .sideDrawerNavigateHolder ul button:nth-child(3){
+  .sideDrawerNavigateHolder ul button:nth-child(3) {
     width: 100%;
     height: max-content;
     padding: 10px 0px;
@@ -398,8 +396,7 @@
     border: 1.9px solid #c0392b;
   }
 
-
-  .mobileSideBarProfileNav{
+  .mobileSideBarProfileNav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -409,35 +406,35 @@
     background: whitesmoke;
   }
 
-  .mobileSideBarProfileNav:hover{
+  .mobileSideBarProfileNav:hover {
     background: rgba(128, 128, 128, 0.541);
   }
 
-  .MobileSideProfilePic{
+  .MobileSideProfilePic {
     width: 80px;
     height: 80px;
     padding: 3px;
     border-radius: 50%;
     background: whitesmoke;
 
-    img{
+    img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
     }
   }
 
-  .MobileSideProfileName{
+  .MobileSideProfileName {
     width: 55%;
     height: 100%;
 
-    h1{
+    h1 {
       font-size: 24px;
       font-weight: 500;
     }
   }
 
-  .mobileSideBarIcon{
+  .mobileSideBarIcon {
     font-size: 20px;
     padding: 5px;
     border-radius: 50%;
@@ -445,7 +442,7 @@
     background: #c0392b;
   }
 
-  .sideDrawerNavigateHolder ul li{
+  .sideDrawerNavigateHolder ul li {
     font-size: 20px;
     padding: 5px 10px;
     border-radius: 4px;
@@ -455,12 +452,12 @@
     background: whitesmoke;
   }
 
-  .sideDrawerNavigateHolder ul li:hover{
+  .sideDrawerNavigateHolder ul li:hover {
     background: #c0392b;
     color: white;
   }
 
-  .mobileLogoutPopUp{
+  .mobileLogoutPopUp {
     width: 100%;
     height: 100%;
     display: flex;
@@ -468,17 +465,17 @@
     align-items: center;
     justify-content: center;
 
-    h1{
+    h1 {
       font-size: 19px;
       text-align: center;
       margin-top: 25px;
 
-      b{
+      b {
         color: red;
       }
     }
 
-    .mobileLogoutWrapper{
+    .mobileLogoutWrapper {
       width: 70%;
       height: max-content;
       display: flex;
@@ -496,7 +493,7 @@
         background: red;
       }
 
-      .MobileLogoutBtn{
+      .MobileLogoutBtn {
         background: white;
         border: 1px solid red;
         color: black;
@@ -507,4 +504,3 @@
 
 @media only screen and (max-width: 379px) {
 }
-

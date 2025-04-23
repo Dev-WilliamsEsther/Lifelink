@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./requesthistory.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import LoadComponents from "../../components/componentsLoadScreen/LoadComponents";
 
 const RequestHistory = () => {
   const [requestData, setRequestData] = useState([]);
+  const [loadState, setLoadState] = useState(false)
   const userToken = useSelector((state) => state?.token);
 
   const Base_Url = import.meta.env.VITE_BASEURL;
@@ -14,11 +16,14 @@ const RequestHistory = () => {
   };
 
   const fetchRequest = async () => {
+    setLoadState(true)
     try {
       const res = await axios.get(`${Base_Url}/re-hospital/history`, { headers });
       setRequestData(res.data.requests);
+      setLoadState(false)
     } catch (err) {
       console.log(err);
+      setLoadState(false)
     }
   };
 
@@ -34,6 +39,10 @@ const RequestHistory = () => {
       year: "numeric",
     });
   };
+
+  if(loadState){
+    return <LoadComponents/>
+  }
 
   return (
     <div className="RequestHistoryContainer">

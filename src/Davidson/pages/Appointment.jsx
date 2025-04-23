@@ -4,6 +4,7 @@ import { MdAccessTime } from "react-icons/md";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Modal, Button, message } from "antd";
+import LoadComponents from "../../components/componentsLoadScreen/LoadComponents";
 
 const Appointment = () => {
   const [appointmentData, setAppointmentData] = useState([]);
@@ -101,7 +102,9 @@ const Appointment = () => {
   };
   
   
-
+if(loading){
+  return  <LoadComponents/>
+}
   return (
     <div className="AppointmentContainer">
       <h2 className="AppointmentTitle">Upcoming Appointments</h2>
