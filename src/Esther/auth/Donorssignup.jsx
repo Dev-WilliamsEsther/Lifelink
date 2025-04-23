@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
 import axios from 'axios';
 import { LuEyeClosed, LuEye } from "react-icons/lu";
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -58,6 +59,8 @@ const Donorssignup = () => {
     <div className='donorsignwrapper'>
       <img src="images/Subtract.png" alt="" className='donorsignimage' />
       <div className='donsignmobilewrap'>
+      <div className='smallarrow' ><IoArrowBackCircleOutline onClick={()=>nav(-1)}/></div>
+
         <h1>CREATE AN ACCOUNT</h1>
         <p>REGISTER AS A DONOR</p>
       </div>
@@ -90,7 +93,7 @@ const Donorssignup = () => {
               placeholder='AGE'
               className='donorssigninput'
               value={userData.age}
-              onChange={(e) => setUserData((prev) => ({ ...prev, age: parseInt(e.target.value) || 0 }))}
+              onChange={(e) => setUserData((prev) => ({ ...prev, age: e.target.value}))}
             />
           </div>
 

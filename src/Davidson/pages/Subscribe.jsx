@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 const KORA_KEY = import.meta.env.VITE_KORAPAY
 import KoraPayment from 'kora-checkout';
+import { paymentStatus } from "../../global/Slice";
 
 const Subscribe = () => {
   const user = useSelector((state) => state.loggedInUser);
@@ -42,7 +43,7 @@ const Subscribe = () => {
             console.log('Payment successful');
             setLoadState(false);
             window.location.href = "https://lifelink-xi.vercel.app/paymentcheck?status=success";
-            dispatch(payment())
+            dispatch(paymentStatus())
         },
         onFailed: (err) => {
             console.error(err.message);

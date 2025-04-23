@@ -7,7 +7,7 @@
     align-items: center;
     gap: 34px;
 }
-.hossignmobilewrap{
+.hossignmobilewrap,.smallarrow{
     display: none;
 }
 .hospisigninfowrap{
@@ -142,6 +142,17 @@
 
 
 @media only screen and (max-width: 480px) {
+    .smallarrow{
+        display: block;
+        width: 90%;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        padding-top: 20px;
+        font-size: 25px;
+        
+    }
     .hospitalsignwrapper{
         height: max-content;
         display: flex;
@@ -191,6 +202,11 @@
 
 
 @media only screen and (max-width: 379px) {
+    .smallarrow{
+        display: block;
+        width: 90%;
+
+    }
     .hospitalsignwrapper{
         height: max-content;
         display: flex;
