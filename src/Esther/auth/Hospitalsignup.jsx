@@ -6,6 +6,7 @@ import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
 import { LuEye, LuEyeClosed } from 'react-icons/lu';
 import { toast } from 'sonner';
 import axios from 'axios';
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
 
 
 const Base_Url = import.meta.env.VITE_BASEURL;
@@ -81,6 +82,7 @@ const Hospitalsignup = () => {
   return (
     <div className='hospitalsignwrapper'>
       <div className='hossignmobilewrap'>
+        <div className='smallarrow' ><IoArrowBackCircleOutline onClick={()=>nav(-1)}/></div>
         <h1>CREATE AN ACCOUNT</h1>
         <p>REGISTER AS HOSPITAL/ <br /> BLOODBANK</p>
       </div>

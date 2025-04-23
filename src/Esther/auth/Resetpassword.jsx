@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import '../../Esther/styles/reset.css'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import FadeLoader from 'react-spinners/CircleLoader';
 import { toast } from 'sonner'
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
 
 const Base_Url = import.meta.env.VITE_BASEURL
 
@@ -13,7 +14,7 @@ const Resetpassword = () => {
   const [ConfirmNewPassword, setConfirmNewPassword] = useState("")
   const [loading, setLoading] = useState(false)
 
-
+  const nav = useNavigate()
   const {token} = useParams()
 
   const handleResetPassword = async() =>{
@@ -42,6 +43,8 @@ const Resetpassword = () => {
   return (
     <div className='resetwrapper'>
       <div className='resetmobilewrap'>
+      <div className='smallarrow' ><IoArrowBackCircleOutline onClick={()=>nav(-1)}/></div>
+
         <h2>RESET PASSWORD</h2>
       </div>
       <div className='resetinfowrap'>
