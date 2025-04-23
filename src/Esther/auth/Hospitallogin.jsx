@@ -7,6 +7,7 @@ import { logIn, saveToken } from "../../global/Slice";
 import axios from "axios";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
 import { toast } from "sonner";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -62,6 +63,7 @@ const Hospitallogin = () => {
   return (
     <div className="hosloginwrapper">
       <div className="hoslogmobilewrap">
+      <div className='smallarrow' ><IoArrowBackCircleOutline onClick={()=>nav(-1)}/></div>
         <h2>LOG IN</h2>
       </div>
       <div className="hoslogininfowrap">

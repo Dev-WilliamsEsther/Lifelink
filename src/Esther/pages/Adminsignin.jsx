@@ -32,7 +32,7 @@ const Adminsignin = () => {
     }
     setLoadState(true)
     try{
-      const res = await axios.post(`${Base_Url}/admin/register`, adminData)
+      const res = await axios.post(`${Base_Url}/admin/newRegister`, adminData)
       dispatch(logIn(res))
       toast.success(res?.data?.message)
       nav("/dashboard")

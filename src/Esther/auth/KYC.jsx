@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import FadeLoader from 'react-spinners/CircleLoader'
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
 
 
 
@@ -75,6 +76,8 @@ const KYC = () => {
   return (
     <div className="kycwrapper">
       <div className="kycmobilewrap">
+      <div className='smallarrow' ><IoArrowBackCircleOutline onClick={()=>nav(-1)}/></div>
+
         <h1>KYC</h1>
       </div>
       <div className="kycinfowrap">

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../../Esther/styles/authentry.css'
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi'
 import { Link, useNavigate } from 'react-router-dom'
+import { IoArrowBackCircleOutline } from 'react-icons/io5'
 
 const Authentry = ({type}) => {
     const nav = useNavigate();
@@ -26,7 +27,10 @@ const Authentry = ({type}) => {
   return (
     <div className='authwrapper'>
         <img src="images/Subtract.png" alt=""className='authimage'/>
-        <div className='authmobilewrap'></div>
+        <div className='authmobilewrap'>
+        <div className='smallarrow' ><IoArrowBackCircleOutline onClick={()=>nav(-1)}/></div>
+
+        </div>
         <div className='authinfowrap'>
             <div className='authlogohold'>
             <Link to="/">

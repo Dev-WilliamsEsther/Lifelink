@@ -21,7 +21,7 @@ const AppReducer = createSlice({
         saveToken:(state,{payload})=>{
             state.token = payload
         },
-        payment:(state)=>{
+        paymentStatus:(state)=>{
             state.paymentStatus = true
         },
         logOut:(state)=>{
@@ -31,5 +31,5 @@ const AppReducer = createSlice({
         },
     }
 })
-export const {logIn, logOut, saveToken, profilePic, payment} = AppReducer.actions;
+export const {logIn, logOut, saveToken, profilePic, paymentStatus} = AppReducer.actions;
 export default AppReducer.reducer;
