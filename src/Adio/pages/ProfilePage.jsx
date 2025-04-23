@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 const ProfilePage = () => {
   const loggedInUser = useSelector((state) => state?.loggedInUser)
+  const paymentStatus = useSelector((state)=> state?.paymentStatus)
   const nav = useNavigate();
 
   return (
@@ -12,7 +13,7 @@ const ProfilePage = () => {
       {loggedInUser?.role === "hospital" && !loggedInUser?.kycCompleted && (
         <div className="kycCompleteMessage" onClick={()=> nav('/kyc')}>Please Upload your KYC</div>
       )}
-      {loggedInUser?.role === "hospital" && !loggedInUser?.paymentStatus && (
+      {loggedInUser?.role === "hospital" && !paymentStatus && (
         <div className="paymentStatusMessage" onClick={()=> nav('/dashboard/subscribe')}>Subscribe to get listed</div>
       )}
 

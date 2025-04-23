@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./subscribe.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 const KORA_KEY = import.meta.env.VITE_KORAPAY
@@ -10,6 +10,7 @@ const Subscribe = () => {
   const user = useSelector((state) => state.loggedInUser);
   const [loadState, setLoadState] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("monthly");
+  const dispatch = useDispatch()
 
   const amountOptions = [
     { label: "Monthly", value: "monthly", amount: 10000 },
@@ -41,6 +42,7 @@ const Subscribe = () => {
             console.log('Payment successful');
             setLoadState(false);
             window.location.href = "https://lifelink-xi.vercel.app/paymentcheck?status=success";
+            dispatch(payment())
         },
         onFailed: (err) => {
             console.error(err.message);
