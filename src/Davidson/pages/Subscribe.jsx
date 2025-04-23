@@ -39,11 +39,13 @@ const Subscribe = () => {
         },
         onSuccess: () => {
             console.log('Payment successful');
+            setLoadState(false);
             window.location.href = "https://lifelink-xi.vercel.app/paymentcheck?status=success";
         },
         onFailed: (err) => {
             console.error(err.message);
             console.log('payment Failed')
+            setLoadState(false);
             window.location.href = "https://lifelink-xi.vercel.app/paymentcheck?status=failed";
         }
     };
