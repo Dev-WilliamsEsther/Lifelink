@@ -1,6 +1,10 @@
+import { useLocation } from 'react-router';
 import '../styles/paymentStatus.css';
 
 export default function PaymentStatus() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const status = queryParams.get('status');
   const isSuccess = status === 'success';
 
   return (
@@ -23,7 +27,7 @@ export default function PaymentStatus() {
             : 'Oops! Something went wrong. Your payment was not processed.'}
         </p>
 
-        <button onClick={() => (window.location.href = '/')}>
+        <button onClick={() => (window.location.href = isSuccess ? '/dashboard' : '/dashboard/subscribe')}>
           {isSuccess ? 'Go to Dashboard' : 'Try Again'}
         </button>
       </div>

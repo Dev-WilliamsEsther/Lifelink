@@ -1,58 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./subscribe.css";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import { toast } from "sonner";
-import FadeLoader from 'react-spinners/CircleLoader'
-
-
-const Base_Url = import.meta.env.VITE_BASEURL;
+import FadeLoader from "react-spinners/CircleLoader";
+const KORA_KEY = import.meta.env.VITE_KORAPAY
+import KoraPayment from 'kora-checkout';
 
 const Subscribe = () => {
-  const token = useSelector((state) => state.token);
   const user = useSelector((state) => state.loggedInUser);
-  const [loadState, setLoadState] = useState(false)
-
+  const [loadState, setLoadState] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("monthly");
 
-  const plans = [
+  const amountOptions = [
     { label: "Monthly", value: "monthly", amount: 10000 },
-    { label: "Half-Year", value: "half-year", amount: 50000 },
-    { label: "Yearly", value: "yearly", amount: 90000 },
+    { label: "Quarterly", value: "quarterly", amount: 50000 },
+    { label: "Yearly", value: "yearly", amount: 100000 },
   ];
 
-  const handleSubscribe = async () => {
-    const chosen = plans.find((plan) => plan.value === selectedPlan);
-    if (!chosen) {
-      toast.error("Please select a plan");
+  const handleSubscribe = () => {
+    const selected = amountOptions.find((plan) => plan.value === selectedPlan);
+    if (!selected) {
+      toast.error("Please select a valid plan");
       return;
     }
-    setLoadState(true)
-    try {
-      const res = await axios.post(
-        `${Base_Url}/initialize`,
-        {
-          email: user?.email || "Hospital@example.com",
+
+      setLoadState(true);
+
+      const paymentOptions = {
+        key: KORA_KEY,
+        reference: `lifelink_${Date.now()}`,
+        amount: selected.amount, 
+        customer: {
           name: user?.fullName || "Hospital User",
-          plan: chosen.value,
+          email: user?.email || "hospital@example.com",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        onclose: () =>{
+          setLoadState(false);
+        },
+        onSuccess: () => {
+            console.log('Payment successful');
+            window.location.href = "https://lifelink-xi.vercel.app/paymentcheck?status=success";
+        },
+        onFailed: (err) => {
+            console.error(err.message);
+            console.log('payment Failed')
+            window.location.href = "https://lifelink-xi.vercel.app/paymentcheck?status=failed";
         }
-      );
-      setLoadState(false)
-      toast.success("Redirecting to payment...");
-      if (res.data?.payment_url) {
-        window.location.href = res.data.payment_url;
-      }
-    } catch (err) {
-      console.error("Subscription failed:", err);
-      toast.error(err?.message || "Failed to initialize subscription.");
-      setLoadState(false)
-    }
+    };
+
+    const payment = new KoraPayment();
+    payment.initialize(paymentOptions);
+
+
   };
+
 
   return (
     <div className="subscribe-container">
@@ -73,7 +74,7 @@ const Subscribe = () => {
         <div className="plan-selection">
           <h3>Select a Plan:</h3>
           <div className="plan-cards">
-            {plans.map((plan) => (
+            {amountOptions.map((plan) => (
               <div
                 key={plan.value}
                 className={`plan-card ${
@@ -82,7 +83,7 @@ const Subscribe = () => {
                 onClick={() => setSelectedPlan(plan.value)}
               >
                 <h4>{plan.label}</h4>
-                <p>₦{plan.amount.toLocaleString()}</p>
+                <p>₦{(plan.amount).toLocaleString()}</p>
               </div>
             ))}
           </div>
@@ -91,7 +92,7 @@ const Subscribe = () => {
 
       <div>
         <button className="subscribe-button" onClick={handleSubscribe}>
-          {loadState? <FadeLoader color="white" size={25}/> : "Subscribe Now"}
+          {loadState ? <FadeLoader color="white" size={25} /> : "Subscribe Now"}
         </button>
       </div>
     </div>

@@ -73,6 +73,12 @@
     outline: none;
 }
 
+.passwordTips{
+    font-size: 10px;
+    padding-left: 20px;
+    color: #c0392b;
+}
+
 
 .donorsigninputwrapper p{
     font-size: 12px;
