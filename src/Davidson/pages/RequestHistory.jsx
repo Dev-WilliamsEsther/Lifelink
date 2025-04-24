@@ -3,6 +3,8 @@ import "./requesthistory.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import LoadComponents from "../../components/componentsLoadScreen/LoadComponents";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { toast } from "sonner";
 
 const RequestHistory = () => {
   const [requestData, setRequestData] = useState([]);
@@ -22,7 +24,6 @@ const RequestHistory = () => {
       setRequestData(res.data.requests);
       setLoadState(false)
     } catch (err) {
-      console.log(err);
       setLoadState(false)
     }
   };
@@ -30,6 +31,18 @@ const RequestHistory = () => {
   useEffect(() => {
     fetchRequest();
   }, []);
+
+  const handleDeleteRequest = async (id) => {  
+    try {
+      const ress = await axios.delete(`${Base_Url}/delete-blood-request/${id}`, { headers });
+      toast.success("Request deleted successfully!");
+      (ress)
+      setRequestData(prev => prev.filter(request => request._id !== id));
+    } catch (err) {
+      console.error(err);
+      toast.success("Request deleted successfully!");
+    }
+  };
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
@@ -66,6 +79,7 @@ const RequestHistory = () => {
             <div>{formatDate(item?.preferredDate)}</div>
             <div>{item?.urgencyLevel}</div>
             <div className={`status ${item?.status.toLowerCase()}`}>{item?.status}</div>
+            <RiDeleteBin6Fill color="red" size={20} cursor='pointer' onClick={() => handleDeleteRequest(item._id)}/>
           </div>
         ))
       ) : (

@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
+import RequestNotAvailable from "./RequestNotAvailable";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -16,7 +17,8 @@ const HospitalRequestDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState([]);
-  console.log(anHospital)
+  const [notFound, setNotFound] = useState(false);
+
 
   const token = useSelector((state) => state?.token);
   const { bloodRequestId } = useParams();
@@ -55,10 +57,12 @@ const HospitalRequestDetails = () => {
         },
       });
       setAnHospital(res?.data?.data);
-      console.log(res)
     } catch (err) {
       console.error("Error fetching hospital details:", err);
-    } finally {
+      if (err?.response?.status === 404) {
+        setNotFound(true);
+      }
+    }finally {
       setIsLoading(false);
     }
   };
@@ -79,7 +83,6 @@ const HospitalRequestDetails = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("Scheduled:", res);
       toast.success(res?.data?.message);
       setScheduleData({
         date: "",
@@ -113,6 +116,8 @@ const HospitalRequestDetails = () => {
       year: "numeric",
     });
   };
+
+  if (notFound) return <RequestNotAvailable />;
 
   if (isLoading) return <LoadComponents />;
   return (
@@ -179,7 +184,7 @@ const HospitalRequestDetails = () => {
               disabledDate={disabledDate}
               id="preferredDate"
               name="preferredDate"
-              className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
+              className="lg:w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2 sm:w-35"
             />
           </div>
 

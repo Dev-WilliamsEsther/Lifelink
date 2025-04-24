@@ -5,6 +5,7 @@ import { DatePicker } from "antd";
 import dayjs from "dayjs";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom"
 
 const RequestPage = () => {
   const bloodGroups = [
@@ -18,12 +19,11 @@ const RequestPage = () => {
     { label: "O-", value: "O-" },
   ];
 
+  const nav = useNavigate()
   const [dateString, setDateString] = useState("");
   const onChangeDate = (date) => {
     if (date) {
       setDateString(date.format("YYYY-MM-DD")); 
-    } else {
-      console.log(null); 
     }
   };
 
@@ -89,6 +89,7 @@ const RequestPage = () => {
       if (res.status === 201) {
         toast.dismiss()
         toast.success(res?.data?.message)
+        nav('/dashboard/requesthistory')
 
         setFormData({
           bloodGroup: "",
@@ -99,7 +100,6 @@ const RequestPage = () => {
         });
       }
     } catch (err) {
-      console.log(err);
       toast.error(err?.response?.data?.message);
 
     }

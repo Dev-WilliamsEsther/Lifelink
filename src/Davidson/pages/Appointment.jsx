@@ -15,7 +15,6 @@ const Appointment = () => {
   const userToken = useSelector((state) => state?.token);
   const Base_Url = import.meta.env.VITE_BASEURL;
 
-  console.log(selectedAppointment)
 
   const fetchAppointment = async () => {
     try {

@@ -46,7 +46,7 @@ const Header = () => {
   const handleSubmit = () => {
     handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
   };
-  
+
   const getDonorNotification = async (token, setNotifications) => {
     try {
       const res = await axios.get(`${Base_Url}/donor/notifications`, {
@@ -59,17 +59,17 @@ const Header = () => {
       console.error("Notification Error:", err);
     }
   };
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       getDonorNotification(token, setNotifications);
-    }, 10000); 
-  
+    }, 10000);
+
     getDonorNotification(token, setNotifications);
-  
+
     return () => clearInterval(interval);
   }, [token]);
-  
+
 
   const markNotificationAsRead = async (id) => {
     try {
@@ -136,7 +136,7 @@ const Header = () => {
     "📣 Promote your hospital's presence on social media and local platforms.",
     "🛡️ Stay compliant with all health and safety regulations to ensure donor confidence.",
   ];
-  
+
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fadeClass, setFadeClass] = useState("fade-in");
@@ -148,7 +148,7 @@ const Header = () => {
         setCurrentIndex((prev) => (prev + 1) % donationTips.length);
         setCurrentIndex((prev) => (prev + 1) % hospitalTips.length);
         setFadeClass("fade-in");
-      }, 300); 
+      }, 300);
     }, 4000);
 
     return () => clearInterval(interval);
@@ -202,16 +202,16 @@ const Header = () => {
           onClick={() => nav("/")}
         />
         <div className="dashboardHeaderSearchWrapper">
-        {userInfo.role === "donor"? <div className="carousel-card">
-        <p className={`carousel-text ${fadeClass}`}>
-          {donationTips[currentIndex]}
-        </p>
-      </div> : <div className="carousel-card">
-        <p className={`carousel-text ${fadeClass}`}>
-          {hospitalTips[currentIndex]}
-        </p>
-      </div>}
-      </div>
+          {userInfo.role === "donor" ? <div className="carousel-card">
+            <p className={`carousel-text ${fadeClass}`}>
+              {donationTips[currentIndex]}
+            </p>
+          </div> : <div className="carousel-card">
+            <p className={`carousel-text ${fadeClass}`}>
+              {hospitalTips[currentIndex]}
+            </p>
+          </div>}
+        </div>
 
         <RxHamburgerMenu size={30} onClick={() => setOpenSideDrawer(true)} />
       </div>
@@ -239,11 +239,11 @@ const Header = () => {
                 </div>
 
                 <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)}>
-                      <MdCircleNotifications size={30} cursor='pointer' />
-                      {notifications?.some(n => !n.isRead) && (
-                        <span className="notificationDot">.</span>
-                      )}
-                    </div>
+                  <MdCircleNotifications size={30} cursor='pointer' />
+                  {notifications?.some(n => !n.isRead) && (
+                    <span className="notificationDot">.</span>
+                  )}
+                </div>
               </div>
             ) : (
               <div
@@ -397,7 +397,7 @@ const Header = () => {
                       <VscHome className="sideBarIocns" color="black" />
                       Home
                     </li>
-                    
+
                     <li
                       onClick={() => {
                         setOpenSideDrawer(false);
@@ -553,11 +553,12 @@ const Header = () => {
                   <>
                     <span>{notification.message}</span>
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         markNotificationAsRead(notification._id);
-                        nav(`hospitalsrequestdetails/${notification?._id}`);
+                        nav(`hospitalsrequestdetails/${notification?.requestId}`);;
                         setNotificationSideBar(false);
-                        setOpenSideDrawer(false)
+                        setOpenSideDrawer(false);
                       }}
                     >
                       View Hospital
@@ -582,16 +583,6 @@ const Header = () => {
                 {openedMessageIndex === index && (
                   <>
                     <span>{notification.message}</span>
-                    <button
-                      onClick={() => {
-                        markNotificationAsRead(notification.requestId);
-                        nav(`hospitalsrequestdetails/${notifications?.requestId}`);
-                        setNotificationSideBar(false);
-                        setOpenSideDrawer(false)
-                      }}
-                    >
-                      View Hospital
-                    </button>
                     <p>{new Date(notification.date).toLocaleString()}</p>
                   </>
                 )}
