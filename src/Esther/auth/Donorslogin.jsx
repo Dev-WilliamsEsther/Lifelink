@@ -22,7 +22,6 @@ const Donorslogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword1, setShowPassword1] = useState(true)
   const loggedInUser = useSelector(state => state?.loggedInUser)
-  console.log(loggedInUser)
   const nav = useNavigate();
 
   const handleLogin = async () => {

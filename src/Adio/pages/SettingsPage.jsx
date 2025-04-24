@@ -10,17 +10,20 @@ import { logIn, profilePic } from "../../global/Slice";
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const SettingsPage = () => {
+  const InitialUserData = useSelector((state)=> state?.loggedInUser)
+
+
   const [userData, setUserData] = useState({
-    fullName: "",
-    gender: "",
-    location: "",
-    phoneNumber: "",
-    email: "",
-    age: "",
-    bloodType: "",
+    fullName: InitialUserData.fullName,
+    gender: InitialUserData.gender || "Male/Female",
+    location: InitialUserData.location,
+    phoneNumber: InitialUserData.phoneNumber || "+234***********",
+    email: InitialUserData.email,
+    age: InitialUserData.age,
+    bloodType: InitialUserData.bloodType,
   });
 
-  const InitialUserData = useSelector((state)=> state?.loggedInUser)
+
 
   const [changePasswordDatas, setChangePasswordDatas] = useState({
     currentPassword : "",
@@ -67,9 +70,9 @@ const SettingsPage = () => {
         bloodType: "",
       });
       dispatch(logIn(res?.data?.data))
+      dispatch(profilePic(res?.data?.data?.profilePics))
     } catch (err) {
       toast.error(err?.response?.data?.message);
-      console.log(err);
     } finally {
       setLoading(false);
     }
@@ -105,7 +108,6 @@ const SettingsPage = () => {
       return;
     } catch (err) {
       toast.error(err?.response?.data?.message);
-      console.log(err);
       setPasswordLoading(false);
     }
   };
@@ -186,7 +188,6 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder={InitialUserData.fullName}
             value={userData.fullName}
             onChange={(e) =>
               setUserData({ ...userData, fullName: e.target.value })
@@ -209,7 +210,6 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder={InitialUserData.location}
             value={userData.location}
             onChange={(e) =>
               setUserData({ ...userData, location: e.target.value })
@@ -219,7 +219,6 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder={InitialUserData.phoneNumber? InitialUserData.phoneNumber : "+234***********"}
             value={userData.phoneNumber}
             onChange={(e) =>
               setUserData({ ...userData, phoneNumber: e.target.value })
@@ -229,7 +228,6 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder={InitialUserData.email}
             value={userData.email}
             onChange={(e) =>
               setUserData({ ...userData, email: e.target.value })
@@ -239,7 +237,6 @@ const SettingsPage = () => {
           <input
             type="text"
             className="settingInputs"
-            placeholder={InitialUserData.age}
             value={userData.age}
             onChange={(e) => setUserData({ ...userData, age: e.target.value })}
           />
@@ -251,7 +248,7 @@ const SettingsPage = () => {
               setUserData({ ...userData, bloodType: e.target.value })
             }
           >
-            <option value="">{InitialUserData.bloodType}</option>
+            <option value="">-- BloodType --</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
             <option value="B+">B+</option>

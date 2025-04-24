@@ -30,7 +30,7 @@ const Resetpassword = () => {
       const ress = await axios.post(`${Base_Url}/resetPassword/${token}`, {
       newPassword
       });      
-      console.log(ress)
+      (ress)
       setLoading(false)
       toast.success(ress?.data?.message)
       return

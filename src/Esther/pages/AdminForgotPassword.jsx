@@ -21,7 +21,6 @@ const AdminForgotPassword = () => {
       setLoadState(false)
       return
     } catch (err) {
-      console.log(err);
       toast.error(err?.response?.data?.message)
       setLoadState(false)
     }

@@ -10,7 +10,6 @@ const HospitalRequestsPage = () => {
     const [loadState, setLoadState] = useState(false)
     const [hospitalRequests, setHospitalRequests] = useState([])
     const token = useSelector((state)=> state?.token)
-    console.log(hospitalRequests)
     const nav = useNavigate()
 
     const getAllHospitalRequest = async()=>{
@@ -22,7 +21,6 @@ const HospitalRequestsPage = () => {
             setHospitalRequests(ress?.data?.bloodRequests)
             setLoadState(false)
         }catch(err){
-            console.log(err)
             setLoadState(false)
         }
     }

@@ -20,7 +20,6 @@ const HospitalSettingsPage = () => {
     email: "",
     profilePicture: null
   });
-  console.log(userData)
 
 
   const token = useSelector((state) => state?.token);
@@ -54,7 +53,6 @@ const HospitalSettingsPage = () => {
       return;
     } catch (err) {
       toast.error(err?.response?.data?.message);
-      console.log(err);
       setPasswordLoading(false);
     }
   };
@@ -94,7 +92,6 @@ const HospitalSettingsPage = () => {
     if (userData.profilePicture) {
       formData.append("profilePicture", userData.profilePicture);
     }
-    console.log("Sending request with data:", formData);
 
 
     setLoading(true);
@@ -114,7 +111,6 @@ const HospitalSettingsPage = () => {
       dispatch(logIn(res?.data?.data));
     } catch (err) {
       toast.error(err?.response?.data?.message);
-      console.log(err);
     } finally {
       setLoading(false);
     }

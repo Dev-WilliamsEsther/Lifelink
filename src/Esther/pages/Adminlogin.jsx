@@ -29,14 +29,13 @@ const Adminlogin = () => {
       setLoadState(true)
       try{
         const res = await axios.post(`${Base_Url}/admin/login`, adminData)
-        console.log(res)
         dispatch(logIn(res?.data?.data))
         dispatch(saveToken(res?.data?.token))
         toast.success(res?.data?.message)
         nav("/dashboard")
         setLoadState(false)
       }catch(err){
-        console.log(err)
+        (err)
         setLoadState(false)
       }
     }

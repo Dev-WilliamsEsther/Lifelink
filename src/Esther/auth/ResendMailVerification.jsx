@@ -20,7 +20,6 @@ const ResendMailVerification = () => {
     setLoading(true);
     try {
       const reverifyRes = await axios.post(`${Base_Url}/re-verify`, { email });
-      console.log("Re-verification email sent:", reverifyRes);
       setStatus('success');
     } catch (err) {
       console.error("Error sending re-verification email:", err);

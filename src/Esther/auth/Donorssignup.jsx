@@ -46,10 +46,12 @@ const Donorssignup = () => {
         setTimeout(() => {
           nav("/checkmail");
         }, 1000);
-        console.log(res)
         return res.data.message;
       } catch (err) {
-        toast.error(err?.response?.data?.message);
+        if(err.status === 400){
+          toast.error('Password must be at least 6 characters and include uppercase, lowercase, and a number.');
+        }
+
       } finally {
         setIsLoading(false);
       }

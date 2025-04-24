@@ -20,7 +20,6 @@ const Hospitallogin = () => {
     password: ""
   })
 
-  console.log(hospitalLoginData)
   const [showPassword1, setShowPassword1] = useState(true)
 
   const handleSubmit = async (e) => {
@@ -38,8 +37,6 @@ const Hospitallogin = () => {
         );
     
         const message = res?.data?.data?.message || "Login successful";
-        console.log("Login successful:", message);
-        console.log("hospital ress", res)
         toast.success(message)
         dispatch(logIn(res?.data?.data))
         dispatch(saveToken(res?.data?.token))
@@ -53,7 +50,6 @@ const Hospitallogin = () => {
         const errorMsg =
           err?.response?.data?.message || "Something went wrong during login.";
         toast.error(errorMsg);
-        console.log(err?.response?.data?.message )
     
       } finally {
         setIsLoading(false);
