@@ -49,7 +49,7 @@ const Donorssignup = () => {
         return res.data.message;
       } catch (err) {
         if(err.status === 400){
-          toast.error('Password must be at least 6 characters and include uppercase, lowercase, and a number.');
+          toast.error(err.response.data.message);
         }
 
       } finally {
