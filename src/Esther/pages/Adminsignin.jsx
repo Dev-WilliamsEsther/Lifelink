@@ -38,7 +38,6 @@ const Adminsignin = () => {
       nav("/dashboard")
       setLoadState(false)
     }catch(err){
-      console.log(err)
       setLoadState(false)
     }
   }

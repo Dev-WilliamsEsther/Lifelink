@@ -78,7 +78,6 @@ const HistoryPage = () => {
       });
 
       setAppointmentHistory(res?.data?.appointments);
-      console.log(res)
     } catch (err) {
       console.error("Error fetching donations:", err);
       toast.error("Failed to fetch donation history.");

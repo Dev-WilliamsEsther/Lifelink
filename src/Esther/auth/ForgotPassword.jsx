@@ -5,6 +5,7 @@ import '../../Esther/styles/donorslog.css';
 import FadeLoader from 'react-spinners/CircleLoader';
 import { toast } from 'sonner';
 import { HiOutlineArrowCircleLeft } from 'react-icons/hi';
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -34,6 +35,8 @@ const ForgotPassword = () => {
       <img src="images/Subtract.png" alt="" className="donorslogimage" />
 
       <div className="donorlogininfowrap">
+      <div className='smallarrow' ><IoArrowBackCircleOutline onClick={()=>nav(-1)}/></div>
+      <h2>LOG IN</h2>
         <div className="donorloginlogohold">
           <Link to="/">
             <img src="images/logo.png" alt="Logo" className="donorloginlogo" />

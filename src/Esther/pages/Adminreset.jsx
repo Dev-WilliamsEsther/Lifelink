@@ -29,7 +29,6 @@ const Adminreset = () => {
       const ress = await axios.post(`${Base_Url}/admin/resetPassword/${token}`, {
       newPassword
       });      
-      console.log(ress)
       setLoading(false)
       toast.success(ress?.data?.message)
       return

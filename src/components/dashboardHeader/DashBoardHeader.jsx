@@ -34,7 +34,6 @@ const DashBoardHeader = () => {
       });
       setNotifications(ress?.data?.notifications);
     } catch (err) {
-      console.log("Message", err);
     }
   };
 
@@ -54,7 +53,6 @@ const DashBoardHeader = () => {
       const res = await axios.get(`${Base_Url}/hospitals`);
       setHospitals(res.data?.data);
       setFilteredHospitals(res.data);
-      console.log(res)
     } catch (error) {
       console.error('Error fetching hospitals:', error);
     }

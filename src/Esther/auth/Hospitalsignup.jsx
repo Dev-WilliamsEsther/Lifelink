@@ -33,7 +33,6 @@ const Hospitalsignup = () => {
   });
 
   const handleSubmit = async()=>{
-    console.log("first")
     if(hospitalInput.password !== confirmPassword) {
       return toast.error('please input all fields');
     }if( !hospitalInput.fullName || !hospitalInput.email || !hospitalInput.password || !hospitalInput.location || !hospitalInput.city || !hospitalInput.phone) {
@@ -43,7 +42,6 @@ const Hospitalsignup = () => {
       setIsLoading(true);
       try {
         const res = await axios.post(`${Base_Url}/hospital/register`, hospitalInput);
-        console.log(res)
         if(res?.status ===201) toast.success(res?.data?.message)
           nav('/checkmail')
         return res.data.message;

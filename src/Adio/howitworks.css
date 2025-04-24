@@ -297,7 +297,7 @@
   }
 
   .lifelink-text h2 {
-    font-size: 25px;
+    font-size: 17px;
   }
 
   .lifelink-text p {
@@ -340,5 +340,28 @@
     height: 250px;
     background-size: contain;
     background-position: center;
+  }
+}
+
+
+
+@media (max-width: 379px) {
+  .lifelink-text p {
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .img-front {
+    width: 60px;
+    transform: translate(-10%, -20%);
+  }
+
+  .img-back{
+    width: 60px;
+    transform: translate(10%, -10%);
+  }
+
+  .lifelink-images img {
+    width: 130px;
   }
 }

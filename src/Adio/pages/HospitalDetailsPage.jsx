@@ -24,7 +24,6 @@ const HospitalDetailsPage = () => {
     time: "",
     hospitalId,
   });
-   console.log(scheduleData)
 const disabledDate = (current) => {
     return current && current < dayjs().endOf("day");
   };
@@ -76,7 +75,6 @@ const disabledDate = (current) => {
       setIsScheduleLoading(false);
       toast.success(res?.data?.message);
       setScheduleData("");
-      console.log(res)
       setVolunteerPopUp(false);
     } catch (err) {
       toast.error(err?.response?.data?.message);
@@ -131,7 +129,7 @@ const disabledDate = (current) => {
             disabledDate={disabledDate}
             id="preferredDate"
             name="preferredDate"
-            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
+            className="lg:w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2 sm:w-35"
           />
           </div>
 
