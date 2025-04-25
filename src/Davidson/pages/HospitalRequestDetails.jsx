@@ -145,6 +145,9 @@ const HospitalRequestDetails = () => {
               urgency Level: <b>{anHospital?.urgencyLevel || "-"}</b>
             </p>
             <p>
+              Offer: <b>{anHospital?.amount.toLocaleString() || "-"}</b>
+            </p>
+            <p>
              preferred Date: <b>{formatDate(anHospital?.preferredDate) || "-"}</b>
             </p>
             <p>
