@@ -12,7 +12,7 @@ const AboutHeader = () => {
           <h3>
             Nigeria faces a critical blood shortage, endangering countless lives.
             <br />
-            LifeLink connects donors hospitals and blood banks, ensuring a
+            ALIFE connects donors hospitals and blood banks, ensuring a
             <br />
             steady, life-saving blood supply.
           </h3>

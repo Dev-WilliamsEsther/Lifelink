@@ -111,7 +111,7 @@ const Donorslogin = () => {
           <button className='donorloginbtn' onClick={handleSubmit}>{isLoading ? <FadeLoader color="white" size={25} /> : "LOG-IN"}</button>
           <div className='donorloginforgotwrap'>
             <p onClick={() => nav("/donorssignup")} className='AuthRedirectionLinkWrap'>DON'T HAVE AN ACCOUNT? SIGNUP</p>
-            <a onClick={() => nav("/forgotpassword")}>FORGOT PASSWORD</a>
+            <p onClick={() => nav("/forgotpassword")}>FORGOT PASSWORD</p>
           </div>
         </div>
       </div>

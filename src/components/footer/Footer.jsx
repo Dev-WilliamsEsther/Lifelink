@@ -7,7 +7,7 @@ const Footer = () => {
     <div className='footerwrapper'>
       <div className='footerlogo'>
         <img src="/images/logo.png" alt=""  />
-        <h1>LifeLink</h1>
+        <h1>ALIFE</h1>
       </div>
       <div className='footernewsletter'>
         <h1>Join the mission to save lives through <br />blood donation.</h1>

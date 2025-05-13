@@ -3,7 +3,7 @@ import '../../components/whyus/whyjoinus.css'
 const Whyjoinus = () => {
   return (
     <div className='whyuswrapper'>
-        <h1>WHY JOIN LIFELINK</h1>
+        <h1>WHY JOIN ALIFE</h1>
         <div className='whyinnerwrapper'>
             <div className='whyusinner'>
                 <h4>INCREASE BLOOD <br /> DONATIONS</h4>

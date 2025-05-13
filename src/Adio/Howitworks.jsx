@@ -16,7 +16,7 @@ const Howitworks = () => {
             <p>
               Whether you’re a donor looking to make a <br />
               difference or a hospital in need of life-saving <br />
-              blood, LifeLink streamlines the process for you. <br />
+              blood, ALIFE streamlines the process for you. <br />
               Donors can easily find a donation center, give <br />
               blood, and track their impact. Hospitals and <br />
               blood banks can connect with verified donors to <br />
@@ -42,7 +42,7 @@ const Howitworks = () => {
             <div className="step-boxes step-1">
               <div className="icon"><img src="images/Group.png"/></div>
               <h3>Find a Donation <br /> Center</h3>
-              <p>Locate a nearby verified hospital or blood bank using LifeLink</p>
+              <p>Locate a nearby verified hospital or blood bank using ALIFE</p>
             </div>
 
             <div className="step-boxes step-2">
@@ -75,7 +75,7 @@ const Howitworks = () => {
             <div className="step-boxes step-1">
               <div className="icon"><img src="images/Group.png"/></div>
               <h3>Register &<br />Get Verified</h3>
-              <p>Sign up on LifeLink & get verified as a trusted hospital or blood bank.</p>
+              <p>Sign up on ALIFE & get verified as a trusted hospital or blood bank.</p>
             </div>
 
             <div className="step-boxes step-2">
@@ -87,7 +87,7 @@ const Howitworks = () => {
             <div className="step-boxes step-3">
               <div className="icon"><img src="images/Group.png"/></div>
               <h3>Receive Donors</h3>
-              <p>Accept donors who visit with their unique LifeLink codes & confirm their donations.</p>
+              <p>Accept donors who visit with their unique ALIFE codes & confirm their donations.</p>
             </div>
 
             <div className="step-boxes step-4">
