@@ -12,12 +12,12 @@ const donorterms = [
     {
         id:2,
         title:"Screening & Honesty",
-        terms:"I’ll answer all health questions truthfully and consent to tests for infectious diseases",
+        terms:"I’ll answer all health questions truthfully and consent to tests for infectious diseases.",
     },
     {
         id:3,
         title:"Risks & Liability",
-        terms:"I understand minor side effects (e.g., bruising) and won’t hold Lifelink liable for unforeseen reactions.",
+        terms:"I understand minor side effects (e.g., bruising) and won’t hold ALIFE liable for unforeseen reactions.",
     },
     {
         id:4,
@@ -32,7 +32,7 @@ const donorterms = [
     {
         id:6,
         title:"Voluntary Donation",
-        terms:"I’m giving blood voluntarily without compensation.I confirm that i have read and understood these terms",
+        terms:"I’m giving blood voluntarily without compensation.I confirm that i have read and understood these terms.",
     }
 ]
 

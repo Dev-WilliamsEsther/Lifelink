@@ -18,17 +18,17 @@ const donorterms = [
     {
         id:3,
         title:"Fee",
-        terms:"Obiligated to pay the subscription fee required to access Lifelink features."
+        terms:"Obiligated to pay the subscription fee required to access ALIFE features."
     },
     {
         id:4,
         title:"Liability",
-        terms:"Facility is responsible for blood testing and retesting.Life link only connects donors;not liable for donors no-shows or misuse.",
+        terms:"Facility is responsible for blood testing and retesting.ALIFE only connects donors;not liable for donors no-shows or misuse.",
     },
     {
         id:5,
         title:"Termination",
-        terms:"Lifelink may suspend for violations (illegal sales, fraud etc) ",
+        terms:"ALIFE may suspend for violations (illegal sales, fraud etc) ",
     }
 ]
 
