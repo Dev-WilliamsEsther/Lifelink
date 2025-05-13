@@ -95,7 +95,7 @@ const Hospitalsignup = () => {
           <h1>REGISTER AS HOSPITAL/ <br /> BLOODBANK</h1>
           <div className='hossigninputwrapper'>
             <p>FACILITY NAME</p>
-            <input type="text" placeholder='FULL NAME' className='hossigninput' 
+            <input type="text" placeholder='FACILITY NAME' className='hossigninput' 
             value={hospitalInput.fullName}
             onChange={(e)=>setHospitalInput((prev) => ({ ...prev, fullName: e.target.value }))}
             />
@@ -178,7 +178,7 @@ const Hospitalsignup = () => {
             {isLoading ? <FadeLoader color="white" size={25}/> : "REGISTER"}
           </button>
           <div className='hosloginforgotwrap'>
-            <p onClick={()=>nav("/hospitallogin")}>ALREADY HAVE AN ACCOUNT?  LOGIN</p>
+            <p onClick={()=>nav("/hospitallogin")}>ALREADY HAVE AN ACCOUNT? <a href="" style={{color:"blue"}}>LOGIN</a></p>
           </div>
         </div>
       </div>

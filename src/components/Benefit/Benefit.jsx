@@ -10,7 +10,7 @@ const Benefit = () => {
         <div className="landingbenefitsinner1">
           <h2>Saves lives while gaining valuable benefits.</h2>
           <p>
-            When you donate blood, ou’re not just <br /> saving lives you’re
+            When you donate blood, you’re not just <br /> saving lives you’re
             also gaining valuable <br /> benefits. Make an impact while taking
             care <br /> of your own well-being.
           </p>
