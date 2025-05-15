@@ -197,7 +197,7 @@ const Header = () => {
 
       <div className="MobileHeader">
         <img
-          src="/images/logo.png"
+          src="images/alifenobg.png"
           alt="LifeLink Logo"
           onClick={() => nav("/")}
         />
