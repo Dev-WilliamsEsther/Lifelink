@@ -39,7 +39,7 @@ const Hospitalterms = () => {
         <>
         <div className='donortermswrapper'>
         <div className='donortermsname'>
-        <img src="images/logo.png" alt="" className='donortermlogo'/>
+        <img src="images/alifenobg.png" alt="" className='donortermlogo'/>
         <h1>HOSPITAL/BLOODBANK TERMS&AGREEMENT</h1>
         </div>
         <div className='donortermshold'>
@@ -50,7 +50,7 @@ const Hospitalterms = () => {
                 </div>
             ))}
             <div className='termsAndConditionBtnWrapper'>    
-             <button className='donortermsbtn' onClick={()=>nav("/donorssignup")}>AGREE</button>
+             <button className='donortermsbtn' onClick={()=>nav("/hospitalsignup")}>AGREE</button>
              <button className='donortermsbtn' onClick={()=>nav(-1)}>CANCEL</button>
             </div>
         </div>

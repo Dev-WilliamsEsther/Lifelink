@@ -82,7 +82,7 @@ const Donorslogin = () => {
       <div className='donorlogininfowrap'>
         <div className='donorloginlogohold'>
           <Link to="/">
-            <img src="images/logo.png" alt="Logo" className='donorloginlogo' />
+            <img src="images/alifenobg.png" alt="Logo" className='donorloginlogo' />
           </Link>
           <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
         </div>

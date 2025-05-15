@@ -160,7 +160,7 @@ const Header = () => {
       <div className={`headerwrapper ${isFixed ? "headerwrapperfixed" : ""}`}>
         <div className="HeaderInnerWrapper">
           <div className="headerwrapperinner1">
-            <img src="images/logo.png" alt="" />
+            <img src="images/alifenobg.png" alt="" />
           </div>
           <div className="headerwrapperinner2">
             <ul className="headerul">
