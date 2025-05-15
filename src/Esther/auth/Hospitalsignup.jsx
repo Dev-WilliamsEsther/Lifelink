@@ -88,7 +88,7 @@ const Hospitalsignup = () => {
         <div className='hospisignlogohold'>
         <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
           <Link to="/">
-            <img src="images/logo.png" alt="Logo" className='hospisignlogo'/>
+            <img src="images/alifenobg.png" alt="Logo" className='hospisignlogo'/>
           </Link>
         </div>
         <div className='hospisigninfo1'>
