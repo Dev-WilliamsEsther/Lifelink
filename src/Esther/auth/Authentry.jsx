@@ -34,7 +34,7 @@ const Authentry = ({type}) => {
         <div className='authinfowrap'>
             <div className='authlogohold'>
             <Link to="/">
-                <img src="images/logo.png" alt="" className='authlogo'/>
+                <img src="images/alifenobg.png" alt="" className='authlogo'/>
             </Link>
             <HiOutlineArrowCircleLeft size={50} onClick={()=> nav(-1)} />
             </div>

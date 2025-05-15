@@ -132,7 +132,7 @@ const DashBoardHeader = () => {
     <div className='dashboardHeaderWrapper'>
       <div className="dashboardHeaderName">
         <h1>Hello {headerNamePrompt || 'Visitor'} <p style={{ fontSize: '15px' }}>&#128522;</p></h1>
-        <span>“save a life today”</span>
+        <span>“Save a life today”</span>
       </div>
 
       <div className="dashboardHeaderSearchWrapper">
