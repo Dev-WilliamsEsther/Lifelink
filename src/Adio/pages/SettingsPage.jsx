@@ -10,8 +10,7 @@ import { logIn, profilePic } from "../../global/Slice";
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 const SettingsPage = () => {
-  const InitialUserData = useSelector((state)=> state?.loggedInUser)
-
+  const InitialUserData = useSelector((state) => state?.loggedInUser);
 
   const [userData, setUserData] = useState({
     fullName: InitialUserData.fullName,
@@ -23,22 +22,20 @@ const SettingsPage = () => {
     bloodType: InitialUserData.bloodType,
   });
 
-
-
   const [changePasswordDatas, setChangePasswordDatas] = useState({
-    currentPassword : "",
-    newPassword : ""
+    currentPassword: "",
+    newPassword: "",
   });
+
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const token = useSelector((state) => state?.token);
 
   const handleUpdateProfile = async () => {
-
     if (
       !userData.fullName &&
       !userData.gender &&
@@ -50,7 +47,8 @@ const SettingsPage = () => {
     ) {
       toast.error("Please input fields");
       return;
-    } if (!profilePicture) {
+    }
+    if (!profilePicture) {
       toast.error("Please select an image first");
       return;
     }
@@ -69,8 +67,8 @@ const SettingsPage = () => {
         age: "",
         bloodType: "",
       });
-      dispatch(logIn(res?.data?.data))
-      dispatch(profilePic(res?.data?.data?.profilePics))
+      dispatch(logIn(res?.data?.data));
+      dispatch(profilePic(res?.data?.data?.profilePics));
     } catch (err) {
       toast.error(err?.response?.data?.message);
     } finally {
@@ -89,17 +87,25 @@ const SettingsPage = () => {
       toast.error("New Password do not match");
       return;
     }
-    if (!changePasswordDatas.newPassword || !changePasswordDatas.currentPassword || !confirmPassword) {
+    if (
+      !changePasswordDatas.newPassword ||
+      !changePasswordDatas.currentPassword ||
+      !confirmPassword
+    ) {
       toast.error("Please input a new Password");
       return;
     }
     setPasswordLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/changePassword`, {changePasswordDatas}, {
-        headers : {
-          Authorization : `Bearer ${token}`
+      const res = await axios.put(
+        `${Base_Url}/changePassword`,
+        changePasswordDatas,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
       toast.success(res?.data?.message);
       setPasswordLoading(false);
       setNewPasswords("");
@@ -144,8 +150,8 @@ const SettingsPage = () => {
       });
       setResetInput((prev) => !prev);
       setLoading(false);
-      toast.success(res?.data?.message)
-      dispatch(profilePic(res?.data?.data))
+      toast.success(res?.data?.message);
+      dispatch(profilePic(res?.data?.data));
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         toast.error(err.response.data.message);
@@ -201,7 +207,11 @@ const SettingsPage = () => {
               setUserData({ ...userData, gender: e.target.value })
             }
           >
-            <option value="">{InitialUserData.gender? InitialUserData.gender : "--Male/Female--"}</option>
+            <option value="">
+              {InitialUserData.gender
+                ? InitialUserData.gender
+                : "--Male/Female--"}
+            </option>
             <option value="Male">male</option>
             <option value="Female">female</option>
           </select>
@@ -277,7 +287,12 @@ const SettingsPage = () => {
             className="settingInputs"
             placeholder="Current Password"
             value={changePasswordDatas.currentPassword}
-            onChange={(e) => setChangePasswordDatas(prev => ({...prev, currentPassword : e.target.value}))}
+            onChange={(e) =>
+              setChangePasswordDatas((prev) => ({
+                ...prev,
+                currentPassword: e.target.value,
+              }))
+            }
           />
           <label>New Password</label>
           <input
@@ -285,7 +300,12 @@ const SettingsPage = () => {
             className="settingInputs"
             placeholder="New Password"
             value={changePasswordDatas.newPassword}
-            onChange={(e) => setChangePasswordDatas(prev => ({...prev, newPassword : e.target.value}))}
+            onChange={(e) =>
+              setChangePasswordDatas((prev) => ({
+                ...prev,
+                newPassword: e.target.value,
+              }))
+            }
           />
           <label>Confirm Password</label>
           <input
