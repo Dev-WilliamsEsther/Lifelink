@@ -48,14 +48,13 @@ import AdminForgotPassword from "./Esther/pages/AdminForgotPassword.jsx";
 import HospitalRequestsPage from "./Davidson/pages/HospitalRequestsPage.jsx";
 import HospitalRequestDetails from "./Davidson/pages/HospitalRequestDetails.jsx";
 import { toast } from "sonner";
-
+import ResetOtp from "./Esther/auth/ResetOtp.jsx";
 
 const App = () => {
-
   useEffect(() => {
     const handleOffline = () => toast.error("You are offline");
 
-     if (!navigator.onLine) {
+    if (!navigator.onLine) {
       toast.error("You are offline");
     }
 
@@ -66,68 +65,79 @@ const App = () => {
     };
   }, []);
 
-
   const router = createBrowserRouter([
     {
-      path:"/",
-      element:<Scrolltop/>,
-      errorElement: <NotFound/>,
-      children:[
+      path: "/",
+      element: <Scrolltop />,
+      errorElement: <NotFound />,
+      children: [
         {
-      path: "",
-      element: <HomeRoutes />,
-      children: [
-        { path: "/", element: <LandingPage /> },
-        { path: "/about", element: <AboutUs /> },
-        { path: "/howitworks", element: <Howitworks /> }
-      ]
-    },
-    {
-      path: "/dashboard",
-      element: <PrivateRoutes>
-        <DashboardLayout />
-        </PrivateRoutes>,
-      children: [
-        { path: "", element: <ProfilePage /> },
-        { path: "findhospital", element: <FindHospitalPage /> },
-        { path: "history", element: <HistoryPage /> },
-        { path: "requesthistory", element: <RequestHistory /> },
-        { path: "settings", element: <SettingsPage /> },
-        { path: "hospitalsettings", element: <HospitalSettingsPage /> },
-        { path: "appointment", element: <Appointment /> },
-        { path: "records", element: <RecordPage /> },
-        { path: "request", element: <RequstPage /> },
-        { path: "hospitalsrequest", element: <HospitalRequestsPage /> },
-        { path: "hospitalsrequestdetails/:bloodRequestId", element: <HospitalRequestDetails /> },
-        { path: "hospitaldetails/:hospitalId", element: <HospitalDetailsPage /> },
-        { path: "subscribe", element: <Subscrib /> },
-        { path: "adminverification", element: <Verification /> },
-        { path: "allusers", element: <UsersPage /> },
-        { path: "adminsettings", element: <Settings /> },
-        { path: "adminblacklist", element: <Blacklist /> },
-      ]
-    },
-    { path: "/authentry", element: <Authentry /> },
-    { path: "/signup", element: <Authentry type="signup" /> },
-    { path: "/login", element: <Authentry type="login" /> },
-    { path: "/hospitalsignup", element: <Hospitalsignup /> },
-    { path: "/hospitallogin", element: <Hospitallogin /> },
-    { path: "/verifymail/:token", element: <VerifyMail /> },
-    { path: "/resendVerificationMail", element: <ResendMailVerification /> },
-    { path: "/checkmail", element: <CheckMail /> },
-    { path: "/paymentcheck", element: <PaymentStatus /> },
-    { path: "/donorslogin", element: <Donorslogin /> },
-    { path: "/donorssignup", element: <Donorssignup /> },
-    { path: "/resetpassword/:token", element: <Resetpassword /> },
-    { path: "/forgotpassword", element: <ForgotPassword /> },
-    { path: "/kyc", element: <KYC /> },
-    { path: "/hospiterms", element: <Hospitalterms /> },
-    { path: "/donorterms", element: <Donorterms /> },
-    { path: "/adminsignin", element: <Adminsignin /> },
-    { path: "/adminlogin", element: <Adminlogin /> },
-    { path: "/adminreset/:token", element: <Adminreset /> },
-    { path: "/adminforgotpassword", element: <AdminForgotPassword /> },
-      ]
+          path: "",
+          element: <HomeRoutes />,
+          children: [
+            { path: "/", element: <LandingPage /> },
+            { path: "/about", element: <AboutUs /> },
+            { path: "/howitworks", element: <Howitworks /> },
+          ],
+        },
+        {
+          path: "/dashboard",
+          element: (
+            <PrivateRoutes>
+              <DashboardLayout />
+            </PrivateRoutes>
+          ),
+          children: [
+            { path: "", element: <ProfilePage /> },
+            { path: "findhospital", element: <FindHospitalPage /> },
+            { path: "history", element: <HistoryPage /> },
+            { path: "requesthistory", element: <RequestHistory /> },
+            { path: "settings", element: <SettingsPage /> },
+            { path: "hospitalsettings", element: <HospitalSettingsPage /> },
+            { path: "appointment", element: <Appointment /> },
+            { path: "records", element: <RecordPage /> },
+            { path: "request", element: <RequstPage /> },
+            { path: "hospitalsrequest", element: <HospitalRequestsPage /> },
+            {
+              path: "hospitalsrequestdetails/:bloodRequestId",
+              element: <HospitalRequestDetails />,
+            },
+            {
+              path: "hospitaldetails/:hospitalId",
+              element: <HospitalDetailsPage />,
+            },
+            { path: "subscribe", element: <Subscrib /> },
+            { path: "adminverification", element: <Verification /> },
+            { path: "allusers", element: <UsersPage /> },
+            { path: "adminsettings", element: <Settings /> },
+            { path: "adminblacklist", element: <Blacklist /> },
+          ],
+        },
+        { path: "/authentry", element: <Authentry /> },
+        { path: "/signup", element: <Authentry type="signup" /> },
+        { path: "/login", element: <Authentry type="login" /> },
+        { path: "/hospitalsignup", element: <Hospitalsignup /> },
+        { path: "/hospitallogin", element: <Hospitallogin /> },
+        { path: "/verifymail/:token", element: <VerifyMail /> },
+        {
+          path: "/resendVerificationMail",
+          element: <ResendMailVerification />,
+        },
+        { path: "/checkmail", element: <CheckMail /> },
+        { path: "/paymentcheck", element: <PaymentStatus /> },
+        { path: "/donorslogin", element: <Donorslogin /> },
+        { path: "/donorssignup", element: <Donorssignup /> },
+        { path: "/resetpassword/:token", element: <Resetpassword /> },
+        { path: "/forgotpassword", element: <ForgotPassword /> },
+        { path: "/kyc", element: <KYC /> },
+        { path: "/hospiterms", element: <Hospitalterms /> },
+        { path: "/donorterms", element: <Donorterms /> },
+        { path: "/adminsignin", element: <Adminsignin /> },
+        { path: "/adminlogin", element: <Adminlogin /> },
+        { path: "/adminreset/:token", element: <Adminreset /> },
+        { path: "/adminforgotpassword", element: <AdminForgotPassword /> },
+        { path: "/reset-password-otp/:email", element: <ResetOtp /> },
+      ],
     },
   ]);
 
