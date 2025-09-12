@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "../../Esther/styles/resetotp.css";
+import '../../Esther/styles/authentry.css'
+import { HiOutlineArrowCircleLeft } from 'react-icons/hi'
+
 import axios from "axios";
 import { toast } from "sonner";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useParams } from "react-router";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
@@ -43,52 +46,69 @@ const ResetOtp = () => {
     }
   };
   return (
-    <div className="otp-container">
-      <div>
-        <img src="images/Subtract.png" alt="" className="resetotpimage" />
+    
 
-        <h2 className="reset">RESET YOUR PASSWORD</h2>
-      </div>
-      <form onSubmit={handleSubmit} className="otp-form">
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your emale"
-            required
-            disabled={true}
-          />
-        </div>
-        <div className="form-group">
-          <label>OTP</label>
-          <input
-            type="text"
-            name="otp"
-            value={formData.otp}
-            onChange={handleChange}
-            placeholder="Enter OTP"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>New Password</label>
-          <input
-            type="password"
-            name="newPassword"
-            value={formData.newPassword}
-            onChange={handleChange}
-            placeholder="Enter new password"
-            required
-          />
-        </div>
-        <button type="submit" className="submit-btn">
-          Submit
-        </button>
-      </form>
+    <div className="authwrapper">
+  <img src="/images/Subtract.png" alt="" className="authimage" />
+
+  <div className="authinfowrap">
+    <div className="authlogohold">
+      <Link to="/">
+        <img src="/images/alifenobg.png" alt="" className="authlogo" />
+      </Link>
+      <HiOutlineArrowCircleLeft size={50} onClick={() => nav(-1)} />
     </div>
+
+    <div className="authinfo1">
+      <h3>RESET YOUR PASSWORD</h3>
+      <p>Enter OTP sent to your email and set a new password</p>
+    </div>
+
+    <form onSubmit={handleSubmit} className="authform">
+      <div className="form-group">
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Enter your email"
+          required
+          disabled={true}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>OTP:</label>
+        <input
+          type="text"
+          name="otp"
+          value={formData.otp}
+          onChange={handleChange}
+          placeholder="Enter OTP"
+          required
+        />
+      </div>
+
+      <div className="form-group">
+        <label>New Password:</label>
+        <input
+          type="password"
+          name="newPassword"
+          value={formData.newPassword}
+          onChange={handleChange}
+          placeholder="Enter new password"
+          required
+        />
+      </div>
+
+      <button type="submit" className="authinfo3">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
   );
 };
 
