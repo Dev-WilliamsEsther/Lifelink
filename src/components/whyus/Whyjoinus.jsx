@@ -1,25 +1,29 @@
 import React from 'react'
 import '../../components/whyus/whyjoinus.css'
 const Whyjoinus = () => {
-  return (
-    <div className='whyuswrapper'>
-        <h1>WHY JOIN ALIFE</h1>
-        <div className='whyinnerwrapper'>
-            <div className='whyusinner'>
-                <h4>INCREASE BLOOD <br /> DONATIONS</h4>
-                <p>Get more blood donors by making <br /> your hospital or blood bank <br /> easily discoverable.</p>
-            </div>
-            <div className='whyusinner'>
-                <h4>SIMPLIFIED DONOR <br />TRACKING</h4>
-                <p>Use a unique code system to verify and track donations seamlessly.</p>
-            </div>
-            <div className='whyusinner'>
-                <h4>BOOST VISIBILITY & CREDIBILITY</h4>
-                <p>Gain recognition as a trusted donation center & attract more donors.</p>
+    return (
+        <div className='whyuswrapper'>
+            <h1>WHY JOIN ALIFE</h1>
+            <div className='whyinnerwrapper'>
+                <div className='whyusinner'>
+                    <h4>Easier Connections</h4>
+                    <p> Donors, hospitals,<br /> and blood banks all <br />linked in one platform.</p>
+                </div>
+                <div className='whyusinner'>
+                    <h4>Transparent Requests</h4>
+                    <p>Hospitals share their <br /> blood needs openly, <br />and donors can respond quickly</p>
+                </div>
+                <div className='whyusinner'>
+                    <h4>Simple Record-Keeping</h4>
+                    <p> Donors track their past <br /> donations, hospitals manage <br />requests and appointments.</p>
+                </div>
+                <div className='whyusinner'>
+                    <h4>More Donations, More Lives Saved</h4>
+                    <p> A growing donor network means more patients get help faster.</p>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Whyjoinus

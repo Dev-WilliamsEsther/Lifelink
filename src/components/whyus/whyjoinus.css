@@ -7,6 +7,7 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 4%;
+    
 }
 .whyuswrapper h1{
     font-size: 36px;
@@ -17,6 +18,7 @@
 .whyinnerwrapper{
     width: 90%;
     height: 70%;
+    gap: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -44,6 +46,26 @@
     font-size: 13px;
     font-weight: 300;
     text-align: center;
+}
+
+.get-listed-btn {
+    width: 120px;
+      height: 40px;
+      background-color: #c0392b;
+      color: white;
+      border-radius: 6px;
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+        display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+.get-listed-btn:hover {
+     background-color: #D6EAF8;
+        color: black;
 }
 
 

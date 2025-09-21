@@ -17,26 +17,32 @@ const HospitalDetailsPage = () => {
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState([]);
 
-  const token = useSelector((state)=> state?.token)
+  const token = useSelector((state) => state?.token)
   const { hospitalId } = useParams();
   const [scheduleData, setScheduleData] = useState({
     date: "",
     time: "",
     hospitalId,
   });
-const disabledDate = (current) => {
-    return current && current < dayjs().endOf("day");
+  const disabledDate = (current) => {
+    const today = dayjs()
+    const startOfMonth = today.startOf("month")
+    const endOfMonth = today.endOf("month")
+    return (
+      (current && current < dayjs().endOf("day")) ||
+      (current && (current < startOfMonth || current > endOfMonth))
+    )
   };
-   const handleChange = (e) => {
+  const handleChange = (e) => {
     if (e.$isDayjsObject) {
       setScheduleData((prev) => ({
         ...prev,
         date: e.format("YYYY-MM-DD"),
       }));
     }
-  
+
   };
-  
+
   const time = [
     { label: "8:00AM - 10:00AM", value: "8:00AM - 10:00AM" },
     { label: "10:00AM - 12:00PM", value: "10:00AM - 12:00PM" },
@@ -125,12 +131,12 @@ const disabledDate = (current) => {
           <div className="datePickerWrapper">
             <label>Date</label>
             <DatePicker
-            onChange={handleChange}
-            disabledDate={disabledDate}
-            id="preferredDate"
-            name="preferredDate"
-            className="lg:w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2 sm:w-35"
-          />
+              onChange={handleChange}
+              disabledDate={disabledDate}
+              id="preferredDate"
+              name="preferredDate"
+              className="lg:w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2 sm:w-35"
+            />
           </div>
 
           <div className="datePickerWrapper">
