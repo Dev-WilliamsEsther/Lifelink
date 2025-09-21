@@ -4,17 +4,13 @@ import '../Sponsors/sponsor.css'
 const Sponsors = () => {
   return (
     <>
-    <div className='sponsorwrapper'>
+      <div className='sponsorwrapper'>
         <h1>SPONSORS</h1>
         <div className="sponsorsLogos">
-          <img src="images/sponsors1.png" alt="" />
-          <img src="images/sponsors.png" alt="" />
-          <img src="images/sponsors2.png" alt="" />
-          <img src="images/sponsors3.png" alt="" />
-          <img src="images/sponsors4.png" alt="" />
-          <img src="images/sponsors5.png" alt="" />
+          <img src="public/images/Sponsor8.png" alt="sponsor8" />
+          <img src="public/images/sponsor9.png" alt="sponsor9" />
         </div>
-    </div>
+      </div>
     </>
   )
 }
