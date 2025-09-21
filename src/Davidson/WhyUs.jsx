@@ -1,13 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 const WhyUs = () => {
+  const nav = useNavigate()
   return (
     <div className="what-makes-us-cnt">
       <span
         style={{ fontFamily: "poppins", fontSize: "36px", fontWeight: "700" }}
       >
-        WHAT MAKES US THE BEST
+        What makes ALIVE different
       </span>
+      <span style={{ fontFamily: "poppins", fontSize: "25px", fontWeight: "400", marginTop: "2%" }}> Every detail of ALIVE is designed to make donating blood easier, safer, and more impactful.</span>
 
       <div className="step-box-cnt">
         <div className="step-box">
@@ -51,18 +54,8 @@ const WhyUs = () => {
         </div>
       </div>
 
-      <div className="btn">
-        <button
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#C0392B",
-            fontSize: "20px",
-            fontWeight: "600",
-            color: "#FFFFFF",
-            borderRadius: "20px",
-            border: "none",
-          }}
-        >
+      <div className="get-listed-btn">
+        <button onClick={() => nav('/hospitalsignup')}>
           Get Listed
         </button>
       </div>

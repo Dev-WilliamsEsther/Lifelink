@@ -3,7 +3,7 @@ import "./aboutus.css";
 import AboutHeader from "./AboutHeader";
 import BridgingGap from "./BridgingGap";
 import MissionVision from "./MissionVision";
-import Achievements from "./Achievements";
+// import Achievements from "./Achievements";
 import WhyUs from "./WhyUs";
 import Team from "./Team";
 
@@ -15,7 +15,7 @@ const AboutUs = () => {
           <AboutHeader />
           <BridgingGap />
           <MissionVision />
-          <Achievements />
+          {/* <Achievements /> */}
           <WhyUs />
           <Team />
         </div>

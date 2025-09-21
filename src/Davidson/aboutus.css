@@ -254,8 +254,8 @@ body {
 }
 
 .step-box-cnt {
-  margin-top: 70px;
-  padding: 70px 20px;
+  /* margin-top: 70px; */
+  padding: 20px 5px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

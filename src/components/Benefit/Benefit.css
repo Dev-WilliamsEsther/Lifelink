@@ -1,6 +1,6 @@
 .landingpagebenefits{
     width: 100%;
-    height: 100vh;
+    height: max-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@
 }
 .landingbenefitsinner{
     width: 100%;
-    height: 600px;
+    height: 100vh;
     background-color: #fff;
     display: flex;
     justify-content: space-around;
@@ -35,7 +35,7 @@
 .landingbenefitsinner1 h2{
     font-family: Poppins;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 18px;
     
 }
 .landingbenefitsinner1 p{
@@ -67,10 +67,19 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+.landingbenefitsinner2 h2{
+     font-family: Poppins;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    color: #212121;
+}
+
 .landingincentives{
     width: 340px;
     height: 230px;
-    background-color: #D6EAF8;
+    background-color: white;
     border-radius: 10px;
     border: 1px solid black;
     padding: 10px;
@@ -149,8 +158,8 @@
     }
     .landingbenefitsinner1 h2{
         font-family: Poppins;
-        font-weight: 600;
-        font-size: 40px;
+        font-weight: 400;
+        font-size: 15px;
         
     }
     .landingbenefitsinner1 p{
@@ -186,7 +195,7 @@
     .landingincentives{
         width: 46%;
         height: 210px;
-        background-color: #D6EAF8;
+        /* background-color: #D6EAF8; */
         border-radius: 10px;
         border: 1px solid black;
         padding: 10px;
@@ -295,7 +304,7 @@
     .landingincentives{
         width: 46%;
         height: 210px;
-        background-color: #D6EAF8;
+        /* background-color: #D6EAF8; */
         border-radius: 10px;
         border: 1px solid black;
         padding: 10px;
@@ -404,7 +413,7 @@
     .landingincentives{
         width: 46%;
         height: 210px;
-        background-color: #D6EAF8;
+        /* background-color: #D6EAF8; */
         border-radius: 10px;
         border: 1px solid black;
         padding: 10px;

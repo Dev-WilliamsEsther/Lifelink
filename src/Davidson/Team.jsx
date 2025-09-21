@@ -26,8 +26,8 @@ const Team = () => {
             <h2>Mary Patrick</h2>
             <p>Product Designer</p>
             <a href="#">
-              <GrLinkedin/>
-              <FaFacebook/>
+              <GrLinkedin />
+              <FaFacebook />
             </a>
           </div>
         </div>
@@ -40,8 +40,8 @@ const Team = () => {
             <h2>Sarah Emojoro</h2>
             <p>Product Designer</p>
             <a href="#">
-              <GrLinkedin/>
-              <FaFacebook/>
+              <GrLinkedin />
+              <FaFacebook />
             </a>
           </div>
         </div>
@@ -54,9 +54,9 @@ const Team = () => {
             <h2>Willams Esther</h2>
             <p>Frontend Developer</p>
             <a href="#">
-              <GrLinkedin/>
-              <FaGithub/>
-              <FaFacebook/>
+              <GrLinkedin />
+              <FaGithub />
+              <FaFacebook />
             </a>
           </div>
         </div>
@@ -69,9 +69,9 @@ const Team = () => {
             <h2>Ekah Davidson</h2>
             <p>Frontend Developer</p>
             <a href="#">
-              <GrLinkedin/>
-              <FaGithub/>
-              <FaFacebook/>
+              <GrLinkedin />
+              <FaGithub />
+              <FaFacebook />
             </a>
           </div>
         </div>
@@ -84,14 +84,14 @@ const Team = () => {
             <h2>Kingsley Adio</h2>
             <p>Frontend Developer</p>
             <a href="#">
-              <GrLinkedin/>
-              <FaGithub/>
-              <FaFacebook/>
+              <GrLinkedin />
+              <FaGithub />
+              <FaFacebook />
             </a>
           </div>
         </div>
 
-        <div className="first-team-card">
+        {/* <div className="first-team-card">
           <div className="team-card-img">
             <img src="images/jeffery.png" alt="Jeffery Abiuwa" />
           </div>
@@ -104,7 +104,7 @@ const Team = () => {
               <FaFacebook/>
             </a>
           </div>
-        </div>
+        </div> */}
 
         <div className="first-team-card">
           <div className="team-card-img">
@@ -114,9 +114,9 @@ const Team = () => {
             <h2>Obadina Azeez</h2>
             <p>Backend Developer</p>
             <a href="#">
-              <GrLinkedin/>
-              <FaGithub/>
-              <FaFacebook/>
+              <GrLinkedin />
+              <FaGithub />
+              <FaFacebook />
             </a>
           </div>
         </div>

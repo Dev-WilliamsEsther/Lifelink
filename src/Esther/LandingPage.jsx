@@ -4,7 +4,7 @@ import Benefit from "../components/Benefit/Benefit";
 import Sponsors from "../components/Sponsors/Sponsors";
 import Whyjoinus from "../components/whyus/Whyjoinus";
 import Impacts from "../components/impacts/Impacts";
-import Testify from "../components/testify/Testify";
+// import Testify from "../components/testify/Testify";
 import { useNavigate } from "react-router";
 
 
@@ -25,14 +25,14 @@ const LandingPage = () => {
             and blood <br /> banks, making it easier to save lives while
             ensuring you get rewarded for your generosity.
           </p>
-          <button className="landingbutton" onClick={()=> nav('/dashboard')}>Donate</button>
+          <button className="landingbutton" onClick={() => nav('/dashboard')}>Donate</button>
         </div>
       </div>
       <Benefit />
-      <Sponsors/>
-      <Whyjoinus/>
-      <Impacts/>
-      <Testify/>
+      <Sponsors />
+      <Whyjoinus />
+      <Impacts />
+      {/* <Testify/> */}
     </div>
   );
 };
