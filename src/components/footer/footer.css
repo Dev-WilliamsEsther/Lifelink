@@ -14,6 +14,12 @@
     font-size: 25px;
     font-weight: 700;
 }
+
+.footerlogo h3{
+  font-family: poppins;
+  font-size: 40px;
+  font-weight:700 ;
+}
 .footerlogo{
     width: 15%;
     height: 50px;
@@ -24,8 +30,14 @@
 
 }
 .footerlogo img{
-    width: 150px;
+    width: 90px;
+   
 }
+.logo-breath img{
+   animation: breating 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
 .footernewsletter{
     width: 70%;
     height: 200px;
@@ -45,37 +57,11 @@
     width: 45%;
     height: 40%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-}
-.footeremail{
-    width: 65%;
-    height: 40px;
-    border-radius: 20px;
-    display: flex;
-    padding: 10px;
-    align-items: center;
-    border: 1px solid grey;
-    font-family: Poppins;
     gap: 5px;
-    color: white;
-}
-.footeremail input::placeholder{
-    color: white;
 }
 
-.footerinput button{
-    width: 30%;
-    height: 40px;
-    background-color: #D32F2F;
-    border-radius: 20px;
-    font-family: Poppins;
-    cursor: pointer;
-    color: white;
-}
-.footerinput button:hover{
-    background-color: rgb(232, 92, 92);
-}
 .footerfeatures{
     width: 70%;
     height: 100px;
