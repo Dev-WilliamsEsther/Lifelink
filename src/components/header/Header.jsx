@@ -160,7 +160,7 @@ const Header = () => {
       <div className={`headerwrapper ${isFixed ? "headerwrapperfixed" : ""}`}>
         <div className="HeaderInnerWrapper">
           <div className="headerwrapperinner1">
-            <img src="images/alifenobg.png" alt="" />
+            <img src="images/alifenobg.png" alt="LifeLink Logo" className="logo-breath" />
           </div>
           <div className="headerwrapperinner2">
             <ul className="headerul">
@@ -200,6 +200,7 @@ const Header = () => {
           src="images/alifenobg.png"
           alt="LifeLink Logo"
           onClick={() => nav("/")}
+          className="logo-breath"
         />
         <div className="dashboardHeaderSearchWrapper">
           {userInfo.role === "donor" ? <div className="carousel-card">
