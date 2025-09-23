@@ -62,16 +62,9 @@ const ResetOtp = () => {
         <div className="authinfo1">
           <h3>RESET YOUR PASSWORD</h3>
           <p>Enter OTP sent to your email and set a new password</p>
-
           <p style={{ fontSize: "14px", color: "gray", marginTop: "5px" }}>
-            If you don't see the email in your inbox, please check your Spam or Junk folder.
+            If you don't see the email in your inbox,<br /> please check your Spam or Junk folder.
           </p>
-
-          <p className="check-spam-note">
-            If you don’t see the email in your inbox, please check your Spam or Junk folder.
-          </p>
-
-
         </div>
 
         <form onSubmit={handleSubmit} className="authform">

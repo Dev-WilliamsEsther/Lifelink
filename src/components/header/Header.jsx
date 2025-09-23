@@ -16,6 +16,8 @@ import { handleLogout } from "../../global/Api";
 import { useDispatch, useSelector } from "react-redux";
 import LoadComponents from "../componentsLoadScreen/LoadComponents";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
@@ -59,6 +61,15 @@ const Header = () => {
       console.error("Notification Error:", err);
     }
   };
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -145,24 +156,30 @@ const Header = () => {
     const interval = setInterval(() => {
       setFadeClass("fade-out");
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % donationTips.length);
-        setCurrentIndex((prev) => (prev + 1) % hospitalTips.length);
+        setCurrentIndex((prev) => {
+          if (userInfo?.role === "donor") {
+            return (prev + 1) % donationTips.length;
+          } else {
+            return (prev + 1) % hospitalTips.length;
+          }
+        });
         setFadeClass("fade-in");
       }, 300);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [userInfo?.role]);
+
 
 
   return (
     <>
-      <div className={`headerwrapper ${isFixed ? "headerwrapperfixed" : ""}`}>
+      <div className={`headerwrapper ${isFixed ? "headerwrapperfixed" : ""}`} data-aos="fade-down">
         <div className="HeaderInnerWrapper">
           <div className="headerwrapperinner1">
-            <img src="images/alifenobg.png" alt="LifeLink Logo" className="logo-breath" />
+            <img src="/images/alifenobg.png" alt="LifeLink Logo" className="logo-breath" />
           </div>
-          <div className="headerwrapperinner2">
+          <div className="headerwrapperinner2" data-aos="fade-up">
             <ul className="headerul">
               {navLinks.map((link, idx) => (
                 <li
@@ -177,32 +194,34 @@ const Header = () => {
             </ul>
           </div>
           {isSignedIn ? (
-            <div className="headerProfilePic" onClick={() => nav("/dashboard")}>
+            <div className="headerProfilePic" onClick={() => nav("/dashboard")} data-aos="flip-left">
               {
                 userInfo?.profilePics || userInfo?.profilePicture ? <img src={userInfo?.profilePics || userInfo?.profilePicture} alt="profile Picture" className='profileAvatar' /> : <img src="/images/default profile pic.jpg" alt="profile Picture" className='profileAvatar' />
               }
             </div>
           ) : (
-            <div className="headerwrapperinner3">
+            <div className="headerwrapperinner3" data-aos="fade-left">
               <Link to={"/signup"}>
-                <button className="headerbtn">Sign Up</button>
+                <button className="headerbtn" data-aos="zoom-in" data-aos-delay="200">Sign Up</button>
               </Link>
               <Link to={"/login"}>
-                <button className="headerbtn1">Log In</button>
+                <button className="headerbtn1" data-aos="zoom-in" data-aos-delay="400">Log In</button>
               </Link>
             </div>
           )}
         </div>
       </div>
 
-      <div className="MobileHeader">
+      <div className="MobileHeader" data-aos="fade-down">
         <img
-          src="images/alifenobg.png"
+          src="/images/alifenobg.png"
           alt="LifeLink Logo"
           onClick={() => nav("/")}
           className="logo-breath"
+          data-aos="zoom-in"
         />
-        <div className="dashboardHeaderSearchWrapper">
+        <div className="dashboardHeaderSearchWrapper" data-aos="fade-up"
+          data-aos-delay="300">
           {userInfo.role === "donor" ? <div className="carousel-card">
             <p className={`carousel-text ${fadeClass}`}>
               {donationTips[currentIndex]}
@@ -214,7 +233,7 @@ const Header = () => {
           </div>}
         </div>
 
-        <RxHamburgerMenu size={30} onClick={() => setOpenSideDrawer(true)} />
+        <RxHamburgerMenu size={30} onClick={() => setOpenSideDrawer(true)} data-aos="fade-left" />
       </div>
       <div className="mobileHeaderWrapperPusher"></div>
 
@@ -239,7 +258,7 @@ const Header = () => {
                   <span>{userInfo?.bloodType}</span>
                 </div>
 
-                <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)}>
+                <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)} data-aos="fade-left">
                   <MdCircleNotifications size={30} cursor='pointer' />
                   {notifications?.some(n => !n.isRead) && (
                     <span className="notificationDot">.</span>
@@ -276,7 +295,7 @@ const Header = () => {
                       nav("/");
                     }}
                   >
-                    <VscHome className="sideBarIocns" color="black" />
+                    <VscHome className="sideBarIocns" color="black" data-aos="fade-in" />
                     Home
                   </li>
                   <li
