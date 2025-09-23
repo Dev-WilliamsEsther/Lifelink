@@ -21,6 +21,7 @@
   font-weight:700 ;
 }
 .footerlogo{
+  margin-top: 30px;
     width: 15%;
     height: 50px;
     display: flex;
@@ -39,13 +40,14 @@
 }
 
 .footernewsletter{
+  margin-top: 50px;
     width: 70%;
     height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
 }
 .footernewsletter h1{
     color: white;
@@ -70,15 +72,75 @@
     align-items: center;
 }
 .featureslist{
-    width: 80%;
+    width: 100%;
     height: 60%;
+    gap: 8%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: white;
     font-family: Poppins;
     font-size: 15px;
     font-weight: 200;
+}
+
+.footer-col ul {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #D32F2F;
+}
+
+
+.social-icons {
+  margin-top: 15px;
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #D32F2F;
+  color: white;
+}
+
+.footer-bottom {
+  margin-top: 10px;
+  width: 80%;
+  text-align: center;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  padding-top: 15px;
+  font-size: 13px;
 }
 
 
