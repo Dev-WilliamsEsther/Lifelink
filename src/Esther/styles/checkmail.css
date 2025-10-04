@@ -90,17 +90,35 @@
     border: 1px solid grey;
     border-radius: 5px;
   }
+  .otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+  }
   
-
-
-
-
-
-
-
-
-
-
+  .otp-inputs input {
+    width: 45px;
+    height: 55px;
+    font-size: 22px;
+    text-align: center;
+    border: 2px solid grey;
+    border-radius: 8px;
+    outline: none;
+    color: black;
+    font-weight: bold;
+    transition: border-color 0.2s ease;
+  }
+  
+  .otp-inputs input:focus {
+    border-color: #c0392b;
+  }
+  .resend-disabled {
+    color: #bbb;
+    font-weight: 500;
+    cursor: not-allowed;
+  }
+  
   .resend-wrapper {
     background-color: #fff;
     min-height: 100vh;

@@ -198,6 +198,9 @@ const Donorssignup = () => {
               </a>
             </p>
           </div>
+          <div className='hosloginforgotwrap'>
+            <p onClick={()=>nav("/donorslogin")}>ALREADY HAVE AN ACCOUNT? <a href="" style={{color:"blue"}}>LOGIN</a></p>
+          </div>
 
           <button className='donsignbtn'
           disabled={!click || isLoading}
