@@ -29,7 +29,7 @@ const RequestPage = () => {
 
   const disabledDate = (current) => {
 
-    return current && current < dayjs().endOf("day");
+    return current && current < dayjs().startOf("day");
   };
   const [formData, setFormData] = useState({
     bloodGroup: "",
@@ -171,6 +171,7 @@ const RequestPage = () => {
         <div className="form-field">
           <label htmlFor="amount">
             What amount are you willing to offer a donor?
+            <span className="text-gray-400 text-xs">(optional)</span>
           </label>
           <div className="currency-input">
             <span className="currency-symbol"></span>
