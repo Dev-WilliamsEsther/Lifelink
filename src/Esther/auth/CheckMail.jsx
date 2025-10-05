@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import "../styles/checkmail.css";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 
 const Base_Url = import.meta.env.VITE_BASEURL;
 
 export default function CheckMail() {
   const nav = useNavigate();
+  const location = useLocation();
+  const email = location.state?.email;
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const inputsRef = useRef([]);
 
@@ -51,7 +53,7 @@ export default function CheckMail() {
     }
 
     try {
-      const res = await axios.post(`${Base_Url}/verify-otp`, { otp: finalOtp });
+      const res = await axios.post(`${Base_Url}/verify-otp`, {email, otp: finalOtp });
       toast.success("OTP Verified Successfully!");
       nav("/dashboard");
     } catch (err) {
@@ -62,7 +64,7 @@ export default function CheckMail() {
 
   const handleResend = async () => {
     try {
-      await axios.post(`${Base_Url}/resend-otp`);
+      await axios.post(`${Base_Url}/resend-otp`,{email});
       toast.info("A new OTP has been sent to your email.");
       setCounter(60); // reset countdown
     } catch (err) {
