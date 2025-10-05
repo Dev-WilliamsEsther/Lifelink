@@ -31,10 +31,11 @@ const Donorslogin = () => {
       const user = res?.data?.data;
       if (!user?.isVerified) {
         toast.error('Account not verified. Please check your email.');
+        nav("/checkmail", {state: {email:userLoginData.email} })
 
         try {
-            await axios.post(`${Base_Url}/re-verify`, {
-            email: user?.email,
+            await axios.post(`${Base_Url}/resend-otp`, {
+              email: userLoginData.email,
           });
         } catch (err) {
           console.error("Error sending re-verification email:", err);
@@ -49,7 +50,7 @@ const Donorslogin = () => {
       }, 1000);
       return res.message;
     } catch (err) {
-      console.error("Login error:", err?.response?.damessageta || err);
+      console.error("Login error:", err?.response?.data?.message || err);
       toast.error(
         err?.response?.data?.message || "Something went wrong during registration."
       );
