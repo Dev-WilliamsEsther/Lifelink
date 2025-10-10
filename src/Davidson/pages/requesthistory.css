@@ -15,6 +15,19 @@
   color: #1f2937;
 }
 
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+  text-align: center;
+  min-width: 90px;
+}
+
+
+
+
 .RequestHistoryHeader,
 .RequestHistoryItem {
   display: grid;
@@ -59,17 +72,19 @@
 
 .status.pending {
   background-color: #fef3c7;
-  color: #92400e;
+  color: #f59e0b;
+   border: 1px solid #f57c00;
 }
 
 .status.approved {
   background-color: #d1fae5;
-  color: #065f46;
+  color: #388e3c;
 }
 
 .status.rejected {
   background-color: #fee2e2;
-  color: #991b1b;
+  color: #d32f2f;
+   border: 1px solid #d32f2f;
 }
 
 @media (max-width: 768px) {

@@ -78,6 +78,33 @@
   gap: 6px;
 }
 
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: white;
+  max-width: 100px;
+  text-align: center;
+}
+
+.status-badge.accepted {
+  background-color: #16a34a; 
+  
+}
+
+.status-badge.cancelled,
+.status-badge.cancel {
+  background-color: #dc2626; 
+}
+
+.status-badge.pending {
+  background-color: #f59e0b; 
+}
+
+
 .confirm-btn,
 .reject-btn {
   padding: 6px 14px;

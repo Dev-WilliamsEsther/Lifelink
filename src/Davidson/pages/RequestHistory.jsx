@@ -11,7 +11,8 @@ const RequestHistory = () => {
   const [loadState, setLoadState] = useState(false)
   const userToken = useSelector((state) => state?.token);
 
-  const Base_Url = import.meta.env.VITE_BASEURL;
+  // const Base_Url = import.meta.env.VITE_BASEURL;
+  const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
   const headers = {
     Authorization: `Bearer ${userToken}`,
@@ -20,7 +21,7 @@ const RequestHistory = () => {
   const fetchRequest = async () => {
     setLoadState(true)
     try {
-      const res = await axios.get(`${Base_Url}/re-hospital/history`, { headers });
+      const res = await axios.get(`${VITE_BASEURL_REN}/re-hospital/history`, { headers });
       setRequestData(res.data.requests);
       setLoadState(false)
     } catch (err) {
@@ -32,9 +33,9 @@ const RequestHistory = () => {
     fetchRequest();
   }, []);
 
-  const handleDeleteRequest = async (id) => {  
+  const handleDeleteRequest = async (id) => {
     try {
-      const ress = await axios.delete(`${Base_Url}/delete-blood-request/${id}`, { headers });
+      const ress = await axios.delete(`${VITE_BASEURL_REN}/delete-blood-request/${id}`, { headers });
       toast.success("Request deleted successfully!");
       (ress)
       setRequestData(prev => prev.filter(request => request._id !== id));
@@ -53,8 +54,8 @@ const RequestHistory = () => {
     });
   };
 
-  if(loadState){
-    return <LoadComponents/>
+  if (loadState) {
+    return <LoadComponents />
   }
 
   return (
@@ -78,8 +79,9 @@ const RequestHistory = () => {
             <div>{formatDate(item?.createdAt)}</div>
             <div>{formatDate(item?.preferredDate)}</div>
             <div>{item?.urgencyLevel}</div>
-            <div className={`status ${item?.status.toLowerCase()}`}>{item?.status}</div>
-            <RiDeleteBin6Fill color="red" size={20} cursor='pointer' onClick={() => handleDeleteRequest(item._id)}/>
+            <div className={`status ${item?.status?.toLowerCase()}`}>{item?.status}</div>
+
+            <RiDeleteBin6Fill color="red" size={20} cursor='pointer' onClick={() => handleDeleteRequest(item._id)} />
           </div>
         ))
       ) : (

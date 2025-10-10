@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import './dashboardHeader.css'
+import React, { useEffect, useState } from 'react';
+import './dashboardHeader.css';
 import { MdCircleNotifications } from "react-icons/md";
 import { Drawer } from 'antd';
 import { GoUnread } from "react-icons/go";
@@ -10,6 +10,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useSelector } from 'react-redux';
 
 const Base_Url = import.meta.env.VITE_BASEURL;
+const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const DashBoardHeader = () => {
   const loggedInUser = useSelector((state) => state?.loggedInUser);
@@ -27,58 +28,67 @@ const DashBoardHeader = () => {
   const headerNameSplit = loggedInUser?.fullName?.split(" ");
   const headerNamePrompt = headerNameSplit?.[0];
 
+  // ✅ Fetch donor notifications
   const getDonorNotification = async () => {
     try {
-      const ress = await axios.get(`${Base_Url}/donor/notifications`, {
+      const response = await axios.get(`${VITE_BASEURL_REN}/donor/notifications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setNotifications(ress?.data?.notifications);
+      setNotifications(response?.data?.notifications || []);
     } catch (err) {
+      console.error("Error fetching notifications:", err);
     }
   };
 
-
+  // ✅ Periodic refresh of notifications
   useEffect(() => {
+    if (!token) return;
+
     const interval = setInterval(() => {
-      getDonorNotification(token, setNotifications);
-    }, 10000); 
-  
-    getDonorNotification(token, setNotifications);
-  
+      getDonorNotification();
+    }, 10000);
+
+    getDonorNotification();
+
     return () => clearInterval(interval);
   }, [token]);
 
+  // ✅ Fetch hospitals
   const fetchHospitals = async () => {
     try {
       const res = await axios.get(`${Base_Url}/hospitals`);
-      setHospitals(res.data?.data);
-      setFilteredHospitals(res.data);
+      const hospitalData = res.data?.data || [];
+      setHospitals(hospitalData);
+      setFilteredHospitals(hospitalData);
     } catch (error) {
       console.error('Error fetching hospitals:', error);
     }
   };
 
-  useEffect(()=>{
-    fetchHospitals()
-  },[])
+  useEffect(() => {
+    fetchHospitals();
+  }, []);
 
-
+  // ✅ Mark notification as read
   const markNotificationAsRead = async (notificationId) => {
     try {
-      await axios.put(`${Base_Url}/donor/notifications/${notificationId}/read`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await axios.put(
+        `${VITE_BASEURL_REN}/donor/notifications/${notificationId}/read`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       getDonorNotification();
     } catch (err) {
       console.error("Failed to mark notification as read", err);
     }
   };
 
+  // ✅ Toggle open/close of message
   const handleOpenedMessageToggle = (index) => {
-    setOpenedMessageIndex(prev => prev === index ? null : index);
+    setOpenedMessageIndex((prev) => (prev === index ? null : index));
   };
 
-
+  // ✅ Donor and Hospital tips
   const donationTips = [
     "Stay hydrated! Drink plenty of water before and after your donation.",
     "Eat a healthy meal before donating — avoid fatty foods.",
@@ -109,49 +119,48 @@ const DashBoardHeader = () => {
     "📣 Promote your hospital's presence on social media and local platforms.",
     "🛡️ Stay compliant with all health and safety regulations to ensure donor confidence.",
   ];
-  
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fadeClass, setFadeClass] = useState("fade-in");
 
+  // ✅ Tips carousel animation
   useEffect(() => {
     const interval = setInterval(() => {
       setFadeClass("fade-out");
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % donationTips.length);
-        setCurrentIndex((prev) => (prev + 1) % hospitalTips.length);
         setFadeClass("fade-in");
-      }, 300); 
+      }, 300);
     }, 4000);
 
     return () => clearInterval(interval);
   }, []);
-  
+
+  // ✅ Choose tips based on user role
+  const tips = loggedInUser?.role === "donor" ? donationTips : hospitalTips;
 
   return (
-    <div className='dashboardHeaderWrapper'>
+    <div className="dashboardHeaderWrapper">
       <div className="dashboardHeaderName">
-        <h1>Hello {headerNamePrompt || 'Visitor'} <p style={{ fontSize: '15px' }}>&#128522;</p></h1>
+        <h1>
+          Hello {headerNamePrompt || 'Visitor'}{" "}
+          <p style={{ fontSize: '15px' }}>&#128522;</p>
+        </h1>
         <span>“Save a life today”</span>
       </div>
 
       <div className="dashboardHeaderSearchWrapper">
-        {loggedInUser.role === "donor"? <div className="carousel-card">
-        <p className={`carousel-text ${fadeClass}`}>
-          {donationTips[currentIndex]}
-        </p>
-      </div> : <div className="carousel-card">
-        <p className={`carousel-text ${fadeClass}`}>
-          {hospitalTips[currentIndex]}
-        </p>
-      </div>}
-      
+        <div className="carousel-card">
+          <p className={`carousel-text ${fadeClass}`}>
+            {tips[currentIndex]}
+          </p>
+        </div>
       </div>
 
       {searchQuery && (
         <div className="searchDropdown">
           {filteredHospitals.length > 0 ? (
-            filteredHospitals.map(h => (
+            filteredHospitals.map((h) => (
               <div
                 key={h.id}
                 className="searchResultItem"
@@ -167,18 +176,30 @@ const DashBoardHeader = () => {
       )}
 
       <div className="profilePicAndNotification">
-        <div className="notificationIconWrapper" onClick={() => setNotificationSideBar(true)}>
-          <MdCircleNotifications size={30} cursor='pointer' />
-          {notifications?.some(n => !n.isRead) && (
+        <div
+          className="notificationIconWrapper"
+          onClick={() => setNotificationSideBar(true)}
+        >
+          <MdCircleNotifications size={30} cursor="pointer" />
+          {notifications?.some((n) => !n.isRead) && (
             <span className="notificationDot"></span>
           )}
         </div>
+
         <div className="profilePicture">
-          {
-            loggedInUser?.profilePics || loggedInUser?.profilePicture
-              ? <img src={loggedInUser?.profilePics || loggedInUser?.profilePicture} alt="profile" className='profileAvatar' />
-              : <img src="/images/default profile pic.jpg" alt="default" className='profileAvatar' />
-          }
+          {loggedInUser?.profilePics || loggedInUser?.profilePicture ? (
+            <img
+              src={loggedInUser?.profilePics || loggedInUser?.profilePicture}
+              alt="profile"
+              className="profileAvatar"
+            />
+          ) : (
+            <img
+              src="/images/default profile pic.jpg"
+              alt="default"
+              className="profileAvatar"
+            />
+          )}
         </div>
       </div>
 
@@ -188,26 +209,34 @@ const DashBoardHeader = () => {
         title="Notifications"
       >
         <div className="refreshWrapperHeader">
-          <RiDeleteBin6Fill size={30} cursor="pointer" title='Delete all'/>
-          <IoMdRefreshCircle size={30} cursor="pointer" title='Refresh'/>
+          <RiDeleteBin6Fill size={30} cursor="pointer" title="Delete all" />
+          <IoMdRefreshCircle
+            size={30}
+            cursor="pointer"
+            title="Refresh"
+            onClick={getDonorNotification}
+          />
         </div>
 
         <div className="notificationsWrapper">
           {notifications.length > 0 ? (
             notifications.map((notification, index) => (
               <div
-                key={index}
+                key={notification._id || index}
                 className="notificationsCardsWrap"
                 onClick={() => handleOpenedMessageToggle(index)}
               >
-                <h1>{notification.from} {!notification.isRead && <GoUnread />}</h1>
+                <h1>
+                  {notification.from} {!notification.isRead && <GoUnread />}
+                </h1>
+
                 {openedMessageIndex === index && (
                   <>
                     <span>{notification.message}</span>
                     <button
                       onClick={() => {
                         markNotificationAsRead(notification._id);
-                        nav(`hospitalsrequestdetails/${notification?._id}`);
+                        nav(`/hospitalsrequestdetails/${notification?._id}`);
                         setNotificationSideBar(false);
                       }}
                     >

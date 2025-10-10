@@ -5,7 +5,7 @@ import { DatePicker } from "antd";
 import dayjs from "dayjs";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const RequestPage = () => {
   const bloodGroups = [
@@ -19,37 +19,34 @@ const RequestPage = () => {
     { label: "O-", value: "O-" },
   ];
 
-  const nav = useNavigate()
-  const [dateString, setDateString] = useState("");
-  const onChangeDate = (date) => {
-    if (date) {
-      setDateString(date.format("YYYY-MM-DD")); 
-    }
-  };
+  const nav = useNavigate();
+  const Base_Url = import.meta.env.VITE_BASEURL;
+  const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
-  const disabledDate = (current) => {
-
-    return current && current < dayjs().startOf("day");
-  };
   const [formData, setFormData] = useState({
     bloodGroup: "",
-    numberOfPints: null,
-    preferredDate: dateString,
+    numberOfPints: "",
+    preferredDate: "",
     urgencyLevel: "",
-    amount: null,
+    reason: "",
+    amount: 0,
   });
-  const userToken = useSelector((state) => state?.token);
-  const user = useSelector((state)=> state.loggedInUser)
 
+  const userToken = useSelector((state) => state?.token);
+  const user = useSelector((state) => state?.loggedInUser);
+
+  const disabledDate = (current) => current && current < dayjs().startOf("day");
 
   const handleChange = (e) => {
-
-    if (e.$isDayjsObject) {
+    // Handle DatePicker input
+    if (e?.$isDayjsObject) {
       setFormData((prev) => ({
         ...prev,
         preferredDate: e.format("YYYY-MM-DD"),
       }));
+      return;
     }
+
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -59,73 +56,105 @@ const RequestPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("this is token", userToken)
+
     if (
-      !formData.amount &&
-      !formData.bloodGroup &&
-      !formData.numberOfPints &&
-      !formData.urgencyLevel &&
+      !formData.bloodGroup ||
+      !formData.numberOfPints ||
+      !formData.urgencyLevel ||
       !formData.preferredDate
     ) {
-      return toast.error("Please fill all fields");
-    } 
-
-    if(!user?.profilePicture){
-      return toast.error("Upload Profile picture before Requesting")
-    } else if(!user?.kycCompleted){
-      return toast.error("Please Upload KYC before Requesting")
+      toast.error("Please fill all required fields");
+      return;
     }
 
+    if (!user?.kycCompleted) {
+      toast.error("Please complete KYC before requesting");
+      return;
+    }
 
-    const url = "https://lifelink-7pau.onrender.com/api/v1/hospital/request-blood";
-    toast.loading("Requesting...");
+    if (!userToken) {
+      toast.error("You are not logged in. Please log in.");
+      return;
+    }
+
+    const payload = {
+      bloodGroup: formData.bloodGroup,
+      numberOfPints: Number(formData.numberOfPints),
+      preferredDate: formData.preferredDate,
+      urgencyLevel: formData.urgencyLevel,
+      reason: formData.reason || "Urgent medical need",
+      amount: 0,
+    };
+
+    toast.loading("Sending blood request...");
+
     try {
-      const res = await axios.post(url, formData, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-          "Content-Type": "application/json",
-        },
-      });
+      console.log("Payload being sent:", payload);
 
-      if (res.status === 201) {
-        toast.dismiss()
-        toast.success(res?.data?.message)
-        nav('/dashboard/requesthistory')
+      const res = await axios.post(
+        `${VITE_BASEURL_REN}/hospital/request-blood`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
+      toast.dismiss();
+
+      if (res.status === 201 || res.status === 200) {
+        toast.success(res?.data?.message || "Blood request created successfully!");
         setFormData({
           bloodGroup: "",
-          numberOfPints: null,
+          numberOfPints: "",
           preferredDate: "",
           urgencyLevel: "",
-          amount: null,
+          reason: "",
         });
+        nav("/dashboard/requesthistory");
+      } else {
+        toast.error("Unexpected server response");
       }
     } catch (err) {
-      toast.error(err?.response?.data?.message);
+      toast.dismiss();
 
+      const errorMsg =
+        err?.response?.data?.message ||
+        "Internal server error. Please try again later.";
+
+      toast.error(errorMsg);
+      console.error("Request error details:", err?.response || err);
     }
   };
-  5;
+
   return (
     <div className="request-form-container">
-      <h2 className="form-title">Request Form</h2>
+      <h2 className="form-title">Blood Request Form</h2>
 
       <form onSubmit={handleSubmit}>
+        {/* Blood Group */}
         <div className="form-field">
           <label htmlFor="bloodGroup">Blood Group Needed</label>
-
           <select
-            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2"
-            onChange={handleChange}
             id="bloodGroup"
             name="bloodGroup"
+            value={formData.bloodGroup}
+            onChange={handleChange}
+            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2"
           >
             <option value="">Select your blood group</option>
             {bloodGroups.map((item, index) => (
-              <option value={item.value}>{item?.value}</option>
+              <option key={index} value={item.value}>
+                {item.value}
+              </option>
             ))}
           </select>
         </div>
 
+        {/* Number of Pints */}
         <div className="form-field">
           <label htmlFor="pints">Number of Pints</label>
           <input
@@ -133,59 +162,54 @@ const RequestPage = () => {
             id="pints"
             min={1}
             name="numberOfPints"
-            placeholder="3 Pints of blood"
+            placeholder="e.g. 3 Pints"
             value={formData.numberOfPints}
             onChange={handleChange}
-            className="record-input w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
+            className="record-input w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2"
           />
         </div>
 
+        {/* Preferred Date */}
         <div className="form-field">
           <label htmlFor="preferredDate">Preferred Date</label>
-
           <DatePicker
             onChange={handleChange}
             disabledDate={disabledDate}
             id="preferredDate"
             name="preferredDate"
-            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
+            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2"
           />
         </div>
 
+        {/* Urgency Level */}
         <div className="form-field">
           <label htmlFor="urgencyLevel">Urgency Level</label>
           <select
             id="urgencyLevel"
             name="urgencyLevel"
             onChange={handleChange}
-            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
+            value={formData.urgencyLevel}
+            className="w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2"
           >
-            <option value="">Select Low, Medium, High</option>
+            <option value="">Select urgency level</option>
             <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
           </select>
-
         </div>
 
+        {/* Reason Field (instead of Incentive) */}
         <div className="form-field">
-          <label htmlFor="amount">
-            What amount are you willing to offer a donor?
-            <span className="text-gray-400 text-xs">(optional)</span>
-          </label>
-          <div className="currency-input">
-            <span className="currency-symbol"></span>
-            <input
-              type="number"
-              id="amount"
-              name="amount"
-              min={0}
-              placeholder="₦0000"
-              value={formData.amount}
-              onChange={handleChange}
-              className="record-input w-80 border h-10 border-gray-300 rounded text-sm text-gray-600 px-2 pl-2"
-            />
-          </div>
+          <label htmlFor="reason">Reason for Request</label>
+          <textarea
+            id="reason"
+            name="reason"
+            placeholder="Briefly explain why blood is needed (e.g., emergency surgery)"
+            value={formData.reason}
+            onChange={handleChange}
+            className="record-input w-80 border rounded text-sm text-gray-600 px-2 py-2"
+            rows={3}
+          />
         </div>
 
         <button type="submit" className="submit-button">

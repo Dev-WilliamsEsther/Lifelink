@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import RequestNotAvailable from "./RequestNotAvailable";
 
-const Base_Url = import.meta.env.VITE_BASEURL;
+const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const HospitalRequestDetails = () => {
   const [volunteerPopUp, setVolunteerPopUp] = useState(false);
@@ -18,19 +18,22 @@ const HospitalRequestDetails = () => {
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState([]);
   const [notFound, setNotFound] = useState(false);
-
+  const [isExpired, setIsExpired] = useState(false);
 
   const token = useSelector((state) => state?.token);
   const { bloodRequestId } = useParams();
+
   const [scheduleData, setScheduleData] = useState({
     date: "",
     time: "",
-    hospitalId : ""
+    hospitalId: ""
   });
 
-
+  // Disable all past dates and dates beyond hospital's preferred date
   const disabledDate = (current) => {
-    return current && current < dayjs().endOf("day");
+    if (!anHospital?.preferredDate) return current && current < dayjs().endOf("day");
+    const preferred = dayjs(anHospital.preferredDate);
+    return current < dayjs().endOf("day") || current > preferred.endOf("day");
   };
 
   const handleChange = (e) => {
@@ -46,23 +49,28 @@ const HospitalRequestDetails = () => {
     { label: "12:00 PM - 3:00 PM", value: "12:00 PM" },
     { label: "3:00 PM - 5:00 PM", value: "3:00 PM" },
   ];
-  
 
   const getOneHospital = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`${Base_Url}/-request/${bloodRequestId}`, {
+      const res = await axios.get(`${VITE_BASEURL_REN}/blood-request/${bloodRequestId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setAnHospital(res?.data?.data);
+      const data = res?.data?.data;
+      setAnHospital(data);
+
+      // Check if request is expired
+      if (data?.preferredDate && dayjs().isAfter(dayjs(data.preferredDate), "day")) {
+        setIsExpired(true);
+      }
     } catch (err) {
       console.error("Error fetching hospital details:", err);
       if (err?.response?.status === 404) {
         setNotFound(true);
       }
-    }finally {
+    } finally {
       setIsLoading(false);
     }
   };
@@ -74,10 +82,10 @@ const HospitalRequestDetails = () => {
   const handleSchedule = async () => {
     setIsScheduleLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/bookAppointment`, {
-        date : scheduleData.date,
-        time : scheduleData.time,
-        hospitalId : scheduleData.hospitalId
+      const res = await axios.post(`${VITE_BASEURL_REN}/bookAppointment`, {
+        date: scheduleData.date,
+        time: scheduleData.time,
+        hospitalId: scheduleData.hospitalId
       }, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -96,8 +104,6 @@ const HospitalRequestDetails = () => {
       setIsScheduleLoading(false);
     }
   };
-
-
 
   useEffect(() => {
     if (anHospital?.hospital?._id) {
@@ -118,8 +124,8 @@ const HospitalRequestDetails = () => {
   };
 
   if (notFound) return <RequestNotAvailable />;
-
   if (isLoading) return <LoadComponents />;
+
   return (
     <div className="HospitalDetailsPageWrapper">
       <h1>{anHospital?.hospital?.fullName} Request Details</h1>
@@ -139,25 +145,25 @@ const HospitalRequestDetails = () => {
               Blood group needed: <b>{anHospital?.bloodGroup || "-"}</b>
             </p>
             <p>
-              number Of Pints: <b>{anHospital?.numberOfPints || "-"}</b>
+              Number Of Pints: <b>{anHospital?.numberOfPints || "-"}</b>
             </p>
             <p>
-              urgency Level: <b>{anHospital?.urgencyLevel || "-"}</b>
+              Urgency Level: <b>{anHospital?.urgencyLevel || "-"}</b>
             </p>
             <p>
               Offer: <b>{anHospital?.amount?.toLocaleString() || "-"}</b>
             </p>
             <p>
-             preferred Date: <b>{formatDate(anHospital?.preferredDate) || "-"}</b>
+              Preferred Date: <b>{formatDate(anHospital?.preferredDate) || "-"}</b>
             </p>
             <p>
               Address: <b>{anHospital?.hospital?.location || "-"}</b>
             </p>
             <p>
-              LGM: <b>{anHospital?.hospital?.city || "-"}</b>
+              LGA: <b>{anHospital?.hospital?.city || "-"}</b>
             </p>
             <p>
-              email: <b>{anHospital?.hospital?.email || "-"}</b>
+              Email: <b>{anHospital?.hospital?.email || "-"}</b>
             </p>
             <p>
               Contact: <b>{anHospital?.hospital?.phone || "-"}</b>
@@ -166,11 +172,24 @@ const HospitalRequestDetails = () => {
               Operating Hours: <b>{"Mon-Fri, 8AM - 5PM"}</b>
             </p>
           </div>
-          <button onClick={() => setVolunteerPopUp(true)}>
-            Volunteer to Donate
-          </button>
+
+          {isExpired ? (
+            <button disabled className="expiredButton">
+              Request Expired
+            </button>
+          ) : (
+            <button onClick={() => setVolunteerPopUp(true)}>
+              Volunteer to Donate
+            </button>
+          )}
         </div>
       </div>
+
+      {isExpired && (
+        <div className="expiredNotice">
+          ⚠️ This blood request has expired. Please contact the hospital for updates.
+        </div>
+      )}
 
       <Modal
         open={volunteerPopUp}
