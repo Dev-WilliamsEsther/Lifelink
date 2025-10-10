@@ -41,7 +41,6 @@ const Hospitallogin = () => {
       }
     };
 
-    // Check every 10 minutes
     const interval = setInterval(checkTokenExpiry, 10 * 60 * 1000);
     return () => clearInterval(interval);
   }, [nav]);
