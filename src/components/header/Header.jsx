@@ -7,7 +7,7 @@ import { MdEdit, MdHistory, MdVerified, MdCircleNotifications } from "react-icon
 import { TbHomeSearch } from "react-icons/tb";
 import { VscHome, VscTools } from "react-icons/vsc";
 import { GoPeople, GoUnread } from "react-icons/go";
-import { IoList, IoSearchOutline } from "react-icons/io5";
+import { IoList } from "react-icons/io5";
 import { PiGitPullRequest } from "react-icons/pi";
 import { BiGitPullRequest } from "react-icons/bi";
 import { CiLogout, CiSettings } from "react-icons/ci";
@@ -19,7 +19,8 @@ import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const Base_Url = import.meta.env.VITE_BASEURL;
+const VITE_BASEURL = import.meta.env.VITE_BASEURL;
+const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const Header = () => {
   const [openSideDrawer, setOpenSideDrawer] = useState(false);
@@ -34,7 +35,6 @@ const Header = () => {
   const userInfo = useSelector((state) => state?.loggedInUser);
   const token = useSelector((state) => state?.token);
 
-
   const dispatch = useDispatch();
   const nav = useNavigate();
   const location = useLocation();
@@ -46,12 +46,13 @@ const Header = () => {
   ];
 
   const handleSubmit = () => {
-    handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
+    handleLogout(VITE_BASEURL, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
   };
 
+  // ✅ FIX 1: Use dynamic environment base URL instead of hardcoded one
   const getDonorNotification = async (token, setNotifications) => {
     try {
-      const res = await axios.get(`${Base_Url}/donor/notifications`, {
+      const res = await axios.get(`${VITE_BASEURL_REN}/donor/notifications`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -70,7 +71,6 @@ const Header = () => {
     });
   }, []);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       getDonorNotification(token, setNotifications);
@@ -81,22 +81,26 @@ const Header = () => {
     return () => clearInterval(interval);
   }, [token]);
 
-
+  // ✅ FIX 2: Call getDonorNotification() correctly with parameters after marking as read
   const markNotificationAsRead = async (id) => {
     try {
-      await axios.put(`${Base_Url}/donor/notifications/${id}/read`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      getDonorNotification();
+      await axios.put(
+        `${VITE_BASEURL_REN}/donor/notifications/${id}/read`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      getDonorNotification(token, setNotifications);
     } catch (err) {
       console.error("Mark Read Error:", err);
     }
   };
 
   const handleOpenedMessageToggle = (index) => {
-    setOpenedMessageIndex(prev => prev === index ? null : index);
+    setOpenedMessageIndex((prev) => (prev === index ? null : index));
   };
 
   useEffect(() => {
@@ -108,15 +112,11 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
   const headerNamePrompt = userInfo?.fullName?.split(" ")?.[0];
 
   if (loadLogOut) {
     return <LoadComponents />;
   }
-
-
 
   const donationTips = [
     "Stay hydrated! Drink plenty of water before and after your donation.",
@@ -132,7 +132,7 @@ const Header = () => {
     "Not feeling well? Reschedule your appointment. Your health comes first.",
     "Iron-rich foods like spinach, meat, or beans help you recover faster.",
     "Be honest during screening. It ensures the safety of both you and the patient.",
-    "You’re a hero. Thank you for making a difference!"
+    "You’re a hero. Thank you for making a difference!",
   ];
 
   const hospitalTips = [
@@ -147,7 +147,6 @@ const Header = () => {
     "📣 Promote your hospital's presence on social media and local platforms.",
     "🛡️ Stay compliant with all health and safety regulations to ensure donor confidence.",
   ];
-
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fadeClass, setFadeClass] = useState("fade-in");
@@ -214,7 +213,7 @@ const Header = () => {
 
       <div className="MobileHeader" data-aos="fade-down">
         <img
-          src="/images/alifenobg.png"
+          src="/images/public/images/alifenobg.png"
           alt="LifeLink Logo"
           onClick={() => nav("/")}
           className="logo-breath"
@@ -576,7 +575,7 @@ const Header = () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         markNotificationAsRead(notification._id);
-                        nav(`hospitalsrequestdetails/${notification?.requestId}`);;
+                        nav(`/hospitalsrequestdetails/${notification?.appointmentId || notification?.requestId}`);;
                         setNotificationSideBar(false);
                         setOpenSideDrawer(false);
                       }}
