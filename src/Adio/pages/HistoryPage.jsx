@@ -7,7 +7,9 @@ import { useSelector } from 'react-redux';
 import LoadComponents from '../../components/componentsLoadScreen/LoadComponents';
 import { toast } from 'react-toastify';
 
-const Base_Url = import.meta.env.VITE_BASEURL;
+// Ensure your .env contains this correctly:
+// VITE_BASEURL_REN=https://lifelink-7pau.onrender.com/api/v1
+const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const HistoryPage = () => {
   const token = useSelector((state) => state.token);
@@ -16,11 +18,24 @@ const HistoryPage = () => {
   const [viewDetailsPopUp, setViewDetailsPopUp] = useState(null);
   const [status, setStatus] = useState("pending");
   const [loadingState, setLoadingState] = useState(false);
+  const [appointmentsHistory, setAppointmentHistory] = useState([]);
 
+  // Helper: validate token before making requests
+  const validateToken = () => {
+    if (!token || typeof token !== "string" || token.trim() === "") {
+      toast.error("User not authenticated. Please log in again.");
+      return false;
+    }
+    return true;
+  };
+
+  // Fetch donations by status
   const getDonationsByStatus = async (status) => {
+    if (!validateToken()) return;
+
     setLoadingState(true);
     try {
-      const res = await axios.get(`${Base_Url}/donations/${status}`, {
+      const res = await axios.get(`${VITE_BASEURL_REN}/donations/${status}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -29,26 +44,43 @@ const HistoryPage = () => {
       const sortedDonations = (res?.data?.donations || []).sort(
         (a, b) => new Date(b.date) - new Date(a.date)
       );
-
       setDonations(sortedDonations);
     } catch (err) {
-      console.error("Error fetching donations:", err);
+      console.error("❌ Error fetching donations:", err);
       toast.error("Failed to fetch donation history.");
     } finally {
       setLoadingState(false);
     }
   };
 
-  useEffect(() => {
-    if (token && status) {
-      getDonationsByStatus(status);
-    }
-  }, [status, token]);
+  // Fetch appointments
+  const getAppointments = async () => {
+    if (!validateToken()) return;
 
+    setLoadingState(true);
+    try {
+      const res = await axios.get(`${VITE_BASEURL_REN}/donor/appointments`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setAppointmentHistory(res?.data?.appointments || []);
+    } catch (err) {
+      console.error("❌ Error fetching appointments:", err);
+      toast.error("Failed to fetch appointment history.");
+    } finally {
+      setLoadingState(false);
+    }
+  };
+
+  // Cancel appointment
   const cancelAppointment = async (appointmentId) => {
+    if (!validateToken()) return;
+
     try {
       await axios.put(
-        `${Base_Url}/donor/appointments/${appointmentId}/cancel`,
+        `${VITE_BASEURL_REN}/donor/appointments/${appointmentId}/cancel`,
         {},
         {
           headers: {
@@ -56,40 +88,28 @@ const HistoryPage = () => {
           },
         }
       );
+
       toast.success("Appointment cancelled successfully");
       setViewDetailsPopUp(null);
-      getDonationsByStatus(status); 
+      getDonationsByStatus(status);
     } catch (error) {
-      console.error("Cancel appointment error:", error);
+      console.error("❌ Cancel appointment error:", error);
       toast.error("Failed to cancel appointment.");
     }
   };
 
-  const [appointmentsHistory, setAppointmentHistory] = useState([])
-
-
-  const getAppointments = async (status) => {
-    setLoadingState(true);
-    try {
-      const res = await axios.get(`${Base_Url}/donor/appointments`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setAppointmentHistory(res?.data?.appointments);
-    } catch (err) {
-      console.error("Error fetching donations:", err);
-      toast.error("Failed to fetch donation history.");
-    } finally {
-      setLoadingState(false);
+  // Effects
+  useEffect(() => {
+    if (token && status) {
+      getDonationsByStatus(status);
     }
-  };
+  }, [status, token]);
 
-
-  useEffect(()=>{
-    getAppointments()
-  }, [])
+  useEffect(() => {
+    if (token) {
+      getAppointments();
+    }
+  }, [token]);
 
   if (loadingState) {
     return <LoadComponents />;
@@ -97,6 +117,7 @@ const HistoryPage = () => {
 
   return (
     <>
+      {/* Appointment History */}
       <div className='HistoryPageWrapper'>
         <h1>Appointment History</h1>
 
@@ -116,15 +137,20 @@ const HistoryPage = () => {
               <div className="DonationsHistoryCards" key={index}>
                 <div className="DonationsHistoryCardsInnerWrapper">
                   <h3>{donation.hospital?.fullName || "N/A"}</h3>
-                  <h3
+                  <button
+                    className="view-btn-dtl"
                     onClick={() => setViewDetailsPopUp(donation)}
-                    style={{ color: "blue", cursor: "pointer" }}
                   >
                     VIEW DETAILS
-                  </h3>
+                  </button>
+
                   <h3><SlCalender /> {new Date(donation.date).toLocaleDateString()}</h3>
                   <h3>{donation.hospital?.location || "N/A"}</h3>
-                  <h3>{donation.status}</h3>
+                  <h3>
+                    <span className={`status-btn status-${donation.status?.toLowerCase()}`}>
+                      {donation.status}
+                    </span>
+                  </h3>
                 </div>
               </div>
             ))
@@ -134,14 +160,7 @@ const HistoryPage = () => {
         </div>
       </div>
 
-     
-
-
-
-
-
-
-
+      {/* Schedule History */}
       <div className='HistoryPageWrapper'>
         <h1>Schedule History</h1>
 
@@ -162,19 +181,21 @@ const HistoryPage = () => {
                   <h3>{donation.hospital?.email || "N/A"}</h3>
                   <h3><SlCalender /> {new Date(donation.date).toLocaleDateString()}</h3>
                   <h3>{donation.hospital?.location || "N/A"}</h3>
-                  <h3>{donation.status}</h3>
+                  <h3>
+                    <span className={`status-btn status-${donation.status?.toLowerCase()}`}>
+                      {donation.status}
+                    </span>
+                  </h3>
                 </div>
               </div>
             ))
           ) : (
-            <p>No {status} donations yet.</p>
+            <p>No scheduled appointments yet.</p>
           )}
         </div>
       </div>
 
-
-
-
+      {/* Modal for View Details */}
       <Modal
         open={!!viewDetailsPopUp}
         onCancel={() => setViewDetailsPopUp(null)}
@@ -209,8 +230,6 @@ const HistoryPage = () => {
           </div>
         )}
       </Modal>
-
-
     </>
   );
 };
