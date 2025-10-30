@@ -69,6 +69,15 @@
 }
 
 @media only screen and (max-width: 379px) {
+        .DonordashboardLeftSideWrapper{
+        width: 100%;
+        padding: 0;
+    }
+
+    .outletWRapper{
+        width: 100%;
+        height: 100%;
+    }
 }
 
 

@@ -8,7 +8,7 @@ import { logIn } from "../../global/Slice";
 import FadeLoader from "react-spinners/CircleLoader";
 
 
-const Base_Url = import.meta.env.VITE_BASEURL
+const VITE_BASEURL = import.meta.env.VITE_BASEURL
 
 const HospitalSettingsPage = () => {
 
@@ -45,7 +45,7 @@ const HospitalSettingsPage = () => {
     }
     setPasswordLoading(true);
     try {
-      const res = await axios.post(`${Base_Url}/hospital/resetPassword`,
+      const res = await axios.post(`${VITE_BASEURL}/hospital/resetPassword`,
         resetPasswordInput
         , { headers: { Authorization: `Bearer ${token}` } });
       toast.success(res?.data?.message);
@@ -96,7 +96,7 @@ const HospitalSettingsPage = () => {
 
     setLoading(true);
     try {
-      const res = await axios.patch(`${Base_Url}/hospital/updateProfile`, formData, {
+      const res = await axios.patch(`${VITE_BASEURL}/hospital/updateProfile`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success(res?.data?.message);

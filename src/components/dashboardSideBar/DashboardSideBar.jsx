@@ -23,14 +23,14 @@ const DashboardSideBar = () => {
   const location = useLocation();
   const dispatch = useDispatch()
 
-  const Base_Url = import.meta.env.VITE_BASEURL;
+  const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
   const userData = useSelector((state) => state?.loggedInUser)
   const token = useSelector((state) => state?.token)
 
 
   const logOutFunc = () => {
-    handleLogout(Base_Url, nav, token, dispatch, setLoadLogOut, setDeletePopup);
+    handleLogout(VITE_BASEURL_REN, nav, token, dispatch, setLoadLogOut, setDeletePopup);
     dispatch(logOut())
   };
 

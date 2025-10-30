@@ -9,7 +9,7 @@ import { IoMdRefreshCircle } from "react-icons/io";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useSelector } from 'react-redux';
 
-const Base_Url = import.meta.env.VITE_BASEURL;
+
 const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const DashBoardHeader = () => {
@@ -56,7 +56,7 @@ const DashBoardHeader = () => {
   // ✅ Fetch hospitals
   const fetchHospitals = async () => {
     try {
-      const res = await axios.get(`${Base_Url}/hospitals`);
+      const res = await axios.get(`${VITE_BASEURL_REN}/hospitals`);
       const hospitalData = res.data?.data || [];
       setHospitals(hospitalData);
       setFilteredHospitals(hospitalData);
@@ -72,8 +72,8 @@ const DashBoardHeader = () => {
   // ✅ Mark notification as read
   const markNotificationAsRead = async (notificationId) => {
     try {
-      await axios.put(
-        `${VITE_BASEURL_REN}/donor/notifications/${notificationId}/read`,
+      await axios.patch(
+        `${VITE_BASEURL_REN}/message/${notificationId}/read`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -176,7 +176,7 @@ const DashBoardHeader = () => {
       )}
 
       <div className="profilePicAndNotification">
-        <div
+        {/* <div
           className="notificationIconWrapper"
           onClick={() => setNotificationSideBar(true)}
         >
@@ -184,7 +184,7 @@ const DashBoardHeader = () => {
           {notifications?.some((n) => !n.isRead) && (
             <span className="notificationDot"></span>
           )}
-        </div>
+        </div> */}
 
         <div className="profilePicture">
           {loggedInUser?.profilePics || loggedInUser?.profilePicture ? (
@@ -236,7 +236,8 @@ const DashBoardHeader = () => {
                     <button
                       onClick={() => {
                         markNotificationAsRead(notification._id);
-                        nav(`/hospitalsrequestdetails/${notification?._id}`);
+                        // route lives under /dashboard in App.jsx
+                        nav(`/dashboard/hospitalsrequestdetails/${notification?._id}`);
                         setNotificationSideBar(false);
                       }}
                     >

@@ -7,7 +7,7 @@ import { FaCamera } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, profilePic } from "../../global/Slice";
 
-const Base_Url = import.meta.env.VITE_BASEURL;
+const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const SettingsPage = () => {
   const InitialUserData = useSelector((state) => state?.loggedInUser);
@@ -54,7 +54,7 @@ const SettingsPage = () => {
     }
     setLoading(true);
     try {
-      const res = await axios.put(`${Base_Url}/update-profile`, userData, {
+      const res = await axios.put(`${VITE_BASEURL_REN}/update-profile`, userData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success(res?.data?.message);
@@ -98,7 +98,7 @@ const SettingsPage = () => {
     setPasswordLoading(true);
     try {
       const res = await axios.put(
-        `${Base_Url}/changePassword`,
+        `${VITE_BASEURL_REN}/changePassword`,
         changePasswordDatas,
         {
           headers: {
@@ -142,7 +142,7 @@ const SettingsPage = () => {
       const formData = new FormData();
       formData.append("profilePics", profilePicture);
 
-      const res = await axios.put(`${Base_Url}/profile`, formData, {
+      const res = await axios.put(`${VITE_BASEURL_REN}/profile`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,

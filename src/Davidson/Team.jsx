@@ -91,6 +91,21 @@ const Team = () => {
           </div>
         </div>
 
+        <div className="first-team-card">
+          <div className="team-card-img">
+            <img src="images/azeez.png" alt="Obadina Azeez" />
+          </div>
+          <div className="team-card-title">
+            <h2>Obadina Azeez</h2>
+            <p>Backend Developer</p>
+            <a href="#">
+              <GrLinkedin />
+              <FaGithub />
+              <FaFacebook />
+            </a>
+          </div>
+        </div>
+
         {/* <div className="first-team-card">
           <div className="team-card-img">
             <img src="images/jeffery.png" alt="Jeffery Abiuwa" />
@@ -106,20 +121,6 @@ const Team = () => {
           </div>
         </div> */}
 
-        <div className="first-team-card">
-          <div className="team-card-img">
-            <img src="images/azeez.png" alt="Obadina Azeez" />
-          </div>
-          <div className="team-card-title">
-            <h2>Obadina Azeez</h2>
-            <p>Backend Developer</p>
-            <a href="#">
-              <GrLinkedin />
-              <FaGithub />
-              <FaFacebook />
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
