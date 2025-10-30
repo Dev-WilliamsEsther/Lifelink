@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import LoadComponents from '../../components/componentsLoadScreen/LoadComponents'
 import { useNavigate } from 'react-router'
-const Base_Url = import.meta.env.VITE_BASEURL
+const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN
 
 const HospitalRequestsPage = () => {
     const [loadState, setLoadState] = useState(false)
@@ -15,7 +15,7 @@ const HospitalRequestsPage = () => {
     const getAllHospitalRequest = async()=>{
         setLoadState(true)
         try{
-            const ress = await axios.get(`${Base_Url}/blood-requests`, {headers : {
+            const ress = await axios.get(`${VITE_BASEURL_REN}/blood-requests`, {headers : {
                 Authorization : `Bearer ${token}`
             }})
             setHospitalRequests(ress?.data?.bloodRequests)
