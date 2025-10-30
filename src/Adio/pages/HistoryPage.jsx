@@ -7,8 +7,7 @@ import { useSelector } from 'react-redux';
 import LoadComponents from '../../components/componentsLoadScreen/LoadComponents';
 import { toast } from 'react-toastify';
 
-// Ensure your .env contains this correctly:
-// VITE_BASEURL_REN=https://lifelink-7pau.onrender.com/api/v1
+
 const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const HistoryPage = () => {

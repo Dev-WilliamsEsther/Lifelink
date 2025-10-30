@@ -8,15 +8,17 @@ import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
-import RequestNotAvailable from "./RequestNotAvailable";
+// import RequestNotAvailable from "./RequestNotAvailable";
 
+
+// const VITE_BASEURL = import.meta.env.VITE_BASEURL;
 const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const HospitalRequestDetails = () => {
   const [volunteerPopUp, setVolunteerPopUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
-  const [anHospital, setAnHospital] = useState([]);
+  const [anHospital, setAnHospital] = useState({});
   const [notFound, setNotFound] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
 
@@ -29,7 +31,6 @@ const HospitalRequestDetails = () => {
     hospitalId: ""
   });
 
-  // Disable all past dates and dates beyond hospital's preferred date
   const disabledDate = (current) => {
     if (!anHospital?.preferredDate) return current && current < dayjs().endOf("day");
     const preferred = dayjs(anHospital.preferredDate);
@@ -37,9 +38,10 @@ const HospitalRequestDetails = () => {
   };
 
   const handleChange = (e) => {
+    if (!e) return;
     setScheduleData((prev) => ({
       ...prev,
-      date: e.format("YYYY-MM-DD"),
+      date: dayjs(e).toISOString(),
     }));
   };
 
@@ -51,24 +53,40 @@ const HospitalRequestDetails = () => {
   ];
 
   const getOneHospital = async () => {
+    if (!bloodRequestId) {
+      setNotFound(true);
+      return;
+    }
+
     setIsLoading(true);
     try {
-      const res = await axios.get(`${VITE_BASEURL_REN}/blood-request/${bloodRequestId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = res?.data?.data;
+      // 🟩 Fixed endpoint to singular route based on working backend
+      const url = `${VITE_BASEURL_REN}/-request/${bloodRequestId}`;
+      console.log("Fetching from:", url);
+
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const res = await axios.get(url, { headers });
+
+      console.debug("GET Response:", res?.data);
+
+      const data = res?.data?.data ?? res?.data;
+      if (!data) {
+        console.warn("No data returned for blood request", bloodRequestId);
+        setNotFound(true);
+        return;
+      }
+
       setAnHospital(data);
 
-      // Check if request is expired
       if (data?.preferredDate && dayjs().isAfter(dayjs(data.preferredDate), "day")) {
         setIsExpired(true);
       }
     } catch (err) {
-      console.error("Error fetching hospital details:", err);
+      console.error("Error fetching hospital details:", err?.response ?? err);
       if (err?.response?.status === 404) {
         setNotFound(true);
+      } else {
+        toast.error(err?.response?.data?.message || "Failed to fetch request details.");
       }
     } finally {
       setIsLoading(false);
@@ -80,42 +98,70 @@ const HospitalRequestDetails = () => {
   }, [bloodRequestId]);
 
   const handleSchedule = async () => {
+    // Basic client-side validation before sending
+    console.log("Schedule data sent:", scheduleData);
+    if (!scheduleData.date || !scheduleData.time) {
+      toast.error("Please choose a date and time before scheduling.");
+      return;
+    }
+
+    // Build payload; include hospitalId (try multiple places) and bloodRequestId if available
+    const derivedHospitalId =
+      scheduleData.hospitalId ||
+      anHospital?.hospital?._id ||
+      anHospital?.hospitalId ||
+      anHospital?._id ||
+      null;
+
+    const payload = {
+      date: dayjs(scheduleData.date).format("YYYY-MM-DD"),
+      time: scheduleData.time,
+    };
+    if (derivedHospitalId) payload.hospitalId = derivedHospitalId;
+    if (bloodRequestId) payload.bloodRequestId = bloodRequestId;
+
     setIsScheduleLoading(true);
     try {
-      const res = await axios.post(`${VITE_BASEURL_REN}/bookAppointment`, {
-        date: scheduleData.date,
-        time: scheduleData.time,
-        hospitalId: scheduleData.hospitalId
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      console.debug("Booking payload:", payload);
+      // validate required fields server expects
+      if (!payload.hospitalId || !payload.date || !payload.time) {
+        toast.error("hospitalId, date and time are required.");
+        setIsScheduleLoading(false);
+        return;
+      }
+
+      const res = await axios.post(`${VITE_BASEURL_REN}/bookAppointment`, payload, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-      toast.success(res?.data?.message);
-      setScheduleData({
-        date: "",
-        time: "",
-        bloodRequestId,
-      });
+      console.debug("bookAppointment response:", res?.data);
+      toast.success(res?.data?.message || "Scheduled successfully.");
+      setScheduleData({ date: "", time: "", hospitalId: scheduleData.hospitalId || "" });
       setVolunteerPopUp(false);
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Failed to schedule.");
+      console.error("Booking error:", err?.response ?? err);
+      const serverMessage = err?.response?.data?.message || err?.response?.data || err.message;
+      toast.error(serverMessage || "Failed to schedule.");
     } finally {
       setIsScheduleLoading(false);
     }
   };
 
   useEffect(() => {
-    if (anHospital?.hospital?._id) {
+    // try multiple possible shapes from the API to derive a hospital id
+    const derivedHospitalId =
+      anHospital?.hospital?._id || anHospital?.hospitalId || anHospital?._id || null;
+    if (derivedHospitalId) {
       setScheduleData((prev) => ({
         ...prev,
-        hospitalId: anHospital.hospital._id,
+        hospitalId: derivedHospitalId,
       }));
     }
   }, [anHospital]);
 
   const formatDate = (dateStr) => {
+    if (!dateStr) return "-";
     const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return "-";
     return date.toLocaleDateString("en-US", {
       day: "numeric",
       month: "long",
@@ -123,12 +169,12 @@ const HospitalRequestDetails = () => {
     });
   };
 
-  if (notFound) return <RequestNotAvailable />;
+  // if (notFound) return <RequestNotAvailable />;
   if (isLoading) return <LoadComponents />;
 
   return (
     <div className="HospitalDetailsPageWrapper">
-      <h1>{anHospital?.hospital?.fullName} Request Details</h1>
+      <h1>{anHospital?.hospital?.fullName || "-"} Request Details</h1>
       <span>This post was made on {formatDate(anHospital?.updatedAt)}</span>
 
       <div className="detailsTextAndImageWrapper">
@@ -138,64 +184,34 @@ const HospitalRequestDetails = () => {
 
         <div className="detailsTextWrapper">
           <div className="innerTextWRapper">
-            <p>
-              Name: <b>{anHospital?.hospital?.fullName || "-"}</b>
-            </p>
-            <p>
-              Blood group needed: <b>{anHospital?.bloodGroup || "-"}</b>
-            </p>
-            <p>
-              Number Of Pints: <b>{anHospital?.numberOfPints || "-"}</b>
-            </p>
-            <p>
-              Urgency Level: <b>{anHospital?.urgencyLevel || "-"}</b>
-            </p>
-            <p>
-              Offer: <b>{anHospital?.amount?.toLocaleString() || "-"}</b>
-            </p>
-            <p>
-              Preferred Date: <b>{formatDate(anHospital?.preferredDate) || "-"}</b>
-            </p>
-            <p>
-              Address: <b>{anHospital?.hospital?.location || "-"}</b>
-            </p>
-            <p>
-              LGA: <b>{anHospital?.hospital?.city || "-"}</b>
-            </p>
-            <p>
-              Email: <b>{anHospital?.hospital?.email || "-"}</b>
-            </p>
-            <p>
-              Contact: <b>{anHospital?.hospital?.phone || "-"}</b>
-            </p>
-            <p>
-              Operating Hours: <b>{"Mon-Fri, 8AM - 5PM"}</b>
-            </p>
+            <p>Name: <b>{anHospital?.hospital?.fullName || "-"}</b></p>
+            <p>Blood group needed: <b>{anHospital?.bloodGroup || "-"}</b></p>
+            <p>Number Of Pints: <b>{anHospital?.numberOfPints || "-"}</b></p>
+            <p>Urgency Level: <b>{anHospital?.urgencyLevel || "-"}</b></p>
+            <p>Offer: <b>{anHospital?.amount ? anHospital.amount.toLocaleString() : "-"}</b></p>
+            <p>Preferred Date: <b>{formatDate(anHospital?.preferredDate)}</b></p>
+            <p>Address: <b>{anHospital?.hospital?.location || "-"}</b></p>
+            <p>LGA: <b>{anHospital?.hospital?.city || "-"}</b></p>
+            <p>Email: <b>{anHospital?.hospital?.email || "-"}</b></p>
+            <p>Contact: <b>{anHospital?.hospital?.phone || "-"}</b></p>
+            <p>Operating Hours: <b>{"Mon-Fri, 8AM - 5PM"}</b></p>
           </div>
 
           {isExpired ? (
-            <button disabled className="expiredButton">
-              Request Expired
-            </button>
+            <button disabled className="expiredButton">Request Expired</button>
           ) : (
-            <button onClick={() => setVolunteerPopUp(true)}>
-              Volunteer to Donate
-            </button>
+            <button onClick={() => setVolunteerPopUp(true)}>Volunteer to Donate</button>
           )}
         </div>
       </div>
 
       {isExpired && (
         <div className="expiredNotice">
-          ⚠️ This blood request has expired. Please contact the hospital for updates.
+          ⚠️ This blood request has expired. <br />Please contact the hospital for updates.
         </div>
       )}
 
-      <Modal
-        open={volunteerPopUp}
-        onCancel={() => setVolunteerPopUp(false)}
-        footer={null}
-      >
+      <Modal open={volunteerPopUp} onCancel={() => setVolunteerPopUp(false)} footer={null}>
         <div className="volunteerDateWrapper">
           <h1>Pick Date/Time</h1>
 
@@ -231,11 +247,7 @@ const HospitalRequestDetails = () => {
           </div>
 
           <button onClick={handleSchedule} disabled={isScheduleLoading}>
-            {isScheduleLoading ? (
-              <FadeLoader color="white" size={25} />
-            ) : (
-              "Schedule"
-            )}
+            {isScheduleLoading ? <FadeLoader color="white" size={25} /> : "Schedule"}
           </button>
         </div>
       </Modal>

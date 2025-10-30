@@ -21,7 +21,7 @@ body {
   max-width: 100%;
   min-height: 100vh;
   text-align: center;
-  background-color: #fff;
+  background-color: f9f9f;
   padding-top: 70px;
 }
 
@@ -76,7 +76,7 @@ body {
 }
 
 .text-div2-cnt {
-  margin-top: 120px;
+  margin-top: 70px;
   gap: 28px;
   display: flex;
   flex-direction: column;
@@ -94,13 +94,14 @@ body {
 }
 
 .bridging p {
-  margin-bottom: 180px;
+  /* background-color: #212121; */
   font-size: 20px;
   font-weight: 400;
+ 
 }
 
 .mission-div {
-  margin-top: 30px;
+  margin-top: 70px;
   text-align: center;
   padding: 40px 20px;
   margin-left: calc(-1 * ((100vw - 100%) / 2));
@@ -393,7 +394,7 @@ body {
 
 @media only screen and (max-width: 768px) {
   .first-team-card {
-    width: 90%;
+    /* width: 90%; */
   }
 
   .team-card-title h2 {
@@ -411,6 +412,14 @@ body {
   .mission-div p {
     font-size: 16px;
     padding: 0 10px;
+  }
+
+  .text-div2-cnt {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #212121; */
   }
 }
 
@@ -552,4 +561,139 @@ body {
   .team-card-title h2 {
     font-size: 16px;
   }
+   .hilight-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .text-div {
+    width: 90%;
+    text-align: center;
+  }
+
+  .text-div h3 {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+  }
+
+  .image-div{
+    height: max-content;
+  }
+
+  .img1,
+  .img4 {
+    width: 150px;
+    height: 180px;
+    border-radius: 15px;
+  }
+
+  .img2,
+  .img3 {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+  }
+
+.text-div2-cnt {
+  height: max-content;
+  margin: 0;
+}
+
+.bridging p {
+  margin-bottom: 180px;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+  .mission-div {
+    height: max-content;
+    margin: 0;
+  }
+
+  .text-div3 h3, .text-div4 h3{
+    font-size: 17px;
+  }
+
+  .step-box-cnt{
+    
+    width: 100%;
+    padding: 0;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-box{
+    
+    width: 48%;
+    height: 250px;
+    justify-content: center;
+  }
+
+  .step-box h3{
+    font-size: 15px;
+  }
+
+  .step-box p{
+    font-size: 14px;
+  }
+
+  .the-team-cnt p {
+    margin-top: 40px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .team-card-one {
+    margin-top: 20px;
+    gap: 0px;
+  }
+
+  .first-team-card {
+    width: 40%;
+    height: max-content;
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .team-card-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 1000px;
+    margin-top: 0px;
+  }
+
+  .team-card-title{
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .team-card-title h2 {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .team-card-title p{
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .team-card-title a{
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+
+
 }

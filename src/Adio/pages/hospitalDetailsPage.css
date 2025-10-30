@@ -132,6 +132,15 @@
     }
 }
 
+.expiredNotice {
+    width: max-content;
+    height: max-content;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
 
 
 

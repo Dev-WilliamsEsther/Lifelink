@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 
-const Base_Url = import.meta.env.VITE_BASEURL;
+const VITE_BASEURL = import.meta.env.VITE_BASEURL;
 
 const Verification = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const Verification = () => {
 
   const getHospitalsKYC = async () => {
     try {
-      const res = await axios.get(`${Base_Url}/admin/allKyc`, {
+      const res = await axios.get(`${VITE_BASEURL}/admin/allKyc`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,8 +40,8 @@ const Verification = () => {
   const handleApproveReject = async (id, action) => {
     const endpoint =
       action === "approve"
-        ? `${Base_Url}/admin/verify-kyc/${id}`
-        : `${Base_Url}/admin/decline-kyc/${id}`;
+        ? `${VITE_BASEURL}/admin/verify-kyc/${id}`
+        : `${VITE_BASEURL}/admin/decline-kyc/${id}`;
   
     try {
       const ress = await axios.patch(endpoint, {}, {

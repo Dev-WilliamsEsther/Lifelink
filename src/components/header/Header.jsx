@@ -19,7 +19,7 @@ import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const VITE_BASEURL = import.meta.env.VITE_BASEURL;
+// const VITE_BASEURL = import.meta.env.VITE_BASEURL;
 const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
   ];
 
   const handleSubmit = () => {
-    handleLogout(VITE_BASEURL, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
+    handleLogout(VITE_BASEURL_REN, nav, token, dispatch, setLoadLogOut, setLogoutPopUp);
   };
 
   // ✅ FIX 1: Use dynamic environment base URL instead of hardcoded one
@@ -213,7 +213,7 @@ const Header = () => {
 
       <div className="MobileHeader" data-aos="fade-down">
         <img
-          src="/images/public/images/alifenobg.png"
+          src="/images/alifenobg.png"
           alt="LifeLink Logo"
           onClick={() => nav("/")}
           className="logo-breath"
@@ -273,7 +273,7 @@ const Header = () => {
                 }}
               >
                 <div className="MobileSideProfilePic">
-                  <img src="/images/default profile pic.jpg" alt="" />
+                  <img src="/images/default-profile-pic.jpg" alt="" />
                 </div>
                 <div className="MobileSideProfileName">
                   <h1 style={{ fontSize: 35 }}>Visitor</h1>
@@ -575,7 +575,10 @@ const Header = () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         markNotificationAsRead(notification._id);
-                        nav(`/hospitalsrequestdetails/${notification?.appointmentId || notification?.requestId}`);;
+                        nav(`/dashboard/hospitalsrequestdetails/${notification?.bloodRequest ||
+                          notification?.bloodRequestId ||
+                          notification?.requestId // only if this is truly the blood request id in your payload
+                          }`);
                         setNotificationSideBar(false);
                         setOpenSideDrawer(false);
                       }}
