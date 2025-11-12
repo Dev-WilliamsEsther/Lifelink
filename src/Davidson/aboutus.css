@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;500;600;700&display=swap");
 
+/* GLOBAL RESETS */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 html,
 body {
@@ -17,64 +19,112 @@ body {
   margin: 0 auto;
 }
 
+/* ABOUT US BODY */
 .aboutus-cnt-body {
   max-width: 100%;
   min-height: 100vh;
   text-align: center;
-  background-color: f9f9f;
+  background-color: #f9f9f9; /* Corrected from f9f9f */
   padding-top: 70px;
 }
 
+/* === ABOUT HEADER BASE (Updated with animations) === */
+.hilight-text {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  opacity: 0;
+  animation: fadeDown 1.2s ease-out forwards;
+}
+
 .highlight {
-  font-weight: 700;
+  /* Updated styles from second block */
+  font-weight: 700; 
   font-family: Poppins;
-  font-size: 36px;
+  font-size: 36px; 
+  letter-spacing: 1px;
+  color: black; 
+  /* Animation added */
+  animation: slideInDown 1.2s ease-out forwards;
 }
 
 .text-div {
-  margin-top: 70px;
+  margin-top: 20px; /* Reduced from 70px */
   height: max-content;
+  opacity: 0;
+  animation: fadeUp 1.2s ease-in forwards;
+  animation-delay: 0.3s;
 }
 
 .text-div h3 {
-  font-family: Poppins;
+  /* Updated styles from second block */
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
-  font-size: 22px;
-  line-height: 100%;
+  font-size: 24px; 
+  color: black; 
+  line-height: 1.6; 
 }
 
+/* === IMAGE CONTAINER (Updated with animations) === */
 .image-div {
-  margin-top: 40px;
+  margin-top: 50px; /* Adjusted margin-top */
   display: flex;
   flex-wrap: wrap;
-  gap: 11px;
+  gap: 20px; /* Adjusted gap */
   align-items: center;
   justify-content: center;
   background-color: white;
 }
 
-.img1,
-.img4 {
-  width: 320px;
-  height: 361px;
-  border-radius: 15px;
+/* IMAGES ANIMATION BASE STYLE */
+.image-div div {
+  width: 220px; /* Standard width for all image wrappers */
+  height: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInImage 1s ease-out forwards;
 }
 
-.img2,
-.img3 {
-  width: 302px;
-  height: 234px;
-  border-radius: 15px;
+/* Specific Image Dimensions (Re-purposed as wrapper classes) */
+/* The original sizes (.img1, .img4, .img2, .img3) are conflicting with .image-div div
+I've kept the animation delays and simplified the sizing to use the new .image-div div standard. */
+
+.img1,
+.img4 {
+  animation-delay: 0.4s;
+  /* width and height now controlled by .image-div div */
 }
+
+.img2 {
+  animation-delay: 0.6s;
+  /* width and height now controlled by .image-div div */
+}
+.img3 {
+  animation-delay: 0.8s;
+  /* width and height now controlled by .image-div div */
+}
+.img4 {
+  animation-delay: 1s; /* Added delay for img4 */
+}
+
 
 .image-div img {
   width: 100%;
-  height: 100%;
+  height: 100%; /* Keep height 100% of parent wrapper */
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px; /* Adjusted radius */
   display: block;
+  transition: transform 0.4s ease-in-out;
+  animation: floatImage 5s ease-in-out infinite;
 }
 
+/* Hover effect for extra life */
+.image-div img:hover {
+  transform: scale(1.05);
+}
+
+
+/* TEXT DIV 2 CONTENT */
 .text-div2-cnt {
   margin-top: 70px;
   gap: 28px;
@@ -94,24 +144,24 @@ body {
 }
 
 .bridging p {
-  /* background-color: #212121; */
   font-size: 20px;
   font-weight: 400;
- 
 }
 
+/* MISSION DIV */
 .mission-div {
   margin-top: 70px;
   text-align: center;
   padding: 40px 20px;
-  margin-left: calc(-1 * ((100vw - 100%) / 2));
-  width: 100vw;
+  width: 100%;
   height: 493px;
   background-color: #d6eaf8;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-top-left-radius: 1000px;
+  border-top-right-radius: 1000px;
 }
 
 .mission-div h3 {
@@ -119,7 +169,13 @@ body {
   font-size: 20px;
   font-family: Poppins;
 }
+.divider {
+  width: 2px;
+  height: 150px;
+  background-color: #000;
+}
 
+/* TEXT DIV 3 & 4 CONTENT */
 .text-div3-cnt {
   margin-top: 100px;
   width: 100%;
@@ -127,7 +183,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 100px;
+  gap: 10px;
   text-align: center;
 }
 
@@ -139,47 +195,135 @@ body {
 
 .text-div3 h3 {
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   text-align: center;
 }
 
 .text-div4 h3 {
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   text-align: center;
 }
 
-.achivement-container {
-  width: 100%;
+/* OUR STORY SECTION */
+.our-story-section{
   background-color: #ffffff;
-  margin-top: 70px;
+  padding: 4rem 1rem;
+}
+@media (min-width: 640px) {
+  .our-story-section{
+    padding: 6rem 1.5rem;
+  }
 }
 
-.ach-img-cnt {
-  padding: 70px 20px;
+.our-story-container{
   display: flex;
-  justify-content: center;
-  gap: 70px;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 20px;
 }
 
-.ach-img1 {
-  width: 360px;
-  height: 372px;
-  background-color: #ffffff;
-  border: 1px solid #2c3e50;
-  border-radius: 15px;
+.our-story-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 640px) {
+  .our-story-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+.our-story-grid {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+@media (min-width: 1024px) {
+  .our-story-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.our-story-images {
+  object-fit: cover;
   position: relative;
+  margin-top: 2.5rem;
 }
 
-.ach-img1 img {
-  width: 100%;
-  height: auto;
+@media (min-width: 1024px) {
+  .our-story-images {
+    order: 1;
+    margin-top: 0;
+  }
 }
+
+.main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 10px;
+}
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.small-image {
+  position: absolute;
+  bottom: -2rem;
+  left: -2rem;
+  width: 50%;
+  max-width: 350px;
+  border: 5px solid #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 640px) {
+  .small-image {
+    bottom: -3rem;
+    left: -3rem;
+   border-width: 8px;
+  }
+}
+
+.our-story-text {
+  color: black;
+  gap: 50px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .our-story-text {
+    font-size: 1.125rem;
+  }
+}
+
+.our-story-text p {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  padding: 10px;
+}
+
+.our-story-text p:last-child {
+  margin-bottom: 0;
+}
+
 
 .sec-img-con {
   width: 100%;
@@ -243,7 +387,7 @@ body {
 .step-box {
   width: 280px;
   padding: 2rem 1.5rem;
-  background: #fff;
+  background: #d6eaf8;
   border: 1.5px solid grey;
   border-radius: 10px;
   text-align: center;
@@ -287,9 +431,12 @@ body {
   height: 50px;
 }
 
+/* THE TEAM SECTION */
 .the-team-cnt {
   margin-top: 50px;
   text-align: center;
+  background: linear-gradient(135deg, #e3f2fd, #fdfdfd);
+  padding: 50px 0;
 }
 
 .the-team-cnt p {
@@ -312,10 +459,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   border-radius: 1000px;
-  border: 2px solid #2c3e50;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.first-team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 .team-card-img {
@@ -373,6 +529,62 @@ body {
   color: #c0392b;
 }
 
+/* === KEYFRAMES (Added from second block) === */
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatImage {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* MEDIA QUERIES */
+
 @media only screen and (max-width: 1440px) {
   .mission-div {
     width: 100%;
@@ -388,13 +600,23 @@ body {
 @media only screen and (max-width: 900px) {
   .team-card-title h2 {
     font-size: 22px;
-    flex-direction: column;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .first-team-card {
-    /* width: 90%; */
+  /* Updated highlight size from second block */
+  .highlight {
+    font-size: 32px;
+  }
+
+  /* Updated text-div h3 size from second block */
+  .text-div h3 {
+    font-size: 16px;
+  }
+  
+  /* Updated image wrapper size from second block */
+  .image-div div {
+    width: 160px;
   }
 
   .team-card-title h2 {
@@ -419,7 +641,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: #212121; */
   }
 }
 
@@ -429,7 +650,6 @@ body {
     flex-direction: column;
     align-items: center;
   }
-
 
   .text-div {
     width: 90%;
@@ -445,18 +665,23 @@ body {
 
   .image-div{
     height: max-content;
+    gap: 10px; /* Adjusted to fit better on smaller screens */
+  }
+
+  /* Resetting image wrappers for tiny screens */
+  .image-div div {
+    width: 48%; /* Adjust to fit two images side-by-side */
+    height: auto;
   }
 
   .img1,
   .img4 {
-    width: 150px;
     height: 180px;
     border-radius: 15px;
   }
 
   .img2,
   .img3 {
-    width: 150px;
     height: 150px;
     border-radius: 15px;
   }
@@ -467,7 +692,7 @@ body {
 }
 
 .bridging p {
-  margin-bottom: 180px;
+  margin-bottom: 20px;
   font-size: 17px;
   font-weight: 400;
 }
@@ -567,7 +792,6 @@ body {
     align-items: center;
   }
 
-
   .text-div {
     width: 90%;
     text-align: center;
@@ -582,18 +806,23 @@ body {
 
   .image-div{
     height: max-content;
+    gap: 10px; /* Adjusted to fit better on smaller screens */
+  }
+
+  /* Resetting image wrappers for tiny screens */
+  .image-div div {
+    width: 48%; /* Adjust to fit two images side-by-side */
+    height: auto;
   }
 
   .img1,
   .img4 {
-    width: 150px;
     height: 180px;
     border-radius: 15px;
   }
 
   .img2,
   .img3 {
-    width: 150px;
     height: 150px;
     border-radius: 15px;
   }
@@ -604,7 +833,7 @@ body {
 }
 
 .bridging p {
-  margin-bottom: 180px;
+  margin-bottom: 20px;
   font-size: 17px;
   font-weight: 400;
 }
@@ -619,7 +848,6 @@ body {
   }
 
   .step-box-cnt{
-    
     width: 100%;
     padding: 0;
     gap: 10px;
@@ -628,7 +856,6 @@ body {
   }
 
   .step-box{
-    
     width: 48%;
     height: 250px;
     justify-content: center;
@@ -694,6 +921,4 @@ body {
     justify-content: center;
     color: black;
   }
-
-
 }

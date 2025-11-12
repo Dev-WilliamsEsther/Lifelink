@@ -5,7 +5,7 @@ const AboutHeader = () => {
     <>
       <div className="hilight-text">
         <div style={{ marginTop: "20px" }}>
-          <h2 className="highlight">About us</h2>
+          <h2 className="highlight">ABOUT US</h2>
         </div>
 
         <div className="text-div">

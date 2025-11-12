@@ -1,3 +1,6 @@
+.howitworks-cnt-body{
+  /* padding-bottom: 50px; */
+}
 .lifelink-Howitworks-first-section {
   height: 100vh;
   display: flex;
@@ -8,7 +11,6 @@
   max-width: 1200px;
   margin: 0 auto;
   gap: 2rem;
-  border-bottom: 1px solid black;
 }
 
 .lifelink-text {
@@ -71,17 +73,67 @@
 
 
 .hospital-steps {
-  height: 615.11px;
+  height: 100vh;
+  background:#d6eaf8;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+   border-top-left-radius: 150px;
+   border-top-right-radius: 150px;
   flex-direction: column;
   justify-content: space-around;
-  border-bottom: 1px solid black;
+  
+}
+
+.hospital-steps-cnt {
+  height: 100vh;
+  background:#d6eaf8;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  overflow: hidden;
+}
+
+.hospital-steps::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px; 
+  background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+.hospital-steps-cnt{
+  position: relative;
+  overflow: hidden;
+}
+
+.hospital-steps-cnt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background:linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .section-title {
+  position: relative;
+  z-index: 3;
   font-size: 1.75rem;
   font-weight: 800;
   color: #1a1a1a;
@@ -152,23 +204,39 @@
   font-weight: 500;
 }
 
-.cta-btn {
+.cta-btn1 {
   background-color: #d73333;
   color: white;
-  padding: 0.9rem 2rem;
+  padding: 10px 30px;
   border: none;
-  border-radius: 8px;
+  border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
   width: max-content;
   transition: background-color 0.3s ease;
 }
 
-.cta-btn:hover {
+.cta-btn1:hover {
+  background-color: #b92b2b;
+}
+.cta-btn2 {
+  background-color: #d73333;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  width: max-content;
+  transition: background-color 0.3s ease;
+  margin-bottom: 50px;
+}
+
+.cta-btn2:hover {
   background-color: #b92b2b;
 }
 
-.hospital-steps .cta-btn {
+.hospital-steps .cta-btn2 {
   display: inline-block;
 }
 
@@ -243,7 +311,12 @@
 
 
 
-
+@media (max-width: 768px) {
+  .hospital-steps-cnt .cta-btn {
+    margin-bottom: 20px;
+    /* transform: translateY(-10px); */
+  }
+}
 
 @media (max-width: 900px) {
   .hospital-steps {
