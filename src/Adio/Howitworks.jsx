@@ -9,7 +9,7 @@ const Howitworks = () => {
 
   return (
     <>
-      <div>
+      <div className="howitworks-cnt-body">
         <section className="lifelink-Howitworks-first-section">
           <div className="lifelink-text">
             <h2>Saving Lives, Made <br /> Simple</h2>
@@ -34,7 +34,7 @@ const Howitworks = () => {
           </div>
         </section>
 
-
+          <div className="hospital-steps-cnt-1">
         <section className="hospital-steps">
           <h2 className="section-title">HOW IT WORKS FOR DONORS</h2>
 
@@ -64,11 +64,12 @@ const Howitworks = () => {
             </div>
           </div>
 
-          <button className="cta-btn" onClick={()=> nav(`${user? "/dashboard" : "/donorssignup"}`)}>Donate</button>
+          <button className="cta-btn1" onClick={()=> nav(`${user? "/dashboard" : "/donorssignup"}`)}>Donate</button>
         </section>
 
+        </div>
 
-        <section className="hospital-steps">
+        <section className="hospital-steps-cnt">
           <h2 className="section-title">How It Works For Hospital & Blood Banks</h2>
 
           <div className="steps-container">
@@ -97,7 +98,7 @@ const Howitworks = () => {
             </div>
           </div>
 
-          <button className="cta-btn" onClick={()=> nav(`${user? "/dashboard" : "/hospitalsignup"}`)}>Get Listed</button>
+          <button className="cta-btn2" onClick={()=> nav(`${user? "/dashboard" : "/hospitalsignup"}`)}>Get Listed</button>
         </section>
 
         <section className="why-it-matters">
