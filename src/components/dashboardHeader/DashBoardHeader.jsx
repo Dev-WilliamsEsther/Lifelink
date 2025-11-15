@@ -176,7 +176,7 @@ const DashBoardHeader = () => {
       )}
 
       <div className="profilePicAndNotification">
-        {/* <div
+        <div
           className="notificationIconWrapper"
           onClick={() => setNotificationSideBar(true)}
         >
@@ -184,7 +184,7 @@ const DashBoardHeader = () => {
           {notifications?.some((n) => !n.isRead) && (
             <span className="notificationDot"></span>
           )}
-        </div> */}
+        </div>
 
         <div className="profilePicture">
           {loggedInUser?.profilePics || loggedInUser?.profilePicture ? (

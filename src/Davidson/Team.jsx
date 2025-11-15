@@ -27,6 +27,7 @@ const Team = () => {
             <p>Product Designer</p>
             <a href="#">
               <GrLinkedin />
+              <FaGithub />
               <FaFacebook />
             </a>
           </div>
@@ -41,6 +42,7 @@ const Team = () => {
             <p>Product Designer</p>
             <a href="#">
               <GrLinkedin />
+              <FaGithub />
               <FaFacebook />
             </a>
           </div>

@@ -1,53 +1,67 @@
+/* === BENEFIT SECTION BASE === */
+.landingpagebenefits {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3%;
+  animation: fadeInUp 1s ease-in-out forwards;
+}
 
+.landingpagebenefits h1 {
+  font-family: Poppins;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #2C3E50;
+  animation: textSlideDown 1.2s ease forwards;
+}
 
-.landingpagebenefits{
-    width: 100%;
-    height: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 3%;
+/* === INNER SECTION === */
+.landingbenefitsinner {
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  animation: fadeUp 1.2s ease-in-out forwards;
+  animation-delay: 0.2s;
 }
-.landingpagebenefits h1{
-    font-family: Poppins;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 100%;
-    letter-spacing: 0%;
-    color: #2C3E50;
+
+/* === LEFT SIDE CONTENT === */
+.landingbenefitsinner1 {
+  width: 30%;
+  height: 470px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform: translateX(-50px);
+  opacity: 0;
+  animation: slideInLeft 1s ease-in-out forwards;
+  animation-delay: 0.5s;
 }
-.landingbenefitsinner{
-    width: 100%;
-    height: 100vh;
-    background-color: #fff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
+
+.landingbenefitsinner1 h2 {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 36px;
 }
-.landingbenefitsinner1{
-    width: 30%;
-    height: 470px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    
+
+.landingbenefitsinner1 p {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
 }
-.landingbenefitsinner1 h2{
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 18px;
-    
-}
-.landingbenefitsinner1 p{
-    font-family: Poppins;
-    font-weight: 300;
-    font-size: 14px;
-    
-}
-.benefitsbtn{
-    width: 120px;
+
+/* === BUTTON ANIMATION === */
+.benefitsbtn {
+  width: 120px;
   height: 40px;
   background-color: #c0392b;
   color: white;
@@ -56,59 +70,98 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-}
-.benefitsbtn:hover{
-    background-color: #D6EAF8;
-    color: black;
-}
-.landingbenefitsinner2{
-    width: 60%;
-    height: 500px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(192, 57, 43, 0);
 }
 
-.landingbenefitsinner2 h2{
-     font-family: Poppins;
-    font-size: 22px;
-    font-weight: 600;
-    text-align: center;
-    color: #212121;
+.benefitsbtn:hover {
+  background-color: #D6EAF8;
+  color: black;
+  box-shadow: 0 0 15px rgba(192, 57, 43, 0.4);
+  transform: translateY(-3px);
 }
 
-.landingincentives{
-    width: 340px;
-    height: 230px;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid black;
-    padding: 10px;
+/* === RIGHT SIDE (CARDS) === */
+.landingbenefitsinner2 {
+  width: 60%;
+  height: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  animation: fadeUp 1.5s ease-in-out forwards;
+  animation-delay: 0.8s;
 }
-.landingincentives h2{
-    font-family: Poppins;
-    font-size: 22px;
-    font-weight: 600;
-    text-align: center;
-    color: #212121;
+
+/* === CARD ANIMATION === */
+.landingincentives {
+  width: 340px;
+  height: 230px;
+  background-color: #D6EAF8;
+  border-radius: 10px;
+  border: 1px solid #b0bec5;
+  padding: 10px;
+  transition: all 0.4s ease;
+  animation: floatPulse 4s ease-in-out infinite;
 }
-.landingincentives p{
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 15px;
-    text-align: center;
+
+.landingincentives:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
-.incentiveheader{
-    width: 150px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 5px;
+
+.landingbenefitsinner2 h2 {
+  font-family: Poppins;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #212121;
 }
-.incentiveheader img{
-    width: 30%;
+
+/* === ICON HEADER === */
+.incentiveheader {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  justify-content: center;
+  margin: 0 auto;
 }
+
+.incentiveheader img {
+  width: 30%;
+}
+
+/* === KEYFRAMES === */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes textSlideDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatPulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+
 
 
 
@@ -162,7 +215,7 @@
     .landingbenefitsinner1 h2{
         font-family: Poppins;
         font-weight: 400;
-        font-size: 15px;
+        font-size: 18px;
         
     }
     .landingbenefitsinner1 p{
@@ -194,14 +247,27 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 10px;
+         background: linear-gradient(135deg, #e3f2fd, #90caf9);
+  padding: 40px;
+  border-radius: 20px;
     }
     .landingincentives{
         width: 46%;
         height: 210px;
-        /* background-color: #D6EAF8; */
+        background-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
         border-radius: 10px;
-        border: 1px solid black;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)  ;
         padding: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .landingincentives:hover{
+        box-shadow: 0 6px 40px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
     }
     .landingincentives h2{
         font-family: Poppins;
@@ -307,7 +373,7 @@
     .landingincentives{
         width: 46%;
         height: 210px;
-        /* background-color: #D6EAF8; */
+        background-color: #D6EAF8;
         border-radius: 10px;
         border: 1px solid black;
         padding: 10px;
@@ -422,7 +488,7 @@
     .landingincentives{
         width: 46%;
         height: 210px;
-        /* background-color: #D6EAF8; */
+        background-color: #D6EAF8;
         border-radius: 10px;
         border: 1px solid black;
         padding: 10px;
@@ -532,7 +598,7 @@
     .landingincentives{
         width: 46%;
         height: 210px;
-        /* background-color: #D6EAF8; */
+        background-color: #D6EAF8;
         border-radius: 10px;
         border: 1px solid black;
         padding: 10px;
