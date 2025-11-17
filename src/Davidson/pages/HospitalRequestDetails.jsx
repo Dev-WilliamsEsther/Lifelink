@@ -8,6 +8,9 @@ import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
+import { IoArrowBackCircleOutline } from 'react-icons/io5'
+import { useNavigate } from "react-router-dom";
+
 // import RequestNotAvailable from "./RequestNotAvailable";
 
 
@@ -21,6 +24,7 @@ const HospitalRequestDetails = () => {
   const [anHospital, setAnHospital] = useState({});
   const [notFound, setNotFound] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
+  const nav = useNavigate();
 
   const token = useSelector((state) => state?.token);
   const { bloodRequestId } = useParams();
@@ -174,10 +178,15 @@ const HospitalRequestDetails = () => {
 
   return (
     <div className="HospitalDetailsPageWrapper">
+      <div className="backarrow">
+        <IoArrowBackCircleOutline onClick={() => nav(-1)} />
+      </div>
       <h1>{anHospital?.hospital?.fullName || "-"} Request Details</h1>
       <span>This post was made on {formatDate(anHospital?.updatedAt)}</span>
 
       <div className="detailsTextAndImageWrapper">
+
+
         <div className="detailsImageWrapper">
           <img src="/images/hospital image.jpg" alt="Hospital" />
         </div>
