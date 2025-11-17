@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import FadeLoader from "react-spinners/CircleLoader";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
+import { IoArrowBackCircleOutline } from 'react-icons/io5'
+import { useNavigate } from "react-router-dom";
 
 const VITE_BASEURL_REN = import.meta.env.VITE_BASEURL_REN;
 
@@ -16,6 +18,7 @@ const HospitalDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isScheduleLoading, setIsScheduleLoading] = useState(false);
   const [anHospital, setAnHospital] = useState({});
+  const nav = useNavigate();
 
   const token = useSelector((state) => state?.token)
   const { hospitalId } = useParams();
@@ -99,9 +102,15 @@ const HospitalDetailsPage = () => {
   if (isLoading) return <LoadComponents />;
   return (
     <div className="HospitalDetailsPageWrapper">
+      <div className="backarrow">
+        <IoArrowBackCircleOutline onClick={() => nav(-1)} />
+      </div>
       <h1>Hospital Details</h1>
 
+
+
       <div className="detailsTextAndImageWrapper">
+
         <div className="detailsImageWrapper">
           <img src="/images/hospital image.jpg" alt="Hospital" />
         </div>
