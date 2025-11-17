@@ -87,6 +87,20 @@
 
 
 @media only screen and (max-width: 900px){  
+        .landingmainwrapper,
+    .landingwrapper,
+    .landingpagecenter,
+    .landingbenefitsinner,
+    .landingbenefitsinner1,
+    .landingbenefitsinner2,
+    .landingincentiveswrapper,
+    .landingincentives {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100% !important;
+    }
     
     .landingpagecenter h1{
         font-family: Poppins;

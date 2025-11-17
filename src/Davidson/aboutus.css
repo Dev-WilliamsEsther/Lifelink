@@ -8,6 +8,7 @@
 }
 
 
+
 html,
 body {
   width: 100%;
@@ -69,39 +70,54 @@ body {
 .image-div {
   margin-top: 50px; /* Adjusted margin-top */
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Adjusted gap */
-  align-items: center;
-  justify-content: center;
-  background-color: white;
+  justify-content: space-between;
+  gap: 25px;
+  margin: 40px auto;
+  width: 95%;
+  margin: 40px auto;
 }
 
 /* IMAGES ANIMATION BASE STYLE */
 .image-div div {
-  width: 220px; /* Standard width for all image wrappers */
-  height: auto;
+  border-radius: 15px;
+  overflow: hidden;
   opacity: 0;
   transform: translateY(40px);
   animation: fadeInImage 1s ease-out forwards;
 }
 
-/* Specific Image Dimensions (Re-purposed as wrapper classes) */
-/* The original sizes (.img1, .img4, .img2, .img3) are conflicting with .image-div div
-I've kept the animation delays and simplified the sizing to use the new .image-div div standard. */
-
 .img1,
 .img4 {
+  width: 302px;
+  height: 361px;
+  padding: 10px;
+}
+.img2,
+.img3 {
+  width: 302px;
+  height: 234px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-top: 50px;
+}
+
+
+.img2,
+.img3 {
   animation-delay: 0.4s;
-  /* width and height now controlled by .image-div div */
+ 
 }
 
 .img2 {
+  
   animation-delay: 0.6s;
-  /* width and height now controlled by .image-div div */
+ 
 }
 .img3 {
   animation-delay: 0.8s;
-  /* width and height now controlled by .image-div div */
+ 
 }
 .img4 {
   animation-delay: 1s; /* Added delay for img4 */
@@ -110,9 +126,10 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
 
 .image-div img {
   width: 100%;
+  /* background: #000; */
   height: 100%; /* Keep height 100% of parent wrapper */
   object-fit: cover;
-  border-radius: 10px; /* Adjusted radius */
+  border-radius: 15px; /* Adjusted radius */
   display: block;
   transition: transform 0.4s ease-in-out;
   animation: floatImage 5s ease-in-out infinite;
@@ -122,6 +139,8 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
 .image-div img:hover {
   transform: scale(1.05);
 }
+
+
 
 
 /* TEXT DIV 2 CONTENT */
@@ -178,7 +197,6 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
 /* TEXT DIV 3 & 4 CONTENT */
 .text-div3-cnt {
   margin-top: 100px;
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -207,15 +225,15 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
   text-align: center;
 }
 
-/* OUR STORY SECTION */
-.our-story-section{
-  background-color: #ffffff;
-  padding: 4rem 1rem;
+.our-story-section {
+  padding: 6rem 2rem;
+  background-color: #f9f9f9; 
 }
-@media (min-width: 640px) {
-  .our-story-section{
-    padding: 6rem 1.5rem;
-  }
+
+.our-story-header h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
 }
 
 .our-story-container{
@@ -223,7 +241,8 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
-  max-width: 1200px;
+  align-items: flex-start;
+  /* max-width: 1200px; */
   margin: 0 auto;
   border-radius: 20px;
 }
@@ -235,41 +254,11 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 50px;
-}
-
-@media (min-width: 640px) {
-  .our-story-header h2 {
-    font-size: 2.5rem;
-  }
-}
-
-.our-story-grid {
-  display: flex;
-  flex-direction: row;
-}
-
-@media (min-width: 1024px) {
-  .our-story-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-}
-
-.our-story-images {
-  object-fit: cover;
-  position: relative;
-  margin-top: 2.5rem;
-}
-
-@media (min-width: 1024px) {
-  .our-story-images {
-    order: 1;
-    margin-top: 0;
-  }
+   text-align: center;
 }
 
 .main-image {
-  width: 100%;
+  width: auto;
   height: 100%;
   object-fit: cover;
   padding: 10px;
@@ -285,28 +274,141 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
   position: absolute;
   bottom: -2rem;
   left: -2rem;
-  width: 50%;
-  max-width: 350px;
+  width: 400px;
+  max-width: 320px;
   border: 5px solid #ffffff;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-@media (min-width: 640px) {
-  .small-image {
-    bottom: -3rem;
-    left: -3rem;
-   border-width: 8px;
-  }
+.our-story-images {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
 }
 
 .our-story-text {
-  color: black;
-  gap: 50px;
-  font-size: 20px;
-  font-weight: 500;
+  max-width: 550px;
+  color: black; /* since background is black */
+  line-height: 1.7;
 }
+
+.our-story-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+
+
+
+@media (min-width: 1024px) {
+  .our-story-grid {
+    /* grid-template-columns: 1fr 1fr;
+    gap: 4rem; */
+  }
+}
+
+.our-story-images {
+  object-fit: cover;
+  position: relative;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .our-story-images {
+  order: 1;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Make the whole layout column */
+  .our-story-container {
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Text comes first */
+  .our-story-text {
+    order: 1;
+  }
+
+  /* Big image comes after the text */
+  .main-image {
+    order: 2;
+  }
+
+  /* Hide small second image */
+  .small-image {
+    display: none !important;
+  }
+
+  /* Center the image on mobile */
+  .our-story-images {
+    align-items: center;
+  }
+
+  .our-story-images img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+@media (min-width: 640px) {
+  .our-story-container{
+  flex-direction: row;
+  gap: 40px;
+  
+}
+  .our-story-section{
+    padding: 4rem 1rem;
+  }
+}
+
+
+
+
+@media (max-width: 640px) {
+  /* Show only the first image */
+  .img1 {
+    display: block;
+    width: 100% !important;
+  }
+
+  /* Hide the other three images */
+  .img2,
+  .img3,
+  .img4 {
+    display: none !important;
+  }
+
+  /* Make the container clean on mobile */
+  .image-div {
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .image-div img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .text-div{
+    text-align: left;
+    padding: 10px;
+    display: flex;
+   
+  }
+}
+
 
 @media (min-width: 640px) {
   .our-story-text {
@@ -317,7 +419,8 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
 .our-story-text p {
   text-align: left;
   margin-bottom: 1.5rem;
-  padding: 10px;
+  padding: 12px;
+  border-radius: 8px;
 }
 
 .our-story-text p:last-child {
@@ -591,9 +694,80 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
   }
 }
 
+@media (max-width:768px) {
+  .text-div3-cnt {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .text-div3{
+    order: 1;
+  }
+
+  .text-div4{
+    order: 2;
+  }
+
+  .divider{
+    display: none;
+  }
+
+  .text-div3 h3,
+  .text-div4 h3 {
+    /* background: #000;  */
+    color: #000;
+    text-align: left;
+    /* padding: 8px; */
+    line-height: 1.5;
+    border-radius: 6px;
+    font-size: 1.1rem;
+   
+  }
+
+   .mission-div span {
+    margin: 0 !important;          
+    padding: 0 !important;
+    font-size: 1.5rem !important;
+    
+  }
+
+}
+
+@media (min-width: 640px) {
+  .mv-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .text-div3 h3,
+  .text-div4 h3 {
+    /* background: #000;  */
+    color: #000;
+    text-align: left;
+    padding: 12px;
+    line-height: 1.7;
+    border-radius: 6px;
+    font-size: 1.1rem;
+  }
+
+  
+     .mission-div span {
+    margin: 0 !important;          /* Remove large spacing */
+    padding: 0 !important;
+    font-size: 1.5rem !important;
+  }
+
+  
+}
+
 @media only screen and (max-width: 1200px) {
   .text-div3-cnt {
     gap: 50px;
+  }
+  .bridging p {
+    font-size: 20px;
+    padding: 40px;
   }
 }
 
@@ -603,46 +777,37 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
   }
 }
 
-@media only screen and (max-width: 768px) {
-  /* Updated highlight size from second block */
-  .highlight {
+/* @media (min-width: 768px) {
+  .hilight-text .highlight {
     font-size: 32px;
-  }
+  } */
 
-  /* Updated text-div h3 size from second block */
-  .text-div h3 {
-    font-size: 16px;
-  }
-  
-  /* Updated image wrapper size from second block */
-  .image-div div {
-    width: 160px;
-  }
+  /* .text-div h3 {
+    font-size: 18px;
+  } */
+/* 
+  .image-div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  } */
 
-  .team-card-title h2 {
-    font-size: 20px;
+  /* .image-div .img1 {
+    max-width: 200px;
+    display: block;
   }
+} */
 
-  .team-card-title p {
-    font-size: 16px;
-  }
+/* .image-div .img4, .img3, .img2 {
+  display: none;
+} */
 
-  .mission-div h3 {
-    font-size: 22px;
-  }
-
-  .mission-div p {
-    font-size: 16px;
-    padding: 0 10px;
-  }
-
-  .text-div2-cnt {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.bridging p {
+ 
+  padding: 30px;
+  text-align: left;
 }
+
 
 @media only screen and (max-width: 480px) {
   .hilight-text{
@@ -674,14 +839,14 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
     height: auto;
   }
 
-  .img1,
-  .img4 {
+  .img1
+   {
     height: 180px;
     border-radius: 15px;
   }
 
-  .img2,
-  .img3 {
+  .img1
+  {
     height: 150px;
     border-radius: 15px;
   }
@@ -815,14 +980,13 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
     height: auto;
   }
 
-  .img1,
-  .img4 {
+  .img1 {
     height: 180px;
     border-radius: 15px;
   }
 
-  .img2,
-  .img3 {
+  .img1
+ {
     height: 150px;
     border-radius: 15px;
   }
@@ -920,5 +1084,55 @@ I've kept the animation delays and simplified the sizing to use the new .image-d
     align-items: center;
     justify-content: center;
     color: black;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .what-makes-us-cnt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .step-box-cnt {
+    display: flex;
+    flex-direction: column;   /* STACK ALL STEP BOXES */
+    width: 100%;
+    gap: 20px;
+  }
+
+  .step-box {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .step-box .icon img {
+    width: 60px;    /* Responsive icon */
+    height: auto;
+  }
+
+  .what-makes-us-cnt span:first-child {
+    font-size: 28px !important;
+  }
+
+  .what-makes-us-cnt span:nth-child(2) {
+    font-size: 16px !important;
+    margin-top: 10px !important;
+  }
+
+  .get-listed-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .get-listed-btn button {
+    width: 100%;
+    max-width: 300px;
   }
 }

@@ -173,8 +173,18 @@
 }
 
 
-@media only screen and (max-width: 900px){  
-    .landingpagebenefits{
+ @media only screen and (max-width: 900px){  
+
+    .landingpagebenefits,
+  .landingbenefitsinner,
+  .landingbenefitsinner1,
+  .landingbenefitsinner2 {
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+  }
+    /* .landingpagebenefits{
         width: 100%;
         height: max-content;
         background-color: white;
@@ -182,9 +192,10 @@
         justify-content: center;
         align-items: center;
         margin-top: 3%;
+      
 
-    }
-    .landingpagebenefits h1{
+    } */
+    /* .landingpagebenefits h1{
         font-family: Poppins;
         font-size: 36px;
         font-weight: 700;
@@ -192,8 +203,8 @@
         letter-spacing: 0%;
         color: #2C3E50;
         text-align: center;
-    }
-    .landingbenefitsinner{
+    } */
+    /* .landingbenefitsinner{
         width: 100%;
         height: max-content;
         background-color: white;
@@ -203,28 +214,28 @@
         flex-direction: column;
 
         padding: 20px;
-    }
-    .landingbenefitsinner1{
+    } */
+    /* .landingbenefitsinner1{
         width: 90%;
         height: 470px;
         display: flex;
         flex-wrap: nowrap;
         gap: 20px;
         
-    }
-    .landingbenefitsinner1 h2{
+    } */
+    /* .landingbenefitsinner1 h2{
         font-family: Poppins;
         font-weight: 400;
         font-size: 18px;
         
-    }
-    .landingbenefitsinner1 p{
+    } */
+    /* .landingbenefitsinner1 p{
         font-family: Poppins;
         font-weight: 300;
         font-size: 14px;
         
-    }
-    .benefitsbtn{
+    } */
+    /* .benefitsbtn{
         width: 120px;
       height: 40px;
       background-color: #c0392b;
@@ -234,12 +245,12 @@
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-    }
-    .benefitsbtn:hover{
+    } */
+    /* .benefitsbtn:hover{
         background-color: #D6EAF8;
         color: black;
-    }
-    .landingbenefitsinner2{
+    } */
+    /* .landingbenefitsinner2{
         width: 100%;
         height: max-content;
         display: flex;
@@ -247,11 +258,11 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 10px;
-         background: linear-gradient(135deg, #e3f2fd, #90caf9);
-  padding: 40px;
-  border-radius: 20px;
-    }
-    .landingincentives{
+         /* background: linear-gradient(135deg, #e3f2fd, #90caf9); */
+        /* padding: 40px; */
+        /* border-radius: 20px; */
+    /* } */
+    /* .landingincentives{
         width: 46%;
         height: 210px;
         background-color: rgba(255, 255, 255, 0.15);
@@ -262,21 +273,24 @@
         border: 1px solid rgba(255, 255, 255, 0.3);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)  ;
         padding: 10px;
-        transition: all 0.3s ease;
-    }
+        transition: all 0.3s ease; */
+        /* overflow: hidden;  */
+  /* text-overflow: ellipsis;  */
+  
+    /* }
 
     .landingincentives:hover{
         box-shadow: 0 6px 40px rgba(0, 0, 0, 0.2);
         transform: translateY(-5px);
-    }
-    .landingincentives h2{
+    } */
+    /* .landingincentives h2{
         font-family: Poppins;
         font-size: 20px;
         font-weight: 600;
         text-align: center;
         color: #212121;
-    }
-    .landingincentives p{
+    } */
+    /* .landingincentives p{
         font-family: Poppins;
         font-weight: 400;
         font-size: 12px;
@@ -288,10 +302,10 @@
         display: flex;
         align-items: center;
         padding: 5px;
-    }
-    .incentiveheader img{
+    } */
+    /* .incentiveheader img{
         width: 30%;
-    }
+    } */
     
 }
 
@@ -371,9 +385,9 @@
         gap: 10px;
     }
     .landingincentives{
-        width: 46%;
+        width: 50%;
         height: 210px;
-        background-color: #D6EAF8;
+        /* background-color: #D6EAF8; */
         border-radius: 10px;
         border: 1px solid black;
         padding: 10px;
@@ -638,4 +652,4 @@
         width: 30%;
     }
 
-}
+} 
